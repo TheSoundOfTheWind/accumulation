@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+informationGathering 的意思是信息搜集，信息收集，信息保存
+每个子信息下面可以分为{书、论文、ppt、word、网页链接、视频、音频、txt、code}
+=======
+informationGathering 的意思是信息搜集，信息收集，信息保存
+每个子信息下面可以分为{书、论文、ppt、word、网页链接、视频、音频、txt、code}
+>>>>>>> 1d751b2d5d0f314aae5ee85cadda02a076b13d0f
