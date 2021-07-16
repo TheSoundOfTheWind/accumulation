@@ -1,0 +1,2 @@
+#下拉非常大的仓库，需要设置这个命令不然会下拉失败
+git config --global http.postBuffer 1048576000
