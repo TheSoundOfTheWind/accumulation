@@ -1,0 +1,65 @@
+<<<<<<< HEAD
+
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+using namespace std;
+ 
+int main()
+{
+       cout <<"RAND_MAX:"<< RAND_MAX << endl;
+       srand((unsigned)time(NULL));
+       for (int i = 0; i < 5; i++)
+              cout << rand() << endl;
+}
+————————————————
+那么，如何得到一个在a到b的整数呢？有两种方法：
+
+法一：
+
+公式：a+rand()%(b-a+1)
+
+示例：
+
+1
+n=1000+rand()%9000;//随机生成一个四位数返回给n。a+rand()%(b-a+1)，四位数即1000-9999，此时a=1000,b=9999
+法二：
+
+公式：a+rand()*(b-a+1)/RAND_MAX
+
+示例：
+
+n=1000+rand()*9000/RAND_MAX;//随机生成一个四位数返回给n。a+rand()*(b-a+1)/RAND_MAX，四位数即1000-9999，此时a=1000,b=9999 
+=======
+
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+using namespace std;
+ 
+int main()
+{
+       cout <<"RAND_MAX:"<< RAND_MAX << endl;
+       srand((unsigned)time(NULL));
+       for (int i = 0; i < 5; i++)
+              cout << rand() << endl;
+}
+————————————————
+那么，如何得到一个在a到b的整数呢？有两种方法：
+
+法一：
+
+公式：a+rand()%(b-a+1)
+
+示例：
+
+1
+n=1000+rand()%9000;//随机生成一个四位数返回给n。a+rand()%(b-a+1)，四位数即1000-9999，此时a=1000,b=9999
+法二：
+
+公式：a+rand()*(b-a+1)/RAND_MAX
+
+示例：
+
+n=1000+rand()*9000/RAND_MAX;//随机生成一个四位数返回给n。a+rand()*(b-a+1)/RAND_MAX，四位数即1000-9999，此时a=1000,b=9999 
+>>>>>>> 1d751b2d5d0f314aae5ee85cadda02a076b13d0f

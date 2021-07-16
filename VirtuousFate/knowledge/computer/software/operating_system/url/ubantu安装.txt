@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+ubuntu iso下载
+http://mirrors.163.com/ubuntu-releases/
+
+Ubuntu:u盘作系统启动盘
+=======
+ubuntu iso下载
+http://mirrors.163.com/ubuntu-releases/
+
+Ubuntu:u盘作系统启动盘
+>>>>>>> 1d751b2d5d0f314aae5ee85cadda02a076b13d0f
+https://www.jianshu.com/p/dbe64ce09b74
