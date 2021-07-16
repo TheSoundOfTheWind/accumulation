@@ -1,0 +1,73 @@
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+ - family
+    - wife
+和媳妇视频
+和媳妇视频
+
+    - parent
+
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+和高扬讨论有关gxviewer自动编译路径的问题
+gbviewer性能优化有限的问题
+config ntk需要更隐蔽的问题
+ - informationDigestion
+19:55~
+看《把时间当作朋友》172页
+
+ - informationApplication
+给高扬发有关自动编译路径的文件
+和磊哥开周会（regression问题和支持问题）
+debug gbviewer的速度问题
+和祐民聊itf、互联网薪资和EDA薪资的问题、未来行业发展方向
+
+ - informationManagement
+解压下载到个人电脑中knowledge文件
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+1:00~7:30 6h 30m
+睡觉
+    - eat
+吃早餐（豆浆、茶叶蛋）
+打水、吃华夫饼
+吃午餐（辣椒炒鸡蛋）
+吃晚餐（面包、酸酸奶）
+    -sport
+练坐势易筋经
+练站势易筋经
+    -wash
+洗漱、洗衣服
+
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+！！！
+
+-----------------------------materialDebt------------------------------
+ - food
+买早餐（4元）
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - excretion
+wc
+ - insurance
+ - treatment  
+ - communication
+
+
+
+

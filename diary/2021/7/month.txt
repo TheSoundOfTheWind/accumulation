@@ -1,0 +1,109 @@
+//待完成
+//gbpostpro
+//-----------------------------------------------------------------------------
+1.2021-05-26~
+dynamic gbpostpro 中出现了via和很多no find 的node 
+//-----------------------------------------------------------------------------
+
+//gxviewer
+//-----------------------------------------------------------------------------
+
+2.2021-06-01 ~
+#1179: gxviewer needs to optimize speed
+
+corner
+4.
+- 滚轮控制：鼠标选中2D窗口后可以鼠标滚轮来缩放大小
+- 键盘控制：
+r      all     恢复最开始软件打开的界面，包括位置、大小。颜色和图形状态
+              （实体、透视）保持当前用户设置即可。
+i      all     放大：选中相应窗口，对该窗口图形进行等比例放大
+o      all     缩小：选中相应窗口，对该窗口图形进行等比例缩小
+m      3D      移动：按快捷键m之后松开，进入移动模式，使用键盘方向键移动
+                     图形，再次按快捷键m退出移动模式。
+w      3D      向上旋转图形：每次旋转45度
+s      3D      向下旋转图形：每次旋转45度
+a      3D      向左旋转图形：每次旋转45度
+d      3D      向右旋转图形，每次旋转45度
+键盘方向键 3D   图形翻滚
+           2D   移动图形
+		   
+5. top view也可以量，原始数据的topview 和切之后的topview，点击显示坐标，
+   显示each值，可以吸附测量。
+   - topview的图形，用原数据的topview（有settin之后的也有三者并存的），
+     可以点击（status中显示原坐标），测量
+   - 2D 图形中用2D的坐标为基准，这样可以方便显示，可以做出各种叠加，
+     坐标也不会出错。zoom也不会飞掉。
+   - 点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+
+6. 添加，可以从上下左右前后六个正面看3D图形的选项
+
+7. 支持单纯看2D box和看3D box的数据
+
+9.#768 assigned defect
+The terminal prints "Xlib: sequence lost" for no reason
+
+11.#763 assigned defect
+gxviewer controls the movement of 3D or 2D graphics through the keyboard
+
+12.#762 assigned task
+The top view window of gxviewer can measure, click and select the display mode
+
+
+
+
+//-----------------------------------------------------------------------------
+
+//gbviewer
+//-----------------------------------------------------------------------------
+1.2021.05.14 ~ 
+gbviewe 界面和功能按GloryBolt和GloryEX用mode做一个区分（默认不加载.gbx）
+ - topleve 拆分到gex mode中
+2.2021.05.06~ 
+gbviewer性能优化 
+在例子很小的时候看样子哪快时间都不多，但在例子变大，变得极端，某一块的时间就会
+指数增长。
+目前我们手里还是华为手里最大的例子都是2600万左右的shape规模，从zoom in和zoom out
+的速度来看oc6k和华为的速度都相差无几。但是我们的只有十几层，华为的有100多层。
+证明layer的层数可能不是制约我们目前code速度的瓶颈，是规模的大小成为了制约我们
+的瓶颈。
+在某层layer含有远超百万级的shape时的速度的优化可能是接下来我们的优化方向。
+从打印的日志中可以看出，画shape要1700ms但收敛的总时间却是2700ms，额外多了1000ms
+这个地方可以优先重点优化。
+3.2021-06-09~
+float的net没有node点（不知道哪个case可以还原）
+4.2021.07.01~
+支持李文辉的那个文件，波形文件
+//-----------------------------------------------------------------------------
+
+//gbflow
+//-----------------------------------------------------------------------------
+1.2021.05.06~ 
+改善glorybolt 的日志问题：
+     - 当执行glorybolt之前，没有通过#!/bin/bash指明shell路径,glorybolt会出现一
+	   路执行到底，
+       但glorybolt调用的bianry都没有被调用起来的情况。但是日志没有出现任何-E-
+	   或-W-级别的警告
+
+2.2021.05.06~ 
+glorybolt生成cmd和运行binary分开，先生成每个bianry的cmd，后按顺序运行binary
+//-----------------------------------------------------------------------------
+
+
+已完成：
+2021-06-01~2021-07-05
+14.#1182 assigned defect
+gxviewer should not show the 3D coordinate diagram on the top left corner
+
+2021.05.12~2021.07.05
+gxviewer坐标框显示的问题（高扬）
+
+~2021-7-6
+#767 assigned defect
+The coordinate prompt font in the small window will rotate with the cube.
+
+~2021-7-14
+10.#765 assigned task
+gxviewer 2D graphics are scaled with the mouse wheel
+13.#883 planned enhancement
+gxviewer needs new function to search node by node name in gcap(node ZN 2) and spice(ZN&p2)

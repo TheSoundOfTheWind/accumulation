@@ -1,0 +1,116 @@
+QTreeWidget Class
+The QTreeWidget class provides a tree view that uses a predefined tree model. More...
+
+Header:	#include <QTreeWidget>
+
+Properties：
+columnCount : int
+topLevelItemCount : const int
+
+Public Functions：
+QTreeWidget(QWidget *parent = nullptr)
+virtual	~QTreeWidget()
+void	addTopLevelItem(QTreeWidgetItem *item)
+void	addTopLevelItems(const QList<QTreeWidgetItem *> &items)
+void	closePersistentEditor(QTreeWidgetItem *item, int column = 0)
+int		columnCount() const
+int		currentColumn() const
+QTreeWidgetItem *			currentItem() const
+void						editItem(QTreeWidgetItem *item, int column = 0)
+QList<QTreeWidgetItem *>	findItems(const QString &text, Qt::MatchFlags flags, int column = 0) const
+QTreeWidgetItem *			headerItem() const
+int							indexOfTopLevelItem(QTreeWidgetItem *item) const
+void						insertTopLevelItem(int index, QTreeWidgetItem *item)
+void						insertTopLevelItems(int index, const QList<QTreeWidgetItem *> &items)
+QTreeWidgetItem *			invisibleRootItem() const
+bool						isPersistentEditorOpen(QTreeWidgetItem *item, int column = 0) const
+QTreeWidgetItem *			itemAbove(const QTreeWidgetItem *item) const
+QTreeWidgetItem *			itemAt(const QPoint &p) const
+QTreeWidgetItem *			itemAt(int x, int y) const
+QTreeWidgetItem *			itemBelow(const QTreeWidgetItem *item) const
+QWidget *					itemWidget(QTreeWidgetItem *item, int column) const
+void						openPersistentEditor(QTreeWidgetItem *item, int column = 0)
+void						removeItemWidget(QTreeWidgetItem *item, int column)
+QList<QTreeWidgetItem *>	selectedItems() const
+void	setColumnCount(int columns)
+void	setCurrentItem(QTreeWidgetItem *item)
+void	setCurrentItem(QTreeWidgetItem *item, int column)
+void	setCurrentItem(QTreeWidgetItem *item, int column, QItemSelectionModel::SelectionFlags command)
+void	setHeaderItem(QTreeWidgetItem *item)
+void	setHeaderLabel(const QString &label)
+void	setHeaderLabels(const QStringList &labels)
+void	setItemWidget(QTreeWidgetItem *item, int column, QWidget *widget)
+int		sortColumn() const
+void	sortItems(int column, Qt::SortOrder order)
+QTreeWidgetItem *	takeTopLevelItem(int index)
+QTreeWidgetItem *	topLevelItem(int index) const
+int					topLevelItemCount() const
+QRect				visualItemRect(const QTreeWidgetItem *item) const
+
+Reimplemented Public Functions：
+virtual void	setSelectionModel(QItemSelectionModel *selectionModel) override
+
+Public Slots：
+void	clear()
+void	collapseItem(const QTreeWidgetItem *item)
+void	expandItem(const QTreeWidgetItem *item)
+void	scrollToItem(const QTreeWidgetItem *item, QAbstractItemView::ScrollHint hint = EnsureVisible)
+
+Signals：
+void	currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+void	itemActivated(QTreeWidgetItem *item, int column)
+void	itemChanged(QTreeWidgetItem *item, int column)
+void	itemClicked(QTreeWidgetItem *item, int column)
+void	itemCollapsed(QTreeWidgetItem *item)
+void	itemDoubleClicked(QTreeWidgetItem *item, int column)
+void	itemEntered(QTreeWidgetItem *item, int column)
+void	itemExpanded(QTreeWidgetItem *item)
+void	itemPressed(QTreeWidgetItem *item, int column)
+void	itemSelectionChanged()
+
+Protected Functions：
+virtual bool	dropMimeData(QTreeWidgetItem *parent, int index, const QMimeData *data, Qt::DropAction action)
+QModelIndex	indexFromItem(const QTreeWidgetItem *item, int column = 0) const
+QTreeWidgetItem *	itemFromIndex(const QModelIndex &index) const
+virtual QMimeData *	mimeData(const QList<QTreeWidgetItem *> items) const
+virtual QStringList	mimeTypes() const
+virtual Qt::DropActions	supportedDropActions() const
+Reimplemented Protected Functions
+virtual void	dropEvent(QDropEvent *event) override
+virtual bool	event(QEvent *e) override
+
+Detailed Description：
+//-----------------------------------------------------------------------------
+The QTreeWidget class is a convenience class that provides a standard tree 
+widget with a classic item-based interface similar to that used by the QListView 
+class in Qt 3. This class is based on Qt's Model/View architecture and uses a 
+default model to hold items, each of which is a QTreeWidgetItem.
+
+Developers who do not need the flexibility of the Model/View framework can use 
+this class to create simple hierarchical lists very easily. A more flexible 
+approach involves combining a QTreeView with a standard item model. This allows 
+the storage of data to be separated from its representation.
+
+In its simplest form, a tree widget can be constructed in the following way:
+
+QTreeWidget *treeWidget = new QTreeWidget();
+treeWidget->setColumnCount(1);
+QList<QTreeWidgetItem *> items;
+for (int i = 0; i < 10; ++i)
+    items.append(new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), 
+	QStringList(QString("item: %1").arg(i))));
+treeWidget->insertTopLevelItems(0, items);
+Before items can be added to the tree widget, the number of columns must be set 
+with setColumnCount(). This allows each item to have one or more labels or other 
+decorations. The number of columns in use can be found with the columnCount() 
+function.
+
+The tree can have a header that contains a section for each column in the widget. 
+It is easiest to set up the labels for each section by supplying a list of strings 
+with setHeaderLabels(), but a custom header can be constructed with a 
+QTreeWidgetItem and inserted into the tree with the setHeaderItem() function.
+
+The items in the tree can be sorted by column according to a predefined sort order. 
+If sorting is enabled, the user can sort the items by clicking on a column header. 
+Sorting can be enabled or disabled by calling setSortingEnabled(). The 
+isSortingEnabled() function indicates whether sorting is enabled.

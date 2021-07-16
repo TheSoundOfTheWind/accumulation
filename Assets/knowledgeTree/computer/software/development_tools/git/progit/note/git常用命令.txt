@@ -1,0 +1,66 @@
+远程仓库命令
+#检出仓库：
+git clone git@gitlab.xxx.com:xxxxxxxxxx
+#查看远程仓库： 
+git remote -v
+#添加远程仓库：
+git remote add [name] [url]
+#删除远程仓库：
+git remote rm [name]
+#修改远程仓库： 
+git remote set-url --push [name] [newUrl]
+#拉取远程仓库：
+git pull [remoteName] [localBranchName]
+#推送远程仓库：
+git push [remoteName] [localBranchName]
+#提交本地test分支作为远程的master分支
+git push origin test:master
+#提交本地test分支作为远程的test分支
+git push origin test:test
+
+
+
+
+
+分支(branch)操作命令
+#查看本地分支：
+git branch
+#查看远程分支：
+git branch -r
+#创建本地分支：
+git branch [name] ----注意新分支创建后不会自动切换为当前分支
+#切换分支：
+git checkout [name]
+#创建新分支并立即切换到新分支：
+git checkout -b [name]
+#删除分支：
+git branch -d [name] ---- -d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项
+#合并分支：
+git merge [name] ----将名称为[name]的分支与当前分支合并
+#创建远程分支(本地分支push到远程)：
+git push origin [name]
+#删除远程分支：
+git push origin :heads/[name] or gitpush origin :[name]
+
+
+
+
+版本(tag)操作命令
+#查看版本：
+git tag
+#创建版本：
+git tag [name]
+#删除版本：
+git tag -d [name]
+#查看远程版本：
+git tag -r
+#创建远程版本(本地版本push到远程)：
+git push origin [name]
+#删除远程版本：
+git push origin :refs/tags/[name]
+#合并远程仓库的tag到本地：
+git pull origin --tags
+#上传本地tag到远程仓库：
+git push origin --tags
+#创建带注释的tag：
+git tag -a [name] -m 'yourMessage'

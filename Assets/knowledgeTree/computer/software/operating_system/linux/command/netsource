@@ -1,0 +1,8 @@
+sar -b 1
+sar -n DEV 1
+netstat -a
+netstat -e | grep id
+>su user
+>lsof -i | grep 6018
+>lsof -u
+>lsof -N

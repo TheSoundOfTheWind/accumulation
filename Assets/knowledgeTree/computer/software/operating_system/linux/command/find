@@ -1,0 +1,10 @@
+find ./ -name filename
+
+删除某个目录带固定后缀的文件
+find ./ -name "*.pdf" |xargs rm -rf
+
+批量移动某目录下某类型的文件道指定的目录下
+find ./ -name "*.pdf" | xargs -I file mv file ./book
+
+find ./ -name "*.pdf" | xargs -I file git mv file ./book
+

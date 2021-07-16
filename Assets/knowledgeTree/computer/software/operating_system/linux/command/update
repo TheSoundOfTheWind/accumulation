@@ -1,0 +1,7 @@
+#tab自动补全比较慢的问题
+1. sudo updatedb
+
+#更新软件源
+2. sudo apt udpate
+#更新软件包
+3. sudo apt upgrade

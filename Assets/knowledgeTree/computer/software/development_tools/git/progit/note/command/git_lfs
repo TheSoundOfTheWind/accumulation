@@ -1,0 +1,26 @@
+# https://zhuanlan.zhihu.com/p/146683392
+step 1:
+sudo apt install git-lfs
+
+#在仓库的目录中
+git lfs install
+
+step 2:
+//追踪单个文件
+git-lfs track filepath
+
+// 追踪指定类型的文件
+git-lfs track "*.exe"
+
+// 追踪指定目录下的文件
+git-lfs track "path/*"
+
+step 3:
+git add ..
+git commit -m ""
+git push
+
+git lfs fetch
+git lfs checkout
+# 或
+git lfs pull

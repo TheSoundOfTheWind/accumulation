@@ -1,0 +1,19 @@
+1. opengle大部分工作都是把3D坐标转为屏幕上的2D的像素
+2. 把3D坐标转换为带颜色的2D像素的任务由opengl的图形管道（graphics pipeline）负责
+3. graphics pipeline可以分成两个大部分
+  -- 第一部分是把3D坐标转换成2D坐标
+  -- 第二部分是把2D坐标变成（着色）实际的带颜色的像素
+4. graphics pipeline可以被拆分成几个步骤，每个步骤的输出都是下一个步骤的输入，并且每个步骤都可以并行。所有的步骤都是高度专业化的，每个步骤有一个指定的函数。因为现在的显卡有上千个小的处理核心，能够在graphica pipeline中快速的处理你的数据，GPU的每个处理核心能够运行管道中的每个小的步骤，其中最小的程序被称之为shapers（着色器）。
+5. 有些着色器可以让开发者自己配置，等于是开发者可以写自己的着色器去替代原有的默认的着色器。这给了我们更细的粒度去控制管道中的某个部分运行在GPU上，这大大节约了cpu的时间。
+
+6. NDC: normalized device coordinates
+
+7. VBO: vertex buffer objects
+
+8. VAO: vertex array object
+
+9. EBO: element buffer objects
+
+10. opengl 主要工作是和三角形打交道
+
+11. 当窗口的大小不是长宽等长，3D图形的xy平面图形会被拉车，会按1一比一映射到界面上。长越长拉扯的越厉害。

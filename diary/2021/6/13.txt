@@ -1,0 +1,54 @@
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+ - family
+    - wife
+    - parent
+去火车站接母亲去象湖第一附属医院看病
+媳妇带着看，我跟屁股后面
+和妈在媳妇学校操场散步
+接媳妇回酒店！！！
+
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+ - informationDigestion
+ - informationApplication
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+午睡
+    - eat
+西瓜
+    -sport
+    -wash
+
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+
+-----------------------------materialDebt------------------------------
+ - food
+ - travel
+ - house
+ - clothes
+ - badEat
+雪糕
+ - badSleep
+ - excretion
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

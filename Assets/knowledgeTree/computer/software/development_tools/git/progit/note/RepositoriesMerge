@@ -1,0 +1,54 @@
+1.
+mkdir workspace
+
+2.
+cd workspace
+
+3.克隆两个仓库
+git clone https://github.com/TheSoundOfTheWind/C_Primer_Plus.git
+git clone https://github.com/TheSoundOfTheWind/knowledge.git
+
+4.
+cd knowledget
+
+5.将C_Primer_Plus作为远程仓库，添加到knowledge中，设置别名为other
+git remote add other ../C_Primer_Plus
+
+of
+
+git remote add other https://github.com/TheSoundOfTheWind/C_Primer_Plus.git
+
+6.查看目前有几个远程分支
+git remote
+
+
+7.从远程仓库拉取数据到本地仓库
+git fetch other
+
+8.将从C_Primer_Plus拉取的master分支作为新分支checkout到本地，新分支名为branchnew
+git checkout -b branchnew other/master
+
+9.查看目前有几个分支，现在又处在哪个分支上
+git branch
+
+10.切换回knowledge的master分支
+git checkout master
+
+11.将branchnew分支并入master分支
+git merge branchnew    ('fatal: refusing to merge unrelated histories)
+
+or   
+
+git merge branchnew --allow-unrelted-histories
+
+
+12.发现有冲突，解决冲突
+git status
+
+13.
+git commit -m "note"
+
+14.
+git push
+
+

@@ -1,0 +1,60 @@
+**********************************Assets***********************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+ - wisdon
+11:01~
+整理系统论和熵增的模型
+ - family
+    - wife
+和媳妇通电话
+和媳妇视频聊天
+    - parent
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+ - informationDigestion
+ - informationApplication
+回复高扬有关gxencrypt 更改密钥和改变解密参数的邮件 
+9:50~10:21 31 m
+修改gxencrypt
+ - informationManagement
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep 8h
+睡午觉
+睡觉
+    - eat
+吃早餐（豆浆、油条、茶叶蛋）
+吃午餐（超面13元）
+吃鸡蛋辣椒青菜面（自己做的）
+    -sport
+静坐、练坐势易筋经
+    -wash
+洗漱
+**********************************Debt***********************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+18:30~00:20 5h 30m
+看B站的一些视频、玩云顶之役
+-----------------------------materialDebt------------------------------
+ - food
+买早餐（6元）
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

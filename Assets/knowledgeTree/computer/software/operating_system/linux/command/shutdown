@@ -1,0 +1,8 @@
+关机：
+halt
+poweroff
+shutdown -h now  （root）
+重启：
+shutdown -r now （root）
+reboot
+

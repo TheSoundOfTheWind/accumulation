@@ -1,0 +1,71 @@
+外若著相，内心即乱。外若离相，心即不乱。本性自净自定，只为见境思境即乱。若见诸境心不乱者，是真定也。
+
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+静坐
+ - family
+    - wife
+和媳妇视频聊天
+    - parent
+    - brother
+发验证码，让他登录王者荣耀
+
+ -classmate
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+和坤鹏讨论vcd parse的问题
+ - informationDigestion
+ - informationApplication
+群发统一日志的邮件
+11:17~
+优化gbviewr的速度
+debug 编译不通过的问题
+debug在参展服务器伤gxviewer跑不起来的问题
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+睡午觉
+12:18~8:30 8h 12m
+睡觉
+    - eat
+吃早餐（饼、豆浆、茶叶蛋）
+吃午餐（青菜、藕、米饭）
+吃晚餐（南瓜饼、小米粥、烧卖）
+    -sport
+练坐势易筋经
+    -wash
+洗漱
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+看小说、刷抖音
+-----------------------------materialDebt------------------------------
+ - food
+买早餐（7元）
+买午餐（13元）
+买晚餐（9元）
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - excretion
+wc、wc
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

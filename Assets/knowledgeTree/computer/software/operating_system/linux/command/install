@@ -1,0 +1,5 @@
+#指定版本安装：
+# sudo apt install A=B
+sudo apt install libxml2=2.9.3+dfsgl-1
+
+#A=B,A是第三方库的名字,B是第三方库的版本号。当你出现下列软件未满足的依赖关系报错时可以用这个命名将某些库的版本号降下来。

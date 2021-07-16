@@ -1,0 +1,39 @@
+2021-05-22-07-51 ~ 2小时20分钟
+和媳妇视频
+洗漱、买早餐（油条和茶叶蛋4元）
+去公司打卡9.25、打水吃茶叶蛋和牛奶
+WC、听喜马拉雅听（我的弟子全是沙雕玩家）
+
+2021-05-22-10-11 ~ 1小时57
+听喜马拉雅听（我的弟子全是沙雕玩家）
+2021-05-22~
+gbflow添加set_package_spice_file  spice_file_path ： package_spice_file  spice_file_path
+                 set_pad_location_file   pad_location_file ： pad_location_file  pad_location_file
+
+2021-05-22-12-08 ~ 1小时39分钟
+吃午饭（芹菜炒香干和小白菜16元，在百家旺吃）
+和媳妇聊天、睡午觉
+听喜马拉雅听（我的弟子全是沙雕玩家）
+
+2021-05-22-13-47 ~ 3小时25分钟
+听喜马拉雅听（我的弟子全是沙雕玩家）
+top.ir.worst.VDD/VSS合并成top.ir.worst，海思建议去掉文件中多余的node name，他们只关心instance pin的voltage ok
+top.max_ir_drop.VDD/VSS合并成layer_ir_drop.rpt
+top.path.VDD/VSS合并成min_path_res.rpt
+
+2021-05-22-17-12 ~ 4小时26分钟
+休息
+看网页，袁隆平去世的微博、流泪
+去做地铁赶火车、上火车
+看《我的弟子全是沙雕玩家》
+
+2021-05-22-21-38 ~ 2小时22分钟
+下火车、坐地铁、天下着小雨
+去媳妇学校和媳妇碰面
+打车去七天优品酒店，躺着休息，媳妇伤心
+给媳妇洗澡、睡觉
+
+2021-05-22-00-00 ~ 7小时30分钟
+睡觉
+
+2021-05-22-07-30 ~

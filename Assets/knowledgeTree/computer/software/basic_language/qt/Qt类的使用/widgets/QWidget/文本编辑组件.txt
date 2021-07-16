@@ -1,0 +1,43 @@
+文本编辑组件
+
+ QT中提供了三种文本编辑组件
+
+QLineEdit :单行文本编辑组件
+QTextEdit:多行富文本编辑组件(类似于word编辑,可以实现图片,个别文字的字体,颜色等编辑)
+QPlainTextEdit:多行普通文本编辑组件(类似于记事本编辑) 
+Qt,在文本编辑组件里自带了右键式菜单
+
+可以实现复制,粘贴,剪切等,以QTextEdit为例:
+
+ 
+
+ 常用函数
+
+QMenu * QLineEdit::createStandardContextMenu();
+                            //获取右击菜单内容
+menu->addAction(tr("My Menu Item"));
+                            //添加右击菜单内容
+addAction(QAction *action, ActionPosition position);
+　　　　　　　　　　　　　　　　　　//可以在编辑框的开始或者末尾添加一个action，方便我们操作，一个完美的搜索框顿时出现。
+ 
+
+以QPlainTextEdit组件为例,它的常用信号函数如下:
+
+复制代码
+void textChanged ();
+        //每当文档的内容发生变化时,则触发该信号,可以用来判断文本是否被修改,以及输入的字符是什么
+
+void QPlainTextEdit::selectionChanged () ;
+        //当文本框鼠标选择改变时,触发该信号
+
+void QPlainTextEdit::cursorPositionChanged ();
+        //每当光标的位置发生变化时，触发该信号
+
+void  undoAvailable ( bool available );
+        //当用户进行撤销操作时,则触发该信号,如果撤销成功则available 为true
+
+void  redoAvailable ( bool available );
+        //当用户进行重做操作时,则触发该信号,如果文本框为空则available 为true
+
+void  blockCountChanged ( int newBlockCount ) 
+       //每当按下回车或者删除回车(更新字符块),则newBlockCount计数,并触发该信号, newBlockCount 默认为1

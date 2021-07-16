@@ -1,0 +1,95 @@
+待完成：
+---------------------------------------gbpostpro------------------------------------
+2021-05-26  ~
+dynamic gbpostpro 中出现了via和很多no find 的node 
+
+---------------------------------------gxviewer-------------------------------------
+2021.05.12 ~
+gxviewer坐标框显示的问题（高扬）
+2021-06-01 ~
+#1179: gxviewer needs to optimize speed
+2021-06-01 ~
+#1182: gxviewer should not show the 3D coordinate diagram on the top left corner
+
+- 滚轮控制：鼠标选中2D窗口后可以鼠标滚轮来缩放大小
+- 键盘控制：
+r      all     恢复最开始软件打开的界面，包括位置、大小。颜色和图形状态（实体、透视）保持当前用户设置即可。
+i      all     放大：选中相应窗口，对该窗口图形进行等比例放大
+o      all     缩小：选中相应窗口，对该窗口图形进行等比例缩小
+m      3D      移动：按快捷键m之后松开，进入移动模式，使用键盘方向键移动图形，再次按快捷键m退出移动模式。
+w      3D      向上旋转图形：每次旋转45度
+s      3D      向下旋转图形：每次旋转45度
+a      3D      向左旋转图形：每次旋转45度
+d      3D      向右旋转图形，每次旋转45度
+键盘方向键 3D   图形翻滚
+           2D   移动图形
+	   
+1. top view也可以量，原始数据的topview 和切之后的topview，点击显示坐标，显示each值，可以吸附测量。
+   - topview的图形，用原数据的topview（有settin之后的也有三者并存的），可以点击（status中显示原坐标），测量
+   - 2D 图形中用2D的坐标为基准，这样可以方便显示，可以做出各种叠加，坐标也不会出错。zoom也不会飞掉。
+   - 点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+
+2. 添加，可以从上下左右前后六个正面看3D图形的选项
+
+3. 支持单纯看2D box和看3D box的数据
+---------------------------------------gbviewer-------------------------------------
+2021.05.14 ~ 
+gbviewe 界面和功能按GloryBolt和GloryEX用mode做一个区分（默认不加载.gbx）
+ - topleve 拆分到gex mode中
+2021.05.06~ 
+gbviewer性能优化 （借助一些画图工具梳理gbviewer的框架，解耦，看看哪个模块最需要优化）（跟进中）
+2021.05.17~
+gbviewer支持显示洪斌的gbsim出的动态的nv文件，用来显示动态的ir drop ascii文件
+2021-06-09  ~
+float的net没有node点
+---------------------------------------gbflow----------------------------------------
+2021.05.06~ 
+改善glorybolt 的日志问题：
+     - 当执行glorybolt之前，没有通过#!/bin/bash指明shell路径,glorybolt会出现一路执行到底，
+        但glorybolt调用的bianry都没有被调用起来的情况。但是日志没有出现任何-E-或-W-级别
+        的警告
+
+2021.05.06~ 
+glorybolt生成cmd和运行binary分开，先生成每个bianry的cmd，后按顺序运行binary
+*****************************************************************************************
+
+2021-05-26  ~ 
+static flow via上的em percentage 大部分都显示成-100%， 对于via这种shape em是还没处理吗？
+ok
+
+2021-05-19 ~ 14天
+通过命令控制net是否显示（高扬）
+2021-06-02
+
+2021.05.06~  27天
+gtf指定区域进行加密（通过一个#begin和一个#end的标识符将标识符之间的ASCII数据进行加密，加密级别做到256位，采用hash或者MD5级别的加密算法）
+2021.06.02
+
+2021-06-02  ~ 1天
+gxviewer -g 读取binary 文件、-a读取ascii文件
+#1180: gxviewer needs to distinguish the options reading ASCII and Binary gcap
+2021-06-02
+
+2021.05.06~ 
+gtf指定区域进行加密
+2021-06-09
+
+2021.06.10~ 
+add new option set_dp_string in top.cmd
+2021.06.10
+
+2021.06.15~ 
+gbflow不在为每个子bianry打资源消耗日志，而且gbflow在gbpostpro之后的日志要和
+其他子binary的日志一样
+
+
+关于gloryEx运行场景的迷惑，客户拿到我们的gloryEX到底是怎么用的，RC体取就有三个，3Dslovel、tr、gl
+
+2021-06-11  ~
+和光宇商量关于换tran 库的问题
+ 
+2021-06-11  ~
+regression 有关失败的例子要保存，不删除的。带gui的bianry跑不了regression，所以regression都是faild的
+
+2021-05-27  ~
+PD LD TD map的design偏移

@@ -1,0 +1,118 @@
+                                                   WORK
+                                     gxviewer
+
+Bug:
+2020.11.30~2020.12.16
+- 控制着字体随着相机的角度的移动而移动
+- xlip问题，这是一个底层库调用的问题，debug一下看一下哪里出现了问题，google一下
+
+1. 把3D窗口拉到极限，右下角的小窗口会跑到左上角
+2. reset颜色，对应的颜色图片没有更新为reset的颜色
+
+Defect:
+1. 缩放的时候有类似切的效果
+2. ”File“ 字体调大一点
+3. 鼠标箭头上有一个点，去掉变成普通的鼠标图标
+4. 当两个3D图形某个面重叠是会有一些阴影
+5. 画线的时候提示用户正在画线，这样用户不会误认为在放大或缩小
+6. ”control“字体应该更明显和layer这些tab区分开来
+7. 在控制所有net或layer是否可见的item中加一个小的控制按钮
+8. 添加via[] inter[] device[]的控制按钮在combox和All layers之间
+
+Enhancement:
+1. 优化makefile
+2. 用opengl 代替Qt的3D库
+3. 显示上，尝试将几个3D图形合并成一个3D图形
+
+Task:
+2020.11.30~2020.12.16
+- 滚轮控制：鼠标选中2D窗口后可以鼠标滚轮来缩放大小
+- 键盘控制：
+r      all     恢复最开始软件打开的界面，包括位置、大小。颜色和图形状态（实体、透视）保持当前用户设置即可。
+i      all     放大：选中相应窗口，对该窗口图形进行等比例放大
+o      all     缩小：选中相应窗口，对该窗口图形进行等比例缩小
+m      3D      移动：按快捷键m之后松开，进入移动模式，使用键盘方向键移动图形，再次按快捷键m退出移动模式。
+w      3D      向上旋转图形：每次旋转45度
+s      3D      向下旋转图形：每次旋转45度
+a      3D      向左旋转图形：每次旋转45度
+d      3D      向右旋转图形，每次旋转45度
+键盘方向键 3D   图形翻滚
+           2D   移动图形
+	   
+1. top view也可以量，原始数据的topview 和切之后的topview，点击显示坐标，显示each值，可以吸附测量。
+   - topview的图形，用原数据的topview（有settin之后的也有三者并存的），可以点击（status中显示原坐标），测量
+   - 2D 图形中用2D的坐标为基准，这样可以方便显示，可以做出各种叠加，坐标也不会出错。zoom也不会飞掉。
+   - 点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+
+2. 添加，可以从上下左右前后六个正面看3D图形的选项
+
+
+3. 支持单纯看2D box和看3D box的数据
+
+                                   gbviewer
+
+Task:
+
+1. 描述的问题不是太理解，关于shape和node对应关系的还有edge？
+
+
+
+4. 日志问题
+
+work~:
+                                    gxviewer
+
+inst shape haven't node or edge?
+                                    gbviewer
+1. 数据分为设计信息和在设计数据基础上建立的report数据
+-一个在gui打开之前加载(partitionInfo, guiLayerMapping)
+-一个在gui打开之后加载(xtMergedShapes，flcutpattern,RLCnetwork.0,stShapezNodeIds.0,instBBox)
+-一个在设计出来之后加载（TOP.power.rpt,node_ir,res,path）
+
+2. gbviewer内部shape，edge，node这三者的网络是怎么构建起来的，其中那个用到的输入数据又有哪些？
+shape -- yes -- xtMergedShapes,instBBox
+
+     --> edge
+          |
+net       |   --  yes  -- RLCnetwork.0
+          v
+     --> node
+
+shape->node -- yes? -- stShapezNodeId.0
+shape->edge -- yes? -- stShapezNodeId.0
+
+3. 填写worst list em
+
+4. via是否有垂直的两个node和一条连接这两个node之间的edge
+有
+     int vaild_num = 0;
+     int invaild_num = 0;
+
+      while(true == xtShape->isCutShape()) {
+	invaild_num++;
+	const vector<viNode*> & nodeVec = shp->getNodes();
+	if (nodeVec.size() < 2) {
+	  break;
+	}
+	unsigned int node_size = nodeVec.size();
+	for (unsigned int i = 0; i < node_size; ++i) {
+	  for (unsigned int j = i+1; j < node_size; ++j) {
+	    if (nodeVec[i]->getX() != nodeVec[j]->getX() or
+		nodeVec[i]->getY() != nodeVec[j]->getY()) {
+	      continue;
+	    }
+	    vaild_num++;
+	  } // for
+	} // for
+	break;
+      }
+
+3. 梳理gbviewer的框架，便于代码的编写和维护，也便于定位性能的瓶颈
+   -6k的大例子要5秒左右的响应时间，太长了性能得提高两到三倍才能
+    达到redhawk性能
+
+4. 填写绩效考核表
+
+5.obj有什么用？
+
+

@@ -1,0 +1,20 @@
+1. 添加一行注释
+svn ci -m ""
+2. 添加多行注释
+svn ci -F log .
+or svn ci -F log
+
+log中最后一行不要换行，不然svn log -l4 显示的会很不好看，空的太多了
+
+log里面的format可以参考如下格式：
+fixed:
+-bug 1
+...
+-defect 1
+...
+
+
+-enhancement 1
+...
+-task 1
+...

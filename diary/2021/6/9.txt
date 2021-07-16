@@ -1,0 +1,75 @@
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+看佛经、抄写佛经
+ - family
+    - wife
+和媳妇视频（媳妇嫉妒我的家人，因为我为了给家人买东西省钱，没有去看她（去看就是一个月三次了））
+和媳妇视频（消除心中的十恶对生活的巨大影响）
+    - parent
+    -friend
+和大学室友聊天，谈及不会读书选择很少的问题
+
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+ - informationDigestion
+ - informationApplication
+将crypto++的库应用到gxencrypt中
+给学政编译一个最新版能高亮选择net的bianry 407
+回复吴帅有关gbflow中途退出打出一句日志的问题
+编写gbviewer跑tr_gex跑出来的例子core down的问题邮件
+将crypto++的库应用到gxencrypt中，初步完成，第二个大版本需要优化命令参数
+写邮件
+
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+休息
+23:30~8:00 8h 30m
+睡觉
+    - eat
+吃早餐（饼、豆浆、茶叶蛋）
+吃午餐（凉皮）
+吃晚餐（西红柿炒鸡蛋、芹菜炒香干、米饭）
+
+    -sport
+练坐势易筋经、练站势易筋经
+    -wash
+洗漱
+洗澡
+
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+恼怒
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+
+-----------------------------materialDebt------------------------------
+ - food
+买早餐（7元）
+买午餐（10元）
+买晚餐（16元）
+
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - excretion
+wc、wc
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

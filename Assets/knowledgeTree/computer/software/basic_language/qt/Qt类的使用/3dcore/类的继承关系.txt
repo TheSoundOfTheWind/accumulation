@@ -1,0 +1,96 @@
+第一层              第二层                      第三层
+												Qt3DAnimation::QAbstractAnimationClip 
+												Qt3DAnimation::QAbstractClipBlendNode
+												Qt3DAnimation::QChannelMapper
+												Qt3DCore::QAbstractSkeleton
+												Qt3DCore::QComponent
+												Qt3DCore::QEntity
+												Qt3DCore::QJoint
+												Qt3DInput::QAbstractActionInput
+												Qt3DInput::QAbstractAxisInput
+												Qt3DInput::QAbstractPhysicalDevice
+												Qt3DInput::QAction
+												Qt3DInput::QAxis
+												Qt3DInput::QAxisSetting
+												Qt3DRender::QAbstractTexture
+												Qt3DRender::QAbstractTextureImage
+												Qt3DRender::QAttribute
+QObject				QNode						Qt3DRender::QBuffer
+												Qt3DRender::QEffect
+												Qt3DRender::QFilterKey
+												Qt3DRender::QFrameGraphNode
+												Qt3DRender::QGeometry
+												Qt3DRender::QParameter
+												Qt3DRender::QPickingSettings
+												Qt3DRender::QRenderPass
+												Qt3DRender::QRenderState
+												Qt3DRender::QRenderTargetOutput
+												Qt3DRender::QShaderImage
+												Qt3DRender::QShaderProgram
+												Qt3DRender::QShaderProgramBuilder
+												Qt3DRender::QTechnique
+												Qt3DRender::Quick::QScene2D
+
+
+QObject and                                     QPaintDeviceWindow 
+QSurface                                        QVulkanWindow
+                                                Qt3DExtras::Qt3DWindow
+
+												
+第三层                    第四层
+Qt3DCore::QEntity         Qt3DExtras::QAbstractCameraController
+					      Qt3DExtras::QSkyboxEntity
+					      Qt3DExtras::QText2DEntity
+					      Qt3DRender::QCamera
+					
+Qt3DCore::QComponent      Qt3DAnimation::QAbstractClipAnimator
+						  Qt3DCore::QArmature
+						  Qt3DCore::QTransform
+						  Qt3DInput::QAxisAccumulator
+						  Qt3DInput::QInputSettings
+						  Qt3DInput::QKeyboardHandler
+						  Qt3DInput::QLogicalDevice
+						  Qt3DInput::QMouseHandler
+						  Qt3DLogic::QFrameAction
+						  Qt3DRender::QAbstractLight
+						  Qt3DRender::QAbstractRayCaster
+						  Qt3DRender::QCameraLens
+						  Qt3DRender::QComputeCommand
+						  Qt3DRender::QEnvironmentLight
+						  Qt3DRender::QGeometryRenderer
+						  Qt3DRender::QLayer
+						  Qt3DRender::QLevelOfDetail
+						  Qt3DRender::QMaterial
+						  Qt3DRender::QObjectPicker
+						  Qt3DRender::QRenderSettings
+						  Qt3DRender::QRenderTarget
+						  Qt3DRender::QSceneLoader
+						  Qt3DRender::QShaderData
+
+
+第三层                    第四层                             第五层
+Qt3DCore::QComponent      Qt3DRender::QGeometryRenderer      Qt3DExtras::QConeMesh
+                                                             Qt3DExtras::QCuboidMesh
+															 Qt3DExtras::QCylinderMesh
+															 Qt3DExtras::QExtrudedTextMesh
+															 Qt3DExtras::QPlaneMesh
+															 Qt3DExtras::QSphereMesh
+															 Qt3DExtras::QTorusMesh
+															 Qt3DRender::QMesh 
+
+Qt3DCore::QComponent      Qt3DRender::QMaterial              Qt3DExtras::QDiffuseMapMaterial
+                                                             Qt3DExtras::QDiffuseSpecularMapMaterial
+															 Qt3DExtras::QDiffuseSpecularMaterial
+															 Qt3DExtras::QGoochMaterial
+															 Qt3DExtras::QMetalRoughMaterial
+															 Qt3DExtras::QMorphPhongMaterial
+															 Qt3DExtras::QNormalDiffuseMapMaterial
+															 Qt3DExtras::QNormalDiffuseSpecularMapMaterial
+															 Qt3DExtras::QPerVertexColorMaterial
+															 Qt3DExtras::QPhongAlphaMaterial
+															 Qt3DExtras::QPhongMaterial
+															 Qt3DExtras::QTextureMaterial
+															 
+
+
+

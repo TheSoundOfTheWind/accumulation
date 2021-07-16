@@ -1,0 +1,57 @@
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+22:40~23:00
+抄写佛经
+ - wisdon
+ - family
+    - wife
+和媳妇视频
+    - parent
+给妈妈买6.8从遵义到鹰潭的火车票
+
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+ - informationDigestion
+ - informationApplication
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep 9h 20m
+23:10~8:30
+    - eat
+吃早餐（油条、豆浆、茶叶蛋）
+吃午餐（青菜辣椒鸡蛋面）
+吃晚餐（青菜辣椒鸡蛋面）
+    -sport
+    -wash
+洗漱、洗衣服
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+刷B站，看小说
+玩云顶之役
+-----------------------------materialDebt------------------------------
+ - food
+买早餐（6元）
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

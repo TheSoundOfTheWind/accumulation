@@ -1,0 +1,66 @@
+                                                   WORK
+                                     gxviewer
+
+Bug:
+1. xlip问题，这是一个底层库调用的问题，debug一下看一下哪里出现了问题，google一下
+2. 控制着字体随着相机的角度的移动而移动
+3. 把3D窗口拉到极限，右下角的小窗口会跑到左上角
+4. reset颜色，对应的颜色图片没有更新为reset的颜色
+
+
+Defect:
+1. 缩放的时候有类似切的效果
+2. ”File“ 字体调大一点
+3. 鼠标箭头上有一个点，去掉变成普通的鼠标图标
+4. 当两个3D图形某个面重叠是会有一些阴影
+5. 画线的时候提示用户正在画线，这样用户不会误认为在放大或缩小
+6. ”control“字体应该更明显和layer这些tab区分开来
+7. 在控制所有net或layer是否可见的item中加一个小的控制按钮
+8. 添加via[] inter[] device[]的控制按钮在combox和All layers之间
+
+Enhancement:
+1. 优化makefile
+2. 用opengl 代替Qt的3D库
+3. 显示上，尝试将几个3D图形合并成一个3D图形
+
+Task:
+1. top view也可以量，原始数据的topview 和切之后的topview，点击显示坐标，显示each值，可以吸附测量。
+   - topview的图形，用原数据的topview（有settin之后的也有三者并存的），可以点击（status中显示原坐标），测量
+   - 2D 图形中用2D的坐标为基准，这样可以方便显示，可以做出各种叠加，坐标也不会出错。zoom也不会飞掉。
+   - 点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+
+2. 相机的移动分成两块，一块是wasd控制左右前后移动，一块是箭头的上下左右控制旋转。
+
+3. 2DWindow使用上下左右键移动图形
+
+4. 鼠标选中2D窗口后可以鼠标滚轮来缩放大小
+
+5. 3D图形也可以reset，恢复刚开始的样子
+
+6. 添加，可以从上下左右前后六个正面看3D图形的选项
+
+7. 可以通过快捷键缩放大小
+
+
+                                    gbviewer
+
+Bug:
+1. “via1” zoom in 显示的时候会出现问题
+
+work~:
+                                    gbviewer
+Task：
+1. 显示Current Map和EM Map（edge不能完全显示）
+
+2. 为EM Map添加Color form
+				    gxviewer
+
+Enhancement：
+1. 为了支持‘nSubLayers’关键字，更新读取binary gcap file的头文件和源文件
+Bug：
+1. 读取binary gcap file时，文件中没有float net， control窗口仍会显示float net
+
+
+
+
+

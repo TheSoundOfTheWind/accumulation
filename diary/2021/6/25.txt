@@ -1,0 +1,64 @@
+外若著相，内心即乱。外若离相，心即不乱。本性自净自定，只为见境思境即乱。若见诸境心不乱者，是真定也。
+
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+ - family
+    - wife
+    - parent
+    - brother
+ -classmate
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+问吴帅有关各个bianry和开发周期的事
+和磊哥开会
+增加一条gbflow cmd
+gbflow不再给各个子bianry打印时间和内存日志
+gbviewer支持洪斌最新出的波形文件
+
+ - informationDigestion
+ - informationApplication
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+12:20~7:00 6h 40m
+    - eat
+吃早餐（饼、豆浆）
+吃午餐
+吃晚餐（可乐、啤酒、芋头、桃子、香干...)
+    -sport
+练坐势易筋经
+练站势易筋经
+    -wash
+洗漱
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+看B站
+
+-----------------------------materialDebt------------------------------
+ - food
+买早餐（5元）
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - excretion
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

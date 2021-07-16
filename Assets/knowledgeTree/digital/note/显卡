@@ -1,0 +1,2 @@
+1. 查看显卡占用率
+watch -n 10 nvidia-smi

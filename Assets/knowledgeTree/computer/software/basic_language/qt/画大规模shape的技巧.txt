@@ -1,0 +1,180 @@
+
+
+必要的知识储备：
+#QPainter 
+是用来操作像素的，可以看成一个画家，在画布上画图的人
+
+绘图设备是指继承QPaintDevice的子类，你可以使用QPainter直接在其上面绘制图形，Qt一共提供了四个这样继承QPaintDevice的绘图
+设备类（也可以看成四种类型的画布），分别是QPixmap、QBitmap、QImage和 QPicture。其中：
+QPixmap专门为图像在屏幕上的显示做了优化；
+QBitmap是QPixmap的一个子类，它的色深限定为1，你可以使用 QPixmap的isQBitmap()函数来确定这个QPixmap是不是一个QBitmap；
+QImage专门为图像的像素级访问做了优化；
+QPicture则可以记录和重现QPainter的各条命令；
+
+#QPixmap
+主要是用于绘图，针对屏幕显示而最佳化设计，QImage主要是为图像I/O、图片访问和像素修改而设计的
+QPixmap可以接受一个字符串作为一个文件的路径来显示这个文件，比如你想在程序之中打开png、jpeg之类的文件，
+就可以使用 QPixmap。使用QPainter的drawPixmap()函数可以把这个文件绘制到一个QLabel、QPushButton或者其
+他的设备上面。QPixmap是针对屏幕进行特殊优化的，因此，它与实际的底层显示设备息息相关。注意，这里说的显示
+设备并不是硬件，而是操作系统提供的原生的绘图引擎。所以，在不同的操作系统平台下，QPixmap的显示可能会有
+所差别。
+QPixmap提供了静态的grabWidget()和grabWindow()函数，用于将自身图像绘制到目标上。同时，在使用QPixmap时，
+你可以直接使用传值也不需要传指针，因为QPixmap提供了“隐式数据共享”。关于这一点，我们会在以后的章节中详细
+描述，这里只要知道传递QPixmap不必须使用指针就好了。
+
+#QBitmap
+QBitmap继承自QPixmap，主要用于显示单色位图。是QPixmap子类，因此具有其所有特性。QBitmap的色深始终为1. 
+色深这个概念来自计算机图形学，是指用于表现颜色的二进制的位数。我们知道，计算机里面的数据都是使用二进制表示
+的。为了表示一种颜色，我们也会使用二进制。比如我们要表示8种颜色，需要用3个二进制位，这时我们就说色深是3. 因
+此，所谓色深为1，也就是使用1个二进制位表示颜色。1个位只有两种状态：0和1，因此它所表示的颜色就有两种，黑和白
+。所以说，QBitmap实际上是只有黑白两色的图像数据。
+由于QBitmap色深小，因此只占用很少的存储空间，所以适合做光标文件和笔刷。
+QBitmap是QPixmap的一个子类，主要用于显示单色位图。用于制作游标QCursor或笔刷QBrush等，图像显示对比如下
+QPixmap pixImg("caterpillar.jpg");
+QBitmap bitImg("caterpillar.jpg");
+QPainter painter(this);
+painter.drawPixmap(0, 0, pixImg);
+painter.drawPixmap(200, 0, bitImg);
+  QBitmap表示一种只有黑白的单色图片，类似于mfc中的位图。该类主要用于创建自定义的光标和画刷对象，以及创建区域对
+象和为某个空间设置掩码图片。
+  QBitmap派生自QPixmap类，它的颜色深读为1。当然，空的QBitmap对象的颜色深度为0。所以，如果我们将一个颜色深度大
+于1的图片赋值给bitmap，bitmap会自动发生抖动，将图片颜色变为黑白色。
+  当然，我们也可以单独创建一个QBitmap对象，然后使用Qt::color0和Qt::color1对它进行填充。其中，使用Qt::color0会将
+QBitmap的所有位置0，Qt::color1则会将QBitmap的所有位置1。而对一个位图来说，0代表背景（或透明像素），1代表前景
+（或不透明像素）。当然，我们还可以使用该类的成员函数clear（）将QBitmap对象的所有位置为Qt::color0。
+  但要注意的是，使用Qt::black 和 Qt::white是没有意义的，因为QColor::pixel()不一定是用0表示黑色，用1表示白色的。
+另外，QBitmap还提供了两个常用的静态方法。fromData（）可以用一个uchar数组来构建一个QBitmap对象，所以我们可以
+先把一个图片使用QFile读到内存中，然后使用该方法构建出一个QBitmap对象；而另一个fromImage()则提供了将一个QImage
+转换成QBitmap的方法。
+  下面，我们写一个简单的例子，将一张图片分别以QBitmap和QPixmap的形式绘制到窗口上，来看一下它们的效果和区别。
+新建一个GUI程序，将准备好的一张图片作为资源添加到工程中，然后，重写窗口类的paintEvent(QPaintEvent*)方法，进行绘图。
+代码如下：
+void Widget::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    QBitmap bitmap(":/1.png");
+    QPixmap pixmap(":/1.png");
+    painter.drawPixmap(0, 0, rect().width()/2, rect().height(), bitmap);
+    painter.drawPixmap(rect().width()/2, 0, rect().width()/2, rect().height(), pixmap);
+}
+
+#QImage
+QPixmap使用底层平台的绘制系统进行绘制，无法提供像素级别的操作，而QImage则是使用独立于硬件的绘制系统，
+实际上是自己绘制自己，因此提供了像素级别的操作，并且能够在不同系统之上提供一个一致的显示形式
+如上图所示(出自Qt API文档)，我们声明了一个QImage对象，大小是3 x 3，颜色模式是RGB32，即使用32位数值表
+示一个颜色的RGB值，也就是说每种颜色使用8位。然后我们对每个像素进行颜色赋值，从而构成了这个图像。你可以
+把QImage想象成一个RGB颜色的二维数组，记录了每一像素的颜色。
+
+#QPicture
+QPicture是一个可以记录和重现QPainter命令的绘图设备。QPicture将QPainter的命令序列化到一个IO设备，保存为
+一个平台独立的文件格式。这种格式有时候会是“元文件(meta- files)”。Qt的这种格式是二进制的，不同于某些本地
+的元文件，Qt的pictures文件没有内容上的限制，只要是能够被QPainter绘制的元素，不论是字体还是pixmap，或者是
+变换，都可以保存进一个picture中。
+QPicture是平台无关的，因此它可以使用在多种设备之上，比如svg、pdf、ps、打印机或者屏幕。回忆下我们这里所说的
+QPaintDevice，实际上是说可以有QPainter绘制的对象。QPicture使用系统的分辨率，并且可以调整 QPainter来消除不
+同设备之间的显示差异。
+如果我们要记录下QPainter的命令，首先要使用QPainter::begin()函数在QPicture上进行绘图，将QPicture实例作为参数
+传递进去，以便告诉系统开始记录，记录完毕后使用QPainter::end()命令终止，最后使用save()保存，代码示例如下：
+QPicture　picture;
+QPainter　painter;
+painter.begin(&picture);　　//　paint　in　picture
+painter.drawEllipse(10,20,80,70);　//　draw　an　ellipse
+painter.end();　//　painting　done
+picture.save("drawing.pic");　　//　save　picture
+如果我们要重现命令，首先要使用QPicture::load()函数进行装载：
+QPicture　picture;
+picture.load("drawing.pic");　//　load　picture
+QPainter　painter;
+painter.begin(&myImage);　//　paint　in　myImage
+painter.drawPicture(0,　0,　picture);　//　draw　the　picture　at　(0,0)
+painter.end();
+
+QImage与QPixmap的区别:
+1、QPixmap主要是用于绘图，针对屏幕显示而最佳化设计，QImage主要是为图像I/O、图片访问和像素修改而设计的
+
+2、QPixmap依赖于所在的平台的绘图引擎，故例如反锯齿等一些效果在不同的平台上可能会有不同的显示效果，QImage
+使用Qt自身的绘图引擎，可在不同平台上具有相同的显示效果
+
+3、目前的Qt会把QPixmap都存储在graphics memory中，QImage是存储在客户端的，是独立于硬件的。在 X11, Mac 
+以及 Symbian平台上，QPixmap 是存储在服务器端，而QImage则是存储在客户端，在Windows平台上，QPixmap和
+QImage都是存储在客户端，并不使用任何的GDI资源。
+
+4、由于QImage是独立于硬件的，也是一种QPaintDevice，因此我们可以在另一个线程中对其进行绘制，而不需要在
+GUI线程中处理，使用这一方式可以很大幅度提高UI响应速度。
+
+5、QImage可通过setPixpel()和pixel()等方法直接存取指定的像素。
+
+当图片较大时，我们可以先通过QImage将图片加载进来，然后把图片缩放成需要的尺寸，最后转换成QPixmap 进行显示。
+QImage image;
+image.load(":/pics/earth.png" );
+QPainter painter(this);
+QPixmap pixmapToShow = QPixmap::fromImage( image.scaled(size(), Qt::KeepAspectRatio) );
+painter.drawPixmap(0,0, pixmapToShow);
+
+// 附 QPixmap 和QImage 互相转换方法
+QImage QPixmap::toImage() const;
+static QPixmap QPixmap::fromImage(const QImage &image,,,);
+// QPicture 不能从上述两类转换得来，只能从IO设备或者文件名路径加载。
+    bool load(QIODevice *dev, const char *format = Q_NULLPTR);
+    bool load(const QString &fileName, const char *format = Q_NULLPTR);
+
+#QBitArray
+QBitArray类提供了位数组，通过AND、OR、XOR、NOT执行为操作，从而减少不必要的位数据复制造成的内存浪费
+QBitArray类的初始化方法为：
+QBitArray ba(200);
+QBitArray可以重新调整数组大小。
+QBitArray ba;
+ba.resize(3);
+ba[0] = true;
+同样，QBitArray支持&（AND）、|（OR）、^（XOR）、~（NOT）运算。
+提供的成员函数可通过false、true操作所有声明为QBitArray类的数组：
+QBitArray ba(200);
+ba.fill(true);
+
+
+#QBrush
+QBrush类用于定义QPainter图形填充模式。
+QBrush定义了QPainter的填充模式，具有样式、颜色、渐变以及纹理等属性。
+一个笔刷（Brush）可以表现风格、颜色、斜度和质地。**比如：
+QPainter painter(this);
+painter.setBrush(Qt::cyan);
+painter.setPen(Qt::darkCyan);
+painter.drawRect(0,0,100,100);
+
+#QPen
+大多用于绘制轮廓线。
+
+画刷和画笔的区别：
+1、画笔和画刷都是GDI所定义的图形对象：
+画笔是线条的样式，用来绘制线条、曲线以及勾勒形状轮廓。
+画刷用于与 Graphics 对象一起创建实心形状和呈现文本的对象。
+2、自定义绘图所用画笔及画刷的样式：
+系统预设画笔的样式为BLACK_PEN，画刷的样式为NULL_BRUSH。
+3、画刷是基于填充机制的，而画笔是基于点绘机制，只适合用于绘制单色图形。
+4、创建的函数不同：
+画笔的使用需要先用CreatePen()函数创建一个画笔对象，然后与设备文本绑定,
+同时得到旧的画笔。用完后删除新画笔，并且恢复旧画笔。画笔的种类有7种，
+创建画刷有两个函数，CreateHatchBrush()函数创建带图案的画刷，而CreateSolidBrush()
+函数不带图案。画刷图案主要有6种，而空画刷不需要创建。
+
+画大规模shape的流程：
+QBitmap  单色画布
+QPixmap  彩色画布
+QPainter  画家
+QPen       画笔
+QBrush    画刷
+QBitArray 位数组
+QColor     颜色
+
+画layer shape的大致流程：
+画图形：
+每个层layer的shape对应一个画家绑定一块单色画布，如果layer中的shape比较多就对应八个画家和八块画布
+其中小于2X2像素的方块用QBitArray来存储画他们的位置，最后通过画家把他们画在单色画布上（当图形很小的时候很多细节隐藏起来，画几个点就可以了，节省资源）
+大于2X2的shape直接将他画在单色画布上，普通的shape填充栅格状的画刷，ir drop类的shape填充实体的画刷
+上色：
+每层layer对应一个新的画家，这个画家绑定一块彩色画布，每层layer对应一个颜色，用这个颜色和单色画布的轮廓对这块彩色画布上色
+
+提升性能的优化方向：
+1. painter的复用，不要使用layernum * 8 
+2. thread的复用，不要使用layernum * 8
+

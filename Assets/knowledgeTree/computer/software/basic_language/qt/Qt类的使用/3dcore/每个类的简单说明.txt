@@ -1,0 +1,21 @@
+//Qt3DCore::QNode
+//-----------------------------------------------------------------------------
+QNode is the base class of all Qt3D node classes used to build a Qt3D scene.
+
+//Qt3DCore::QEntity
+can aggregate several Qt3DCore::QComponent instances that will specify its 
+behavior.
+它可以聚合多个Qt3DCore::QComponent实例来指定其行为
+
+//Qt3DCore::QComponent
+The base class of scene nodes that can be aggregated by Qt3DCore::QEntity instances
+ as a component
+
+//Qt3DRender::QCamera
+The QCamera class defines a view point through which the scene will be rendered.
+
+//QTransform 
+Used to perform transforms on meshes.
+
+//Qt3DExtras::QAbstractCameraController
+The QAbstractCameraController class provides basic functionality for camera controllers.

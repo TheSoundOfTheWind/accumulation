@@ -1,0 +1,39 @@
+feature:
+cut shape
+
+读取qcap的层级layer信息，读取qcap的时候layer也和net一样分三层。
+
+很多的内存释放问题需要优化。
+
+doc of 3dview
+
+提升显示速度，（提升之前整理一下uml图和代码头文件与源文件函数的顺序一致）
+
+显示平面电解质
+
+更改status点击conductor显示layername layerid netname nodename,最好显示出control界面之外的信息。
+
+status改为显示中心的长宽。
+
+下一个版本要把mesh放进版本包里
+
+将底层画i长方体的代码改为用opengl实现
+
+g3Entity 为什么不加 (new g3Transform)this
+
+在菜单栏中准备两套颜色体系
+
+wiki没有创建和关闭的具体日期，只有due data。
+feature~
+conformallayer 默认不显示。
+
+构造函数都有一个父类指针的原理qt
+
+当没有数据时出现的控制面板，点击会core down
+
+8.29~
+整理头文件和源文件函数顺序。
+
+析构函数用虚函数
+
+填写绩效考核表

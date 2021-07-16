@@ -1,0 +1,76 @@
+work:
+- top view也可以量，原始数据的topview 和切之后的topview，点击显示坐标，显示each值，可以吸附测量。
+- topview的图形，用原数据的topview（有settin之后的也有三者并存的），可以点击（status中显示原坐标），测量
+
+- 持续放大到一定大小时，可能到了中心之后，导致了翻转，需要fix
+
+- 相机的移动分成两块，一块是wasd控制左右前后移动，一块是箭头的上下左右控制旋转。
+
+- 右边的控制窗口的checkbox添加tip，让用户知道这个tip的作用是什么
+
+- 鼠标选中X-Z窗口后可以鼠标滚轮来缩放大小
+
+- 点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+
+- 采用orthographic替代perspecitive视角
+
+- 用opengl 代替Qt的3D库
+
+- 2D 图形中用2D的坐标为基准，这样可以方便显示，可以做出各种叠加，坐标也不会出错。zoom也不会飞掉。
+
+- tab键窗口之间切换，窗口有选中标识
+
+- fit键一键还原，在2d的menu bar中也加上
+
+- 添加 cut X 和cut Y选项，有时候不知道怎么手动拉线
+
+- help command of 3dview
+
+- 点击切的窗口，可以左右或上下移动切线
+
+- xlip问题，这是一个底层库调用的问题，debug一下看一下哪里出现了问题，google一下
+
+- ”File“ 字体调大一点
+
+- 鼠标箭头上有一个点，去掉变成普通的鼠标图标
+
+- menu bar添加一些按钮，比如fix，reset之类的
+
+- 当两个3D图形某个面重叠是会有一些阴影
+
+- 2DWindow使用上下左右键移动图形
+
+- 画线的时候提示用户正在画线，这样用户不会误认为在放大或缩小
+
+- 增加fit to screen选项（3D图形或2D图形适应窗口大小使所有图形刚好可见）和reset选项（原始设置）
+
+- 让3D，2D，control这三个窗口之间的边界更清晰，不然一时间很难找出边界在哪里
+
+- ”control“字体应该更明显和layer这些tab区分开来
+
+- 在控制所有net或layer是否可见的item中加一个小的控制按钮
+
+- 添加via[] inter[] device[]的控制按钮在combox和All layers之间
+
+- 读取qcap的层级layer信息，读取qcap的时候layer也和net一样分三层。
+
+- 控制着字体随着相机的角度的移动而移动
+
+- 读取在lib目录下加密文件
+
+work~
+- 更新vi目录下用于读取binary gcap的头文件和源文件
+
+- fix 对于关闭显示的layer，去改变他的颜色时，core down 问题
+
+- fix 点选3d图形的device region， core down 问题
+
+- 选择颜色的Dialog，Custom colors和CurrentColor部分，颜色不在是白色和黑色，都统一显示为geometry的颜色。
+
+- fix bug 选中的图形在不可见时，仍然存在被选中的红框
+
+- 透明全选，net control有些item选择的不彻底
+
+- 当只有一个net时不默认为每个node自动分配颜色，这样会干扰用户的选色
+
+- color by net, layer, node

@@ -1,0 +1,73 @@
+//QFrame                       
+可以具有框架的小部件的基类
+                  QAbstractScrollArea
+                  QLabel
+QFrame            QLCDNumber 
+                  QSplitter
+				  QStackedWidget
+				  QToolBox
+				  
+//QLabel
+The QLabel widget provides a text or image display.
+
+Public Functions:
+QLabel(const QString &text, QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags())
+QLabel(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags())
+virtual	~QLabel()
+Qt::Alignment	alignment() const
+QWidget *		buddy() const
+bool			hasScaledContents() const
+bool			hasSelectedText() const
+int				indent() const
+int				margin() const
+QMovie *		movie() const
+bool			openExternalLinks() const
+QPicture		picture(Qt::ReturnByValueConstant) const
+QPixmap			pixmap(Qt::ReturnByValueConstant) const
+QString			selectedText() const
+int				selectionStart() const
+void	setAlignment(Qt::Alignment)
+void	setBuddy(QWidget *buddy)
+void	setIndent(int)
+void	setMargin(int)
+void	setOpenExternalLinks(bool open)
+void	setScaledContents(bool)
+void	setSelection(int start, int length)
+void	setTextFormat(Qt::TextFormat)
+void	setTextInteractionFlags(Qt::TextInteractionFlags flags)
+void	setWordWrap(bool on)
+QString						text() const
+Qt::TextFormat				textFormat() const
+Qt::TextInteractionFlags	textInteractionFlags() const
+bool	     				wordWrap() const
+
+Reimplemented Public Functions:
+virtual int		heightForWidth(int w) const override
+virtual QSize	minimumSizeHint() const override
+virtual QSize	sizeHint() const override
+
+Public Slots:
+void	clear()
+void	setMovie(QMovie *movie)
+void	setNum(double num)
+void	setNum(int num)
+void	setPicture(const QPicture &picture)
+void	setPixmap(const QPixmap &)
+void	setText(const QString &)
+
+Signals:
+void			linkActivated(const QString &link)
+void			linkHovered(const QString &link)
+
+Reimplemented Protected Functions:
+virtual void	changeEvent(QEvent *ev) override
+virtual void	contextMenuEvent(QContextMenuEvent *ev) override
+virtual bool	event(QEvent *e) override
+virtual void	focusInEvent(QFocusEvent *ev) override
+virtual bool	focusNextPrevChild(bool next) override
+virtual void	focusOutEvent(QFocusEvent *ev) override
+virtual void	keyPressEvent(QKeyEvent *ev) override
+virtual void	mouseMoveEvent(QMouseEvent *ev) override
+virtual void	mousePressEvent(QMouseEvent *ev) override
+virtual void	mouseReleaseEvent(QMouseEvent *ev) override
+virtual void	paintEvent(QPaintEvent *) override

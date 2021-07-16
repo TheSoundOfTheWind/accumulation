@@ -1,0 +1,35 @@
+//Qt3DExtras::QAbstractCameraController
+The QAbstractCameraController class provides basic functionality for camera controllers. 
+
+Header:	#include <QAbstractCameraController>
+qmake:	QT += 3dextras
+Since:	Qt 5.10
+
+Properties:
+acceleration : float
+camera : Qt3DRender::QCamera*
+deceleration : float
+linearSpeed : float
+lookSpeed : float
+
+Public Functions:
+float	acceleration() const
+Qt3DRender::QCamera *	camera() const
+float	deceleration() const
+float	linearSpeed() const
+float	lookSpeed() const
+void	setAcceleration(float acceleration)
+void	setCamera(Qt3DRender::QCamera *camera)
+void	setDeceleration(float deceleration)
+void	setLinearSpeed(float linearSpeed)
+void	setLookSpeed(float lookSpeed)
+
+Signals:
+void	accelerationChanged(float acceleration)
+void	cameraChanged()
+void	decelerationChanged(float deceleration)
+void	linearSpeedChanged()
+void	lookSpeedChanged()
+Protected Functions
+Qt3DInput::QKeyboardDevice *	keyboardDevice() const
+Qt3DInput::QMouseDevice *	mouseDevice() const

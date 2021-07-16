@@ -1,0 +1,47 @@
+1. glprogramming.com/blue/
+2. glprogramming.com/red/
+3. zhihu.com/question/20194540
+4. ogldev.atspace.co.uk/index.html
+5. study.163.com/series/1001365003.htm
+6. learnopengl.com
+7. scratchapixel.com
+8. opengl-tutorial.org/cn/
+9. staff.ustc.edu.cn/~zhuang/cgi/
+10. staff.ustc.edu.cn/~lgliu/
+11. open.gl.introduction
+12. antongerdelan.net/opengl/vertexbuffers.html
+13. learnopengl.com/In-Practice/Debugging
+
+help docs
+# opengl 
+1. docs.gl/gl4
+# glm
+glm.g-truc.net/0.9.9/api/index.html
+# glfw
+glfw.org/docs/3.3
+
+
+x2.参考文献
+学习教程
+https://learnopengl-cn.github.io/ ++ https://learnopengl.com/
+
+https://github.com/JoeyDeVries/LearnOpenGL ++ https://github.com/JoeyDeVries/Cell
+
+http://www.opengl-tutorial.org/ ++ https://github.com/opengl-tutorials/ogl
+
+OpenGL GUI
+NanoGUI 是基于opengl以及GLFW，GLAD，NanoVG，Eigen这些库形成的一个可视化GUI库，在窗口的设计上非常的简约，程序使用上也非常的方便。
+
+https://github.com/wjakob/nanogui
+
+https://github.com/memononen/NanoVG
+
+https://nanogui.readthedocs.io/en/latest/
+
+
+libqglviewer
+libQGLViewer 是一个用以简化了Qt开发OpenGL三维浏览器的C++库。它提供了一些典型的3D查看器的功能，如能够移动相机使用鼠标。
+
+http://libqglviewer.com/
+
+https://github.com/GillesDebunne/libQGLViewer

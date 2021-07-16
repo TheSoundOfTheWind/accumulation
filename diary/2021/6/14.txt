@@ -1,0 +1,54 @@
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+ - family
+    - wife
+走路回酒店、骑电动车（把伞丢了）
+！！！和媳妇聊天（表哥悲惨的遭遇、理财的重要性）
+
+    - parent
+和媳妇陪妈去做检查，看病
+下午拿检查报告、复诊、吃晚饭、送妈去火车站
+
+
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+ - informationDigestion
+ - informationApplication
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+看媳妇睡午觉
+    - eat
+    -sport
+    -wash
+
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+ - entertainment
+
+-----------------------------materialDebt------------------------------
+ - food
+ - travel
+ - house
+ - clothes
+ - badEat
+ - badSleep
+ - excretion
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+

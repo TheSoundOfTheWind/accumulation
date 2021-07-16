@@ -1,0 +1,4 @@
+// write
+1. time dd if=/dev/zero of=test.dbf bs=8k count=300000 oflag=direct
+// read
+dd if=test.dbf bs=8k count=300000 of=/dev/null

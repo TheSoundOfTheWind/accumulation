@@ -1,0 +1,113 @@
+待完成：
+2021.05.06~ 
+gtf指定区域进行加密（通过一个#beginHide和一个#endHide的标识符将标识符之间的ASCII数据进行加密，加密级别做到256位，采用hash或者MD5级别的加密算法）
+
+2021.05.14 ~ 
+gbviewe 界面和功能按GloryBolt和GloryEX用mode做一个区分（默认不加载.gbx）
+ - topleve 拆分到gex mode中
+
+2021.05.06~ 
+oc6k 的例子 点击fix时耗时过长的performance问题 （借助一些画图工具梳理gbviewer的框架，解耦，看看哪个模块最需要优化）（跟进中）
+
+2021.05.17~
+gbviewer支持显示洪斌的gbsim出的动态的nv文件，用来显示动态的ir drop ascii文件
+
+2021.05.18~
+gbviewer支持postpro出的每个instance电阻的最大值和最小值的差值比，形成的drop
+
+2021.05.06~ 
+完成刘毅提的按net name和node id找node 的trac，如VSS:120
+
+2021.05.06~ 
+List of Min Resistance Path，是否符合用户需求，该功能的调整或改进（跟进中）
+
+2021.05.06~ 
+改善glorybolt 的日志问题：
+     - 当执行glorybolt之前，没有通过#!/bin/bash指明shell路径,glorybolt会出现一路执行到底，
+        但glorybolt调用的bianry都没有被调用起来的情况。但是日志没有出现任何-E-或-W-级别
+        的警告
+
+2021.05.06~ 
+glorybolt生成cmd和运行binary分开，先生成每个bianry的cmd，后按顺序运行binary
+
+2021.05.12 ~
+gxviewer坐标框显示的问题（高扬）
+
+2021-05-19 ~
+通过命令控制net是否显示（高扬）
+
+2021-05-26  ~
+dynamic gbpostpro 中出现了via和很多no find 的node 
+
+2021-05-26  ~
+static flow via上的em percentage 大部分都显示成-100%， 对于via这种shape em是还没处理吗？
+ok
+
+2021-05-27  ~
+PD LD TD map的design偏移
+
+
+****************************************************************************************************
+已完成：
+
+2021.05.06~ 
+不去自动改变gxviewer的title
+
+2021.05.07~
+写一个调用regression的脚本
+
+2021-5-10 ~
+postpro的最短路径和redhawk的对不上，前1000个都没有intance的这个intance，需要debug
+
+2021.05.07~
+移除在gbviewer仓库中有关gxviewer相关得code
+
+2021.05.06~ 
+gbviewe 界面和功能按GloryBolt和GloryEX用mode做一个区分（和gex组沟通，敲定GloryEX 对应的mode下，哪些是gbviewer的功能在该mode下是用不到的）
+
+2021.05.07~ 
+整理自己的trac，让完结的任务发回给对应发起人
+
+2021.05.13 ~
+修复gbviewer的via有重复edge，原因是没有按masknum筛选，将不属于和这个via同一层的edge剔掉
+
+2021.05.14 ~ 
+gbviewe 界面和功能按GloryBolt和GloryEX用mode做一个区分（将功能模块化，有些功能根本就不去new，这样可以加快加载速度）
+
+2021.05.06~ 
+EM map显示时，点击shape显示更多的EM info，杨珏已经download了一个文件，我这边读入然后显示对应的info
+
+2021.05.18 ~
+为什么gbpostpro出的report中应该只有intance pin name的却出现了，普通node的名字
+
+2021.05.18 ~
+gbpostpro中“can't be found in emrule file”相关的日志没有加换行符
+
+
+
+2021-05-22~
+gbflow添加set_package_spice_file  spice_file_path ： package_spice_file  spice_file_path
+                 set_pad_location_file   pad_location_file ： pad_location_file  pad_location_file
+
+2021-05-22 ~
+top.ir.worst.VDD/VSS合并成top.ir.worst，海思建议去掉文件中多余的node name，他们只关心instance pin的voltage
+top.max_ir_drop.VDD/VSS合并成layer_ir_drop.rpt
+top.path.VDD/VSS合并成min_path_res.rpt
+
+2021-05-25 ~
+dynamic flow中给postpro添加cmd，让postpro跑起来
+
+2021.05.08~
+用宇昊的那一套框架，用原有的gbviewer编译目录
+
+2021-05-25 ~
+gbflow 新建dynamic目录，将postpro和gbsim生成的文件copy到这个目录
+
+2021-05-26  ~ 
+min_path_res.rpt 中的第一列挪到最后一列
+dynamic不出TOP.inst.ir
+dynamic flow里gbx也有这个ploc.rpt需要copy到dynamic目录里
+海林 还有个文件也帮忙copy一下  dynamic flow 里power生成的top.rpt.pwl
+
+2021-05-26 ~
+当出现set_package_spice_file 命令时，copy sim生成的nv文件到rpt目录中

@@ -1,0 +1,10 @@
+// tab键命令自动生成时慢时卡
+// 更新database
+sudo updatedb
+
+// 安装搜狗输入法
+https://blog.csdn.net/lupengCSDN/article/details/80279177
+
+注意：1. 不要把搜狗输入法移动到第一位
+      2. 如果安装失败，执行sudo apt-fix-broken install
+      3.要把搜狗输入法中所有快捷键都关掉。不然用emacs会不好用，造成干扰。

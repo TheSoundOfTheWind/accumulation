@@ -1,0 +1,62 @@
+work:
+- 相机的移动分成两块，一块是wasd控制左右前后移动，一块是箭头的上下左右控制旋转。
+
+- 速度优化
+ -- 用Qt自带的库，不用自己重写的
+ -- geometry对应一个实体，其他的不添加root实体中，只在显示的时候添加到root中
+ -- 所有不可见的geometry 都从root中剃掉，只在可见时加入到实体中
+
+- 点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+
+- 采用orthographic替代perspecitive视角
+
+- 用opengl 代替Qt的3D库
+
+- 持续放大到一定大小时，可能到了中心之后，导致了翻转，需要fix
+
+- tab键窗口之间切换，窗口有选中标识
+
+- fit键一键还原，在2d的menu bar中也加上
+
+- 添加 cut X 和cut Y选项，有时候不知道怎么手动拉线
+
+- color by net, layer, node   
+
+- help command of 3dview
+
+- 点击切的窗口，可以左右或上下移动切线
+
+- xlip问题，这是一个底层库调用的问题，debug一下看一下哪里出现了问题，google一下
+
+- ”File“ 字体调大一点
+
+- 鼠标箭头上有一个点，去掉变成普通的鼠标图标
+
+- menu bar添加一些按钮，比如fix，reset之类的
+
+- 当两个3D图形某个面重叠是会有一些阴影
+
+- 2DWindow使用上下左右键移动图形
+
+- 画线的时候提示用户正在画线，这样用户不会误认为在放大或缩小
+
+- 增加fit to screen选项（3D图形或2D图形适应窗口大小使所有图形刚好可见）和reset选项（原始设置）
+
+- 让3D，2D，control这三个窗口之间的边界更清晰，不然一时间很难找出边界在哪里
+
+- ”control“字体应该更明显和layer这些tab区分开来
+
+- 在控制所有net或layer是否可见的item中加一个小的控制按钮
+
+- 添加via[] inter[] device[]的控制按钮在combox和All layers之间
+
+- 读取qcap的层级layer信息，读取qcap的时候layer也和net一样分三层。
+
+- 控制着字体随着相机的角度的移动而移动
+
+- 读取在lib目录下加密文件
+
+work~
+- 大成师傅提了一个track，把net的弹出窗口里的checkbox改为双击打钩，而不是在前面的checkbox里打钩，因为灰底的将checkbox衬托的很不明显，不知道前面有一个checkbok。
+
+-gbviewer在终端打印读取文件的日志，显示读取的文件名

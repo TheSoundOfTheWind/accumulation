@@ -1,0 +1,52 @@
+************************************************Assets**********************************************
+-----------------------------energyAssets--------------------------------
+ - buddhist
+ - family
+    - wife
+和媳妇聊天、！！！
+    - parent
+和妈视频，聊有关看病的事
+
+----------------------------informationAssets---------------------------------
+ - informationGathering 
+ - informationDigestion
+ - informationApplication
+ - informationManagement
+
+----------------------------materialAssets--------------------------------
+ - natural
+ - manMade
+ - health
+    - sleep
+    - eat
+    -sport
+    -wash
+
+*************************************************Debt**********************************************
+------------------------------energyDebt-------------------------------
+ - tenEvil
+
+----------------------------informationDebt--------------------------------
+ - study
+ - favor
+请媳妇的室友吃饭（595元）
+ - entertainment
+看B站
+
+-----------------------------materialDebt------------------------------
+ - food
+ - travel
+ - house
+ - clothes
+ - badEat
+火锅
+ - badSleep
+ - excretion
+ - insurance
+ - treatment  
+ - communication
+
+
+
+
+
