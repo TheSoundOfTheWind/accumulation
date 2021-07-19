@@ -1,0 +1,71 @@
+<cctype> (ctype.h)
+//判断单个字符是否是数字
+//-----------------------------------------------------------------------------
+Character handling functions
+This header declares a set of functions to classify and transform individual 
+characters.
+Functions:
+These functions take the int equivalent of one character as parameter and return 
+an int that can either be another character or a value representing a boolean 
+value: an int value of 0 means false, and an int value different from 0 
+represents true.
+
+There are two sets of functions:
+Character classification functions
+They check whether the character passed as parameter belongs to a certain category:
+
+int isalnum(int c);//检查字符是否为字母数字
+int isalpha(int c);//检查字符是否为字母
+int isblank(int c);//检查字符是否为空 
+int iscntrl(int c);//检查字符是否为控制字符
+int isdigit(int c);//检查字符是否为十进制数字
+int isgraph(int c);//检查字符是否有图形表示
+int islower(int c);//检查字符是否为小写字母
+int isprint(int c);//检查字符是否可打印
+int ispunct(int c);//检查字符是否为标点字符
+int isspace(int c);//检查字符是否为空白
+int isupper(int c);//检查字符是否为大写字母
+int isxdigit(int c);//检查字符是否为十六进制数字
+
+Character conversion functions:
+Two functions that convert between letter cases:
+int tolower(int c);//将大写字母转换为小写
+int toupper(int c);//将小写字母转换为大写字母
+
+For the first set, here is a map of how the original 127-character ASCII set is 
+considered by each function (an x indicates that the function returns true on that character)
+
+ASCII values	character                   iscntrl	isblank	isspace	isupper	islower	isalpha	isdigit	isxdigit  isalnum	ispunct	isgraph	isprint
+0x00 .. 0x08	NUL, (other control codes)	x	
+										
+0x09	        tab ('\t')	                x	    x	    x	
+								
+0x0A .. 0x0D	(white-space control codes:	x		        x	
+                  '\f','\v','\n','\r')								
+0x0E .. 0x1F	(other control codes)	    x	
+										
+0x20	         space (' ')		                x	    x									                                           x
+
+0x21 .. 0x2F	!"#$%&'()*+,-./										                                                      x	       x	   x
+
+0x30 .. 0x39	0123456789							                                          x	      x	         x		           x	    x
+
+0x3a .. 0x40	:;<=>?@										                                                               x	       x	   x
+
+0x41 .. 0x46	ABCDEF				x		x		x	x		x	x
+
+0x47 .. 0x5A	GHIJKLMNOPQRSTUVWXYZ				x		x			x		x	x
+
+0x5B .. 0x60	[\]^_`										x	x	x
+
+0x61 .. 0x66	abcdef					x	x		x	x		x	x
+
+0x67 .. 0x7A	ghijklmnopqrstuvwxyz					x	x			x		x	x
+
+0x7B .. 0x7E	{|}~										x	x	x
+
+0x7F	(DEL)	x											
+
+The characters in the extended character set (above 0x7F) may belong to diverse categories 
+depending on the locale and the platform. As a general rule, ispunct, isgraph and isprint 
+return true on these for the standard C locale on most platforms supporting extended character sets.

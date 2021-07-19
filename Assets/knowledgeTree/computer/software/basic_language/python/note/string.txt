@@ -11,9 +11,9 @@
 #string 自带的一些方法
 //------------------------------------------------------------------------------
 name="aaa"
-#首字母大写
-print(name.title())
-prinr(name.)
+print(name.title())#首字母大写
+prinr(name.upper())
+print(name.lower())
 
 
 
