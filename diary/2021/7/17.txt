@@ -63,7 +63,9 @@
  - study
  - favor
  - entertainment
-
+   听书
+   玩游戏
+   
 -----------------------------materialTree-------------------------------------
  - food
  - travel
@@ -71,6 +73,7 @@
  - clothes
  - badEat
  - badSleep
+   3:30~9:00
  - excretion
  - insurance
  - treatment  
