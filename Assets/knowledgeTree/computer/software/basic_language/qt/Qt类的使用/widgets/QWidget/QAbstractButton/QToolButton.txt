@@ -7,10 +7,10 @@ Public Types:
 enum	ToolButtonPopupMode { DelayedPopup, MenuButtonPopup, InstantPopup }
 
 Properties:
-arrowType : Qt::ArrowType
-autoRaise : bool
-popupMode : ToolButtonPopupMode
-toolButtonStyle : Qt::ToolButtonStyle
+arrowType : Qt::ArrowType //箭头方向
+autoRaise : bool 
+popupMode : ToolButtonPopupMode //设置菜单的弹出方式
+toolButtonStyle : Qt::ToolButtonStyle //设置样式，文本与图标的关系
 
 Public Functions:
 QToolButton(QWidget *parent = nullptr)
@@ -97,3 +97,10 @@ Qt Assistant's toolbar contains tool buttons that are associated with actions
 used in other parts of the main window.
 See also QPushButton, QToolBar, QMainWindow, QAction, and GUI Design Handbook: 
 Push Button.
+
+使用案例：
+QWidget w;//生成QWidget对象，作为顶级组件
+QToolButton btn(&w);//将按钮对象放到容器里
+btn.setText("Button");//给按钮设置显示的字符串
+btn.move(10, 10);//移动按钮位置
+btn.resize(100, 25);//设置按钮的宽度和高度

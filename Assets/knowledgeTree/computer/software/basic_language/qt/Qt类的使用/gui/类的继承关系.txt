@@ -1,5 +1,8 @@
-第一层          第二层
-QEvent          QInputEvent
+第一层             第二层
+QEvent             QInputEvent
+QObject,QSurface   QWindow
+
+
 
 第二层          第三层
 QInputEvent     QContextMenuEvent
@@ -10,3 +13,8 @@ QInputEvent     QContextMenuEvent
 				QTabletEvent
 				QTouchEvent
 				QWheelEvent
+
+QWindow         Qt3DExtras::Qt3DWindow
+                QPaintDeviceWindow
+				QVulkanWindow
+		
