@@ -1,0 +1,9 @@
+#escaping newline in echo
+echo -e "1\t2\t3\t"
+#color code
+# reset=0,back=40,black=40,red=41,green=42,yellow=43,blue=44,magenta=45,cyan=46,white=47
+echo -e "\e[1;31m This is red text \e[0m"
+#color background
+#reset=0,black=40,red=41,green=42,yellow=43,blue=44,magenta=45,cyan=46,and white=47
+echo -e "\e[1;42m Green Background \e[0m"
+

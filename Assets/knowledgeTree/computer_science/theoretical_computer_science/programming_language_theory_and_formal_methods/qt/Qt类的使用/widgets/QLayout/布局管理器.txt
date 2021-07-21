@@ -1,0 +1,495 @@
+//QLayout
+它的子类有QBoxLayout,QFormLayout,QGridlayout,QStackedLayout
+QBoxLayout的子类有
+QHBoxLayout,QVBoxLayout
+
+QT-布局管理器(Box,Grid,Form,Stacked)
+
+布局管理器简介
+QT中提供了对界面组件进行布局管理的类，用于对界面组件进行管理，
+1.能够自动排列窗口中的界面组件
+2.窗口大小变化后,便会自动更新界面组件的大小。
+3.布局管理器可以自定义,从而达到更加个性化界面布局的效果
+4.布局管理器可以相互嵌套,完成所有常用的界面布局
+QBoxLayout水平/垂直布局
+QBoxLayout有两个子类：QHBoxLayout(水平)和QVBoxLayput(垂直)
+
+//QVBoxLayput
+//-----------------------------------------------------------------------------
+int main(int argc, char *argv[])
+{
+
+    QApplication a(argc, argv);
+    QWidget w;
+
+    QVBoxLayout *layout=new QVBoxLayout;
+
+ 
+    QPushButton btn1("test1",&w);
+    QPushButton btn2("test2",&w);
+    QPushButton btn3("test3",&w);
+
+    btn1.setMaximumSize(600,360);
+    btn1.setMinimumSize(100,60);
+    btn2.setMaximumSize(600,360);
+    btn2.setMinimumSize(100,60);
+    btn3.setMaximumSize(600,360);
+    btn3.setMinimumSize(100,60);
+
+    w.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    //设置部件大小策略,这里由于设置父组件w,所以子组件无需再设置
+    //Expanding表示组件可扩展,组件最大不能超过MaximumSize();
+
+     layout->addWidget(&btn1);       //向布局管理器添加组件,实现自动布局
+     layout->addWidget(&btn2);
+     layout->addWidget(&btn3);
+
+     w.setLayout(layout);           //为部件设置布局管理器
+
+     layout->setSpacing(10);
+
+     w.show();
+     return a.exec();
+}
+//-----------------------------------------------------------------------------
+
+//QHBoxLayput
+//----------------------------------------------------------------------------- 
+int main(int argc, char *argv[])
+{
+
+    QApplication a(argc, argv);
+　　 QWidget w;
+
+    QHBoxLayout *layout=new QHBoxLayout;
+
+    QPushButton btn1("test1",&w);
+    QPushButton btn2("test2",&w);
+    QPushButton btn3("test3",&w);
+
+    btn1.setMaximumSize(600,360);
+    btn1.setMinimumSize(100,60);
+    btn2.setMaximumSize(600,360);
+    btn2.setMinimumSize(100,60);
+    btn3.setMaximumSize(600,360);
+    btn3.setMinimumSize(100,60);
+ 
+
+     layout->addWidget(&btn1);       //向布局管理器添加组件,实现自动布局
+     layout->addWidget(&btn2);
+     layout->addWidget(&btn3);
+
+     w.setLayout(layout);           //为部件设置布局管理器
+
+     layout->setSpacing(10);
+
+     w.show();
+     return a.exec();
+}
+//-----------------------------------------------------------------------------
+
+//QBoxLayput相互嵌套
+//-----------------------------------------------------------------------------
+之前,我们写了QHBoxLayout(水平)和QVBoxLayput(垂直),但是只是单方面自动布局.
+接下来,我们来使用嵌套,来实现水平+垂直自动布局
+示例代码如下:
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+
+    QHBoxLayout *Hlayout1=new QHBoxLayout;
+    QHBoxLayout *Hlayout2=new QHBoxLayout;
+    QVBoxLayout *Vlayout=new QVBoxLayout;
+
+    QWidget w;
+
+    QPushButton btn1("test1",&w);
+    QPushButton btn2("test2",&w);
+    QPushButton btn3("test3",&w);
+    QPushButton btn4("test4",&w);
+    btn1.setMaximumSize(600,360);
+    btn1.setMinimumSize(100,60);
+    btn2.setMaximumSize(600,360);
+    btn2.setMinimumSize(100,60);
+    btn3.setMaximumSize(600,360);
+    btn3.setMinimumSize(100,60);
+    btn4.setMaximumSize(600,360);
+    btn4.setMinimumSize(100,60);
+ 
+    Hlayout1->addWidget(&btn1);       //水平布局: btn1  btn2
+    Hlayout1->addWidget(&btn2);
+    Hlayout1->setSpacing(10);
+
+    Hlayout2->addWidget(&btn3);      //水平布局: btn3  btn4
+    Hlayout2->addWidget(&btn4);
+    Hlayout2->setSpacing(10);
+
+    Vlayout->addLayout(Hlayout1);     //垂直布局: Hlayout1 Hlayout2
+    Vlayout->addLayout(Hlayout2);
+    Vlayout->setSpacing(10);
+    //设置布局管理器,由于Vlayout管理着Hlayout1 Hlayout2,所以只填写一个即可
+    w.setLayout(Vlayout);           
+
+    w.show();
+
+    return a.exec();
+}
+//-----------------------------------------------------------------------------
+
+//布局管理器比例系数
+//-----------------------------------------------------------------------------
+默认情况下,组件之间以等比例的方式改变组件大小.
+其实用户也可以自定义组件之间比例系数,当窗口放大时,便来更新比例系数.
+常用函数:
+QBoxLayout::setStretch ( int index, int stretch );     //设置具体组件的拉伸系数
+// index:表示布局管理器里的第几个组件
+// stretch :拉伸系数
+bool  QBoxLayout::setStretchFactor ( QWidget * widget, int stretch );
+                  //设置部件拉伸系数,如果存在*widget这个组件,则设置成功,返回true
+bool QBoxLayout::setStretchFactor ( QLayout * layout, int stretch );
+                  //设置布局拉伸系数, ,如果存在*layout这个组件,则设置成功,返回true
+示例代码如下:
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QHBoxLayout *Hlayout1=new QHBoxLayout;
+    QHBoxLayout *Hlayout2=new QHBoxLayout;
+    QVBoxLayout *Vlayout=new QVBoxLayout;
+    QWidget w;
+    QPushButton btn1("test1",&w);
+    QPushButton btn2("test2",&w);
+    QPushButton btn3("test3",&w);
+    QPushButton btn4("test4",&w);
+    
+    btn1.setMinimumSize(100,60); 
+    btn2.setMinimumSize(100,60); 
+    btn3.setMinimumSize(100,60); 
+    btn4.setMinimumSize(100,60);
+    
+    //设置大小策略,Expanding表示组件可扩展 
+    btn1.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn2.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn3.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn4.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);   
+    
+    Hlayout1->addWidget(&btn1);       //水平布局: btn1  btn2
+    Hlayout1->addWidget(&btn2);
+    Hlayout1->setSpacing(10);
+    Hlayout2->addWidget(&btn3);      //水平布局: btn3  btn4
+    Hlayout2->addWidget(&btn4);
+    Hlayout2->setSpacing(10);
+
+    Vlayout->addLayout(Hlayout1);     //垂直布局: Hlayout1 Hlayout2
+    Vlayout->addLayout(Hlayout2);
+
+    Vlayout->setStretchFactor(Hlayout1,1);
+    Vlayout->setStretchFactor(Hlayout2,3);
+
+    Vlayout->setSpacing(10);
+	//设置布局管理器,由于Vlayout管理着Hlayout1 Hlayout2,所以只填写一个即可
+    w.setLayout(Vlayout);           
+    w.show();
+    return a.exec();
+} 
+//-----------------------------------------------------------------------------
+
+
+//QGridLayout网格布局
+//-----------------------------------------------------------------------------
+以网格的方式管理界面组件,类似于:嵌套方式来使用QBoxLayout.
+常用函数:
+ // row  column :表示将widget这个部件放在网格哪个位置
+void  addWidget ( QWidget * widget, int row, int column, Qt::Alignment alignment = 0 );
+
+// row  column :表示将widget这个部件放在网格哪个位置
+// rowSpan: widget这个部件占多少行
+// columnSpan: widget这个部件占多少列
+void  addWidget ( QWidget * widget, int fromRow, int fromColumn, int rowSpan, 
+int columnSpan, Qt::Alignment alignment = 0 );
+ 
+//设置列拉伸系数
+//column:设置布局管理器里的第几列,第1列为0
+void setColumnStretch(int column,int stretch);          
+　　　　　　
+//设置行拉伸系数
+//row:设置的第几行 　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+void setRowStretch(int row,int stretch);   
+     　　     
+示例代码:
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QGridLayout *layout=new QGridLayout;
+    QWidget w;
+    QPushButton btn1("test1",&w);
+    QPushButton btn2("test2",&w);
+    QPushButton btn3("test3",&w);
+    QPushButton btn4("test4",&w);
+    btn1.setMinimumSize(100,60);
+    btn2.setMinimumSize(100,60);
+    btn3.setMinimumSize(100,60);
+    btn4.setMinimumSize(100,60);
+    
+    
+    //设置大小策略,Expanding表示组件可扩展 
+    btn1.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn2.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn3.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn4.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    
+    layout->addWidget(&btn1,0,0);
+    layout->addWidget(&btn2,0,1);
+    layout->addWidget(&btn3,1,0);
+    layout->addWidget(&btn4,1,1);
+    layout->setRowStretch(0,1);        //设置第0行,比例为1
+    layout->setRowStretch(1,2);        //设置第1行,比例为2
+    layout->setColumnStretch(0,1);     //设置第0列,比例为1
+    layout->setColumnStretch(1,2);     //设置第1列,比例为2
+    w.setLayout(layout);               //设置布局管理器
+    w.show();
+    return a.exec();
+}
+//-----------------------------------------------------------------------------
+
+//QGridLayout相互嵌套
+//-----------------------------------------------------------------------------
+QGridLayout也支持布局管理器嵌套
+
+示例代码:
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QGridLayout *layout=new QGridLayout;
+    QVBoxLayout *Vlyt=new QVBoxLayout;
+    QWidget w;
+    QPushButton btn1("test1",&w);
+    QPushButton btn2("test2",&w);
+    QPushButton btn3("test3",&w);
+    QPushButton btn4("test4",&w);
+    QPushButton btn5("test5",&w);
+    btn1.setMinimumSize(100,60);
+    btn2.setMinimumSize(100,60);
+    btn3.setMinimumSize(100,60);
+    btn4.setMinimumSize(100,30);        //btn4 btn5按钮需要缩小高度
+    btn5.setMinimumSize(100,30);
+
+    //设置大小策略,Expanding表示组件可扩展
+    btn1.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn2.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn3.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn4.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    btn5.setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+
+    Vlyt->addWidget(&btn4);
+    Vlyt->addWidget(&btn5);
+    layout->addWidget(&btn1,0,0);
+    layout->addWidget(&btn2,0,1);
+    layout->addWidget(&btn3,1,0);
+    layout->addLayout(Vlyt,1,1);
+    layout->setRowStretch(0,1);        //设置第0行,比例为1
+    layout->setRowStretch(1,2);        //设置第1行,比例为2
+    layout->setColumnStretch(0,1);     //设置第0列,比例为1
+    layout->setColumnStretch(1,2);     //设置第1列,比例为2
+    w.setLayout(layout);           　　 //设置布局管理器
+    w.show();
+    return a.exec();
+}
+//-----------------------------------------------------------------------------
+
+
+//QFormLayout表单布局
+//-----------------------------------------------------------------------------
+以表单的方式管理界面组件,专为标签和字段(组件)的形式创建的
+
+表单布局也支持嵌套,可以管理子布局
+
+常用函数:
+
+addRow ( QWidget * label, QWidget * field );
+addRow ( QWidget * label, QLayout * field );
+addRow ( const QString & labelText, QWidget * field );
+addRow ( const QString & labelText, QLayout * field );
+
+//设置标签对齐方式,比如标签左对齐
+void setLabelAlignment ( Qt::Alignment alignment );
+
+
+ 
+//设置字段包装策略
+//比如参数WrapLongRows:表示给标签足够长空间,如果一行满足不了标签和字段显示,则将字段放在下行显示
+//参数QFormLayout::WrapAllRows: 示字段信息总在标签下面列出(占据整个行大小)
+void  setRowWrapPolicy ( RowWrapPolicy policy );
+
+示例代码:
+
+int main(int argc, char *argv[])
+{ 
+    QApplication a(argc, argv);
+    QWidget w(0,Qt::WindowCloseButtonHint);
+    QLineEdit line1(&w);
+    QLineEdit line2(&w);
+    QLineEdit line3(&w);
+    QFormLayout *layout= new QFormLayout;
+    layout->addRow("姓名:",&line1);   
+    layout->addRow("邮箱:",&line2);
+    layout->addRow("地址:",&line3);
+    layout->setRowWrapPolicy(QFormLayout::WrapAllRows); //设置字段总在标签下面
+    w.setLayout(layout);
+    w.show();
+    return a.exec();
+} 
+
+//-----------------------------------------------------------------------------
+
+//QStackedLayout栈式布局
+//-----------------------------------------------------------------------------
+将所有组件进行垂直管理
+并且每次只能有一个组件现在在屏幕上 
+只有最顶层的组件才会被最终显示
+常用于图片播放,安装向导等
+特点
+
+组件大小一致且充满父组件的显示区
+能够自由切换需要显示的组件
+不能直接嵌套其它布局管理器,只能间接嵌套
+常用函数:
+
+//顺序添加组件
+int addWidget ( QWidget * widget ); 
+   　　　　　　　　　 　
+//插入组件
+int insertWidget ( int index, QWidget * widget );       
+
+//删除组件
+void removeWidget ( QWidget * widget );                
+ 
+//返回当前组件
+QWidget * currentWidget() ;                            
+
+//返回当前组件索引值
+int   currentIndex();                                  
+
+//切换当前组件
+void setCurrentIndex ( int index );                    
+
+//更换当前显示的组件
+void setCurrentWidget ( QWidget * widget );
+            
+代码试验,通过定时器自动切换QStackedLayout
+
+#ifndef WIDGET_H
+#define WIDGET_H
+#include <QtGui>
+#include <QWidget>
+#include <QObject>
+
+class Widget : public QWidget
+{
+    Q_OBJECT
+    QTimer *timer;
+    QStackedLayout  *Stack;
+    QPushButton btn1;
+    QPushButton btn2;
+    QPushButton btn3;
+    QPushButton btn4;
+
+private slots:
+     void  time_handler();
+
+public:
+    explicit Widget(QWidget *parent = 0);
+
+};
+
+#endif // WIDGET_H
+Widget.cpp
+
+#include "Widget.h"
+#include <QDebug>
+#include <QTimer>
+
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    btn1("test1",this),
+    btn2("test2",this),
+    btn3("test3",this),
+    btn4("test4",this)
+{
+    btn1.setMinimumSize(80,40);
+
+    Stack = new QStackedLayout;
+
+    Stack->addWidget(&btn1);
+    Stack->addWidget(&btn2);
+    Stack->addWidget(&btn3);
+    Stack->addWidget(&btn4);
+
+    Stack->setCurrentIndex(0);
+    this->setLayout(Stack);
+
+     /*启动定时器*/
+     QTimer *timer = new QTimer(this);
+     connect(timer, SIGNAL(timeout()), this, SLOT(time_handler()));
+     timer->start(1000);        //1000ms
+}
+
+void Widget::time_handler()
+{
+    static int index=1;
+    Stack->setCurrentIndex((index++)%4);        //切换页面
+    qDebug()<<"Timer out";
+}
+main.cpp
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc,argv);
+    Widget w;
+    w.show();
+    return app.exec();
+}
+
+//-----------------------------------------------------------------------------
+
+//间接嵌套
+//-----------------------------------------------------------------------------
+修改构造函数
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    btn1("test1",this),
+    btn2("test2",this),
+    btn3("test3",this),
+    btn4("test4",this)
+{
+    btn1.setMinimumSize(80,40);
+
+    QWidget *w = new QWidget;
+
+    /*设置多个子组件的父类*/
+    btn3.setParent(w);
+    btn4.setParent(w);
+    btn3.setMinimumSize(120,60);
+    btn4.setMinimumSize(120,60);
+
+    /*通过其它布局管理器来管理*/
+    QVBoxLayout *Vlyt = new QVBoxLayout;
+    Vlyt->addWidget(&btn3);
+    Vlyt->addWidget(&btn4);
+    Vlyt->setSpacing(10);
+    w->setLayout(Vlyt);
+
+    Stack = new QStackedLayout;
+
+    Stack->addWidget(&btn1);
+    Stack->addWidget(&btn2);
+    Stack->addWidget(w);
+    Stack->setCurrentIndex(0);
+    this->setLayout(Stack);
+
+    /*启动定时器*/
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(time_handler()));
+    timer->start(1000);        //1000ms
+}
+//-----------------------------------------------------------------------------

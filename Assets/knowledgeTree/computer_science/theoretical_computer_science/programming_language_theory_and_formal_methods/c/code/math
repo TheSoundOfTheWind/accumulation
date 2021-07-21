@@ -1,0 +1,5 @@
+int a = pow(4, 2); // 4^2
+int b = pow(4, 0.5); // 4^0.5
+int c = sqrt(4); // 4^0.5
+int c = abs(b-c); // |b-c|
+double d = fabs(b-c); // |b-c|

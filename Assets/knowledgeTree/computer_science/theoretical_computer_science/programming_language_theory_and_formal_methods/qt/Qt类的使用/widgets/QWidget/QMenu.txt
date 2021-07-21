@@ -1,0 +1,97 @@
+//QMenu
+//-----------------------------------------------------------------------------
+The QMenu class provides a menu widget for use in menu bars, context menus, and
+other popup menus. 
+
+Header:	#include <QMenu>
+Inherits:	QWidget
+
+Properties:
+icon : QIcon
+separatorsCollapsible : bool
+tearOffEnabled : bool
+title : QString
+toolTipsVisible : bool
+
+Public Functions:
+QMenu(const QString &title, QWidget *parent = nullptr)
+QMenu(QWidget *parent = nullptr)
+virtual	~QMenu()
+QAction *	actionAt(const QPoint &pt) const
+QRect	actionGeometry(QAction *act) const
+QAction *	activeAction() const
+QAction *	addAction(const QString &text)
+QAction *	addAction(const QIcon &icon, const QString &text)
+QAction *	addAction(const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = 0)
+QAction *	addAction(const QIcon &icon, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = 0)
+QAction *	addAction(const QString &text, Functor functor, const QKeySequence &shortcut = 0)
+QAction *	addAction(const QString &text, const QObject *context, Functor functor, const QKeySequence &shortcut = 0)
+QAction *	addAction(const QIcon &icon, const QString &text, Functor functor, const QKeySequence &shortcut = 0)
+QAction *	addAction(const QIcon &icon, const QString &text, const QObject *context, Functor functor, const QKeySequence &shortcut = 0)
+QAction *	addMenu(QMenu *menu)
+QMenu *	addMenu(const QString &title)
+QMenu *	addMenu(const QIcon &icon, const QString &title)
+QAction *	addSection(const QString &text)
+QAction *	addSection(const QIcon &icon, const QString &text)
+QAction *	addSeparator()
+void	clear()
+QAction *	defaultAction() const
+QAction *	exec()
+QAction *	exec(const QPoint &p, QAction *action = nullptr)
+void	hideTearOffMenu()
+QIcon	icon() const
+QAction *	insertMenu(QAction *before, QMenu *menu)
+QAction *	insertSection(QAction *before, const QString &text)
+QAction *	insertSection(QAction *before, const QIcon &icon, const QString &text)
+QAction *	insertSeparator(QAction *before)
+bool	isEmpty() const
+bool	isTearOffEnabled() const
+bool	isTearOffMenuVisible() const
+QAction *	menuAction() const
+void	popup(const QPoint &p, QAction *atAction = nullptr)
+bool	separatorsCollapsible() const
+void	setActiveAction(QAction *act)
+void	setAsDockMenu()
+void	setDefaultAction(QAction *act)
+void	setIcon(const QIcon &icon)
+void	setSeparatorsCollapsible(bool collapse)
+void	setTearOffEnabled(bool)
+void	setTitle(const QString &title)
+void	setToolTipsVisible(bool visible)
+void	showTearOffMenu(const QPoint &pos)
+void	showTearOffMenu()
+QString	title() const
+NSMenu *	toNSMenu()
+bool	toolTipsVisible() const
+
+Reimplemented Public Functions:
+virtual QSize	sizeHint() const override
+
+Signals:
+void	aboutToHide()
+void	aboutToShow()
+void	hovered(QAction *action)
+void	triggered(QAction *action)
+
+Static Public Members:
+QAction *	exec(QList<QAction *> actions, const QPoint &pos, QAction *at = nullptr, QWidget *parent = nullptr)
+
+Protected Functions:
+int	columnCount() const
+void	initStyleOption(QStyleOptionMenuItem *option, const QAction *action) const
+
+Reimplemented Protected Functions:
+virtual void	actionEvent(QActionEvent *e) override
+virtual void	changeEvent(QEvent *e) override
+virtual void	enterEvent(QEvent *) override
+virtual bool	event(QEvent *e) override
+virtual bool	focusNextPrevChild(bool next) override
+virtual void	hideEvent(QHideEvent *) override
+virtual void	keyPressEvent(QKeyEvent *e) override
+virtual void	leaveEvent(QEvent *) override
+virtual void	mouseMoveEvent(QMouseEvent *e) override
+virtual void	mousePressEvent(QMouseEvent *e) override
+virtual void	mouseReleaseEvent(QMouseEvent *e) override
+virtual void	paintEvent(QPaintEvent *e) override
+virtual void	timerEvent(QTimerEvent *e) override
+virtual void	wheelEvent(QWheelEvent *e) override

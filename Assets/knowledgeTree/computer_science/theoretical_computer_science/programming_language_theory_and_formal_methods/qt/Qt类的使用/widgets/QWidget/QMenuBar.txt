@@ -1,0 +1,67 @@
+//QMenuBar
+//-----------------------------------------------------------------------------
+The QMenuBar class provides a horizontal menu bar
+
+Header:	#include <QMenuBar>
+Inherits:	QWidget
+
+Properties：
+defaultUp : bool
+nativeMenuBar : bool
+
+Public Functions：
+QMenuBar(QWidget *parent = nullptr)
+virtual	~QMenuBar()
+QAction *	actionAt(const QPoint &pt) const
+QRect	    actionGeometry(QAction *act) const
+QAction *	activeAction() const
+QAction *	addAction(const QString &text)
+QAction *	addAction(const QString &text, const QObject *receiver, const char *member)
+QAction *	addAction(const QString &text, const Obj *receiver, PointerToMemberFunctionOrFunctor method)
+QAction *	addAction(const QString &text, Functor functor)
+QAction *	addMenu(QMenu *menu)
+QMenu *	    addMenu(const QString &title)
+QMenu *	    addMenu(const QIcon &icon, const QString &title)
+QAction *	addSeparator()
+void	    clear()
+QWidget *	cornerWidget(Qt::Corner corner = Qt::TopRightCorner) const
+QAction *	insertMenu(QAction *before, QMenu *menu)
+QAction *	insertSeparator(QAction *before)
+bool		isDefaultUp() const
+bool		isNativeMenuBar() const
+void		setActiveAction(QAction *act)
+void		setCornerWidget(QWidget *widget, Qt::Corner corner = Qt::TopRightCorner)
+void		setDefaultUp(bool)
+void		setNativeMenuBar(bool nativeMenuBar)
+NSMenu *	toNSMenu()
+
+Reimplemented Public Functions：
+virtual int	    heightForWidth(int) const override
+virtual QSize	minimumSizeHint() const override
+virtual QSize	sizeHint() const override
+
+Public Slots：
+virtual void	setVisible(bool visible) override
+
+Signals：
+void	hovered(QAction *action)
+void	triggered(QAction *action)
+
+Protected Functions：
+void	initStyleOption(QStyleOptionMenuItem *option, const QAction *action) const
+
+Reimplemented Protected Functions：
+virtual void	actionEvent(QActionEvent *e) override
+virtual void	changeEvent(QEvent *e) override
+virtual bool	event(QEvent *e) override
+virtual bool	eventFilter(QObject *object, QEvent *event) override
+virtual void	focusInEvent(QFocusEvent *) override
+virtual void	focusOutEvent(QFocusEvent *) override
+virtual void	keyPressEvent(QKeyEvent *e) override
+virtual void	leaveEvent(QEvent *) override
+virtual void	mouseMoveEvent(QMouseEvent *e) override
+virtual void	mousePressEvent(QMouseEvent *e) override
+virtual void	mouseReleaseEvent(QMouseEvent *e) override
+virtual void	paintEvent(QPaintEvent *e) override
+virtual void	resizeEvent(QResizeEvent *) override
+virtual void	timerEvent(QTimerEvent *e) override

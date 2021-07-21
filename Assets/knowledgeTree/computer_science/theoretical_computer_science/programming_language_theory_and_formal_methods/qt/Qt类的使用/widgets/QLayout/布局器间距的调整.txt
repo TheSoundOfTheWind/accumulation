@@ -1,0 +1,72 @@
+//-----------------------------------------------------------------------------
+内容边距就是页边距，指的是布局中的各子部件(内容)与周围四个边的距离，内容边距比
+较简单，下面列出需要使用到的函数(内容边距默认情况下使用的是样式提供的值，在大多
+数平台上，默认为11像素)
+
+QMargins QLayout::contentsMargins() const;     
+void QLayout::getContentsMargins(int *left, int *top, int *right, int *bottom) const;     
+void QLayout::setContentsMargins(int left, int top, int right, int bottom);     
+void QLayout::setContentsMargins(const QMargins& margin);  
+
+间距(spacing)指的是各部件之间的距离。间距有两种方式实现，一种是向各部件间添加一
+个QSpacerItem实例，一种是直接指定各部件间的距离。
+QSpacerItem类
+使用QSpacerItem类可以创建自定义的间距，使用该类创建的间距相当于是一个空白部件，
+它是布局中的一个项目，会在布局中占据一个位置，布局会为其分配一个索引号，也就是
+说由QSpacerItem类创建的对象是可以由布局管理器进行管理的。通常不需要使用这个类，
+因为在各布局管理器中有相应的函数代替了该类的功能。该类包括析构函数在内，总共只
+有4个公有的成员函数，其余函数都是从其父类继承而来的受保护的函数，以下为这些成员函数
+
+设置间距
+因不同布局管理器使用的设置间距的函数不相同，下面先讲解QBoxLayout布局中的间距函数。
+注意：向布局中添加或插入的间距是QSpacerItem，因此布局会为QSpacerItem分配一个索引
+号，这会改变各部件之间的原有索引号，比如在索引为0的按钮1和索引为1的钮2之间插入一
+个QSpacerItem之后，则按钮1的索引仍为0，QSpacerItem的索引为1，按钮2的索引为2，
+
+下面为QLayout类中与间距有关的属性
+
+//间距简单应用
+
+#include<QtWidgets>
+#include <iostream>
+using namespace std;
+int main(int argc, char *argv[]){    QApplication a(argc,argv);
+    QWidget w;
+    QPushButton *pb=new QPushButton("AAA");    QPushButton *pb1=new QPushButton("BBB");
+    QPushButton *pb2=new QPushButton("CCC");   QPushButton *pb3=new QPushButton("DDD");
+    pb->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Fixed);
+    pb1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    pb2->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    QHBoxLayout *pg=new QHBoxLayout;
+    pg->addWidget(pb);
+    pg->addStretch(1);  //添加一个拉伸因子为1的间距(QSpacerItem)
+    pg->addWidget(pb1);
+    pg->addStretch(2);//添加一个拉伸因子为2的间距
+    pg->addWidget(pb2);
+    w.setLayout(pg);    w.resize(300,100);        w.show();    return a.exec();  }
+
+//间距与空白部件
+#include<QtWidgets>
+#include <iostream>
+using namespace std;
+int main(int argc, char *argv[]){    
+    QApplication a(argc,argv);
+    QWidget w;
+    QPushButton *pb=new QPushButton("AAA");    QPushButton *pb1=new QPushButton("BBB");
+    QPushButton *pb2=new QPushButton("CCC");
+    QHBoxLayout *pg=new QHBoxLayout;
+    QSpacerItem *sp=new QSpacerItem(22,22);  //创建一个宽和高都为22的QSpacerItem
+	/*设置spacing属性，使每个子部件之间的间距为22，spacing属性设置
+	的间距不是空白部件，不会被分配索引号*/
+    pg->setSpacing(22);  
+    pg->addWidget(pb);
+    pg->addSpacing(22);   //添加一个间距(QSpacerItem)，该间距是空白部件，会分配一个索引号。
+    pg->addWidget(pb1);
+    pg->addWidget(pb2);
+	/*把QSpacerItem实例sp插入索引为1的位置，注意sp是空白部件，会分配一个索引号。*/
+    pg->insertSpacerItem(1,sp); 
+    pg->setStretch(1,1);     //把索引为1的部件(即上一行插入的sp)的拉伸因子设置为1
+    pg->insertStretch(4,1);  //插入一个拉伸因子为1的间距(QSpacerItem)
+    pg->insertStretch(6,2);
+    w.setLayout(pg);    w.resize(300,100);        w.show();    return a.exec();  }
+}

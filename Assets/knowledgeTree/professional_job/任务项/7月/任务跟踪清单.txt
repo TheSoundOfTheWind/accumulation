@@ -1,0 +1,52 @@
+未完成：
+Bug:
+1.xlib问题，底层库调用问题
+2.对应的颜色图片没有更新为reset的颜色
+3.3D tool(GDS3D or gbviewer3D) ,takes up a lot of network bandwidth to open with sgd
+
+Feature:
+4.支持从上下左右前后六个正面看3D图形的选项
+5.增加 top view吸附测量功能，原始数据 和切之后的topview,点击显示坐标和each值
+6.gbviewer should show the PIN or port as .ports_cell
+
+Defect:
+7.speed up;gxviewer跑一些大例子存在性能问题
+8.2D 图形中用2D的坐标为基准
+9.当两个3D图形某个面重叠时会有阴影
+10.缩放的时候有类似切的效果
+
+Enhencement:
+11.画线的时候提示用户正在画线
+12.在控制所有net或layer是否可见的item中加一个小的控制按钮
+13.”File“ 字体调大一点
+14.添加via[] inter[] device[]的控制按钮在combox和All layers之间
+15.鼠标箭头上有一个点，去掉变成普通的鼠标图标
+
+Debug:
+16.支持单纯看2D box和看3D box的数据（没有layer）
+
+
+已完成：
+Feature:
+1.鼠标选中2D窗口后可以鼠标滚轮来缩放大小
+2.Distinguish the options reading ASCII and Binary gcap
+3.search node by node name in gcap(node ZN 2) and spice(ZN&p2)  ok
+4.添加坐标框拉伸功能
+5.Add Keyboard control shortcuts
+6.控制着字体随着相机的角度的移动而移动
+7.control float net by net id
+
+Bug:
+8.gxviewer should not show the 3D coordinate diagram on the top left corner
+9.点击平面电介质，缩小后红色的平面电介质边框不能包裹住平面电介质
+10.does not pick up the right file to display（我这边source最新的已经没有问题）
+
+Enhencement:
+11.”control“字体应该更明显和layer这些tab区分开来
+
+
+
+
+
+
+

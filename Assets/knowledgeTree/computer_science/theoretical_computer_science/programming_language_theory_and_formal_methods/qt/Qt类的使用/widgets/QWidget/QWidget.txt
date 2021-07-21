@@ -1,0 +1,448 @@
+//QWidget
+//-----------------------------------------------------------------------------
+Header:	#include <QWidget>
+qmake:	QT += widgets
+Inherits:	QObject and QPaintDevice
+Inherited By:QAbstractButton, QAbstractSlider, QAbstractSpinBox, QCalendarWidget, 
+          QComboBox, QDesignerActionEditorInterface, QDesignerFormWindowInterface, 
+          QDesignerObjectInspectorInterface, QDesignerPropertyEditorInterface, 
+          QDesignerWidgetBoxInterface, QDesktopWidget, QDialog, QDialogButtonBox, 
+          QDockWidget, QFocusFrame, QFrame, QGroupBox, QKeySequenceEdit, QLineEdit, 
+          QMacCocoaViewContainer, QMacNativeWidget, QMainWindow, QMdiSubWindow, QMenu, 
+          QMenuBar, QOpenGLWidget, QProgressBar, QQuickWidget, QRubberBand, QSizeGrip,
+          QSplashScreen, QSplitterHandle, QStatusBar, QSvgWidget, QTabBar, QTabWidget,
+          QToolBar, and QWizardPage
+		  
+		  
+Public Functions:
+QWidget(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags())
+virtual	~QWidget()
+bool	           acceptDrops() const
+QString	           accessibleDescription() const
+QString	           accessibleName() const
+QList<QAction *>	actions() const
+void	        	activateWindow()
+void				addAction(QAction *action)
+void				addActions(QList<QAction *> actions)
+void				adjustSize()
+bool				autoFillBackground() const
+QPalette::ColorRole	backgroundRole() const
+QBackingStore *		backingStore() const
+QSize				baseSize() const
+QWidget *			childAt(int x, int y) const
+QWidget *			childAt(const QPoint &p) const
+QRect				childrenRect() const
+QRegion				childrenRegion() const
+void				clearFocus()
+void				clearMask()
+QMargins			contentsMargins() const
+QRect				    contentsRect() const
+Qt::ContextMenuPolicy	contextMenuPolicy() const
+QCursor	    			cursor() const
+WId						effectiveWinId() const
+void					ensurePolished() const
+Qt::FocusPolicy			focusPolicy() const
+QWidget *				focusProxy() const
+QWidget *				focusWidget() const
+const QFont &			font() const
+QFontInfo				fontInfo() const
+QFontMetrics			fontMetrics() const
+QPalette::ColorRole		foregroundRole() const
+QRect					frameGeometry() const
+QSize					frameSize() const
+const QRect &			geometry() const
+QPixmap					grab(const QRect &rectangle = QRect(QPoint(0, 0), QSize(-1, -1)))
+void					grabGesture(Qt::GestureType gesture, Qt::GestureFlags flags = Qt::GestureFlags())
+void					grabKeyboard()
+void					grabMouse()
+void					grabMouse(const QCursor &cursor)
+int						grabShortcut(const QKeySequence &key, Qt::ShortcutContext context = Qt::WindowShortcut)
+QGraphicsEffect *		graphicsEffect() const
+QGraphicsProxyWidget *	graphicsProxyWidget() const
+bool					hasEditFocus() const
+bool					hasFocus() const
+virtual bool			hasHeightForWidth() const
+bool					hasMouseTracking() const
+bool					hasTabletTracking() const
+int						height() const
+virtual int				heightForWidth(int w) const
+Qt::InputMethodHints	inputMethodHints() const
+virtual QVariant		inputMethodQuery(Qt::InputMethodQuery query) const
+void	insertAction(QAction *before, QAction *action)
+void	insertActions(QAction *before, QList<QAction *> actions)
+bool	isActiveWindow() const
+bool	isAncestorOf(const QWidget *child) const
+bool	isEnabled() const
+bool	isEnabledTo(const QWidget *ancestor) const
+bool	isFullScreen() const
+bool	isHidden() const
+bool	isMaximized() const
+bool	isMinimized() const
+bool	isModal() const
+bool	isVisible() const
+bool	isVisibleTo(const QWidget *ancestor) const
+bool	isWindow() const
+bool	isWindowModified() const
+QLayout *				layout() const
+Qt::LayoutDirection		layoutDirection() const
+QLocale					locale() const
+QPoint	mapFrom(const QWidget *parent, const QPoint &pos) const
+QPoint	mapFromGlobal(const QPoint &pos) const
+QPoint	mapFromParent(const QPoint &pos) const
+QPoint	mapTo(const QWidget *parent, const QPoint &pos) const
+QPoint	mapToGlobal(const QPoint &pos) const
+QPoint	mapToParent(const QPoint &pos) const
+QRegion	mask() const
+int		maximumHeight() const
+QSize	maximumSize() const
+int		maximumWidth() const
+int		minimumHeight() const
+QSize	minimumSize() const
+virtual QSize	minimumSizeHint() const
+int				minimumWidth() const
+void			move(const QPoint &)
+void			move(int x, int y)
+QWidget *		nativeParentWidget() const
+QWidget *		nextInFocusChain() const
+QRect			normalGeometry() const
+void			overrideWindowFlags(Qt::WindowFlags flags)
+const QPalette &	palette() const
+QWidget *			parentWidget() const
+QPoint				pos() const
+QWidget *			previousInFocusChain() const
+QRect	rect() const
+void	releaseKeyboard()
+void	releaseMouse()
+void	releaseShortcut(int id)
+void	removeAction(QAction *action)
+void	render(QPaintDevice *target, const QPoint &targetOffset = QPoint(), const QRegion &sourceRegion = QRegion(), QWidget::RenderFlags renderFlags = RenderFlags(DrawWindowBackground | DrawChildren))
+void	render(QPainter *painter, const QPoint &targetOffset = QPoint(), const QRegion &sourceRegion = QRegion(), QWidget::RenderFlags renderFlags = RenderFlags(DrawWindowBackground | DrawChildren))
+void	repaint(int x, int y, int w, int h)
+void	repaint(const QRect &rect)
+void	repaint(const QRegion &rgn)
+void	resize(const QSize &)
+void	resize(int w, int h)
+bool	restoreGeometry(const QByteArray &geometry)
+QByteArray	saveGeometry() const
+QScreen *	screen() const
+void	scroll(int dx, int dy)
+void	scroll(int dx, int dy, const QRect &r)
+void	setAcceptDrops(bool on)
+void	setAccessibleDescription(const QString &description)
+void	setAccessibleName(const QString &name)
+void	setAttribute(Qt::WidgetAttribute attribute, bool on = true)
+void	setAutoFillBackground(bool enabled)
+void	setBackgroundRole(QPalette::ColorRole role)
+void	setBaseSize(const QSize &)
+void	setBaseSize(int basew, int baseh)
+void	setContentsMargins(int left, int top, int right, int bottom)
+void	setContentsMargins(const QMargins &margins)
+void	setContextMenuPolicy(Qt::ContextMenuPolicy policy)
+void	setCursor(const QCursor &)
+void	setEditFocus(bool enable)
+void	setFixedHeight(int h)
+void	setFixedSize(const QSize &s)
+void	setFixedSize(int w, int h)
+void	setFixedWidth(int w)
+void	setFocus(Qt::FocusReason reason)
+void	setFocusPolicy(Qt::FocusPolicy policy)
+void	setFocusProxy(QWidget *w)
+void	setFont(const QFont &)
+void	setForegroundRole(QPalette::ColorRole role)
+void	setGeometry(const QRect &)
+void	setGeometry(int x, int y, int w, int h)
+void	setGraphicsEffect(QGraphicsEffect *effect)
+void	setInputMethodHints(Qt::InputMethodHints hints)
+void	setLayout(QLayout *layout)
+void	setLayoutDirection(Qt::LayoutDirection direction)
+void	setLocale(const QLocale &locale)
+void	setMask(const QBitmap &bitmap)
+void	setMask(const QRegion &region)
+void	setMaximumHeight(int maxh)
+void	setMaximumSize(const QSize &)
+void	setMaximumSize(int maxw, int maxh)
+void	setMaximumWidth(int maxw)
+void	setMinimumHeight(int minh)
+void	setMinimumSize(const QSize &)
+void	setMinimumSize(int minw, int minh)
+void	setMinimumWidth(int minw)
+void	setMouseTracking(bool enable)
+void	setPalette(const QPalette &)
+void	setParent(QWidget *parent)
+void	setParent(QWidget *parent, Qt::WindowFlags f)
+void	setShortcutAutoRepeat(int id, bool enable = true)
+void	setShortcutEnabled(int id, bool enable = true)
+void	setSizeIncrement(const QSize &)
+void	setSizeIncrement(int w, int h)
+void	setSizePolicy(QSizePolicy)
+void	setSizePolicy(QSizePolicy::Policy horizontal, QSizePolicy::Policy vertical)
+void	setStatusTip(const QString &)
+void	setStyle(QStyle *style)
+void	setTabletTracking(bool enable)
+void	setToolTip(const QString &)
+void	setToolTipDuration(int msec)
+void	setUpdatesEnabled(bool enable)
+void	setWhatsThis(const QString &)
+void	setWindowFilePath(const QString &filePath)
+void	setWindowFlag(Qt::WindowType flag, bool on = true)
+void	setWindowFlags(Qt::WindowFlags type)
+void	setWindowIcon(const QIcon &icon)
+void	setWindowModality(Qt::WindowModality windowModality)
+void	setWindowOpacity(qreal level)
+void	setWindowRole(const QString &role)
+void	setWindowState(Qt::WindowStates windowState)
+void	setupUi(QWidget *widget)
+QSize	size() const
+virtual QSize	sizeHint() const
+QSize	sizeIncrement() const
+QSizePolicy	sizePolicy() const
+void	stackUnder(QWidget *w)
+QString	statusTip() const
+QStyle *	style() const
+QString	styleSheet() const
+bool	testAttribute(Qt::WidgetAttribute attribute) const
+QString	toolTip() const
+int	toolTipDuration() const
+bool	underMouse() const
+void	ungrabGesture(Qt::GestureType gesture)
+void	unsetCursor()
+void	unsetLayoutDirection()
+void	unsetLocale()
+void	update(int x, int y, int w, int h)
+void	update(const QRect &rect)
+void	update(const QRegion &rgn)
+void	updateGeometry()
+bool	updatesEnabled() const
+QRegion	visibleRegion() const
+QString	whatsThis() const
+int	width() const
+WId	winId() const
+QWidget *	window() const
+QString	windowFilePath() const
+Qt::WindowFlags	windowFlags() const
+QWindow *	windowHandle() const
+QIcon	windowIcon() const
+Qt::WindowModality	windowModality() const
+qreal	windowOpacity() const
+QString	windowRole() const
+Qt::WindowStates	windowState() const
+QString	windowTitle() const
+Qt::WindowType	windowType() const
+int	x() const
+int	y() const
+
+Reimplemented Public Functions:
+virtual QPaintEngine *	paintEngine() const override
+
+Public Slots:
+bool	close()
+void	hide()
+void	lower()
+void	raise()
+void	repaint()
+void	setDisabled(bool disable)
+void	setEnabled(bool)
+void	setFocus()
+void	setHidden(bool hidden)
+void	setStyleSheet(const QString &styleSheet)
+virtual void	setVisible(bool visible)
+void	setWindowModified(bool)
+void	setWindowTitle(const QString &)
+void	show()
+void	showFullScreen()
+void	showMaximized()
+void	showMinimized()
+void	showNormal()
+void	update()
+
+Signals:
+void	customContextMenuRequested(const QPoint &pos)
+void	windowIconChanged(const QIcon &icon)
+void	windowTitleChanged(const QString &title)
+Static Public Members
+QWidget *	createWindowContainer(QWindow *window, QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags())
+QWidget *	find(WId id)
+QWidget *	keyboardGrabber()
+QWidget *	mouseGrabber()
+void	setTabOrder(QWidget *first, QWidget *second)
+
+Protected Functions：
+virtual void	actionEvent(QActionEvent *event)
+virtual void	changeEvent(QEvent *event)
+virtual void	closeEvent(QCloseEvent *event)
+virtual void	contextMenuEvent(QContextMenuEvent *event)
+void	create(WId window = 0, bool initializeWindow = true, bool destroyOldWindow = true)
+void	destroy(bool destroyWindow = true, bool destroySubWindows = true)
+virtual void	dragEnterEvent(QDragEnterEvent *event)
+virtual void	dragLeaveEvent(QDragLeaveEvent *event)
+virtual void	dragMoveEvent(QDragMoveEvent *event)
+virtual void	dropEvent(QDropEvent *event)
+virtual void	enterEvent(QEvent *event)
+virtual void	focusInEvent(QFocusEvent *event)
+bool	focusNextChild()
+virtual bool	focusNextPrevChild(bool next)
+virtual void	focusOutEvent(QFocusEvent *event)
+bool	focusPreviousChild()
+virtual void	hideEvent(QHideEvent *event)
+virtual void	inputMethodEvent(QInputMethodEvent *event)
+virtual void	keyPressEvent(QKeyEvent *event)
+virtual void	keyReleaseEvent(QKeyEvent *event)
+virtual void	leaveEvent(QEvent *event)
+virtual void	mouseDoubleClickEvent(QMouseEvent *event)
+virtual void	mouseMoveEvent(QMouseEvent *event)
+virtual void	mousePressEvent(QMouseEvent *event)
+virtual void	mouseReleaseEvent(QMouseEvent *event)
+virtual void	moveEvent(QMoveEvent *event)
+virtual bool	nativeEvent(const QByteArray &eventType, void *message, long *result)
+virtual void	paintEvent(QPaintEvent *event)
+virtual void	resizeEvent(QResizeEvent *event)
+virtual void	showEvent(QShowEvent *event)
+virtual void	tabletEvent(QTabletEvent *event)
+virtual void	wheelEvent(QWheelEvent *event)
+
+Reimplemented Protected Functions:
+virtual bool	event(QEvent *event) override
+virtual void	initPainter(QPainter *painter) const override
+virtual int	metric(QPaintDevice::PaintDeviceMetric m) const override
+
+Protected Slots:
+void	updateMicroFocus()
+
+//void	setSizePolicy(QSizePolicy::Policy horizontal, QSizePolicy::Policy vertical)
+//-----------------------------------------------------------------------------
+Constant	            Value	             Description
+QSizePolicy::Fixed	    0	                 缺省大小是唯一可以接收的改变，因此
+                                             部件不能放大也不能缩小。
+											 
+QSizePolicy::Minimum	GrowFlag	         缺省大小是最小值，并且是充分的。部
+                                             件允许扩展，但是并不倾向扩展（例如：
+											 水平方向上的按钮），不能比缺省大小
+											 提供的大小更小。
+											 
+QSizePolicy::Maximum	ShrinkFlag	         缺省大小是最大值，假如其它部件需要
+                                             空间并且不会破坏该部件，那么该部件
+											 允许被缩小（例如：一个分割线）。
+											 
+QSizePolicy::Preferred	GrowFlag | ShrinkFlag	缺省大小是最佳效果，部件允许放大
+                                                或缩小，但不倾向于扩展比sizeHint()
+												大（QWidget的缺省策略）。
+												
+QSizePolicy::Expanding	GrowFlag | ShrinkFlag | ExpandFlag  缺省大小是合理的大小，但
+                                                            部件允许缩小并且可用。部件
+														    可以利用额外的空间，因此它
+														    将会得到尽可能多的空间（例
+														    如：水平方向上的滑块）。												
+
+QSizePolicy::MinimumExpanding	GrowFlag | ExpandFlag	    缺省大小是最小值，并且
+                                                            是足够的。部件允许使用
+															额外空间，因此它将会得
+															到尽可能多的空间（例如：
+															水平方向上的滑块）。
+   
+QSizePolicy::Ignored	ShrinkFlag | GrowFlag | IgnoreFlag	缺省大小将会被忽略，
+                                                            部件将会得到尽可能多的空间。
+
+//输入设备事件的处理
+qt将设备输入事件都是保护权限的虚函数类型，要处理窗口中触发的
+特定事件，只须继承QWidget然后将相应的虚函数实现就可以了。															
+//鼠标事件的处理
+virtual void	mouseDoubleClickEvent(QMouseEvent *event)
+virtual void	mouseMoveEvent(QMouseEvent *event)
+virtual void	mousePressEvent(QMouseEvent *event)
+virtual void	mouseReleaseEvent(QMouseEvent *event)
+virtual void	moveEvent(QMoveEvent *event)
+void Widget::mousePressEvent(QMouseEvent *event) // 鼠标按下事件
+{
+    if(event->button() == Qt::LeftButton){       // 如果是鼠标左键按下
+        QCursor cursor;
+        cursor.setShape(Qt::ClosedHandCursor);
+        QApplication::setOverrideCursor(cursor); // 使鼠标指针暂时改变形状
+        offset = event->globalPos() - pos();    // 获取指针位置和窗口位置的差值
+    }
+    else if(event->button() == Qt::RightButton){ // 如果是鼠标右键按下
+        QCursor cursor(QPixmap("../mymouseevent/logo.png"));
+        QApplication::setOverrideCursor(cursor);// 使用自定义的图片作为鼠标指针
+    }
+}
+
+void Widget::mouseMoveEvent(QMouseEvent *event) // 鼠标移动事件
+{
+    if(event->buttons() & Qt::LeftButton){      // 这里必须使用buttons()
+        QPoint temp;
+        temp = event->globalPos() - offset;
+        move(temp);// 使用鼠标指针当前的位置减去差值，就得到了窗口应该移动的位置
+    }
+}
+
+void Widget::mouseReleaseEvent(QMouseEvent *event) // 鼠标释放事件
+{
+    Q_UNUSED(event);
+    QApplication::restoreOverrideCursor();         // 恢复鼠标指针形状
+}
+
+void Widget::mouseDoubleClickEvent(QMouseEvent *event) // 鼠标双击事件
+{
+    if(event->button() == Qt::LeftButton){             // 如果是鼠标左键按下
+        if(windowState() != Qt::WindowFullScreen)      // 如果现在不是全屏
+            setWindowState(Qt::WindowFullScreen);      // 将窗口设置为全屏
+        else setWindowState(Qt::WindowNoState);        // 否则恢复以前的大小
+    }
+}
+//鼠标滚轮事件的处理
+virtual void	wheelEvent(QWheelEvent *event)
+void Widget::wheelEvent(QWheelEvent *event)    // 滚轮事件
+{
+    if(event->delta() > 0){                    // 当滚轮远离使用者时
+        ui->textEdit->zoomIn();                // 进行放大
+    }else{                                     // 当滚轮向使用者方向旋转时
+        ui->textEdit->zoomOut();               // 进行缩小
+    }
+}
+// 键盘事件处理
+要让当前的widget能够响应按键事件，最先需要做的事情是，调用：
+setFocusPolicy(Qt::StrongFocus);
+
+接下来就是keyPressEvent方法的声明与实现了
+// 声明
+virtual void keyPressEvent(QKeyEvent *event);
+// 实现
+void DisplayGLWidget::keyPressEvent(QKeyEvent* event)
+{    
+    switch (event->key())
+    {
+    case Qt::Key_Up:
+        mix = (mix + 0.1) > 1 ? 1 : mix + 0.1;
+        std::cout << "mix = " << mix << endl;
+        updateGL();
+        break;
+    case Qt::Key_Down:
+        mix = (mix - 0.1) < 0 ? 0 : mix - 0.1;
+        std::cout << "mix = " << mix << endl;
+        updateGL();
+        break;
+    default:
+        break;
+    }
+}
+
+//void	setStyleSheet(const QString &styleSheet)
+Qt中设置按钮或QWidget的外观是，可以使用QT Style Sheets来进行设置，非常方便。
+可以用setStyleSheet("font: bold; font-size:20px; color: rgb(241, 70, 62); background-color: green");来进行设置，其他的样式介绍如下：
+font: bold;   是否粗体显示
+border-image:"";   用来设定边框的背景图片。
+border-radius:5px;   用来设定边框的弧度。可以设定圆角的按钮
+border-width: 1px；   边框大小
+
+
+font-family:"";   来设定字体所属家族，
+font-size:20px;   来设定字体大小
+font-style:"";   来设定字体样式
+font-weight:20px;   来设定字体深浅
+ background-color: green;   设置背景颜色
+background:transparent;   设置背景为透明
+color:rgb(241, 70, 62);   设置前景颜色
+selection-color:rgb(241, 70, 62);   用来设定选中时候的颜色
+border:none;
+
+可以使用border-top，border-right，border-bottom，border-left分别设定按钮的上下左右边框，
+同样有border-left-color, border-left-style, border-left-width.等分别来设定他们的颜色，样式和宽度

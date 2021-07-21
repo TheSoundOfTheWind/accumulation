@@ -1,0 +1,198 @@
+QList Class
+template <typename T> class QList
+The QList class is a template class that provides lists. More...
+
+Header:	#include <QList>
+qmake:	QT += core
+Inherited By:	
+QByteArrayList, QItemSelection, QQueue, and QStringList
+
+List of all members, including inherited members
+Obsolete members
+Note: All functions in this class are reentrant.
+
+Public Types
+class	const_iterator
+class	iterator
+typedef	ConstIterator
+typedef	Iterator
+typedef	const_pointer
+typedef	const_reference
+typedef	const_reverse_iterator
+typedef	difference_type
+typedef	pointer
+typedef	reference
+typedef	reverse_iterator
+typedef	size_type
+typedef	value_type
+Public Functions
+QList(InputIterator first, InputIterator last)
+QList(std::initializer_list<T> args)
+QList(QList<T> &&other)
+QList(const QList<T> &other)
+QList()
+QList<T> &	operator=(QList<T> &&other)
+QList<T> &	operator=(const QList<T> &other)
+~QList()
+void	append(const T &value)
+void	append(const QList<T> &value)
+const T &	at(int i) const
+T &	back()
+const T &	back() const
+QList::iterator	begin()
+QList::const_iterator	begin() const
+QList::const_iterator	cbegin() const
+QList::const_iterator	cend() const
+void	clear()
+QList::const_iterator	constBegin() const
+QList::const_iterator	constEnd() const
+const T &	constFirst() const
+const T &	constLast() const
+bool	contains(const T &value) const
+int	count(const T &value) const
+int	count() const
+QList::const_reverse_iterator	crbegin() const
+QList::const_reverse_iterator	crend() const
+bool	empty() const
+QList::iterator	end()
+QList::const_iterator	end() const
+bool	endsWith(const T &value) const
+QList::iterator	erase(QList::iterator pos)
+QList::iterator	erase(QList::iterator begin, QList::iterator end)
+T &	first()
+const T &	first() const
+T &	front()
+const T &	front() const
+int	indexOf(const T &value, int from = 0) const
+void	insert(int i, const T &value)
+QList::iterator	insert(QList::iterator before, const T &value)
+bool	isEmpty() const
+T &	last()
+const T &	last() const
+int	lastIndexOf(const T &value, int from = -1) const
+int	length() const
+QList<T>	mid(int pos, int length = -1) const
+void	move(int from, int to)
+void	pop_back()
+void	pop_front()
+void	prepend(const T &value)
+void	push_back(const T &value)
+void	push_front(const T &value)
+QList::reverse_iterator	rbegin()
+QList::const_reverse_iterator	rbegin() const
+int	removeAll(const T &value)
+void	removeAt(int i)
+void	removeFirst()
+void	removeLast()
+bool	removeOne(const T &value)
+QList::reverse_iterator	rend()
+QList::const_reverse_iterator	rend() const
+void	replace(int i, const T &value)
+void	reserve(int alloc)
+int	size() const
+bool	startsWith(const T &value) const
+void	swap(QList<T> &other)
+void	swapItemsAt(int i, int j)
+T	takeAt(int i)
+T	takeFirst()
+T	takeLast()
+QVector<T>	toVector() const
+T	value(int i) const
+T	value(int i, const T &defaultValue) const
+bool	operator!=(const QList<T> &other) const
+QList<T>	operator+(const QList<T> &other) const
+QList<T> &	operator+=(const QList<T> &other)
+QList<T> &	operator+=(const T &value)
+QList<T> &	operator<<(const QList<T> &other)
+QList<T> &	operator<<(const T &value)
+bool	operator==(const QList<T> &other) const
+T &	operator[](int i)
+const T &	operator[](int i) const
+Static Public Members
+QList<T>	fromVector(const QVector<T> &vector)
+Related Non-Members
+uint	qHash(const QList<T> &key, uint seed = 0)
+bool	operator<(const QList<T> &lhs, const QList<T> &rhs)
+QDataStream &	operator<<(QDataStream &out, const QList<T> &list)
+bool	operator<=(const QList<T> &lhs, const QList<T> &rhs)
+bool	operator>(const QList<T> &lhs, const QList<T> &rhs)
+bool	operator>=(const QList<T> &lhs, const QList<T> &rhs)
+QDataStream &	operator>>(QDataStream &in, QList<T> &list)
+Detailed Description
+QList<T> is one of Qt's generic container classes. It stores items in a list that provides fast index-based access and index-based insertions and removals.
+
+QList<T>, QLinkedList<T>, and QVector<T> provide similar APIs and functionality. They are often interchangeable, but there are performance consequences. Here is an overview of use cases:
+
+QVector should be your default first choice. QVector<T> will usually give better performance than QList<T>, because QVector<T> always stores its items sequentially in memory, where QList<T> will allocate its items on the heap unless sizeof(T) <= sizeof(void*) and T has been declared to be either a Q_MOVABLE_TYPE or a Q_PRIMITIVE_TYPE using Q_DECLARE_TYPEINFO. See the Pros and Cons of Using QList for an explanation.
+However, QList is used throughout the Qt APIs for passing parameters and for returning values. Use QList to interface with those APIs.
+If you need a real linked list, which guarantees constant time insertions mid-list and uses iterators to items rather than indexes, use QLinkedList.
+Note: QVector and QVarLengthArray both guarantee C-compatible array layout. QList does not. This might be important if your application must interface with a C API.
+
+Note: Iterators into a QLinkedList and references into heap-allocating QLists remain valid as long as the referenced items remain in the container. This is not true for iterators and references into a QVector and non-heap-allocating QLists.
+
+Internally, QList<T> is represented as an array of T if sizeof(T) <= sizeof(void*) and T has been declared to be either a Q_MOVABLE_TYPE or a Q_PRIMITIVE_TYPE using Q_DECLARE_TYPEINFO. Otherwise, QList<T> is represented as an array of T* and the items are allocated on the heap.
+
+The array representation allows very fast insertions and index-based access. The prepend() and append() operations are also very fast because QList preallocates memory at both ends of its internal array. (See Algorithmic Complexity for details.
+
+Note, however, that when the conditions specified above are not met, each append or insert of a new item requires allocating the new item on the heap, and this per item allocation will make QVector a better choice for use cases that do a lot of appending or inserting, because QVector can allocate memory for many items in a single heap allocation.
+
+Note that the internal array only ever gets bigger over the life of the list. It never shrinks. The internal array is deallocated by the destructor and by the assignment operator, when one list is assigned to another.
+
+Here's an example of a QList that stores integers and a QList that stores QDate values:
+
+QList<int> integerList;
+QList<QDate> dateList;
+Qt includes a QStringList class that inherits QList<QString> and adds a few convenience functions, such as QStringList::join() and QStringList::filter(). QString::split() creates QStringLists from strings.
+
+QList stores a list of items. The default constructor creates an empty list. You can use the initializer-list constructor to create a list with elements:
+
+QList<QString> list = { "one", "two", "three" };
+QList provides these basic functions to add, move, and remove items: insert(), replace(), removeAt(), move(), and swap(). In addition, it provides the following convenience functions: append(), operator<<(), operator+=(), prepend(), removeFirst(), and removeLast().
+
+operator<<() allows to conveniently add multiple elements to a list:
+
+list << "four" << "five";
+QList uses 0-based indexes, just like C++ arrays. To access the item at a particular index position, you can use operator[](). On non-const lists, operator[]() returns a reference to the item and can be used on the left side of an assignment:
+
+if (list[0] == "Bob")
+    list[0] = "Robert";
+Because QList is implemented as an array of pointers for types that are larger than a pointer or are not movable, this operation requires (constant time). For read-only access, an alternative syntax is to use at():
+
+for (int i = 0; i < list.size(); ++i) {
+    if (list.at(i) == "Jane")
+        cout << "Found Jane at position " << i << Qt::endl;
+}
+at() can be faster than operator[](), because it never causes a deep copy to occur.
+
+A common requirement is to remove an item from a list and do something with it. For this, QList provides takeAt(), takeFirst(), and takeLast(). Here's a loop that removes the items from a list one at a time and calls delete on them:
+
+QList<QWidget *> list;
+...
+while (!list.isEmpty())
+    delete list.takeFirst();
+Inserting and removing items at either end of the list is very fast (constant time in most cases), because QList preallocates extra space on both sides of its internal buffer to allow for fast growth at both ends of the list.
+
+If you want to find all occurrences of a particular value in a list, use indexOf() or lastIndexOf(). The former searches forward starting from a given index position, the latter searches backward. Both return the index of a matching item if they find it; otherwise, they return -1. For example:
+
+int i = list.indexOf("Jane");
+if (i != -1)
+    cout << "First occurrence of Jane is at position " << i << Qt::endl;
+If you simply want to check whether a list contains a particular value, use contains(). If you want to find out how many times a particular value occurs in the list, use count(). If you want to replace all occurrences of a particular value with another, use replace().
+
+QList's value type must be an assignable data type. This covers most data types that are commonly used, but the compiler won't let you, for example, store a QWidget as a value; instead, store a QWidget *. A few functions have additional requirements; for example, indexOf() and lastIndexOf() expect the value type to support operator==(). These requirements are documented on a per-function basis.
+
+Like the other container classes, QList provides Java-style iterators (QListIterator and QMutableListIterator) and STL-style iterators (QList::const_iterator and QList::iterator). In practice, these are rarely used, because you can use indexes into the QList. QList is implemented in such a way that direct index-based access is just as fast as using iterators.
+
+QList does not support inserting, prepending, appending or replacing with references to its own values. Doing so will cause your application to abort with an error message.
+
+To make QList as efficient as possible, its member functions don't validate their input before using it. Except for isEmpty(), member functions always assume the list is not empty. Member functions that take index values as parameters always assume their index value parameters are in the valid range. This means QList member functions can fail. If you define QT_NO_DEBUG when you compile, failures will not be detected. If you don't define QT_NO_DEBUG, failures will be detected using Q_ASSERT() or Q_ASSERT_X() with an appropriate message.
+
+To avoid failures when your list can be empty, call isEmpty() before calling other member functions. If you must pass an index value that might not be in the valid range, check that it is less than the value returned by size() but not less than 0.
+
+More Members
+If T is a QByteArray, this class has a couple more members that can be used. See the documentation for QByteArrayList for more information.
+
+If T is QString, this class has the following additional members: filter, join, removeDuplicates, sort.
+
+More Information on Using Qt Containers
+For a detailed discussion comparing Qt containers with each other and with STL containers, see Understand the Qt Containers.

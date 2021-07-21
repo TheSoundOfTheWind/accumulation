@@ -1,0 +1,140 @@
+//QAbstractButton
+//-----------------------------------------------------------------------------
+The QAbstractButton class is the abstract base class of button widgets, 
+providing functionality common to buttons. 
+
+Properties:
+autoExclusive : bool
+autoRepeat : bool
+autoRepeatDelay : int
+autoRepeatInterval : int
+checkable : bool
+checked : bool
+down : bool
+icon : QIcon
+iconSize : QSize
+shortcut : QKeySequence
+text : QString
+
+Public Functions:
+QAbstractButton(QWidget *parent = nullptr)
+virtual	~QAbstractButton()
+bool	autoExclusive() const
+bool	autoRepeat() const
+int		autoRepeatDelay() const
+int		autoRepeatInterval() const
+QButtonGroup *	group() const
+QIcon			icon() const
+QSize			iconSize() const
+bool			isCheckable() const
+bool			isChecked() const
+bool			isDown() const
+void			setAutoExclusive(bool)
+void			setAutoRepeat(bool)
+void			setAutoRepeatDelay(int)
+void			setAutoRepeatInterval(int)
+void			setCheckable(bool)
+void			setDown(bool)
+void			setIcon(const QIcon &icon)
+void			setShortcut(const QKeySequence &key)
+void			setText(const QString &text)
+QKeySequence	shortcut() const
+QString			text() const
+
+Public Slots:
+void	animateClick(int msec = 100)
+void	click()
+void	setChecked(bool)
+void	setIconSize(const QSize &size)
+void	toggle()
+
+Signals:
+void	clicked(bool checked = false)
+void	pressed()
+void	released()
+void	toggled(bool checked)
+
+Protected Functions:
+virtual void	checkStateSet()
+virtual bool	hitButton(const QPoint &pos) const
+virtual void	nextCheckState()
+
+Reimplemented Protected Functions:
+virtual void	changeEvent(QEvent *e) override
+virtual bool	event(QEvent *e) override
+virtual void	focusInEvent(QFocusEvent *e) override
+virtual void	focusOutEvent(QFocusEvent *e) override
+virtual void	keyPressEvent(QKeyEvent *e) override
+virtual void	keyReleaseEvent(QKeyEvent *e) override
+virtual void	mouseMoveEvent(QMouseEvent *e) override
+virtual void	mousePressEvent(QMouseEvent *e) override
+virtual void	mouseReleaseEvent(QMouseEvent *e) override
+virtual void	paintEvent(QPaintEvent *e) override = 0
+virtual void	timerEvent(QTimerEvent *e) override
+
+Detailed Description:
+//-----------------------------------------------------------------------------
+This class implements an abstract button. Subclasses of this class handle user 
+actions, and specify how the button is drawn.
+
+QAbstractButton provides support for both push buttons and checkable (toggle) 
+buttons. Checkable buttons are implemented in the QRadioButton and QCheckBox 
+classes. Push buttons are implemented in the QPushButton and QToolButton classes; 
+these also provide toggle behavior if required.
+
+Any button can display a label containing text and an icon. setText() sets the 
+text; setIcon() sets the icon. If a button is disabled, its label is changed to 
+give the button a "disabled" appearance.
+
+If the button is a text button with a string containing an ampersand ('&'), 
+QAbstractButton automatically creates a shortcut key. For example:
+
+QPushButton *button = new QPushButton(tr("Ro&ck && Roll"), this);
+The Alt+C shortcut is assigned to the button, i.e., when the user presses Alt+C 
+the button will call animateClick(). See the QShortcut documentation for details. 
+To display an actual ampersand, use '&&'.
+
+You can also set a custom shortcut key using the setShortcut() function. This is 
+useful mostly for buttons that do not have any text, and therefore can't have 
+any automatic shortcut.
+
+button->setIcon(QIcon(":/images/print.png"));
+button->setShortcut(tr("Alt+F7"));
+All the buttons provided by Qt (QPushButton, QToolButton, QCheckBox, and 
+QRadioButton) can display both text and icons.
+
+A button can be made the default button in a dialog by means of 
+QPushButton::setDefault() and QPushButton::setAutoDefault().
+
+QAbstractButton provides most of the states used for buttons:
+
+isDown() indicates whether the button is pressed down.
+isChecked() indicates whether the button is checked. Only checkable buttons 
+can be checked and unchecked (see below).
+isEnabled() indicates whether the button can be pressed by the user.
+Note: As opposed to other widgets, buttons derived from QAbstractButton accept 
+mouse and context menu events when disabled.
+
+setAutoRepeat() sets whether the button will auto-repeat if the user holds it 
+down. autoRepeatDelay and autoRepeatInterval define how auto-repetition is done.
+setCheckable() sets whether the button is a toggle button or not.
+The difference between isDown() and isChecked() is as follows. When the user 
+clicks a toggle button to check it, the button is first pressed then released 
+into the checked state. When the user clicks it again (to uncheck it), the 
+button moves first to the pressed state, then to the unchecked state (isChecked() 
+and isDown() are both false).
+
+QAbstractButton provides four signals:
+
+pressed() is emitted when the left mouse button is pressed while the mouse 
+cursor is inside the button.
+released() is emitted when the left mouse button is released.
+clicked() is emitted when the button is first pressed and then released, when 
+the shortcut key is typed, or when click() or animateClick() is called.
+toggled() is emitted when the state of a toggle button changes.
+To subclass QAbstractButton, you must reimplement at least paintEvent() to 
+draw the button's outline and its text or pixmap. It is generally advisable 
+to reimplement sizeHint() as well, and sometimes hitButton() (to determine 
+whether a button press is within the button). For buttons with more than two 
+states (like tri-state buttons), you will also have to reimplement checkStateSet() 
+and nextCheckState().
