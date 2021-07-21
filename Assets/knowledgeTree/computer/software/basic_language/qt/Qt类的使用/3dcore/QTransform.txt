@@ -15,10 +15,10 @@ Public Functions:
 QTransform(Qt3DCore::QNode *parent = nullptr)
 QMatrix4x4	matrix() const
 QQuaternion	rotation() const
-float	rotationX() const
-float	rotationY() const
-float	rotationZ() const
-float	scale() const
+float		rotationX() const
+float		rotationY() const
+float		rotationZ() const
+float		scale() const
 QVector3D	scale3D() const
 QVector3D	translation() const
 QMatrix4x4	worldMatrix() const
