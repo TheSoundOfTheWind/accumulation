@@ -22,3 +22,6 @@ git config --global core.safecrlf false
 #提交包含混合换行符的文件时给出警告
 git config --global core.safecrlf warn
 //-----------------------------------------------------------------------------
+
+#出现文件名太长的error时，使用如下命令
+git config --global core.longpaths true
