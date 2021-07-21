@@ -44,7 +44,7 @@ x=(h_p-c_p)/e_y*10.0 - (e_v*0.01)
 b=2.0
 y=math.pow(b, x)
 print("x %.2f y %.2f" % (x,y))
-principal = 100.0
+principal = float(list[10])
 principal = principal*(e_y/float(list[6]))
 investment_amount=principal*y
 down = (h_p-c_p)/e_y
