@@ -1,0 +1,41 @@
+ Neil Weste, David Harris. CMOS VLSI Design: A Circuits and Systems Perspective (4th Edition). Addison-Wesley. 1985. ISBN 978-0321547743.
+ 
+ 施敏. 半导体器件物理与工艺（第二版）. 苏州: 苏州大学出版社. ISBN 978-7-81090-015-7.
+ 
+ 沈理. SOC/ASIC设计、验证和测试方法学. 广州: 中山大学出版社. ISBN 7-306-02682-8.
+ 
+ 朱正涌，张海洋，朱元红. 半导体集成电路（第2版）. 北京: 清华大学出版社. ISBN 978-7-302-18512-3.
+ 
+ Andrew B. Kahng, Igor L. Markov, Jens Lienig, Jin Hu. VLSI Physical Design: From Graph Partitioning to Timing Closure. Springer. ISBN 978-90-481-9590-9.
+ 
+ Erik Erunvand. 数字VLSI芯片设计：使用Cadence和Synopsis CAD工具. 北京: 电子工业出版社. ISBN 978-7-121-09607-5.
+ 
+ 邓元庆、关宇、贾鹏、石会. 数字设计基础与应用. 北京: 清华大学出版社. ISBN 978-7-302-21406-9.
+ 
+ Samir Palnitkar. Verilog HDL: A Guilde to Digital Design and Synthesis. 北京: 电子工业出版社. : 10. ISBN 7-121-00468-2.
+ 
+ Stephen Brown, Zvonko Vranesic. Fundamentals of Digital Logic with Verilog Design. McGraw-Hill Education. ISBN 0-07-283878-7.
+ 
+ Michael John, Sebastian Smith. 专用集成电路（英文名：Application Specific Integrated Circuits）. 北京: 电子工业出版社. ISBN 978-7-121-04036-8.
+ 
+ David Money Harris, Sarah L. Harris. 数字设计和计算机体系结构（英文名：Digital Design and Computer Architechture）. 北京: 机械工业出版社. ISBN 978-7-111-25459-1.
+ 
+ The Life of SPICE (PDF). Designers Guide. [2013-04-04]. （原始内容 (PDF)存档于2012-02-04）.
+ 
+ 虞希清. 专用集成电路设计实用教程. 浙江大学出版社. ISBN 978-7-308-05113-2.
+ 
+ Himanshu Bhatnagar. 高级AISC芯片综合：使用Synopsis Design Complier、Physical Complier和PrimeTime. 北京: 清华大学出版社. ISBN 978-7-302-14881-4.
+ 
+ 袁媛，谢巍，刘明业. 基于高级综合的RTL综合对象及方法的研究. 北京理工大学学报. 2001, 21 (1).
+ 
+ 杨宗凯，黄建，杜旭. 数字专用集成电路的设计与验证. 电子工业出版社. : 125-138. ISBN 7-121-00378-3.
+ 
+ 克里斯·斯皮尔. SystemVerilog验证：测试平台编写指南（原书第二版）. 北京: 科学出版社. ISBN 978-7-03-025306-4.
+ 
+ Laung-Terng Wang, Cheng-Wen Wu and Xiaoqing Wen. VLSI Test Principles and Architectures: Design for Testability. Morgan Kaufmann. ISBN 978-0123705976.
+ 
+ Michael Keating, Pierre Breacaud. 片上系统——可重用设计方法学（第二版）（英文名：Reuse Methodology Manual for System-on-a-Chip Designs, Third Edition）. 北京: 电子工业出版社. ISBN 7-5053-9338-3.
+ 
+ About Design Automation Conference (DAC). Design Automation Conference. [2013-06-08]. （原始内容存档于2013-06-14）.
+ 
+ 池雅庆. ASIC芯片设计从实践到提高. 北京: 中国电力出版社. ISBN 978-7-5083-5378-4.
