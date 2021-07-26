@@ -16,10 +16,6 @@ Defect:
 10.缩放的时候有类似切的效果
 
 Enhencement:
-11.画线的时候提示用户正在画线
-12.在控制所有net或layer是否可见的item中加一个小的控制按钮
-13.”File“ 字体调大一点
-14.添加via[] inter[] device[]的控制按钮在combox和All layers之间
 15.鼠标箭头上有一个点，去掉变成普通的鼠标图标
 
 Debug:
@@ -28,10 +24,10 @@ Debug:
 
 已完成：
 Feature:
-1.鼠标选中2D窗口后可以鼠标滚轮来缩放大小
+1.鼠标选中2D窗口后可以鼠标滚轮来缩放大小 report ok
 2.Distinguish the options reading ASCII and Binary gcap
 3.search node by node name in gcap(node ZN 2) and spice(ZN&p2)  ok
-4.添加坐标框拉伸功能
+4.添加坐标框拉伸功能 report ok
 5.Add Keyboard control shortcuts
 6.控制着字体随着相机的角度的移动而移动
 7.control float net by net id
@@ -42,9 +38,11 @@ Bug:
 10.does not pick up the right file to display（我这边source最新的已经没有问题）
 
 Enhencement:
-11.”control“字体应该更明显和layer这些tab区分开来
-
-
+11.”control“字体应该更明显和layer这些tab区分开来 yuyu
+11.画线的时候提示用户正在画线 yuyu
+12.在控制所有net或layer是否可见的item中加一个小的控制按钮 yuyu
+13.”File“ 字体调大一点 yuyu
+14.添加via[] inter[] device[]的控制按钮在combox和All layers之间 yuyu
 
 
 
