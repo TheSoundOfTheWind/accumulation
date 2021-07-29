@@ -44,9 +44,9 @@ void	pan(float angle)
 void	pan(float angle, const QVector3D &axis)
 void	panAboutViewCenter(float angle)
 void	panAboutViewCenter(float angle, const QVector3D &axis)
-QQuaternion	panRotation(float angle) const
-QVector3D	position() const
-QMatrix4x4	projectionMatrix() const
+QQuaternion					panRotation(float angle) const
+QVector3D					position() const
+QMatrix4x4					projectionMatrix() const
 QCameraLens::ProjectionType	projectionType() const
 float	right() const
 void	roll(float angle)
@@ -101,3 +101,8 @@ void	topChanged(float top)
 void	upVectorChanged(const QVector3D &upVector)
 void	viewCenterChanged(const QVector3D &viewCenter)
 void	viewVectorChanged(const QVector3D &viewVector)
+
+旋转相机的方法（相对旋转，比如一次性旋转90度）
+QQuaternion	fromEulerAngles(float pitch, float yaw, float roll)；
+旋转时将欧拉角转换为四元数，然后通过rotateAboutViewCenter旋转相机。
+camera()->rotateAboutViewCenter(quaternion);
