@@ -11,10 +11,6 @@ def total (pri, rate, add_pri, add_rate, count):
             else:
                 total = (total+add_pri*(1.0+add_rate))*(1.0+rate)
     return total
-<<<<<<< HEAD:Assets/note/computer/fortuneFreedom.py
-=======
-
->>>>>>> ebefb1e4121fb2997ba68423dbe7fdd757d6900d:Assets/knowledgeTree/investment/note/computer/fortuneFreedom.py
 def mode1 ():
     principal = input("principal: ")
     principal = float(principal)
@@ -26,14 +22,12 @@ def mode1 ():
     add_rate  = float(add_rate)
     years     = input("years: ")
     years     = float(years)
-<<<<<<< HEAD:Assets/note/computer/fortuneFreedom.py
     for i in range(1, 100):
         total1    = total(principal, rate, add_pri, add_rate, i*years)
         print("year %d tatal: %.2e " %(i*years,total1))
     print("quit ?")    
 def mode2():
     print("")
-=======
     for i in range(1, 10):
         total1    = total(principal, rate, add_pri, add_rate, i*years)
         print("year %d tatal: %.2e " %(i*years,total1))
@@ -41,8 +35,6 @@ def mode2():
 
 def mode2():
     print("")
-
->>>>>>> ebefb1e4121fb2997ba68423dbe7fdd757d6900d:Assets/knowledgeTree/investment/note/computer/fortuneFreedom.py
 print("select 1 or 2:")
 str = input()
 while( str == "1" or str == "2"):
@@ -51,9 +43,5 @@ while( str == "1" or str == "2"):
     if (str == "2"):
         mode2()
     str = input()
-<<<<<<< HEAD:Assets/note/computer/fortuneFreedom.py
-=======
-
->>>>>>> ebefb1e4121fb2997ba68423dbe7fdd757d6900d:Assets/knowledgeTree/investment/note/computer/fortuneFreedom.py
     
        
