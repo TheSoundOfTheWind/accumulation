@@ -37,9 +37,13 @@ day=int((parser.parse(list[7]).day))
 d1 = datetime.datetime(year, month, day)
 d2 = datetime.datetime.now()
 years = float((d2-d1).days)/365.0
+
 e_y = float((h_p-l_p)/years)
 print("years %.2f e_y %.3f" % (years, e_y))
-x=(h_p-c_p)/(e_y*1.2)*10.0 - (e_v*0.01)
+e_y2 =e_y
+if(float(list[6]) > e_y):
+    e_y2=float(list[6])
+x=(h_p-c_p)/(e_y2*1.2)*10.0 - (e_v*0.01)
 b=2.0
 y=math.pow(b, x)
 print("x %.2f y %.2f" % (x,y))
