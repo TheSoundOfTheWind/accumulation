@@ -5,7 +5,6 @@ Bug:
 3.3D tool(GDS3D or gbviewer3D) ,takes up a lot of network bandwidth to open with sgd
 
 Feature:
-4.支持从上下左右前后六个正面看3D图形的选项
 5.增加 top view吸附测量功能，原始数据 和切之后的topview,点击显示坐标和each值
 6.gbviewer should show the PIN or port as .ports_cell
 
@@ -24,13 +23,14 @@ Debug:
 
 已完成：
 Feature:
-1.鼠标选中2D窗口后可以鼠标滚轮来缩放大小 report ok
+1.鼠标选中2D窗口后可以鼠标滚轮来缩放大小  ok
 2.Distinguish the options reading ASCII and Binary gcap
 3.search node by node name in gcap(node ZN 2) and spice(ZN&p2)  ok
 4.添加坐标框拉伸功能 report ok
 5.Add Keyboard control shortcuts
 6.控制着字体随着相机的角度的移动而移动
 7.control float net by net id
+8.支持从上下左右前后六个正面看3D图形的选项
 
 Bug:
 8.gxviewer should not show the 3D coordinate diagram on the top left corner
