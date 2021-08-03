@@ -9,7 +9,7 @@ Feature:
 6.gbviewer should show the PIN or port as .ports_cell
 
 Defect:
-7.speed up;gxviewer跑一些大例子存在性能问题
+7.gxviewer跑大例子时的性能优化
 8.2D 图形中用2D的坐标为基准
 9.当两个3D图形某个面重叠时会有阴影
 10.缩放的时候有类似切的效果
