@@ -26,12 +26,15 @@
  - medicine 
  - question
  - investment
+   整理基金的信息
  - computer
 ----------------------------materialTree--------------------------------
  - natural
  - manMade
  - health
     - sleep
+	  11:17~8:30
+	  睡觉
     - eat
 	  吃早餐（茶叶蛋、豆浆）
 	  吃午餐（南瓜、青菜、米饭）
