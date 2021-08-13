@@ -18,8 +18,6 @@ print("//----------------------------------------------------------------")
 id  = input("fund id:")
 list = fundHightLow("../../buy_fund/混合基金.txt", id)
 print("基金信息：%s %s %s %s" % (list[0], list[1], list[2], list[3]))
-print("买入信息：%s %s %s %s" % (list[4], list[5], list[6], list[7]))
-print("卖出信息: %s %s" % (list[8], list[9]))
 
 l_p = float(list[4])
 h_p = float(list[5])
