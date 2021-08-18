@@ -118,8 +118,11 @@ for data in df3[::-1]:
         rate=i1/i2
         if(rate>rate_o):
             rate_o=rate
-            print("i1 %f i2 %f cur_v %f max_v %f rate %f" %(i1,i2,cur_v,max_v,rate_o))            
+#            print("i1 %f i2 %f cur_v %f max_v %f rate %f" %(i1,i2,cur_v,max_v,rate_o))            
 print(rate_o)
+B = max_v
+D = rate_o
+print("max %f rate %f" %(max_v,rate_o))
 C = input("current cumulative net worth:")
 C = float(C)
 X = (B-C)/(B*D)
@@ -129,5 +132,6 @@ X = (X*10)/2.0
 print("index %f" % X)
 X = (math.pow(2.0, X))
 print("multiple %f" % X)
-Y = A*F*X
+#Y = A*F*X
+Y = A*X
 print ("suggested single investment amount: %.2f " % Y)
