@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import json
+import requests
 import math
 import datetime
 import re
@@ -80,7 +82,17 @@ def get_fund_k_history(fund_code: str, pz: int = 40000) -> pd.DataFrame:
 
     df['日期'] = pd.to_datetime(df['日期'], errors='coerce')
     return df
-        
+
+def getFundValue(fundId):
+    code = fundId
+    url = 'http://fundgz.1234567.com.cn/js/%s.js' % code
+    result = requests.get(url)
+    # 发送请求
+    data = json.loads(re.match(".*?({.*}).*", result.text, re.S).group(1))
+    return data
+
+    
+
 
 print("//----------------------------------------------------------------")
 id  = input("fund id:")
@@ -108,6 +120,7 @@ df3 = df3.strip(',').split(',')
 #print(df3)
 max_v = 0.0
 rate_o = 0.0
+cur_v = 0.0
 for data in df3[::-1]:
     cur_v = float(data)
     if (max_v<cur_v):
@@ -122,7 +135,7 @@ for data in df3[::-1]:
 print(rate_o)
 B = max_v
 D = rate_o
-print("max %f rate %f" %(max_v,rate_o))
+print("max %f rate %f cur %f" %(max_v,rate_o, cur_v))
 C = input("current cumulative net worth:")
 C = float(C)
 X = (B-C)/(B*D)

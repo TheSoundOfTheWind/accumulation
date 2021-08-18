@@ -16,7 +16,7 @@ print('##############查询结果##############')
 print(result.text) # 返回数据  
 
 ''' 通过基金编码获取估值 '''
-code = '160632'
+code = '001532'
 url = 'http://fundgz.1234567.com.cn/js/%s.js' % code
 result = requests.get(url)
 # 发送请求
