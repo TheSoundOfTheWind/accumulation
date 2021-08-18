@@ -96,28 +96,14 @@ def getFundValue(fundId):
 
 print("//----------------------------------------------------------------")
 id  = input("fund id:")
-list = fundHightLow("../../buy_fund/混合基金.txt", id)
-print("id %s" % list[0])
-print("name %s" % list[1])
-print("volatility %s" % list[2])
-print("sharpe rate %s" % list[3])
-print("maximum drawdown %s" % list[4])
-print("maximum fund equity %s" % list[5])
-print("unit principal %s" % list[7])
-A = float(list[7])
-B = float(list[5])
-D = float(list[4])/100.0
-F = float(list[3])
+list = fundHightLow("../../buy_fund/data.txt", id)
 
 df = get_fund_k_history(list[0])
-#df = np.arrary(df)
 df2 = tuple(df['累计净值'])
 df3 = str(df2)
 df3=df3.lstrip('(')
 df3=df3.rstrip(')')
 df3 = df3.strip(',').split(',')
-#fund_list = (df.values).to_list()
-#print(df3)
 max_v = 0.0
 rate_o = 0.0
 cur_v = 0.0
@@ -131,15 +117,24 @@ for data in df3[::-1]:
         rate=i1/i2
         if(rate>rate_o):
             rate_o=rate
-#            print("i1 %f i2 %f cur_v %f max_v %f rate %f" %(i1,i2,cur_v,max_v,rate_o))            
-print(rate_o)
+A = float(list[7])
 B = max_v
+data = getFundValue(list[0])
+C = float(data['gszzl'])
+C = cur_v + cur_v*C*0.01
 D = rate_o
-print("max %f rate %f cur %f" %(max_v,rate_o, cur_v))
-C = input("current cumulative net worth:")
-C = float(C)
-X = (B-C)/(B*D)
+F = float(list[3])
 
+print("id %s" % list[0])
+print("name %s" % list[1])
+print("volatility %s" % list[2])
+print("sharpe rate %s" % list[3])
+print("maximum drawdown %.4f" % D)
+print("maximum fund equity %s" % B)
+print("unit principal %s" % list[7])
+print("估算涨幅 %s" % data['gszzl'])
+print("估算净值 %.3f" % C)
+X = (B-C)/(B*D)
 print("down %f" % X)
 X = (X*10)/2.0
 print("index %f" % X)
