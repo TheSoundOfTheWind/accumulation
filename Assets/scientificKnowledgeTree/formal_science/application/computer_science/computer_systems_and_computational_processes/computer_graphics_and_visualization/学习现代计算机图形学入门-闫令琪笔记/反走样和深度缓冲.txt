@@ -79,5 +79,79 @@ TAA
 超分辨率
 DLSS 小图拉大 （一切设计猜测都是用深度学习来做）
 
+同时生成：（Z-buff）
+frame buffer
+depth buffer
 
+Depth/Z buffer
+深度缓存，最终只保留了离照相机最近的深度
+当前能看到的最浅深度
+for(each triangle T)
+  for(each sample (x,y,z) in T)
+    if(Z<zbuffer[x,y])
+	  framebuffer[x,y] = rgb;
+	  zbuffer[x,y]=z;
+	else
+
+常熟乘以一个三角形个数，对每个像素在求最小值O(n)
+深度缓存的算法和三角形的顺序没关系
+几乎用到所有的硬件中，每个像素维护一个深度
+
+着色(shading)：
+始终把摄像机放在(0,0,0)往-z看
+着色，这样就有阴影效果，这样才更真实
+光照的位置不同，物体的颜色也相应的发生了变化，这就是着色
+
+什么是着色：
+引入明暗和颜色的不同
+对不同物体引用不同的材质就是着色
+不同的材质和光线的相互作用有不同的方法
+
+最基础的着色模型：
+blinn-phong reflectance model:
+specular highlights 高光
+diffuse reflection 漫反射 
+ambient lighting 间接光照(环境光照)，别的物体反射接受到的光照
+
+shading point:
+观测方向 v
+平面的法线 n
+光照方向 L
+以上都是单位向量
+平面颜色
+shininess，反射率
+
+考虑一个点的着色只看这个着色点本身，所以着色有局部变化
+那么阴影怎么生成呢
+
+shading ！= shadow(阴影)
+
+同样的光照射到同样的表面，但角度不同看着却不同
+物体表面的法线和光线来的夹角越小反射越强烈
+为什么有冬天夏天，不是离太阳远近的变化，
+夏天几乎是直射，暖
+冬天间接照射，冷
+单位面积接受到多少能量
+
+余弦定律：
+cosθ = l.n 越大能量越大
+
+一个光源，一个时刻散发出来的光能是相同，传播的过程中
+球壳越来越大，单位表面积的的能量越来越小
+单位为1的一个球壳的能量是I
+I/r^2
+
+Ld = Kd(I/r^2)max(0,n.l)
+
+diffusely reflected light :Ld （漫反射常数）
+
+diffuse coefficient (color) :Kd
+
+energy received by the shading point: max(0,n.l)
+
+energy arrived at the shading points: I/r^2
+
+
+
+	 
 
