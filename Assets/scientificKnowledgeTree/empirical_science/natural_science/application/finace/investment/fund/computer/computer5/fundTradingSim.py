@@ -140,6 +140,6 @@ X = (X*10)/2.0
 print("index %f" % X)
 X = (math.pow(2.0, X))
 print("multiple %f" % X)
-#Y = A*F*X
-Y = A*X
+Y = A*F*X
+#Y = A*X
 print ("suggested single investment amount: %.2f " % Y)
