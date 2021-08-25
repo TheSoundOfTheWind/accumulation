@@ -132,7 +132,7 @@ def printFund(list):
             rate_t = tup[1]
     list_b.sort(key=lambda x:x[1],reverse=True)
 #    print(list_b[0:3])
-    rate_o = list_b[0][1]*0.5+list_b[1][1]*0.375+list_b[2][1]*0.125
+    rate_o = list_b[0][1]*0.625+list_b[1][1]*0.25+list_b[2][1]*0.125
     A = float(list[7])
     B = max_v
     data = getFundValue(list[0])
