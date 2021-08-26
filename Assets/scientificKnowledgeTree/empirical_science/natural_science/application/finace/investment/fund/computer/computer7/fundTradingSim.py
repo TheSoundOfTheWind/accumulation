@@ -8,6 +8,7 @@ import dateutil.parser as parser
 import pandas as pd
 import requests
 import numpy as np
+import time
 def fundHightLow(filename, id):
     f = open(filename, "r")
     for line in f:
@@ -132,23 +133,26 @@ def printFund(list):
             rate_t = tup[1]
     list_b.sort(key=lambda x:x[1],reverse=True)
 #    print(list_b[0:3])
-    rate_o = list_b[0][1]*0.625+list_b[1][1]*0.25+list_b[2][1]*0.125
+    rate_o = list_b[0][1]*0.7+list_b[1][1]*0.2+list_b[2][1]*0.1
     A = float(list[7])
     B = max_v
     data = getFundValue(list[0])
     C = float(data['gszzl'])
+    C_t = int(time.strftime('%H',time.localtime(time.time())))
     C = cur_v + cur_v*C*0.01
+    if(C_t > 15):
+        C = cur_v
     D = rate_o
     F = float(list[3])
     X = (B-C)/(B*D)
     X = (X*10)/2.0
     X = (math.pow(2.0, X))
     Y = A*F*X
-    print ("%s: %.2f %.4f" %(list[1], Y, D))
+    print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
 
 
 print("//----------------------------------------------------------------")
-f = open("../../buy_fund/data.txt", "r")
+f = open("../../buy_fund/data2.txt", "r")
 for line in f:
     a = line.split( )
     if line[0] == '#':
