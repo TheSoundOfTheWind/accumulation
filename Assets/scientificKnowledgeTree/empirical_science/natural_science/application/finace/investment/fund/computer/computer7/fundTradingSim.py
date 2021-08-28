@@ -139,8 +139,9 @@ def printFund(list):
     data = getFundValue(list[0])
     C = float(data['gszzl'])
     C_t = int(time.strftime('%H',time.localtime(time.time())))
+    C_tt = C
     C = cur_v + cur_v*C*0.01
-    if(C_t > 15):
+    if(C_t >= 15):
         C = cur_v
     D = rate_o
     F = float(list[3])
@@ -148,7 +149,10 @@ def printFund(list):
     X = (X*10)/2.0
     X = (math.pow(2.0, X))
     Y = A*F*X
-    print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
+    if (C_tt < 0):
+        print ("%s: %.2f %.2f $$" %(list[1], D*10.0, Y))
+    else:
+        print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
 
 
 print("//----------------------------------------------------------------")
