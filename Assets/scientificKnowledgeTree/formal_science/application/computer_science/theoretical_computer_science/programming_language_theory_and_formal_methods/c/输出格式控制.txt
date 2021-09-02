@@ -9,3 +9,7 @@ printf("%lf\n",a);
 #用科学计数法打印浮点型数据
 double a = 1.0;
 printf("%10e\n", a);
+
+int        %d            unsigned int  %u
+long       %ld           unsigned long %lu
+long long  %lld          unsigned long long %llu
