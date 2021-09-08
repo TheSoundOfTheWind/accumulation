@@ -146,11 +146,19 @@ def printFund(list):
     D = rate_o
     F = float(list[3])
     X = (B-C)/(B*D)
+    sell = X
     X = (X*10)/2.0
     X = (math.pow(2.0, X))
     Y = A*F*X
+    sell_str = ""
+    if(sell > 0.1 and sell < 0.3):
+        sell_str="1/3"
+    if(sell > 0.3 and sell < 0.5):
+        sell_str="2/3"
+    if(sell>0.5):
+        sell_str="3/3"
     if (C_tt < 0):
-        print ("%s: %.2f %.2f $$" %(list[1], D*10.0, Y))
+        print ("%s: %.2f %.2f $$ %.2f %s" %(list[1], D*10.0, Y, sell, sell_str))
     else:
         print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
 
