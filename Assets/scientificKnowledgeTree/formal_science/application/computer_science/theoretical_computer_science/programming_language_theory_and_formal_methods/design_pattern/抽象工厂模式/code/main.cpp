@@ -93,7 +93,44 @@ public:
   }
 };
 
-class 
+class ColorFactory : public AbstractFactory  {
+public:
+  Shape * getShape(String shapeType) {
+    return nullptr;
+  }
+
+  Color * getColor(string color) {
+    if (true == color.empt()) {
+      return nullptr;
+    }
+    if (strcasecmp("red", color.c_str()) == 0) {
+      return new Rec();
+    } else if (strcasecmp("green", color.c_str()) == 0) {
+      return new Green();
+    } else if (strcasecmp("blue", color.c_str()) == 0) {
+      return new Blue();
+    }
+
+    return nullptr;
+  }
+};
+
+//
+
+class FactoryProducer {
+public:
+  static AbstracFactory* getFactory(string choice) {
+    if (strcasecmp("shape", choice.c_str()) == 0) {
+      return new ShapeFactory();
+    } else if (strcasecmp("color", choice.c_str()) == 0) {
+      return new ColorFactory()
+    }
+
+    return nullptr;
+  }
+};
+
+//
 
 
 int main() {

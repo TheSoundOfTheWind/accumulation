@@ -4,3 +4,12 @@
 学习网站
 1. 菜鸟教程
 https://www.runoob.com/
+
+2. C++标准库说明网站
+https://www.cplusplus.com/reference/std/
+
+3. C++标准库说明网站
+https://en.cppreference.com/w/cpp/header
+
+4. Boost C++ 库
+http://zh.highscore.de/cpp/boost/

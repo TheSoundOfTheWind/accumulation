@@ -1,0 +1,40 @@
+#header
+<cerrno> (errno.h)
+C Errors
+C Header that defines the following macro:
+
+errno
+Last error number (macro )
+
+plus at least three additional macro constants: EDOM, ERANGE and EILSEQ (see errno for more details).
+
+
+macro
+<cerrno>
+errno
+int
+Last error number
+This macro expands to a modifiable lvalue of type int. Therefore, it can be both read and modified by a program.
+
+errno is set to zero at program startup, and any function of the standard C library can modify its value to some value different from zero, generally to signal specific categories of error (no library function sets its value back to zero once changed).
+
+A program can also modify its value. In fact, if this variable is intended to be used for error checking after a library function call, it should be reset by the program to zero before the call (since any previous call to a library function may have altered its value).
+
+The same header that declares errno (<cerrno>) also declares at least the following macro constants with values different from zero:
+
+macro	meaning when errno is set to this
+EDOM	Domain error: Some mathematical functions are only defined for certain real values, which is called its domain, for example the square root function is only defined for non-negative numbers, therefore the sqrt function sets errno to EDOM if called with a negative argument.
+ERANGE	Range error: The range of values that can be represented with a variable is limited. For example, mathematical functions such as pow can easily outbound the range representable by a floating point variable, or functions such as strtod can encounter sequences of digits longer than the range representable values. In these cases, errno is set to ERANGE.
+EILSEQ	Illegal sequence: Multibyte character sequence may have a restricted set of valid sequences. When a set of multibyte characters is translated by functions such as mbrtowc, errno is set to EILSEQ when an invalid sequence is encountered.
+
+The functions of the standard library may set errno to any value (not only to the portable values listed above). Particular library implementations may define additional names in this header.
+
+C++11 expands the basic set of values required to be defined in this header by including many names also available in POSIX environments, increasing the total number of portable errno values to 78. For a full list, see errc.
+
+The particular error messages associated with values of errno can be obtained using strerror or directly printed using function perror.
+
+In C++, errno is always declared as a macro, but in C it may also be implemented as an int object with external linkage.
+
+Data races
+Libraries that support multi-threading shall implement errno in a per-thread basis: With each thread having its own local errno.
+This is a requirement in libraries compliant with C11 and C++11 standards.
