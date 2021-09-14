@@ -1,0 +1,7 @@
+QPainter painter(this);
+            QFont font("Courier", 24);
+            painter.setFont(font);
+                    QTransform transform;
+            transform.rotate(+90.0);//旋转90度
+            painter.setWorldTransform(transform);
+            painter.drawText(0, 0, "Hello, world!");
