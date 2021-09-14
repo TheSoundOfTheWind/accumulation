@@ -93,18 +93,18 @@ public:
   }
 };
 
-class ColorFactory : public AbstractFactory  {
+class ColorFactory : public AbstracFactory  {
 public:
-  Shape * getShape(String shapeType) {
+  virtual Shape * getShape(string shapeType) {
     return nullptr;
   }
 
-  Color * getColor(string color) {
-    if (true == color.empt()) {
+  virtual Color * getColor(string color) {
+    if (true == color.empty()) {
       return nullptr;
     }
     if (strcasecmp("red", color.c_str()) == 0) {
-      return new Rec();
+      return new Red();
     } else if (strcasecmp("green", color.c_str()) == 0) {
       return new Green();
     } else if (strcasecmp("blue", color.c_str()) == 0) {
@@ -123,7 +123,7 @@ public:
     if (strcasecmp("shape", choice.c_str()) == 0) {
       return new ShapeFactory();
     } else if (strcasecmp("color", choice.c_str()) == 0) {
-      return new ColorFactory()
+      return new ColorFactory();
     }
 
     return nullptr;
@@ -134,7 +134,35 @@ public:
 
 
 int main() {
-  
+  // 
+  AbstracFactory* shapeFactory = FactoryProducer::getFactory("SHAPE");
+
+  Shape* shape1 = shapeFactory->getShape("CIRCLE");
+
+  shape1->draw();
+
+  Shape * shape2 = shapeFactory->getShape("RECTANGLE");
+
+  shape2->draw();
+
+  Shape * shape3 = shapeFactory->getShape("SQUARE");
+
+  shape3->draw();
+
+  AbstracFactory * colorFactory = FactoryProducer::getFactory("COLOR");
+
+  Color * color1 = colorFactory->getColor("RED");
+
+  color1->fill();
+
+  Color * color2 = colorFactory->getColor("Green");
+
+  color2->fill();
+
+  Color * color3 = colorFactory->getColor("BLUE");
+
+  color3->fill();
+
   return 0;
 }
 
