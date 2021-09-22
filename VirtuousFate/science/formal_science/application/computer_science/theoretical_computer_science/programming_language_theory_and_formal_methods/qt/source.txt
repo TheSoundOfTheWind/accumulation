@@ -1,0 +1,7 @@
+qt lib download web:
+opensuse.osuosl.org/pub/blfs/conglomeration/qt5/
+
+qt 二维图表库,二维数据图形
+QCustomPlot
+
+
