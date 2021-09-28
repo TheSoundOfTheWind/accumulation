@@ -1,3 +1,13 @@
+<fstream>
+<iomanip>
+<ios>
+<iosfwd>
+<iostream>
+<istream>
+<ostream>
+<sstream>
+<streambuf>
+
 Classes:
 ios_base : Base class for streams (class )
 ios : Base class for streams (type-dependent components) (class )
