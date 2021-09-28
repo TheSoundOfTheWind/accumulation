@@ -174,8 +174,8 @@ def printFund(list):
         sell_str="3/3"
     if (C_tt < 0):
         print ("%s: %.2f %.2f $$ %.2f %s" %(list[1], D*10.0, Y, sell, sell_str))
-    else:
-       print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
+#    else:
+  #     print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
 
 
 print("//----------------------------------------------------------------")
