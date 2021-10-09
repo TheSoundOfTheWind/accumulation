@@ -1,0 +1,18 @@
+曲面细分
+1.loop subdivision
+- split each triangle into four
+- assign new vertex positions according to weights
+  New / old vertices update differently
+
+Catmuli-Clark Subdivision(General Mesh)
+
+曲面简化
+远近不同选用不同的模型
+几何的层次结构不好做
+
+edge  collapsing(边坍缩）
+Quadric Error Metrics (二次误差度量）
+
+阴影渲染：
+shadow mapping
+52:58
