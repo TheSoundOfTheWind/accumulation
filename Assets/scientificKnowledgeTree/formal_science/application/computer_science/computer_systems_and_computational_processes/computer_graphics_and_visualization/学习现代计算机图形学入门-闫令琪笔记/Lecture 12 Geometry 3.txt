@@ -1,0 +1,24 @@
+曲面细分
+1.loop subdivision
+- split each triangle into four
+- assign new vertex positions according to weights
+  New / old vertices update differently
+
+Catmuli-Clark Subdivision(General Mesh)
+
+曲面简化
+远近不同选用不同的模型
+几何的层次结构不好做
+
+edge  collapsing(边坍缩）
+Quadric Error Metrics (二次误差度量）
+
+阴影渲染：
+shadow mapping
+阴影，光源看不到这个点，人（相机）可以看到
+硬阴影、软阴影
+光源会看到什么，从光源看向场景，记录深度
+再从相机出发，到光源的深度做对比，发现深度不一致，就产生了阴影
+阴影质量，shade map的分辨率，浮点精度造成的问题
+硬阴影，阴影边角比较锐利
+软阴影，则相反（本影和伴影）

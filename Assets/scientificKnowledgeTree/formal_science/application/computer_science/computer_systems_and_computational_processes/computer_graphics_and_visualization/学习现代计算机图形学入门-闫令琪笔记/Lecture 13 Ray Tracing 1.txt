@@ -1,0 +1,4 @@
+whitted-style Ray tracing
+每个像素投射出去一根光线
+光线和物体表面得交点
+包围盒，aabb

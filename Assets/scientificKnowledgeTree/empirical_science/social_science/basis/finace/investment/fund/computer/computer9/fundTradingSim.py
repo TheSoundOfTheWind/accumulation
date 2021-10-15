@@ -149,7 +149,10 @@ def printFund(list):
         rate_o = list_b[0][1]*(9/24.0)+list_b[1][1]*(7/24.0)+list_b[2][1]*(5.0/24)+list_b[3][1]*(3.0/24)
     if (years > 9.0):
         rate_o = list_b[0][1]*(11/35.0)+list_b[1][1]*(9/35.0)+list_b[2][1]*(7.0/35)+list_b[3][1]*(5.0/35)+list_b[4][1]*(3.0/35)
+<<<<<<< HEAD
         
+=======
+>>>>>>> 1c9cec6c5270ad6810954d3cfd98926f01dd22ca
     A = float(list[6])
     B = max_v
     data = getFundValue(list[0])
@@ -167,6 +170,7 @@ def printFund(list):
     X = (math.pow(2.0, X))
     Y = A*F*X
     sell_str = ""
+<<<<<<< HEAD
     max_t = 0.0
     for data_t in df3:
         cur_t = float(data_t)
@@ -178,20 +182,31 @@ def printFund(list):
     is_bug = -1
     if(float(down_v/max_v*rate_o)*100 > 0.1):
         is_bug = 1
+=======
+>>>>>>> 1c9cec6c5270ad6810954d3cfd98926f01dd22ca
     if(sell > 0.1 and sell < 0.3):
         sell_str="1/3"
     if(sell > 0.3 and sell < 0.5):
         sell_str="2/3"
     if(sell>0.5):
         sell_str="3/3"
+<<<<<<< HEAD
     if (C_tt < 0 and is_bug == 1):
         print ("%s: %.2f %.2f $$ %.2f %s %.4f" %(list[1], D*10.0, Y, sell, sell_str, float(down_v/max_v*rate_o)*100.0))
+=======
+    if (C_tt < 0):
+        print ("%s: %.2f %.2f $$ %.2f %s" %(list[1], D*10.0, Y, sell, sell_str))
+>>>>>>> 1c9cec6c5270ad6810954d3cfd98926f01dd22ca
 #    else:
   #     print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
 
 
 print("//----------------------------------------------------------------")
+<<<<<<< HEAD
 f = open("../../buy_fund/data3.txt", "r")
+=======
+f = open("../../buy_fund/data4.txt", "r")
+>>>>>>> 1c9cec6c5270ad6810954d3cfd98926f01dd22ca
 for line in f:
     a = line.split( )
     if line[0] == '#':
