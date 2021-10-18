@@ -3,12 +3,8 @@
  - 有效问题
  - 清晨
  - 上午
-   给杨珏加cmd
-   写绩效考核表
  - 中午
  - 下午
-   整理 cmd 
-   开会梳理
  - 晚上
  
 ************************************************日资产**********************************************
@@ -23,8 +19,7 @@
     - 亲戚
  - 同学
  - 同事
-   回复鹏坤的微信和接微信电话，讨论顶层加cmd的事情，建议其用脚本解决
-   回复杨珏的邮件
+   和亮哥讨论gtfedit的进度问题
    
  - 生活技能
  - 数码
@@ -37,6 +32,22 @@
 	-计算机图形学
 	-编程语言
  - 工作
+   提交gbflow的代码
+   add set_vcd_file cmd
+   add set_port_cap cmd
+   add set_inst_power cmd
+   add set_block_power cmd
+   add set_env_delta cmd
+   add set_res_current cmd
+   add set_dmp cmd.
+   add set_num_partition cmd
+   update set_vcd_file cmd
+   udpate set_power_analysis_mode cmd.
+   update set_solver_mode cmd.
+   gbsim input_pwl_ins_power_file support multiple .pwl files.
+   
+   2.整理绩效考核表给到磊哥
+   
 ------------------------------正物质--------------------------------
  - 自然物质
  - 人造物质
