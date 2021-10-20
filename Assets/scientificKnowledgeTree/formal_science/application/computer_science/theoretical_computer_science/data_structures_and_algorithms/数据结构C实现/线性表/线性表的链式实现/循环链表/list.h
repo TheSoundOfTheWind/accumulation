@@ -1,9 +1,9 @@
 #ifndef LIST_H
 #define LIST_H
 typedef int ElemType;
-typedef struct {
-  int length;
-  ElemType  * elem;
+typedef struct LNode{
+  ElemType  elem;
+  LNode *    next;
 } MList;
 
 const int MAX_SIZE = 100;
@@ -22,7 +22,7 @@ void locateElem(const MList & list, ElemType e, int & i);
 
 bool priorElem(const MList & list, ElemType cur_e, ElemType &pre_e);
 
-bool nextElem(const MList & list, ElemType cur_e, ElemType &pre_e);
+bool nextElem(const MList & list, ElemType cur_e, ElemType &next_e);
 
 bool insert(MList & list, int i, ElemType e);
 
@@ -30,4 +30,8 @@ bool deleteElem(MList & list, int i);
 
 void traverse(const MList & list);
 
+void insertAtHead(MList & list, ElemType e);
+
+void insertAtTail(MList & list, ElemType e);
+  
 #endif // LIST_H
