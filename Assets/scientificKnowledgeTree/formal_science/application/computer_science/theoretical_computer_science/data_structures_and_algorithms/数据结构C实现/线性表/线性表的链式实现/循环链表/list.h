@@ -24,6 +24,7 @@ bool priorElem(const MList & list, ElemType cur_e, ElemType &pre_e);
 
 bool nextElem(const MList & list, ElemType cur_e, ElemType &next_e);
 
+bool hasElem(const MList & list, const ElemType & e);
 bool insert(MList & list, int i, ElemType e);
 
 bool deleteElem(MList & list, int i);
@@ -33,5 +34,6 @@ void traverse(const MList & list);
 void insertAtHead(MList & list, ElemType e);
 
 void insertAtTail(MList & list, ElemType e);
-  
+
+
 #endif // LIST_H

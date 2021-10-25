@@ -3,14 +3,14 @@
 bool init(MList & list)
 {
   list.elem = 0;
-  list.next = &list;
+  list.next = nullptr;
 }
 
 bool destroy(MList & list)
 {
   MList * p = list.next;
   MList * q = nullptr;
-  while(p != &list) {
+  while(p != nullptr) {
     q = p->next;
     delete p;
     p = q;
@@ -19,16 +19,14 @@ bool destroy(MList & list)
 
 bool empty(const MList  & list)
 {
-  const MList * h = &list;
-  return (list.next == h);
+  return (list.next == nullptr);
 }
 
 int length(const MList & list)
 {
   int len = 0;
-  const MList * h = &list;
   MList * p = list.next;
-  while (p != h) {
+  while (p != nullptr) {
     len++;
     p = p->next;
   }
@@ -38,9 +36,8 @@ int length(const MList & list)
 bool getElem(const MList & list, int i, ElemType &e)
 {
   int len = 0;
-  const MList * h = & list;
   MList * p = list.next;
-  while(p != h) {
+  while(p != nullptr) {
     len++;
     if (len == i) {
       e = p->elem;
@@ -52,9 +49,8 @@ bool getElem(const MList & list, int i, ElemType &e)
 void locateElem(const MList & list, ElemType e, int & i)
 {
   MList * p = list.next;
-  const MList * h = &list;
   int len = 0;
-  while(p != h){
+  while(p != nullptr){
     len ++;
     if (e == p->elem) {
       i = len;
@@ -67,8 +63,7 @@ bool priorElem(const MList & list, ElemType cur_e, ElemType &pre_e)
 {
   MList * p = list.next;
   MList * q = list.next;
-  const MList * h = &list;
-  while(q != h) {
+  while(q != nullptr) {
     if (q->elem == cur_e and p != list.next) {
       pre_e = p->elem;
     }
@@ -80,9 +75,8 @@ bool priorElem(const MList & list, ElemType cur_e, ElemType &pre_e)
 bool nextElem(const MList & list, ElemType cur_e, ElemType &next_e)
 {
   MList * p = list.next;
-  const MList * h = &list;
-  while(p != list.next) {
-    if (cur_e == p->elem and p->next != h) {
+  while(p != nullptr) {
+    if (cur_e == p->elem and p->next != nullptr) {
       next_e = p->next->elem;
       break;
     }
@@ -90,29 +84,12 @@ bool nextElem(const MList & list, ElemType cur_e, ElemType &next_e)
   } // while
 }
 
-bool hasElem(const MList & list, const ElemType & e)
-{
-  bool r_b = false;
-  const MList * h = &list;
-  MList * p = list.next;
-  while(p != h) {
-    if (e == p->elem) {
-      r_b = true;
-      break;
-    }
-    p = p->next;
-  }
-
-  return r_b;
-}
-
 bool insert(MList & list, int i, ElemType e)
 {
   int len = 0;
-  const MList * h = &list;
   MList * p = list.next;
   MList * q = &list;
-  while(p != h) {
+  while(p != nullptr) {
     len++;
     if (len == i) {
       MList * t = q -> next;
@@ -130,9 +107,8 @@ bool deleteElem(MList & list, int i)
 {
   MList * p = list.next;
   MList * q = &list;
-  const MList * h = &list;
   int len = 0;
-  while(p != h) {
+  while(p != nullptr) {
     len ++;
     if (len == i) {
       MList * t = p->next;
@@ -148,8 +124,7 @@ bool deleteElem(MList & list, int i)
 void traverse(const MList & list)
 {
   MList * p = list.next;
-  const MList * h = &list;
-  while(p != h) {
+  while(p != nullptr) {
     printf("%d ", p->elem);
     p = p->next;
   }
@@ -168,11 +143,13 @@ void insertAtTail(MList & list, ElemType e)
 {
   MList * n = new MList;
   n->elem = e;
-  MList * h = &list;
-  n->next = h;
-  MList * p = h;
-  while(p->next != h) {
+  n->next = nullptr;
+  MList * p = list.next;
+  while(p != nullptr) {
+    if (p->next == nullptr) {
+      p->next = n;
+      break;
+    }
     p = p->next;
   }
-  p->next = n;
 }
