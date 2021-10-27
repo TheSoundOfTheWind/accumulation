@@ -8,3 +8,4 @@ Exiting Radiance
 
 反射方程 和 渲染（绘制）方程
 
+
