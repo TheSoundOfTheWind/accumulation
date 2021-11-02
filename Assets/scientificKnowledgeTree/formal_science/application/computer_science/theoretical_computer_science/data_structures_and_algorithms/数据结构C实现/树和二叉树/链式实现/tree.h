@@ -21,4 +21,5 @@ void preOrderTraverse(const Tree &);
 void inOrderTraverse(const Tree &);
 void postOrderTraverse(const Tree &);
 void levelOrderTraverse(const Tree &);
-
+bool isSame(const Tree & left, const Tree & right);
+bool isSame2(const Tree & tree);
