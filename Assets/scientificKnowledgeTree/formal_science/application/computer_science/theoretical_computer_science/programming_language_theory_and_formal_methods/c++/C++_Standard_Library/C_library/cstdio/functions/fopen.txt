@@ -1,0 +1,123 @@
+function
+//------------------------------------------------------------------------------
+fopen
+
+function declaration:
+//------------------------------------------------------------------------------
+FILE * fopen ( const char * filename, const char * mode );
+
+Open file
+//------------------------------------------------------------------------------
+Opens the file whose name is specified in the parameter
+filename and associates it with a stream that can be
+identified in future operations by the FILE pointer returned.
+
+The operations that are allowed on the stream and how
+these are performed are defined by the mode parameter.
+
+The returned stream is fully buffered by default if it is
+known to not refer to an interactive device (see setbuf).
+
+The returned pointer can be disassociated from the file
+by calling fclose or freopen. All opened files are automatically
+closed on normal program termination.
+
+The running environment supports at least FOPEN_MAX files
+open simultaneously.
+
+Parameters:
+//------------------------------------------------------------------------------
+filename
+//------------------------------------------------------------------------------
+C string containing the name of the file to be opened.
+Its value shall follow the file name specifications of the
+running environment and can include a path
+(if supported by the system).
+
+mode
+//------------------------------------------------------------------------------
+C string containing a file access mode. It can be:
+"r"	read: Open file for input operations. The file must exist.
+
+"w"	write: Create an empty file for output operations. If a
+file with the same name already exists, its contents are
+discarded and the file is treated as a new empty file.
+
+"a"	append: Open file for output at the end of a file.
+Output operations always write data at the end of the file,
+expanding it. Repositioning operations (fseek, fsetpos, rewind)
+are ignored. The file is created if it does not exist.
+
+"r+"	read/update: Open a file for update (both for input and
+output). The file must exist.
+
+"w+"	write/update: Create an empty file and open it
+for update (both for input and output). If a file with the
+same name already exists its contents are discarded and
+the file is treated as a new empty file.
+
+"a+"	append/update: Open a file for update (both
+for input and output) with all output operations writing
+data at the end of the file. Repositioning operations
+(fseek, fsetpos, rewind) affects the next input operations,
+but output operations move the position back to the end
+of file. The file is created if it does not exist.
+With the mode specifiers above the file is open as a text
+file. In order to open a file as a binary file, a "b" character
+has to be included in the mode string. This additional "b"
+character can either be appended at the end of the string
+(thus making the following compound modes: "rb", "wb",
+"ab", "r+b", "w+b", "a+b") or be inserted between the letter and the "+" sign
+for the mixed modes ("rb+", "wb+", "ab+").
+
+The new C standard (C2011, which is not part of C++) adds a new standard
+subspecifier ("x"), that can be appended to any "w" specifier (to form "wx",
+"wbx", "w+x" or "w+bx"/"wb+x"). This subspecifier forces the function to
+fail if the file exists, instead of overwriting it.
+
+If additional characters follow the sequence, the behavior depends on the
+library implementation: some implementations may ignore additional
+characters so that for example an additional "t" (sometimes used to explicitly
+state a text file) is accepted.
+
+On some library implementations, opening or creating a text file with update
+mode may treat the stream instead as a binary file.
+
+Text files are files containing sequences of lines of text. Depending on the
+environment where the application runs, some special character conversion
+may occur in input/output operations in text mode to adapt them to a
+system-specific text file format. Although on some environments no
+conversions occur and both text files and binary files are treated the same
+way, using the appropriate mode improves portability.
+
+For files open for update (those which include a "+" sign), on which both input
+and output operations are allowed, the stream shall be flushed (fflush) or
+repositioned (fseek, fsetpos, rewind) before a reading operation that follows
+a writing operation. The stream shall be repositioned (fseek, fsetpos, rewind)
+before a writing operation that follows a reading operation (whenever that
+operation did not reach the end-of-file).
+
+Return Value
+//------------------------------------------------------------------------------
+If the file is successfully opened, the function returns a
+pointer to a FILE object that can be used to identify the
+stream on future operations.
+Otherwise, a null pointer is returned.
+On most library implementations, the errno variable is also
+set to a system-specific error code on failure.
+
+Example
+//------------------------------------------------------------------------------
+/* fopen example */
+#include <stdio.h>
+int main ()
+{
+  FILE * pFile;
+  pFile = fopen ("myfile.txt","w");
+  if (pFile!=NULL)
+  {
+    fputs ("fopen example",pFile);
+    fclose (pFile);
+  }
+  return 0;
+}
