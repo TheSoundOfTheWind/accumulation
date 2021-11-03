@@ -153,6 +153,7 @@ def printFund(list):
     B = max_v
     data = getFundValue(list[0])
     C = float(data['gszzl'])
+    C_P = C
     C_t = int(time.strftime('%H',time.localtime(time.time())))
     C_tt = C
     C = cur_v + cur_v*C*0.01
@@ -173,7 +174,7 @@ def printFund(list):
     if(sell>0.5):
         sell_str="3/3"
     if (C_tt < 0):
-        print ("%s: %.2f %.2f $$ %.2f %s" %(list[1], D*10.0, Y, sell, sell_str))
+        print ("%s: %.2f %.2f $$ %.2f %s %.2f" %(list[1], D*10.0, Y, sell, sell_str, C_P))
 #    else:
   #     print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
 
