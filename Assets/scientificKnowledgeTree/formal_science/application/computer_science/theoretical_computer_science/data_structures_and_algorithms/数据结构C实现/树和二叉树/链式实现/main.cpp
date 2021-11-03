@@ -20,5 +20,9 @@ int main()
   printf("pre\n");
   preOrderTraverse(tree);
   printf("\n");
+  if (true == isSame2(tree)){
+    printf("is same\n");
+  }
+  
   return 0;
 }

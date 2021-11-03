@@ -153,3 +153,22 @@ void levelOrderTraverse(const Tree & tree)
 {
 
 }
+
+bool isSame(const Tree & left, const Tree & right)
+{
+  if (left == nullptr and right == nullptr)
+    return true;
+  if (left == nullptr or right == nullptr)
+    return false;
+  return left->data == right->data
+    and isSame(left->lchild, right->rchild)
+    and isSame(left->rchild, right->lchild);
+}
+
+bool isSame2(const Tree & tree)
+{
+  if (nullptr == tree)
+    return true;
+
+  return isSame(tree->lchild, tree->rchild);
+}
