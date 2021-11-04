@@ -1,0 +1,65 @@
+function
+//------------------------------------------------------------------------------
+perror
+function declaration
+//------------------------------------------------------------------------------
+void perror ( const char * str );
+
+Print error message
+//------------------------------------------------------------------------------
+Interprets the value of errno as an error message, and prints
+it to stderr (the standard error output stream, usually the
+console), optionally preceding it with the custom message
+specified in str.
+
+errno is an integral variable whose value describes the error
+condition or diagnostic information produced by a call to a
+library function (any function of the C standard library may
+set a value for errno, even if not explicitly specified in this
+reference, and even if no error happened), see errno for more
+info.
+
+The error message produced by perror is platform-depend.
+
+If the parameter str is not a null pointer, str is printed followed
+by a colon (:) and a space. Then, whether str was a null pointer
+or not, the generated error description is printed followed by a
+newline character ('\n').
+
+perror should be called right after the error was produced,
+otherwise it can be overwritten by calls to other functions.
+
+Parameters.
+//------------------------------------------------------------------------------
+str
+C string containing a custom message to be printed before
+the error message itself.
+If it is a null pointer, no preceding custom message is printed,
+but the error message is still printed.
+By convention, the name of the application itself is generally
+used as parameter.
+
+Return Value
+none
+
+Example
+//------------------------------------------------------------------------------
+/* perror example */
+#include <stdio.h>
+
+int main ()
+{
+  FILE * pFile;
+  pFile=fopen ("unexist.ent","rb");
+  if (pFile==NULL)
+    perror ("The following error occurred");
+  else
+    fclose (pFile);
+  return 0;
+}
+
+Edit & Run
+//------------------------------------------------------------------------------
+If the file unexist.ent does not exist, something similar to
+this may be expected as program output:
+The following error occurred: No such file or directory
