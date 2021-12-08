@@ -173,7 +173,7 @@ def printFund(list):
         sell_str="2/3"
     if(sell>0.5):
         sell_str="3/3"
-    if (C_tt < 0):
+    if (C_tt < 0 and Y > 400):
         print ("%s: %.2f %.2f $$ %.2f %s %.2f" %(list[1], D*10.0, Y, sell, sell_str, C_P))
 #    else:
   #     print ("%s: %.2f %.2f" %(list[1], D*10.0, Y))
