@@ -42,7 +42,11 @@ git push origin [name]
 #删除远程分支：
 git push origin :heads/[name] or gitpush origin :[name]
 
+#更新远程分支
+git remote prune origin
 
+#删除远程分支
+git push origin --delete branchName
 
 
 版本(tag)操作命令
