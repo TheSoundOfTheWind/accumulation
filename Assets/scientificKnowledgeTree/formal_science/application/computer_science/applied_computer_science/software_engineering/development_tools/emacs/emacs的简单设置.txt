@@ -92,3 +92,6 @@ Emacs 的简单设置
 (setq dired-recursive-copies 'top)
 (setq dired-recursive-deletes 'top)
 让 dired 可以递归的拷贝和删除目录。
+
+关闭自动备份txt~
+(setq backup-by-copying t)
