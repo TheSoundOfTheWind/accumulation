@@ -19,8 +19,12 @@ git push origin test:master
 git push origin test:test
 
 
+#更新子仓
+git submodule update --init --recursive
 
+git clean -dfx
 
+git reset --hard
 
 分支(branch)操作命令
 #查看本地分支：
