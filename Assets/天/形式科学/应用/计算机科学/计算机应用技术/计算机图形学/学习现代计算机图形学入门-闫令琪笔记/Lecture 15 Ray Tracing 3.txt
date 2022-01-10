@@ -1,0 +1,14 @@
+Irradiance 
+每个面积对应的能量
+
+Radiance 
+单位立体角单位面积
+
+Exiting Radiance
+
+反射方程 和 渲染（绘制）方程
+
+双向反射分布函数：
+
+
+
