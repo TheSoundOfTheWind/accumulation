@@ -2,4 +2,4 @@ Monte Carlo Integration
 
 Path Tracing
 
-29:00
+Solution: Russian Roulette(RR)（俄罗斯轮盘赌）
