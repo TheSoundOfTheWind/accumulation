@@ -128,7 +128,15 @@ glm::mat4 camera(float Translate, glm::vec2 const & Rotate)
 }
 
 GLSL介绍：
-GLSL（OpenGL Shading Language） 全称 OpenGL 着色语言，是用来在 OpenGL 中着色编程的语言，也即开发人员写的短小的自定义程序，他们是在图形卡的 GPU上执行的，代替了固定的渲染管线的一部分，使渲染管线中不同层次具有可编程性。
+GLSL（OpenGL Shading Language） 全称 OpenGL 着色语言，是用来在 OpenGL 中着色编程的语言，
+也即开发人员写的短小的自定义程序，他们是在图形卡的 GPU上执行的，代替了固定的渲染管线的一
+部分，使渲染管线中不同层次具有可编程性。
 
 GLSL 其使用 C 语言作为基础高阶着色语言，避免了使用汇编语言或硬件规格语言的复杂性。
-OpenGL ES 的渲染管线包含有一个可编程的顶点阶段的一个可编程的片段阶段。其余的阶段则有固定的功能，应用程序对其行为的控制非常有限。每个可编程阶段中编译单元的集合组成了一个着色器。在OpenGL ES 2.0 中，每个着色器只支持一个编译单元。着色程序则是一整套编译好并链接在一起的着色器的集合。着色器 shader 的编写需要使用着色语言 GL Shader Language（GLSL），GLSL 的语法与 C 语言很类似。
+OpenGL ES 的渲染管线包含有一个可编程的顶点阶段的一个可编程的片段阶段。其余的阶段则
+有固定的功能，应用程序对其行为的控制非常有限。每个可编程阶段中编译单元的集合组成了
+一个着色器。在OpenGL ES 2.0 中，每个着色器只支持一个编译单元。着色程序则是一整套编
+译好并链接在一起的着色器的集合。着色器 shader 的编写需要使用着色语言 GL Shader 
+Language（GLSL），GLSL 的语法与 C 语言很类似。
+
+查看OpenGL版本 glxinfo | grep "OpenGL"
