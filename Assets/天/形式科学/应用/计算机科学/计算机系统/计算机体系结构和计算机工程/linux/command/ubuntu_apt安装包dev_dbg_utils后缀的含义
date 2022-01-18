@@ -1,0 +1,20 @@
+概述
+In general,
+-dev: Contains the library interface (header files) in case you are developing a program that wants to link to it.
+-dbg: Contains debugging symbols, which usually just used by developers linking against that software or people debugging the software.
+-utils: (I’m speaking from my Debian experience) Usually provides some additional command line tools. It may expose the user to internal features or just provide a CLI.
+Having different packages like this is all about removing features and/or accessibility to reduce file size. This allows for faster downloads and less used disk space.
+
+通常情况下
+
+-dev后缀（develope）：包含了库的接口（.h文件即头文件），这个为了当你开发一个程序时想要链接到这个包时。
+-dbg后缀（debug）：包含调试符号，通常仅供开发人员使用该软件或调试软件的人员使用。
+-utils后缀（utility）：通常提供一些额外的命令行工具。 它可能会将用户暴露给内部功能或仅提供CLI。
+dev后缀
+Packages with the -dev suffix (debian/ubuntu) or -devel suffix (red hat/centos/fedora) typically contain the files necessary if you are going to be compiling software from source that uses the associated library. They will typically contain C header files (foo.h) and the unversioned shared libraries (libfoo.so). The non-dev package has only the versioned shared libraries (libfoo.so.1.1) that are required by compiled binaries.
+
+dev后缀包通常包含必要的文件，如果你要从使用相关库的源代码编译软件。它们通常包含C头文件（foo.h）和无版本共享库（libfoo.so）。 非dev包只包含已编译二进制文件所需的版本化共享库（libfoo.so.1.1）。
+
+One more item in the -dev package is the /usr/lib/lib.so link. The libfoo0 package will install the file /usr/lib/libfoo.so.0.0, while libfoo-dev installs the links /usr/lib/libfoo.so.0 and /usr/lib/libfoo.so. This is the mechanism that allows you to have libfoo0 and libfoo1 installed simultaneously, so that software requiring the old library can co-exist on the box with software using the new library. When you install libfoo-dev, any software that is compiled will follow the *.so link and link against the version of the library referenced by that link.
+
+再补充一点。假如有一个包叫libfoo（/usr/lib这个目录下面存放的系统级的库文件，后面就省略这个目录）.安装libfoo包实际是安装的libfoo.so.0.0，但安装libfoo-dev包却是libfoo.so.0和libfoo.so（即另外两个库文件版本的链接）。这种机制允许你同时安装新库和旧库，这样使用旧版本库的软件和使用新版本库的软件就可以一起用啦，安装libfoo-dev时，任何编译的软件都将遵循* .so链接并链接到该链接引用的库版本。

@@ -1,0 +1,56 @@
+Ubuntu18.04下解决Qt出现qt.qpa.plugin:Could not load the Qt platform plugin “xcb“问题
+
+问题描述
+安装Qt5.15.0后，在运行测试用例时弹出错误：
+
+qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, xcb.
+
+Aborted (core dumped)
+根据问题描述，虽然能够找到但是不能加载Qt平台插件“xcb”，虽然接下来又说重新安装可能能够解决，这个可能的话，还是尽量作为最下的选择吧。
+
+定位问题
+修改配置文件~/.bashrc：
+
+$ vim ~/.bashrc
+
+在最末尾添加如下语句，会在qtcreator启动时，列出详细的错误提示。
+
+export QT_DEBUG_PLUGINS=1
+
+如下：
+
+保存退出编辑，使配置文件生效：
+
+$ source ~/.bashrc
+1
+启动qtcreator会弹出如下详细错误信息：
+
+在打印的错误信息的最下面，找到了引发错误的真正原因：
+
+也就是Qt动态链接库的问题，当加载libqxcb.so库的时候，还需要加载libxcb-xinerama库。
+切换到报错libxcb.so所在目录：
+
+#替换为自己的报错目录
+$ cd /home/brainiac/Qt/Tools/QtCreator/lib/Qt/plugins/platforms/
+
+运行ldd libqxcb.so，查看关联内容：
+
+$ ldd libqxcb.so
+
+
+发现不存在libxcb-xinerama.so.0库。
+
+解决方法
+安装libxcb-xinerama库：
+
+#如果还存在其他依赖库没有安装，也一并安装。
+$ sudo apt-get install libxcb-xinerama0
+
+安装完成后，再次查看关联内容，发现已经修复问题：
+
+$ ldd libqxcb.so
+
+

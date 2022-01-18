@@ -1,0 +1,57 @@
+//QStatusBar 
+Header:#inlcude<QStatusBar>
+qmake:QT+=widgets
+inherits:QWidget
+
+Public Functions:
+QStatusBar(QWidget *parent = nullptr)
+
+virtual	~QStatusBar()
+void	addPermanentWidget(QWidget *widget, int stretch = 0)
+void	addWidget(QWidget *widget, int stretch = 0)
+QString	currentMessage() const
+int		insertPermanentWidget(int index, QWidget *widget, int stretch = 0)
+int		insertWidget(int index, QWidget *widget, int stretch = 0)
+bool	isSizeGripEnabled() const
+void	removeWidget(QWidget *widget)
+void	setSizeGripEnabled(bool)
+
+Public Slots:
+void	clearMessage()
+void	showMessage(const QString &message, int timeout = 0)
+
+Signals:
+void	messageChanged(const QString &message)
+Protected Functions
+void	hideOrShow()
+void	reformat()
+
+Reimplemented Protected Functions:(如果要重新实现，将该类作为父类继承)
+virtual bool	event(QEvent *e) override
+virtual void	paintEvent(QPaintEvent *event) override
+virtual void	resizeEvent(QResizeEvent *e) override
+virtual void	showEvent(QShowEvent *) override
+
+
+//void addWidget(QWidget *widget, int stretch = 0)
+//-----------------------------------------------------------------------------
+这里的stretch是拉伸因子，如果添加多个widget，拉伸因子就是每个widget占多少比例的
+意思。
+设置拉伸因子的函数还有
+insertStretch(int index, int stretch = 0)
+
+QHboxLayout *layout= new QHboxLayout;
+layout->addWidget(btn_one,1);
+layout->addWidget(btn_two,2);
+这是一个水平布局，按钮1和按钮2应该占据水平方向的大小，比例是1：2的宽度。
+
+然而有的时候，设置伸缩大小并不一定按照，你的设置展示不是你想要的效果。这个时候，
+就可以查看是否是控件的sizePolicy阻碍了效果展示，可以修改相应的sizePolicy，
+实现想要的效果
+
+注意当拉伸因子为0时，和按比例显示是不一样的。如果是0，则这个widget会给一个合适的
+最小值，这个时候可能填不满整个大的窗口。如果是按比例显示，则会按比例填满。这样看
+起来更好看。
+
+当状态栏只有一个窗口时，如何让这个窗口占满整个status呢，设置一个空的widget，让它的
+占比为0。另一个要占满整个status的比例为1.

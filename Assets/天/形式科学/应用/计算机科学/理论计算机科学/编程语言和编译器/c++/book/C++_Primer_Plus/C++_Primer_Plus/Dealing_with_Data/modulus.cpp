@@ -1,0 +1,15 @@
+// modulus.cpp -- uses % operator to convert 1bs to stone
+#include <iostream>
+int main() {
+  using namespace std;
+  const int Lbs_per_stn = 14;
+  int lbs;
+
+  cout << "Enter your wight in pounds: ";
+  cin >> lbs;
+  int stone = lbs /Lbs_per_stn; // whole stone
+  int pounds = lbs % Lbs_per_stn; // remainder in pounds
+  cout << lbs << "Pounds are " << stone << " stone, " << pounds << " pound(s).\n";
+  
+  return 0;
+}

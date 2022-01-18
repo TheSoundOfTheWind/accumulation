@@ -1,0 +1,149 @@
+#https://github.com/mattdesl/lwjgl-basics/wiki/GLSL-Versions
+GLSL Versions
+mattdesl edited this page on 13 Sep 2013 · 15 revisions
+ Pages 37
+Find a Page…
+Home
+2D Pixel Perfect Shadows
+Batching Rectangles and Lines
+Custom Renderer
+Custom Sprite Batcher in LibGDX
+Display
+FrameBufferObjects
+GLSL Gotchas
+GLSL Versions
+Intro
+GLSL Versions
+GLSL ES Versions (Android, iOS, WebGL)
+Differences at a Glance
+Version 100
+Version 330
+Other Significant Changes
+GLSL 120 Additions
+GLSL 130 Additions
+GLSL 150 Additions
+GLSL 330 Additions
+Image Offset Convert
+Java NIO Buffers
+Lerp Blur Brief
+LibGDX & Java2D
+LibGDX Brightness & Contrast
+LibGDX Circular Progress Bar
+Clone this wiki locally
+https://github.com/mattdesl/lwjgl-basics.wiki.git
+Intro
+You can use the #version command as the first line of your shader to specify GLSL version:
+
+#version 120
+
+void main() {
+    gl_FragColor = vec4(1.0);
+}
+GLSL versions are released alongside GL versions. See the following charts to decide which version you would like to target.
+
+GLSL Versions
+OpenGL Version	GLSL Version
+2.0	110
+2.1	120
+3.0	130
+3.1	140
+3.2	150
+3.3	330
+4.0	400
+4.1	410
+4.2	420
+4.3	430
+GLSL ES Versions (Android, iOS, WebGL)
+OpenGL ES has its own Shading Language, and the versioning starts fresh. It is based on OpenGL Shading Language version 1.10.
+
+OpenGL ES Version	GLSL ES Version
+2.0	100
+3.0	300
+So, for example, if a feature is available in GLSL 120, it probably won't be available in GLSL ES 100 unless the ES compiler specifically allows it.
+
+Differences at a Glance
+Differences between (desktop) GLSL versions.
+
+Version 100
+Vertex shader:
+
+uniform mat4 projTrans;
+
+attribute vec2 Position;
+attribute vec2 TexCoord;
+
+varying vec2 vTexCoord;
+
+void main() {
+	vTexCoord = TexCoord;
+	gl_Position = u_projView * vec4(Position, 0.0, 1.0);
+}
+Fragment shader:
+
+uniform sampler2D tex0;
+
+varying vec2 vTexCoord;
+
+void main() {
+    vec4 color = texture2D(tex0, vTexCoord);
+    gl_FragColor = color;
+}
+Version 330
+As of GLSL 130+, in and out are used instead of attribute and varying. GLSL 330+ includes other features like layout qualifiers and changes texture2D to texture.
+
+Vertex shader:
+
+#version 330
+
+uniform mat4 projTrans;
+
+layout(location = 0) in vec2 Position;
+layout(location = 1) in vec2 TexCoord;
+
+out vec2 vTexCoord;
+
+void main() {
+	vTexCoord = TexCoord;
+	gl_Position = u_projView * vec4(Position, 0, 1);
+}
+Fragment shader:
+
+#version 330
+uniform sampler2D tex0;
+
+in vec2 vTexCoord;
+
+//use your own output instead of gl_FragColor 
+out vec4 fragColor;
+
+void main() {
+    //'texture' instead of 'texture2D'
+    fragColor = texture(tex0, vTexCoord);
+}
+Other Significant Changes
+GLSL 120 Additions
+You can initialize arrays within a shader, like so:
+float a[5] = float[5](3.4, 4.2, 5.0, 5.2, 1.1);
+float b[5] = float[](3.4, 4.2, 5.0, 5.2, 1.1);
+However, the above is not supported on Mac OSX Snow Leopard, even with GLSL 120. (1)
+
+You can initialize uniforms in a shader, and the value will be set at link time:
+uniform float val = 1.0;
+You can use built-ins like sin() when setting a const value
+Integers are implicitly converted to floats when necessary, for example:
+float f = 1.0; <-- valid
+float g = 1; <-- only supported in GLSL 120
+vec2 v = vec2(1, 2.0); <-- only supported in GLSL 120
+You can use f to define a float: float f = 2.5f;
+GLSL 130 Additions
+int and uint support (and bitwise operations with them)
+switch statement support
+New built-ins: trunc(), round(), roundEven(), isnan(), isinf(), modf()
+Fragment output can be user-defined
+Input and output is declared with in and out syntax instead of attribute and varying
+GLSL 150 Additions
+texture() should now be used instead of texture2D()
+GLSL 330 Additions
+Layout qualifiers can declare the location of vertex shader inputs and fragment shader outputs, eg:
+layout(location = 2) in vec3 values[4];
+Formally this was only possible with ARB_explicit_attrib_location extensio

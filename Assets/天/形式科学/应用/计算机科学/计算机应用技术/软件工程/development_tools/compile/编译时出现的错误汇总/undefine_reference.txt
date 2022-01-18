@@ -1,0 +1,329 @@
+C++ Errors: Undefined Reference, Unresolved External Symbol Etc.
+Last Updated:September 13, 2020
+
+
+This Tutorial Details the Critical Errors that Programmers often Encounter in C++like Undefined Reference, a Segmentation Fault (core dumped) and Unresolved External Symbol:
+
+We will discuss the most important errors that we often encounter in C++ that are equally critical indeed. Apart from the system and semantic errors and exceptions that occur from time to time, we also get other critical errors that affect the running of programs.
+
+These errors mostly occur towards the end of the program at runtime. Sometimes the program gives proper output and then the error occurs.
+
+=> Visit Here To Learn C++ From Scratch.
+
+
+C++ Errors Undefined Reference
+
+
+Primis Player Placeholder
+
+
+What You Will Learn: [show]
+
+Important C++ Errors
+In this tutorial, we will discuss three types of errors that are critical from any C++ programmer’s point of view.
+
+Undefined reference
+Segmentation fault (core dumped)
+Unresolved external symbol
+We will discuss the possible causes of each of these errors and along with the precautions that we can take as a programmer to prevent these errors.
+
+Let’s start!!
+
+Undefined Reference
+An “Undefined Reference” error occurs when we have a reference to object name (class, function, variable, etc.) in our program and the linker cannot find its definition when it tries to search for it in all the linked object files and libraries.
+
+Thus when the linker cannot find the definition of a linked object, it issues an “undefined reference” error. As clear from definition, this error occurs in the later stages of the linking process. There are various reasons that cause an “undefined reference” error.
+
+We discuss some of these reasons below:
+
+#1) No Definition Provided For Object
+
+This is the simplest reason for causing an “undefined reference” error. The programmer has simply forgotten to define the object.
+
+Consider the following C++ program. Here we have only specified the prototype of function and then used it in the main function.
+
+#include <iostream>
+int func1();
+int main()
+{
+     
+    func1();
+}
+Output:
+
+No definition provided for object - Output
+
+So when we compile this program, the linker error that says “undefined reference to ‘func1()’” is issued.
+
+In order to get rid of this error, we correct the program as follows by providing the definition of the function func1. Now the program gives the appropriate output.
+
+#include <iostream>
+using namespace std;
+int func1();
+ 
+int main()
+{
+     
+    func1();
+}
+int func1(){
+    cout<<"hello, world!!";
+}
+Output:
+
+hello, world!!
+
+#2) Wrong Definition (signatures don’t match) Of Objects Used
+
+Yet another cause for “undefined reference” error is when we specify wrong definitions. We use any object in our program and its definition is something different.
+
+Consider the following C++ program. Here we have made a call to func1 (). Its prototype is int func1 (). But its definition does not match with its prototype. As we see, the definition of the function contains a parameter to the function.
+
+Thus when the program is compiled, the compilation is successful because of the prototype and function call match. But when the linker is trying to link the function call with its definition, it finds the problem and issues the error as “undefined reference”.
+
+#include <iostream>
+using namespace std;
+int func1();
+int main()
+{
+     
+    func1();
+}
+int func1(int n){
+    cout<<"hello, world!!";
+}
+Output:
+
+Wrong definition(signatures don’t match) of objects used
+
+Thus to prevent such errors, we simply cross-check if the definitions and usage of all the objects are matching in our program.
+
+#3) Object Files Not Linked Properly
+
+This issue can also give rise to the “undefined reference” error. Here, we may have more than one source files and we might compile them independently. When this is done, the objects are not linked properly and it results in “undefined reference”.
+
+Consider the following two C++ programs. In the first file, we make use of the “print ()” function which is defined in the second file. When we compile these files separately, the first file gives “undefined reference” for the print function, while the second file gives “undefined reference” for the main function.
+
+int print();
+int main()
+{
+    print();
+}
+Output:
+
+ undefined reference” for print function
+
+int print() {
+    return 42;
+}
+Output:
+
+undefined reference for main function.
+
+The way to resolve this error is to compile both the files simultaneously (For example, by using g++).
+
+Apart from the causes already discussed, “undefined reference” may also occur because of the following reasons.
+
+#4) Wrong Project Type
+
+When we specify wrong project types in C++ IDEs like the visual studio and try to do things that the project does not expect, then, we get “undefined reference”.
+
+#5) No Library
+
+If a programmer has not specified the library path properly or completely forgotten to specify it, then we get an “undefined reference” for all the references the program uses from the library.
+
+#6) Dependent Files Are Not Compiled
+
+A programmer has to ensure that we compile all the dependencies of the project beforehand so that when we compile the project, the compiler finds all the dependencies and compiles successfully. If any of the dependencies are missing then the compiler gives “undefined reference”.
+
+Apart from the causes discussed above, the “undefined reference” error can occur in many other situations. But the bottom line is that the programmer has got the things wrong and in order to prevent this error they should be corrected.
+
+Segmentation Fault (core dumped)
+The error “segmentation fault (core dumped)” is an error that indicates memory corruption. It usually occurs when we try to access a memory that does not belong to the program into consideration.
+
+Here are some of the reasons that cause Segmentation fault error.
+
+#1) Modifying The Constant String
+
+Consider the following program wherein we have declared a constant string. Then we try to modify this constant string. When the program is executed, we get the error shown in the output.
+
+#include <iostream>
+int main() 
+{ 
+   char *str;  
+   
+  //constant string
+   str = "STH";      
+   
+   //modifying constant string
+   *(str+1) = 'c';  
+   return 0; 
+}
+Output:
+
+Modifying constant string
+
+#2) Dereferencing Pointer
+
+A pointer must point to a valid memory location before we dereference it. In the below program, we see that the pointer is pointing to NULL which means the memory location it’s pointing to is 0 i.e. invalid.
+
+Hence when we dereference it in the next line, we are actually trying to access its unknown memory location. This indeed results in a segmentation fault.
+
+#include <iostream> 
+using namespace std; 
+   
+int main() 
+{ 
+    int* ptr = NULL; 
+   
+   //here we are accessing unknown memory location
+    *ptr = 1; 
+    
+    cout << *ptr; 
+    return 0; 
+}
+Output:
+
+Segmentation fault
+
+The next program shows a similar case. In this program also, the pointer is not pointing to valid data. An uninitialized pointer is as good as NULL and hence it also points to unknown memory location. Thus when we try to dereference it, it results in a segmentation fault.
+
+#include <iostream> 
+using namespace std;
+int main()  
+{ 
+   int *p; 
+   cout<<*p; 
+   return 0; 
+}
+Output:
+
+Segmentation fault
+
+In order to prevent such errors, we have to ensure that our pointer variables in the program point to valid memory locations always.
+
+#3) Stack Overflow
+
+When we have recursive calls in our program, they eat up all the memory in the stack and cause the stack to overflow. In such cases, we get the segmentation fault as running out of stack memory is also a kind of memory corruption.
+
+Consider the below program where we calculate the factorial of a number recursively. Note that our base condition tests if the number is 0 and then returns 1. This program works perfectly for positive numbers.
+
+But what happens when we actually pass a negative number to a factorial function? Well, as the base condition is not given for the negative numbers, the function does not know where to stop and thus results in a stack overflow.
+
+This is shown in the output below that gives segmentation fault.
+
+#include <iostream>
+using namespace std;
+int factorial(int n)
+{
+    if(n == 0)
+    {
+        return 1;
+    }
+    return factorial(n-1) * n;
+}
+int main()
+{
+    cout<<factorial(-1);
+}
+Output:
+
+Segmentation fault (core dumped)
+
+Now in order to fix this error, we slightly change the base condition and also specify the case for negative numbers as shown below.
+
+#include <iostream>
+using namespace std;
+int factorial(int n)
+{
+    // What about n < 0?
+    if(n <= 0)
+    {
+        return 1;
+    }
+    return factorial(n-1) * n;
+}
+int main()
+{
+    cout<<"Factorial output:"<<factorial(-1);
+}
+Output:
+
+Factorial output:1
+
+Now we see that the segmentation fault is taken care of and the program works fine.
+
+Unresolved External Symbol
+The unresolved external symbol is a linker error that indicates it cannot find the symbol or its reference during the linking process. The error is similar to “undefined reference” and is issued interchangeably.
+
+We have given two instances below where this error can occur.
+
+#1) When we refer a structure variable in the program that contains a static member.
+
+#include <iostream>
+struct C {
+   static int s;
+};
+// int C::s; // Uncomment the following line to fix the error.
+int main() {
+   C c;
+   C::s = 1;
+}
+Output:
+
+a structure variable in the program
+
+In the above program, structure C has a static member s that is not accessible to the outside programs. So when we try to assign it a value in the main function, the linker doesn’t find the symbol and may result in an “unresolved external symbol” or “undefined reference”.
+
+The way to fix this error is to explicitly scope the variable using ‘::’ outside the main before using it.
+
+#2) When we have external variables referenced in the source file, and we have not linked the files that define these external variables.
+
+This case is demonstrated below:
+
+#include <iostream>
+#include <string>
+using namespace std;
+extern int i;
+extern void g();
+void f() {
+   i++;
+   g();
+}
+int main() {}
+Output:
+
+external variables referenced in the source file
+
+In general, in case of an “unresolved external symbol”, the compiled code for any object like function fails to find a symbol to which it makes a reference to, maybe because that symbol is not defined in the object files or any of the libraries specified to the linker.
+
+Conclusion
+In this tutorial, we discussed some major errors in C++ that are critical and can affect the program flow and might even result in an application crash. We explored all about Segmentation fault, Unresolved external symbol, and Undefined reference in detail.
+
+Although these errors can occur anytime, from the causes that we discussed we know that we can easily prevent them by carefully developing our program.
+
+=> Read Through The Easy C++ Training Series.
+
+Recommended Reading
+7 Types of Software Errors That Every Tester Should Know
+This Scenario Explains How Important It is to Document the Frequently Encountered Errors
+References In C++
+What is Error Guessing Technique?
+About SoftwareTestingHelp
+Helping our community since 2006! Most popular portal for Software professionals with 100 million+ visits and 300,000+ followers! You will absolutely love our tutorials on QA Testing, Development, Software Tools and Services Reviews and more!
+
+
+Recommended Reading
+7 Types of Software Errors That Every Tester Should Know
+This Scenario Explains How Important It is to Document the Frequently Encountered Errors
+References In C++
+What is Error Guessing Technique?
+
+
+
+ABOUT US | CONTACT US | ADVERTISE | TESTING SERVICES
+ALL ARTICLES ARE COPYRIGHTED AND CAN NOT BE REPRODUCED WITHOUT PERMISSION.
+© COPYRIGHT SOFTWARETESTINGHELP 2020 — READ OUR COPYRIGHT POLICY | PRIVACY POLICY | TERMS | COOKIE POLICY | AFFILIATE DISCLAIMER | LINK TO US
+
+Software Testing Help
+

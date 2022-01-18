@@ -1,0 +1,150 @@
+//QMainWindow
+//-----------------------------------------------------------------------------
+在 Qt 中，我们将窗口和控件统称为部件（Widget）
+
+窗口是指程序的整体界面，可以包含标题栏、菜单栏、工具栏、关闭按钮、最小化按钮、
+最大化按钮等。控件是指按钮、复选框、文本框、表格、进度条等这些组成程序的基本元素。
+一个程序可以有多个窗口，一个窗口也可以有多个控件。QWidget 是所有用户界面元素的基
+类，窗口和控件都是直接或间接继承自 QWidget，QMainWindow、QWidget、QDialog 三个类
+就是用来创建窗口的，可以直接使用也可以继承后再使用。QMainWindow 窗口可以包含菜单
+栏、工具栏、状态栏、标题栏等，是最常见的窗口形式，可以作为GUI程序的主窗口。
+QDialog 是对话框窗口的基类。对话框主要用来执行短期任务，或与用户进行互动，它可以
+是模态的也可以是非模态的。QDialog 没有菜单栏、工具栏、状态栏等。
+
+主窗口是与用户进行长时间交互的顶层窗口,比如记事本
+主窗口通常是应用程序启动后显示的第一个窗口
+QMainWindow是Qt中主窗口的基类,继承于QWidget
+
+//QMenuBar
+//-----------------------------------------------------------------------------
+菜单栏，存放多个菜单
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    QMenuBar  *mb= menuBar();                    //返回菜单栏,如果菜单栏没有创建,则返回一个空的菜单栏
+
+    QMenu*  menu= new QMenu("File(&F)", mb );     //(&F):表示添加alt+F键快捷键打开这个菜单
+
+    QAction* action= new QAction("New(N)", menu);      //(N):表示添加N键快捷键
+
+    action-> setShortcut(QKeySequence (Qt::CTRL + Qt::Key_N));  //为菜单项设置快捷键:ctrl+n
+
+    menu->addAction(action);                                     //向菜单里添加菜单项"New"
+
+    menu->addSeparator();                                       //添加菜单分隔符
+
+    mb->addMenu(menu);                                         //向菜单栏里添加菜单File
+}
+//-----------------------------------------------------------------------------
+
+//QToolBar
+//-----------------------------------------------------------------------------
+工具栏
+工具栏中的元素可以是各种窗口组件(QAction,Qwidget)
+工具栏中的元素通常以图标方式存在
+在Qt中,通过QToolBar类来创建工具栏,然后通过QAction类来创建工具项
+void setFloatable ( bool floatable );
+　　　　   //设置工具栏是否可以当做独立的窗口,停靠在上下左右窗口旁,,默认为true
+
+void setMovable(bool movable);
+       //设置工具栏是否可以自动移动,停靠在任意处,默认为true
+
+void setIconSize ( const QSize & iconSize );
+       //设置工具栏中的每个图标大小
+
+ QToolBar *tb = addToolBar("ToolBar");  //将"ToolBar"插入当前工具栏区域,并返回这个QToolBar对象 
+
+ QAction *action = new QAction("",QToolBar);             
+ action->setToolTip("Open");                         //信息提示,当鼠标靠近这个项,便会提示信息
+ action->setIcon(QIcon(":/res/pic/open.png"));       //设置图标,冒号表示该文件处于资源文件指定的地方    
+
+ tb->addAction(action);   //将工具栏选项加入工具栏	   
+ 
+ QToolBar* tb = addToolBar("Tool Bar");
+
+    QAction* action = new QAction("",QToolBar);
+
+    tb->setFloatable(false);
+    tb->setMovable(false);
+
+ 
+
+    action->setToolTip("Open");
+    action->setIcon(QIcon(":/Res/open.png"));
+
+    tb->addAction(action);
+    tb->addSeparator();                 //添加间隔符
+
+ 
+
+    /*添加QWidget组件*/
+    QPushButton* b = new QPushButton("Button");
+    QLabel* l = new QLabel("Label",this);
+    QLineEdit* e = new QLineEdit(this);
+
+    tb->addWidget(b);
+    tb->addWidget(l);
+    tb->addWidget(e);
+//-----------------------------------------------------------------------------	
+
+//QStatusBar
+//-----------------------------------------------------------------------------	
+状态栏	
+状态栏一般位于主窗口最底部
+用来显示简要信息
+显示的信息一般分为:
+
+　　　 -实时信息,如:  当前程序状态
+
+            -永久信息,如: 程序版本号,机构名称
+
+            -进度信息,如: 进度条提示,百分比提示
+
+在Qt中,通过QStatusBar类来创建状态栏,这个类是个容器类组件,可以包含任意QWidget类
+
+QStatusBar *  statusBar ();
+//获取当前类的状态栏,如果状态栏没有创建,则返回一个空的状态栏
+
+void  showMessage ( const QString & message, int timeout = 0 ) ;
+//在状态栏下左下部显示信息, timeout 的单位是ms,timeout倒计时完会调用clearMessage()
+
+void clearMessage () 
+//清除消息
+
+        QStatusBar     *sb = statusBar();
+
+        QLabel*  status1 = new QLabel("Line: 1  Col: 1",this);
+        QLabel*  status2 = new QLabel("Lines: 0  Length: 0",this);
+
+        status1->setAlignment(Qt::AlignCenter);                    
+        status2->setAlignment(Qt::AlignCenter);
+
+        status1->setMinimumWidth(200);      //设置最小宽度,避免与旁边的信息紧靠在一起
+        status2->setMinimumWidth(200);
+
+        sb->addPermanentWidget(status1);
+//-----------------------------------------------------------------------------			
+		
+
+QAction：动作类，用于当做一个菜单项或工具项插入菜单或工具栏
+
+QActionGroup：动作组、用于管理多个动作，设置它们之间的互斥性等
+
+QWidgetAction：部件动作、继承自QAction，用于将小部件插入菜单或工具栏
+
+QDockWidget：悬浮部件，程序运行后可鼠标拖动的部件
+
+QMainWindow：主窗口，是其他部件的容器
+
+QMdiArea：自区域，加到QMainWindow中，用于放置多个QMdiSubWindow子窗口
+
+QMdiSubMindow：子窗口
+
+QMenu：菜单
+
+QSizeGrip：管理顶层窗口尺寸，一般位于软件的右下角，状态栏最右边，鼠标可拖动它改变
+窗口大小
+
+
+
+ 

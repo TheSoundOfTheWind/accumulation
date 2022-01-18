@@ -1,0 +1,16 @@
+#第一次输入密码之后就不需要再输入了
+git config --global credential.helper store
+
+#修改上传文件大小限制为500M
+git config http.postBuffer 524288000
+
+#改变路径长度限制
+git config --system core.longpaths true
+
+#window 改变文件上传大小限制
+1. 下载：https://git-lfs.github.com/
+2. git lfs install
+
+#查看配置
+git config -l
+远程地址...

@@ -1,0 +1,56 @@
+//QTransform
+Properties:
+matrix : QMatrix4x4
+rotation : QQuaternion
+rotationX : float
+rotationY : float
+rotationZ : float
+scale : float
+scale3D : QVector3D
+translation : QVector3D
+worldMatrix : const QMatrix4x4
+
+
+Public Functions:
+QTransform(Qt3DCore::QNode *parent = nullptr)
+QMatrix4x4	matrix() const
+QQuaternion	rotation() const
+float		rotationX() const
+float		rotationY() const
+float		rotationZ() const
+float		scale() const
+QVector3D	scale3D() const
+QVector3D	translation() const
+QMatrix4x4	worldMatrix() const
+
+Public Slots:
+void	setMatrix(const QMatrix4x4 &matrix)
+void	setRotation(const QQuaternion &rotation)
+void	setRotationX(float rotationX)
+void	setRotationY(float rotationY)
+void	setRotationZ(float rotationZ)
+void	setScale(float scale)
+void	setScale3D(const QVector3D &scale)
+void	setTranslation(const QVector3D &translation)
+
+Signals:
+void	matrixChanged()
+void	rotationChanged(const QQuaternion &rotation)
+void	rotationXChanged(float rotationX)
+void	rotationYChanged(float rotationY)
+void	rotationZChanged(float rotationZ)
+void	scale3DChanged(const QVector3D &scale)
+void	scaleChanged(float scale)
+void	translationChanged(const QVector3D &translation)
+void	worldMatrixChanged(const QMatrix4x4 &worldMatrix)
+
+Static Public Members:
+QQuaternion	fromAxes(const QVector3D &xAxis, const QVector3D &yAxis, const QVector3D &zAxis)
+QQuaternion	fromAxesAndAngles(const QVector3D &axis1, float angle1, const QVector3D &axis2, float angle2)
+QQuaternion	fromAxesAndAngles(const QVector3D &axis1, float angle1, const QVector3D &axis2, float angle2, const QVector3D &axis3, float angle3)
+QQuaternion	fromAxisAndAngle(const QVector3D &axis, float angle)
+QQuaternion	fromAxisAndAngle(float x, float y, float z, float angle)
+QQuaternion	fromEulerAngles(const QVector3D &eulerAngles)
+QQuaternion	fromEulerAngles(float pitch, float yaw, float roll)
+QMatrix4x4	rotateAround(const QVector3D &point, float angle, const QVector3D &axis)
+QMatrix4x4	rotateFromAxes(const QVector3D &xAxis, const QVector3D &yAxis, const QVector3D &zAxis)

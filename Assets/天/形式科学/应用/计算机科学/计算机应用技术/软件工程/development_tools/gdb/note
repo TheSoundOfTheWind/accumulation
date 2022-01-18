@@ -1,0 +1,2 @@
+1. 打印某指针的内容，如指向geTrapezoid的指针地址是ox148210打印这个指针的内容：
+p *(geTrapezoid*)ox148210

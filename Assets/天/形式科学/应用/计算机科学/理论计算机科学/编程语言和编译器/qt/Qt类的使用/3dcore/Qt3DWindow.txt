@@ -1,0 +1,14 @@
+//Qt3DWindow
+Public Functions:
+Qt3DRender::QFrameGraphNode *	activeFrameGraph() const
+Qt3DExtras::QForwardRenderer *	defaultFrameGraph() const
+void							registerAspect(Qt3DCore::QAbstractAspect *aspect)
+void							registerAspect(const QString &name)
+Qt3DRender::QRenderSettings *	renderSettings() const
+void							setActiveFrameGraph(Qt3DRender::QFrameGraphNode *activeFrameGraph)
+void							setRootEntity(Qt3DCore::QEntity *root)
+Qt3DRender::QCamera * 			camera() const
+Reimplemented Protected Functions:
+virtual bool	event(QEvent *e) override
+virtual void	resizeEvent(QResizeEvent *) override
+virtual void	showEvent(QShowEvent *e) override

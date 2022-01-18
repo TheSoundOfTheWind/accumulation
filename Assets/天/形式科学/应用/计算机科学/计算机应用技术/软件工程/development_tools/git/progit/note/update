@@ -1,0 +1,8 @@
+1. git status
+2. git checkout filename(文件修改还原到最初状态，若文件需要更新到服务器上，
+                         应该先merge到服务器，再更新到本地)
+3. git branch (查看分支情况)
+4. git checkout <remote branch> (若分支为本地分支，则需切换到服务器的远程分支)
+5. git pull
+
+

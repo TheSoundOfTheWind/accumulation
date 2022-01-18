@@ -1,0 +1,11 @@
+1.光栅化成像
+2.光线追踪成像
+
+Exposure 曝光
+H = T * E
+Exposure = time * irradiance
+
+ISO 线性增益
+
+Thin Lens Approximation
+

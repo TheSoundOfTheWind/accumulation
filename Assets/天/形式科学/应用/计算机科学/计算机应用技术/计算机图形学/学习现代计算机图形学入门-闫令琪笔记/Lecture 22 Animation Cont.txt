@@ -1,0 +1,20 @@
+欧拉方法
+正反馈，不稳定
+信号分析课
+数值分析课
+刚体的模拟
+模拟和渲染
+动画好像就是仿真
+
+Rasterization 
+
+Geometry
+
+Light Transport
+
+Animation/Simulation
+
+每个领域都有一个黄金准则
+渲染最终的目标，以假乱真
+
+实时和离线渲染 + 材质建模 + 成像

@@ -1,0 +1,20 @@
+1. error: assignment of member ‘Data::a’ in read-only object
+
+原因：尝试在被const修饰的函数中修改类的数据成员,这个修改可能是指在这个函数中直接修改数据成员变量导致，也可能是在这个函数中调用了没有被const修饰的函数，系统不知道你这个你这个没有被const修饰的函数有没有修改该对象成员变量的值，因为你没有对这个调用的函数加const，编译器无法检查。（系统不会根据你是值返回或者函数名来判断你有没有修改数据成员）只会在加了const修饰的时候，编译器才会去检查这个函数内部所有的语句有没有可能对成员变量造成修改.
+
+2. error: passing ‘const XXX’ as ‘this’ argument discards qualifiers [-fpermissive]
+
+原因：通过一个const对象调用一个没有被const修饰的函数，这样可能会改变const对象的值，所以这是一个error。所以以后所有参数内用const XXX & 修饰参数，这个被修饰的参数也只能调用被const修饰的函数，不能调用非const修饰的函数。
+
+3.error: invalid conversion from ‘const A*’ to ‘A*’ [-fpermissive]
+原因，尝试将某个对象的权限扩大，这是不允许的，默认只能将大权限的缩小，反之则不行
+
+4.error: invalid use of incomplete type 'XXX'
+
+5.error: forward declaration of 'XXX'
+
+6.error: cannot bind non-const lvalue reference of type ‘A&’ to an rvalue of type ‘A’
+
+7.error: request for member ‘a’ in ‘(A*)this’, which is of pointer type ‘A*’ (maybe you meant to use ‘->’ ?)
+
+8.undefined reference to ''

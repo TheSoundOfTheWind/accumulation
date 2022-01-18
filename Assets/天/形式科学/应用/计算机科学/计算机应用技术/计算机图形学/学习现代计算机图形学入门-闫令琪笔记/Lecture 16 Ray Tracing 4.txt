@@ -1,0 +1,5 @@
+Monte Carlo Integration
+
+Path Tracing
+
+Solution: Russian Roulette(RR)（俄罗斯轮盘赌）

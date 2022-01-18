@@ -1,0 +1,20 @@
+1.The Three States
+modified -- staged  --  committed
+
+2.install on linux
+# debian-based
+sudo apt install git-all
+#Fedora
+sudo dnf install git-all
+
+3.first-time git setup
+git config:lets you get and set configuration variables that control all aspects of how Git looks and operates.
+3.1 /etc/gitconfig
+3.2 ~/.gitconfig or ~/.config/git/config
+3.3 .git/congit
+
+#view all of your setting
+git config --list --show-origin
+
+
+

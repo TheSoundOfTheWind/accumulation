@@ -1,0 +1,105 @@
+//QAction
+//-----------------------------------------------------------------------------
+The QAction class provides an abstract user interface action that can be inserted
+into widgets. 
+Header:	#include <QAction>
+Inherits:QObject
+Inherited By:QWidgetAction
+
+Public Types:
+enum	ActionEvent { Trigger, Hover }
+enum	MenuRole { NoRole, TextHeuristicRole, ApplicationSpecificRole, AboutQtRole, AboutRole, …, QuitRole }
+enum	Priority { LowPriority, NormalPriority, HighPriority }
+
+Properties:
+autoRepeat : bool
+checkable : bool
+checked : bool
+enabled : bool
+font : QFont
+icon : QIcon
+iconText : QString
+iconVisibleInMenu : bool
+menuRole : MenuRole
+priority : Priority
+shortcut : QKeySequence
+shortcutContext : Qt::ShortcutContext
+shortcutVisibleInContextMenu : bool
+statusTip : QString
+text : QString
+toolTip : QString
+visible : bool
+whatsThis : QString
+
+Public Functions:
+QAction(const QIcon &icon, const QString &text, QObject *parent = nullptr)
+QAction(const QString &text, QObject *parent = nullptr)
+QAction(QObject *parent = nullptr)
+virtual	~QAction()
+QActionGroup *	actionGroup() const
+void	        activate(QAction::ActionEvent event)
+QList<QGraphicsWidget *>	associatedGraphicsWidgets() const
+QList<QWidget *>	        associatedWidgets() const
+bool	    autoRepeat() const
+QVariant	data() const
+QFont	font() const
+QIcon	icon() const
+QString	iconText() const
+bool	isCheckable() const
+bool	isChecked() const
+bool	isEnabled() const
+bool	isIconVisibleInMenu() const
+bool	isSeparator() const
+bool	isShortcutVisibleInContextMenu() const
+bool	isVisible() const
+QMenu *	            menu() const
+QAction::MenuRole	menuRole() const
+QWidget *	        parentWidget() const
+QAction::Priority	priority() const
+void	setActionGroup(QActionGroup *group)
+void	setAutoRepeat(bool)
+void	setCheckable(bool)
+void	setData(const QVariant &userData)
+void	setFont(const QFont &font)
+void	setIcon(const QIcon &icon)
+void	setIconText(const QString &text)
+void	setIconVisibleInMenu(bool visible)
+void	setMenu(QMenu *menu)
+void	setMenuRole(QAction::MenuRole menuRole)
+void	setPriority(QAction::Priority priority)
+void	setSeparator(bool b)
+void	setShortcut(const QKeySequence &shortcut)
+void	setShortcutContext(Qt::ShortcutContext context)
+void	setShortcutVisibleInContextMenu(bool show)
+void	setShortcuts(const QList<QKeySequence> &shortcuts)
+void	setShortcuts(QKeySequence::StandardKey key)
+void	setStatusTip(const QString &statusTip)
+void	setText(const QString &text)
+void	setToolTip(const QString &tip)
+void	setWhatsThis(const QString &what)
+QKeySequence	    shortcut() const
+Qt::ShortcutContext	shortcutContext() const
+QList<QKeySequence>	shortcuts() const
+bool	            showStatusText(QWidget *widget = nullptr)
+QString	statusTip() const
+QString	text() const
+QString	toolTip() const
+QString	whatsThis() const
+
+Public Slots:
+void	hover()
+void	setChecked(bool)
+void	setDisabled(bool b)
+void	setEnabled(bool)
+void	setVisible(bool)
+void	toggle()
+void	trigger()
+
+Signals:
+void	changed()
+void	hovered()
+void	toggled(bool checked) //切换
+void	triggered(bool checked = false) //触发
+
+Reimplemented Protected Functions:
+virtual bool	event(QEvent *e) override

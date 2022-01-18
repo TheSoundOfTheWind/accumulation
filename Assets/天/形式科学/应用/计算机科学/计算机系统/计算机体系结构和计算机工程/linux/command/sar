@@ -1,0 +1,1462 @@
+          https://shockerli.net/post/linux-tool-sar/                    
+       sar - Collect, report, or save system activity information.
+性能瓶颈排查技巧:
+   性能瓶颈可能来自计算机处理流程的某一个节点，当某个节点的速度下降其他的速度也会被这块短板影响，
+   速度的限制可能来自很多方面，一下一一列举：
+   CPU：当cpu占用率为100%，这个时候cpu的瓶颈就会成为制约速度的瓶颈
+   GPU:当GPU占用率为100%，这个时候gpu的性能就成为了制约速度的瓶颈
+   内存：当内存占用率达到100%，这个时候内存的性能成为了制约速度的瓶颈
+   硬盘：硬盘的速度很低，只要涉及与硬盘I/O的操作对速度的影响都会很大，
+         特别是内存不足，内存占用率达80%时，计算的处理还要去硬盘里拿页，速度就会很明显的下降
+   网络带宽：如果涉及网络通信，多台物理机之间通过网络带宽通信，这个时候要查看网络带宽的占用，
+             数据流动越慢的物理设备对机器整体带来的影响就越容易被感知
+   供电：供电对cpu的频率的影响很大，如果供电不稳，cpu不能满负荷工作，相差也会很大
+   散热：除了有功耗墙的设置还有，温度墙的设置，当温度过高cpu频率也会受影响
+--------------------------------怀疑cpu存在瓶颈，可用sar -u 1 和sar -q 等来查看-----------------------------
+
+#报告CPU利用率
+$ sar -u ALL 1 (or sar -u 1)
+
+e.g:
+07:28:27 PM     CPU      %usr     %nice      %sys   %iowait    %steal      %irq     %soft    %guest    %gnice     %idle
+07:28:28 PM     all      0.44      0.00      0.38      0.00      0.00      0.00      0.00      0.00      0.00     99.18
+07:28:29 PM     all      0.56      0.00      0.44      0.00      0.00      0.00      0.00      0.00      0.00     99.00
+
+%usr:在用户级别（应用程序）执行时发生的CPU利用率百分比。注意此字段不包括运行虚拟处理器所花费的时间。
+%nice:在具有良好优先级的用户级别执行时发生的CPU利用率百分比。
+%sys:在系统级（内核）执行时发生的CPU利用率百分比。注意此字段包括用于维护硬件和软件中断的时间。
+%iowait:CPU虚度或者说等待未完成的I/O操作占用总cpu时间的百分比，（完全是因为磁盘性能低浪费掉的时间）
+%steal:虚拟机监控程序处于非自愿等待状态时虚拟CPU或CPU所花费的时间百分比,为另一个虚拟处理器提供服务。
+%irq:CPU用于处理硬件中断的时间百分比
+%soft:CPU或CPU为软件中断提供服务所花费的时间百分比
+%guest:CPU运行虚拟处理器所用时间的百分比
+%gnice:在具有良好优先级的客户级别执行时发生的CPU利用率百分比。
+%idle:CPU空闲且系统没有未处理磁盘I/O请求占的时间百分比。
+
+# 报告队列长度和平均负载
+$ sar -q 1   
+
+e.g:
+07:26:44 PM   runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15   blocked
+07:26:45 PM         0       864      0.01      0.07      0.03         0
+07:26:46 PM         0       864      0.01      0.07      0.03         0
+
+runq-sz:运行队列长度（等待运行时的任务数）。
+plist-sz:任务列表中的任务数
+ldavg-1:最后一分钟的平均系统负载。
+	荷载平均值计算为可运行或正在运行的任务（R状态），
+	以及处于不间断睡眠状态（D状态）的任务数在指定的时间间隔内。
+ldavg-5:过去5分钟的平均系统负载
+ldavg-15:过去15分钟的平均系统负载
+blocked:当前阻塞，等待I/O完成的任务数。
+
+-----------------------------怀疑内存存在瓶颈，可用sar -B, sar -r和sar -W 等来查看--------------------------
+#报告分页统计信息
+$ sar -B 1
+
+e.g:
+07:42:01 PM  pgpgin/s pgpgout/s   fault/s  majflt/s  pgfree/s pgscank/s pgscand/s pgsteal/s    %vmeff
+07:42:02 PM      0.00    112.00     51.00      0.00    613.00      0.00      0.00      0.00      0.00
+07:42:03 PM      0.00      0.00    129.00      0.00    520.00      0.00      0.00      0.00      0.00
+
+pgpgin/s:系统每秒从磁盘或swap置换到内存(系统页)的字节数（KB/s）
+pgpgout/s:系统每秒从内存（系统页）置换到磁盘的字节数（KB/s）
+fault/s：系统每秒的缺页数（主缺页和次缺页之和（major+minor）），缺页数不包括那些产生I/O的缺页数，因为这些缺页错误
+         可以在不使用I/O的情况下恢复。
+majflt/s：系统每秒产生的主缺页数，这些缺的页需要请求从磁盘加载到内存。
+pgfree/s：系统每秒放在空闲列表上的页数。
+pgscank/s：守护程序每秒扫描的页数
+pgscand/s：每秒直接被扫描的页数
+pgsteal/s:系统每秒从（pagecache（页缓冲/文件缓冲，通常为4K）和swapcache（交换空间））释放的页数，以满足内存需求。
+%vmeff：以pgsteel/pgscan计算，这是页面回收效率的度量。如果它在附近100%然后几乎每一页从非活动列表的尾部出来都被捕获了。如         果它得到太低（例如低于30%），则虚拟内存有一些困难。如果在时间间隔内未扫描任何页面，则显示为零。
+
+#报告内存利用率统计信息。
+
+$ sar -r 1 (or sar -r ALL 1)
+
+e.g:
+08:49:29 PM kbmemfree   kbavail kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit  kbactive   kbinact   kbdirty
+08:49:30 PM    919156  13097816  15438156     94.38   1266736  10047924   9160852     49.64   7756052   5803672        32
+08:49:31 PM    919156  13097816  15438156     94.38   1266740  10047920   9160852     49.64   7756052   5803672        32
+kbmemfree:空闲的内存数单位（KB）
+kbavail：估计启动新应用不需要启用交换空间的内存数
+kbmemused：目前使用的内存数，但是它不包括内核使用的内存数。
+%memused：内存使用百分比
+kbbuffers：内核用作缓冲区的内存量（KB）。
+kbcached：内核用于缓存数据的内存量（KB）。
+kbcommit：当前工作负载所需的内存量（KB）。这是一个预估值为了不出现内存不足情况。
+%commit:当前工作负载内存占总内存的百分比，这个值可能会超过因为内核也会占用内存。
+kbactive：活动的内存数（KB）（最近正在被使用的和通常不归还（释放）的除非绝对必要）
+qkbinact：不活动的内存大小（KB），（最近都不使用的内存，这样的内存通常被归还或者说释放用做其他用途）
+kbdirty：等待写入磁盘的内存量（KB）
+
+---------------------------------------怀疑I/O存在瓶颈，可用sar -b, sar -u和sar -d等来查看----------------------
+#报告I/O和传输速率统计信息
+$sar -b 1
+
+10:11:04 AM       tps      rtps      wtps   bread/s   bwrtn/s
+10:11:05 AM     92.00      0.00     92.00      0.00   1400.00
+10:11:06 AM      0.00      0.00      0.00      0.00      0.00
+
+tps：每秒请求传输到物理设备的传输总数，一个传输就是一个对物理设备的I/O请求，多个逻辑请求能被合并成一个I/O
+     请求。每个传输请求的大小是不确定的。
+rtps：每秒对物理设备读请求的总数。
+wtps：每秒对物理设备写请求的总数。
+Total amount of data read from the devices in blocks per second.  Blocks are equivalent to sectors
+and therefore have a size of 512 bytes.
+bread/s：每秒从设备读取的数据总量（以块为单位）。块相当于扇区，因此其大小为512字节。
+bwrtn/s：每秒从设备写入的数据总量（以块为单位）
+
+#报告每个块设备的活动
+$ sar -d 1
+
+10:33:11 AM       DEV       tps     rkB/s     wkB/s   areq-sz    aqu-sz     await     svctm     %util
+10:33:12 AM    dev8-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+10:33:12 AM   dev8-16      3.00      0.00    232.00     77.33      0.00      0.00      0.00      0.00
+ DEV：设备名
+ tps：每秒请求传输到物理设备的传输总数，一个传输就是一个对物理设备的I/O请求，多个逻辑请求能被合并成一个I/O
+     请求。每个传输请求的大小是不确定的。
+ rkB/s：每秒从设备中读取的字节数（KB）
+ wkB/s：每秒往设备中写入的字节数（KB）
+ areq-sz：对设备I/O请求的平均大小（KB）
+ aqu-sz：向设备发出的请求的平均队列长度。
+ await：I/O请求发送到物理设备到响应或服务的平均时间（毫秒）。这个包括队列请求花费的时间，响应他们花费的时间。
+ svctm：向设备发出的I/O请求的平均服务时间（毫秒）。
+ %util：向设备发出I/O请求所用时间的百分比（设备的带宽利用率）。当该值接近100%时设备饱和，因为连续(串行)的服务请求。但对于        并行服务请求的设备，如RAID阵列和对于固态硬盘，这个数字并不反映它们的性能限制。
+
+
+1. 查看网卡使用情况(每隔1秒查看一次)
+$ sar -n DEV 1
+
+e.g:
+Average:        IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s   %ifutil
+Average:       enp6s0      2.69      0.92      0.21      0.05      0.00      0.00      0.54      0.00
+Average:           lo      8.46      8.46     37.60     37.60      0.00      0.00      0.00      0.00
+
+IFACE：为其报告统计信息的网络接口的名称。
+rxpck/s：每秒接受的数据包总数。
+txpck/s：每秒传输的数据包总数。
+rxkB/s：每秒接受的大小（KB）
+txkB/s：每秒发送的大小（KB）
+rxcmp/s：每秒接受的压缩包总数。
+txcmp/s：每秒发送的压缩包总数。
+rxmcst/s：每秒接受的多播总数。
+%ifutil：网络接口的利用率百分比。对于半双工接口，利用率是计算
+         使用rxkB/s和txkB/s之和占接口速度的百分比。对于全双工，
+         这是rxkB/S或txkB/S中的较大值占接口数度的百分比。
+
+
+SAR(1)                                            Linux User's Manual                                            SAR(1)
+
+NAME
+       sar - Collect, report, or save system activity information.
+
+SYNOPSIS
+       sar [ -A ] [ -B ] [ -b ] [ -C ] [ -D ] [ -d ] [ -F [ MOUNT ] ] [ -H ] [ -h ] [ -p ] [ -q ] [ -r [ ALL ] ] [ -S ]
+       [ -t ] [ -u [ ALL ] ] [ -V ] [ -v ] [ -W ] [ -w ] [ -y ] [ --human ] [ --sadc ] [ -I { int_list | SUM | ALL }  ]
+       [  -P  {  cpu_list | ALL } ] [ -m { keyword [,...] | ALL } ] [ -n { keyword [,...] | ALL } ] [ -j { ID | LABEL |
+       PATH | UUID | ... } ] [ -f [ filename ] | -o [ filename ] | -[0-9]+ ] [ -i interval ] [ -s [ hh:mm[:ss] ] ] [ -e
+       [ hh:mm[:ss] ] ] [ interval [ count ] ]
+
+DESCRIPTION
+       The sar command writes to standard output the contents of selected cumulative activity counters in the operating
+       system. The accounting system, based on the values in the count and interval parameters, writes information  the
+       specified  number  of  times  spaced at the specified intervals in seconds.  If the interval parameter is set to
+       zero, the sar command displays the average statistics for the time since the system was started. If the interval
+       parameter is specified without the count parameter, then reports are generated continuously.  The collected data
+       can also be saved in the file specified by the -o filename flag, in addition to being displayed onto the screen.
+       If  filename  is omitted, sar uses the standard system activity daily data file (see below).  By default all the
+       data available from the kernel are saved in the data file.
+
+       The sar command extracts and writes to standard output records previously saved in a  file.  This  file  can  be
+       either  the  one  specified  by the -f flag or, by default, the standard system activity daily data file.  It is
+       also possible to enter -1, -2 etc. as an argument to sar to display data of that days ago. For example, -1  will
+       point at the standard system activity file of yesterday.
+
+       Standard  system activity daily data files are named saDD or saYYYYMMDD, where YYYY stands for the current year,
+       MM for the current month and DD for the current day. They are the default files used by sar only when  no  file‐
+       name  has  been  explicitly  specified.   When  used  to  write data to files (with its option -o), sar will use
+       saYYYYMMDD if option -D has also been specified, else it will use saDD.  When used to display the records previ‐
+       ously saved in a file, sar will look for the most recent of saDD and saYYYYMMDD, and use it.
+
+       Standard  system  activity  daily data files are located in the /var/log/sysstat directory by default. Yet it is
+       possible to specify an alternate location for them: If a directory (instead  of  a  plain  file)  is  used  with
+       options -f or -o then it will be considered as the directory containing the data files.
+
+       Without  the  -P  flag,  the sar command reports system-wide (global among all processors) statistics, which are
+       calculated as averages for values expressed as percentages, and as sums otherwise. If the -P flag is given,  the
+       sar command reports activity which relates to the specified processor or processors. If -P ALL is given, the sar
+       command reports statistics for each individual processor and global statistics among all processors.
+
+       You can select information about specific system activities using flags. Not specifying any flags  selects  only
+       CPU activity.  Specifying the -A flag selects all possible activities.
+
+       The  default  version  of the sar command (CPU utilization report) might be one of the first facilities the user
+       runs to begin system activity investigation, because it monitors major system resources. If CPU  utilization  is
+       near 100 percent (user + nice + system), the workload sampled is CPU-bound.
+
+       If  multiple  samples  and  multiple reports are desired, it is convenient to specify an output file for the sar
+       command.  Run the sar command as a background process. The syntax for this is:
+
+       sar -o datafile interval count >/dev/null 2>&1 &
+
+       All data are captured in binary form and saved to a file (datafile).  The data can then be selectively displayed
+       with  the  sar  command  using  the  -f option. Set the interval and count parameters to select count records at
+       interval second intervals. If the count parameter is not set,  all  the  records  saved  in  the  file  will  be
+       selected.   Collection  of  data in this manner is useful to characterize system usage over a period of time and
+       determine peak usage hours.
+
+       Note:     The sar command only reports on local activities.
+
+OPTIONS
+       -A     This is equivalent to specifying -bBdFHqSuvwWy -I SUM -I ALL -m ALL -n ALL -r ALL -u ALL -P ALL.
+
+       -B     Report paging statistics.  The following values are displayed:
+
+              pgpgin/s
+                     Total number of kilobytes the system paged in from disk per second.
+
+              pgpgout/s
+                     Total number of kilobytes the system paged out to disk per second.
+
+              fault/s
+                     Number of page faults (major + minor) made by the system per second.  This is not a count of  page
+                     faults that generate I/O, because some page faults can be resolved without I/O.
+
+              majflt/s
+                     Number  of major faults the system has made per second, those which have required loading a memory
+                     page from disk.
+
+              pgfree/s
+                     Number of pages placed on the free list by the system per second.
+
+              pgscank/s
+                     Number of pages scanned by the kswapd daemon per second.
+
+              pgscand/s
+                     Number of pages scanned directly per second.
+
+              pgsteal/s
+                     Number of pages the system has reclaimed from cache (pagecache and swapcache) per second  to  sat‐
+                     isfy its memory demands.
+
+              %vmeff
+                     Calculated  as pgsteal / pgscan, this is a metric of the efficiency of page reclaim. If it is near
+                     100% then almost every page coming off the tail of the inactive list is being reaped. If  it  gets
+                     too  low  (e.g.  less  than 30%) then the virtual memory is having some difficulty.  This field is
+                     displayed as zero if no pages have been scanned during the interval of time.
+
+       -b     Report I/O and transfer rate statistics.  The following values are displayed:
+
+              tps
+                     Total number of transfers per second that were issued to physical devices.  A transfer is  an  I/O
+                     request  to a physical device. Multiple logical requests can be combined into a single I/O request
+                     to the device.  A transfer is of indeterminate size.
+
+              rtps
+                     Total number of read requests per second issued to physical devices.
+
+              wtps
+                     Total number of write requests per second issued to physical devices.
+
+              bread/s
+                     Total amount of data read from the devices in blocks per second.  Blocks are equivalent to sectors
+                     and therefore have a size of 512 bytes.
+
+              bwrtn/s
+                     Total amount of data written to devices in blocks per second.
+
+       -C     When reading data from a file, tell sar to display comments that have been inserted by sadc.
+
+       -D     Use  saYYYYMMDD  instead  of saDD as the standard system activity daily data file name. This option works
+              only when used in conjunction with option -o to save data to file.
+
+       -d     Report activity for each block device.  When data are displayed, the device specification devM-n is  gen‐
+              erally  used (DEV column).  M is the major number of the device and n its minor number.  Device names may
+              also be pretty-printed if option -p is used or persistent device names can be printed  if  option  -j  is
+              used  (see below).  Note that disk activity depends on sadc options -S DISK and -S XDISK to be collected.
+              The following values are displayed:
+
+              tps
+                     Total number of transfers per second that were issued to physical devices.  A transfer is  an  I/O
+                     request  to a physical device. Multiple logical requests can be combined into a single I/O request
+                     to the device.  A transfer is of indeterminate size.
+
+              rkB/s
+                     Number of kilobytes read from the device per second.
+
+              wkB/s
+                     Number of kilobytes written to the device per second.
+
+              areq-sz
+                     The average size (in kilobytes) of the I/O requests that were issued to the device.
+                     Note: In previous versions, this field was known as avgrq-sz and was expressed in sectors.
+
+              aqu-sz
+                     The average queue length of the requests that were issued to the device.
+                     Note: In previous versions, this field was known as avgqu-sz.
+
+              await
+                     The average time (in milliseconds) for I/O requests issued  to  the  device  to  be  served.  This
+                     includes the time spent by the requests in queue and the time spent servicing them.
+
+              svctm
+                     The  average service time (in milliseconds) for I/O requests that were issued to the device. Warn‐
+                     ing! Do not trust this field any more. This field will be removed in a future sysstat version.
+
+              %util
+                     Percentage of elapsed time during which I/O requests were issued to the device (bandwidth utiliza‐
+                     tion  for the device). Device saturation occurs when this value is close to 100% for devices serv‐
+                     ing requests serially. But for devices serving requests in parallel, such as RAID arrays and  mod‐
+                     ern SSDs, this number does not reflect their performance limits.
+
+       -e [ hh:mm[:ss] ]
+              Set  the  ending  time of the report. The default ending time is 18:00:00. Hours must be given in 24-hour
+              format.  This option can be used when data are read from or written to a file (options -f or -o).
+
+       -F [ MOUNT ]
+              Display statistics for currently mounted filesystems. Pseudo-filesystems are ignored. At the end  of  the
+              report,  sar  will  display a summary of all those filesystems.  Use of the MOUNT parameter keyword indi‐
+              cates that mountpoint will be reported instead of filesystem device.  Note  that  filesystems  statistics
+              depend on sadc option -S XDISK to be collected.
+
+              The following values are displayed:
+
+              MBfsfree
+                     Total amount a free space in megabytes (including space available only to privileged user).
+
+              MBfsused
+                     Total amount of space used in megabytes.
+
+              %fsused
+                     Percentage of filesystem space used, as seen by a privileged user.
+
+              %ufsused
+                     Percentage of filesystem space used, as seen by an unprivileged user.
+
+              Ifree
+                     Total number of free file nodes in filesystem.
+
+              Iused
+                     Total number of file nodes used in filesystem.
+
+              %Iused
+                     Percentage of file nodes used in filesystem.
+
+       -f [ filename ]
+              Extract records from filename (created by the -o filename flag). The default value of the filename param‐
+              eter is the current standard system activity daily data file.  If filename is a directory  instead  of  a
+              plain file then it is considered as the directory where the standard system activity daily data files are
+              located. The -f option is exclusive of the -o option.
+
+       -H     Report hugepages utilization statistics.  The following values are displayed:
+
+              kbhugfree
+                     Amount of hugepages memory in kilobytes that is not yet allocated.
+
+              kbhugused
+                     Amount of hugepages memory in kilobytes that has been allocated.
+
+              %hugused
+                     Percentage of total hugepages memory that has been allocated.
+
+       -h     Display a short help message then exit.
+
+       --human
+              Print sizes in human readable format (e.g. 1k, 1.23M, etc.)  The units displayed with this option  super‐
+              sede any other default units (e.g.  kilobytes, sectors...) associated with the metrics.
+
+       -I { int_list | SUM | ALL }
+              Report statistics for interrupts.  int_list is a list of comma-separated values or range of values (e.g.,
+              0-16,35,400-).  The SUM keyword indicates that the total number of interrupts received per second  is  to
+              be  displayed.  The  ALL  keyword indicates that statistics from all interrupts, including potential APIC
+              interrupt sources, are to be reported.  Note that interrupt statistics depend on sadc option "-S INT"  to
+              be collected.
+
+       -i interval
+              Select data records at seconds as close as possible to the number specified by the interval parameter.
+
+       -j { ID | LABEL | PATH | UUID | ... }
+              Display  persistent device names. Use this option in conjunction with option -d.  Options ID, LABEL, etc.
+              specify the type of the persistent name. These options are not limited, only prerequisite is that  direc‐
+              tory  with  required  persistent  names is present in /dev/disk.  If persistent name is not found for the
+              device, the device name is pretty-printed (see option -p below).
+
+       -m { keyword [,...] | ALL }
+              Report power management statistics.  Note that these statistics depend on sadc's option "-S POWER" to  be
+              collected.
+
+              Possible keywords are CPU, FAN, FREQ, IN, TEMP and USB.
+
+              With the CPU keyword, statistics about CPU are reported.  The following value is displayed:
+
+              MHz
+                     Instantaneous CPU clock frequency in MHz.
+
+              With the FAN keyword, statistics about fans speed are reported.  The following values are displayed:
+
+              rpm
+                     Fan speed expressed in revolutions per minute.
+
+              drpm
+                     This  field  is  calculated  as  the  difference between current fan speed (rpm) and its low limit
+                     (fan_min).
+
+              DEVICE
+                     Sensor device name.
+
+              With the FREQ keyword, statistics about CPU clock frequency are reported.  The following  value  is  dis‐
+              played:
+
+              wghMHz
+                     Weighted  average CPU clock frequency in MHz.  Note that the cpufreq-stats driver must be compiled
+                     in the kernel for this option to work.
+
+              With the IN keyword, statistics about voltage inputs are reported.  The following values are displayed:
+
+              inV
+                     Voltage input expressed in Volts.
+
+              %in
+                     Relative input value. A value of 100% means that voltage input has reached its high limit (in_max)
+                     whereas a value of 0% means that it has reached its low limit (in_min).
+
+              DEVICE
+                     Sensor device name.
+
+              With  the TEMP keyword, statistics about devices temperature are reported.  The following values are dis‐
+              played:
+
+              degC
+                     Device temperature expressed in degrees Celsius.
+
+              %temp
+                     Relative device temperature. A value of 100% means that temperature has  reached  its  high  limit
+                     (temp_max).
+
+              DEVICE
+                     Sensor device name.
+
+              With  the USB keyword, the sar command takes a snapshot of all the USB devices currently plugged into the
+              system. At the end of the report, sar will display a summary of all those  USB  devices.   The  following
+              values are displayed:
+
+              BUS
+                     Root hub number of the USB device.
+
+              idvendor
+                     Vendor ID number (assigned by USB organization).
+
+              idprod
+                     Product ID number (assigned by Manufacturer).
+
+              maxpower
+                     Maximum power consumption of the device (expressed in mA).
+
+              manufact
+                     Manufacturer name.
+
+              product
+                     Product name.
+
+              The ALL keyword is equivalent to specifying all the keywords above and therefore all the power management
+              statistics are reported.
+
+       -n { keyword [,...] | ALL }
+              Report network statistics.
+
+              Possible keywords are DEV, EDEV, FC, ICMP, EICMP, ICMP6, EICMP6, IP, EIP, IP6,  EIP6,  NFS,  NFSD,  SOCK,
+              SOCK6, SOFT, TCP, ETCP, UDP and UDP6.
+
+              With  the  DEV  keyword, statistics from the network devices are reported.  The following values are dis‐
+              played:
+
+              IFACE
+                     Name of the network interface for which statistics are reported.
+
+              rxpck/s
+                     Total number of packets received per second.
+
+              txpck/s
+                     Total number of packets transmitted per second.
+
+              rxkB/s
+                     Total number of kilobytes received per second.
+
+              txkB/s
+                     Total number of kilobytes transmitted per second.
+
+              rxcmp/s
+                     Number of compressed packets received per second (for cslip etc.).
+
+              txcmp/s
+                     Number of compressed packets transmitted per second.
+
+              rxmcst/s
+                     Number of multicast packets received per second.
+
+              %ifutil
+                     Utilization percentage of the network interface. For half-duplex interfaces, utilization is calcu‐
+                     lated  using the sum of rxkB/s and txkB/s as a percentage of the interface speed. For full-duplex,
+                     this is the greater of rxkB/S or txkB/s.
+
+              With the EDEV keyword, statistics on failures (errors) from the network devices are reported.   The  fol‐
+              lowing values are displayed:
+
+              IFACE
+                     Name of the network interface for which statistics are reported.
+
+              rxerr/s
+                     Total number of bad packets received per second.
+
+              txerr/s
+                     Total number of errors that happened per second while transmitting packets.
+
+              coll/s
+                     Number of collisions that happened per second while transmitting packets.
+
+              rxdrop/s
+                     Number of received packets dropped per second because of a lack of space in linux buffers.
+
+              txdrop/s
+                     Number of transmitted packets dropped per second because of a lack of space in linux buffers.
+
+              txcarr/s
+                     Number of carrier-errors that happened per second while transmitting packets.
+
+              rxfram/s
+                     Number of frame alignment errors that happened per second on received packets.
+
+              rxfifo/s
+                     Number of FIFO overrun errors that happened per second on received packets.
+
+              txfifo/s
+                     Number of FIFO overrun errors that happened per second on transmitted packets.
+
+              With  the  FC keyword, statistics about fibre channel traffic are reported.  Note that fibre channel sta‐
+              tistics depend on sadc's option "-S DISK" to be collected.  The following values are displayed:
+
+              FCHOST
+                     Name of the fibre channel host bus adapter (HBA) interface for which statistics are reported.
+
+              fch_rxf/s
+                     The total number of frames received per second.
+
+              fch_txf/s
+                     The total number of frames transmitted per second.
+
+              fch_rxw/s
+                     The total number of transmission words received per second.
+
+              fch_txw/s
+                     The total number of transmission words transmitted per second.
+
+              With the ICMP keyword, statistics about ICMPv4 network traffic are reported.  Note that ICMPv4 statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              imsg/s
+                     The total number of ICMP messages which the entity received per second  [icmpInMsgs].   Note  that
+                     this counter includes all those counted by ierr/s.
+
+              omsg/s
+                     The  total  number  of ICMP messages which this entity attempted to send per second [icmpOutMsgs].
+                     Note that this counter includes all those counted by oerr/s.
+
+              iech/s
+                     The number of ICMP Echo (request) messages received per second [icmpInEchos].
+
+              iechr/s
+                     The number of ICMP Echo Reply messages received per second [icmpInEchoReps].
+
+              oech/s
+                     The number of ICMP Echo (request) messages sent per second [icmpOutEchos].
+
+              oechr/s
+                     The number of ICMP Echo Reply messages sent per second [icmpOutEchoReps].
+
+              itm/s
+                     The number of ICMP Timestamp (request) messages received per second [icmpInTimestamps].
+
+              itmr/s
+                     The number of ICMP Timestamp Reply messages received per second [icmpInTimestampReps].
+
+              otm/s
+                     The number of ICMP Timestamp (request) messages sent per second [icmpOutTimestamps].
+
+              otmr/s
+                     The number of ICMP Timestamp Reply messages sent per second [icmpOutTimestampReps].
+
+              iadrmk/s
+                     The number of ICMP Address Mask Request messages received per second [icmpInAddrMasks].
+
+              iadrmkr/s
+                     The number of ICMP Address Mask Reply messages received per second [icmpInAddrMaskReps].
+
+              oadrmk/s
+                     The number of ICMP Address Mask Request messages sent per second [icmpOutAddrMasks].
+
+              oadrmkr/s
+                     The number of ICMP Address Mask Reply messages sent per second [icmpOutAddrMaskReps].
+
+              With the EICMP keyword, statistics about ICMPv4 error messages are reported.  Note that ICMPv4 statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              ierr/s
+                     The number of ICMP messages per  second  which  the  entity  received  but  determined  as  having
+                     ICMP-specific errors (bad ICMP checksums, bad length, etc.) [icmpInErrors].
+
+              oerr/s
+                     The  number  of ICMP messages per second which this entity did not send due to problems discovered
+                     within ICMP such as a lack of buffers [icmpOutErrors].
+
+              idstunr/s
+                     The number of ICMP Destination Unreachable messages received per second [icmpInDestUnreachs].
+
+              odstunr/s
+                     The number of ICMP Destination Unreachable messages sent per second [icmpOutDestUnreachs].
+
+              itmex/s
+                     The number of ICMP Time Exceeded messages received per second [icmpInTimeExcds].
+
+              otmex/s
+                     The number of ICMP Time Exceeded messages sent per second [icmpOutTimeExcds].
+
+              iparmpb/s
+                     The number of ICMP Parameter Problem messages received per second [icmpInParmProbs].
+
+              oparmpb/s
+                     The number of ICMP Parameter Problem messages sent per second [icmpOutParmProbs].
+
+              isrcq/s
+                     The number of ICMP Source Quench messages received per second [icmpInSrcQuenchs].
+
+              osrcq/s
+                     The number of ICMP Source Quench messages sent per second [icmpOutSrcQuenchs].
+
+              iredir/s
+                     The number of ICMP Redirect messages received per second [icmpInRedirects].
+
+              oredir/s
+                     The number of ICMP Redirect messages sent per second [icmpOutRedirects].
+
+              With the ICMP6 keyword, statistics about ICMPv6 network traffic are reported.  Note that  ICMPv6  statis‐
+              tics  depend on sadc's option "-S IPV6" to be collected.  The following values are displayed (formal SNMP
+              names between square brackets):
+
+              imsg6/s
+                     The total number of ICMP messages received by the interface per second which  includes  all  those
+                     counted by ierr6/s [ipv6IfIcmpInMsgs].
+
+              omsg6/s
+                     The  total  number  of ICMP messages which this interface attempted to send per second [ipv6IfIcm‐
+                     pOutMsgs].
+
+              iech6/s
+                     The number of ICMP Echo (request) messages received by the interface  per  second  [ipv6IfIcmpInE‐
+                     chos].
+
+              iechr6/s
+                     The  number  of  ICMP  Echo  Reply  messages  received by the interface per second [ipv6IfIcmpInE‐
+                     choReplies].
+
+              oechr6/s
+                     The number of ICMP  Echo  Reply  messages  sent  by  the  interface  per  second  [ipv6IfIcmpOutE‐
+                     choReplies].
+
+              igmbq6/s
+                     The  number  of  ICMPv6  Group  Membership  Query  messages  received  by the interface per second
+                     [ipv6IfIcmpInGroupMembQueries].
+
+              igmbr6/s
+                     The number of ICMPv6 Group Membership Response messages  received  by  the  interface  per  second
+                     [ipv6IfIcmpInGroupMembResponses].
+
+              ogmbr6/s
+                     The number of ICMPv6 Group Membership Response messages sent per second [ipv6IfIcmpOutGroupMembRe‐
+                     sponses].
+
+              igmbrd6/s
+                     The number of ICMPv6 Group Membership Reduction messages received  by  the  interface  per  second
+                     [ipv6IfIcmpInGroupMembReductions].
+
+              ogmbrd6/s
+                     The  number  of ICMPv6 Group Membership Reduction messages sent per second [ipv6IfIcmpOutGroupMem‐
+                     bReductions].
+
+              irtsol6/s
+                     The number of ICMP Router Solicit messages received by the  interface  per  second  [ipv6IfIcmpIn‐
+                     RouterSolicits].
+
+              ortsol6/s
+                     The  number  of  ICMP  Router  Solicitation  messages sent by the interface per second [ipv6IfIcm‐
+                     pOutRouterSolicits].
+
+              irtad6/s
+                     The number of ICMP Router Advertisement messages received by the interface per second [ipv6IfIcmp‐
+                     InRouterAdvertisements].
+
+              inbsol6/s
+                     The  number  of ICMP Neighbor Solicit messages received by the interface per second [ipv6IfIcmpIn‐
+                     NeighborSolicits].
+
+              onbsol6/s
+                     The number of ICMP Neighbor Solicitation messages sent by the interface per second [ipv6IfIcmpOut‐
+                     NeighborSolicits].
+
+              inbad6/s
+                     The  number  of  ICMP  Neighbor  Advertisement  messages  received  by  the  interface  per second
+                     [ipv6IfIcmpInNeighborAdvertisements].
+
+              onbad6/s
+                     The number of ICMP Neighbor Advertisement messages sent by the interface  per  second  [ipv6IfIcm‐
+                     pOutNeighborAdvertisements].
+
+              With  the  EICMP6 keyword, statistics about ICMPv6 error messages are reported.  Note that ICMPv6 statis‐
+              tics depend on sadc's option "-S IPV6" to be collected.  The following values are displayed (formal  SNMP
+              names between square brackets):
+
+              ierr6/s
+                     The  number  of  ICMP  messages  per  second which the interface received but determined as having
+                     ICMP-specific errors (bad ICMP checksums, bad length, etc.)  [ipv6IfIcmpInErrors]
+
+              idtunr6/s
+                     The number of  ICMP  Destination  Unreachable  messages  received  by  the  interface  per  second
+                     [ipv6IfIcmpInDestUnreachs].
+
+              odtunr6/s
+                     The  number  of ICMP Destination Unreachable messages sent by the interface per second [ipv6IfIcm‐
+                     pOutDestUnreachs].
+
+              itmex6/s
+                     The number of ICMP Time Exceeded messages received by the interface per second  [ipv6IfIcmpInTime‐
+                     Excds].
+
+              otmex6/s
+                     The  number  of ICMP Time Exceeded messages sent by the interface per second [ipv6IfIcmpOutTimeEx‐
+                     cds].
+
+              iprmpb6/s
+                     The number of ICMP Parameter Problem messages received by the interface per second  [ipv6IfIcmpIn‐
+                     ParmProblems].
+
+              oprmpb6/s
+                     The number of ICMP Parameter Problem messages sent by the interface per second [ipv6IfIcmpOutParm‐
+                     Problems].
+
+              iredir6/s
+                     The number of Redirect messages received by the interface per second [ipv6IfIcmpInRedirects].
+
+              oredir6/s
+                     The number of Redirect messages sent by the interface by second [ipv6IfIcmpOutRedirects].
+
+              ipck2b6/s
+                     The number of ICMP Packet Too Big messages received by the interface per second  [ipv6IfIcmpInPkt‐
+                     TooBigs].
+
+              opck2b6/s
+                     The  number  of  ICMP  Packet Too Big messages sent by the interface per second [ipv6IfIcmpOutPkt‐
+                     TooBigs].
+
+              With the IP keyword, statistics about IPv4 network traffic  are  reported.   Note  that  IPv4  statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              irec/s
+                     The total number of input datagrams received from interfaces per second, including those  received
+                     in error [ipInReceives].
+
+              fwddgm/s
+                     The  number  of  input datagrams per second, for which this entity was not their final IP destina‐
+                     tion, as a result of which an attempt was made to find a route to forward them to that final  des‐
+                     tination [ipForwDatagrams].
+
+              idel/s
+                     The  total  number  of  input  datagrams  successfully  delivered  per second to IP user-protocols
+                     (including ICMP) [ipInDelivers].
+
+              orq/s
+                     The total number of IP datagrams which local IP user-protocols (including ICMP) supplied per  sec‐
+                     ond  to  IP in requests for transmission [ipOutRequests].  Note that this counter does not include
+                     any datagrams counted in fwddgm/s.
+
+              asmrq/s
+                     The number of IP fragments received per second which needed  to  be  reassembled  at  this  entity
+                     [ipReasmReqds].
+
+              asmok/s
+                     The number of IP datagrams successfully re-assembled per second [ipReasmOKs].
+
+              fragok/s
+                     The  number  of  IP  datagrams  that  have  been successfully fragmented at this entity per second
+                     [ipFragOKs].
+
+              fragcrt/s
+                     The number of IP datagram fragments that have been generated per second as a result of  fragmenta‐
+                     tion at this entity [ipFragCreates].
+
+              With  the  EIP  keyword,  statistics  about  IPv4 network errors are reported.  Note that IPv4 statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              ihdrerr/s
+                     The  number  of  input datagrams discarded per second due to errors in their IP headers, including
+                     bad checksums, version number mismatch, other format errors, time-to-live exceeded, errors discov‐
+                     ered in processing their IP options, etc. [ipInHdrErrors]
+
+              iadrerr/s
+                     The  number  of  input  datagrams discarded per second because the IP address in their IP header's
+                     destination field was not a valid address to be received  at  this  entity.  This  count  includes
+                     invalid  addresses (e.g., 0.0.0.0) and addresses of unsupported Classes (e.g., Class E). For enti‐
+                     ties which are not IP routers and therefore do not forward datagrams, this counter includes  data‐
+                     grams discarded because the destination address was not a local address [ipInAddrErrors].
+
+              iukwnpr/s
+                     The  number  of locally-addressed datagrams received successfully but discarded per second because
+                     of an unknown or unsupported protocol [ipInUnknownProtos].
+
+              idisc/s
+                     The number of input IP datagrams per second for which no  problems  were  encountered  to  prevent
+                     their  continued  processing,  but which were discarded (e.g., for lack of buffer space) [ipInDis‐
+                     cards].  Note that this counter does not include any datagrams discarded while awaiting  re-assem‐
+                     bly.
+
+              odisc/s
+                     The number of output IP datagrams per second for which no problem was encountered to prevent their
+                     transmission to their destination, but which were discarded  (e.g.,  for  lack  of  buffer  space)
+                     [ipOutDiscards].   Note  that this counter would include datagrams counted in fwddgm/s if any such
+                     packets met this (discretionary) discard criterion.
+
+              onort/s
+                     The number of IP datagrams discarded per second because no route could be found to  transmit  them
+                     to their destination [ipOutNoRoutes].  Note that this counter includes any packets counted in fwd‐
+                     dgm/s which meet this 'no-route' criterion.  Note that this includes any datagrams  which  a  host
+                     cannot route because all of its default routers are down.
+
+              asmf/s
+                     The  number  of failures detected per second by the IP re-assembly algorithm (for whatever reason:
+                     timed out, errors, etc) [ipReasmFails].  Note that this is not necessarily a count of discarded IP
+                     fragments  since  some  algorithms  can lose track of the number of fragments by combining them as
+                     they are received.
+
+              fragf/s
+                     The number of IP datagrams that have been discarded per second because they  needed  to  be  frag‐
+                     mented  at  this entity but could not be, e.g., because their Don't Fragment flag was set [ipFrag‐
+                     Fails].
+
+              With the IP6 keyword, statistics about IPv6 network traffic are  reported.   Note  that  IPv6  statistics
+              depend on sadc's option "-S IPV6" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              irec6/s
+                     The total number of input datagrams received from interfaces per second, including those  received
+                     in error [ipv6IfStatsInReceives].
+
+              fwddgm6/s
+                     The  number of output datagrams per second which this entity received and forwarded to their final
+                     destinations [ipv6IfStatsOutForwDatagrams].
+
+              idel6/s
+                     The total number of datagrams successfully delivered per second to IPv6 user-protocols  (including
+                     ICMP) [ipv6IfStatsInDelivers].
+
+              orq6/s
+                     The  total  number of IPv6 datagrams which local IPv6 user-protocols (including ICMP) supplied per
+                     second to IPv6 in requests for transmission [ipv6IfStatsOutRequests].  Note that this counter does
+                     not include any datagrams counted in fwddgm6/s.
+
+              asmrq6/s
+                     The  number of IPv6 fragments received per second which needed to be reassembled at this interface
+                     [ipv6IfStatsReasmReqds].
+
+              asmok6/s
+                     The number of IPv6 datagrams successfully reassembled per second [ipv6IfStatsReasmOKs].
+
+              imcpck6/s
+                     The number of multicast packets received per second by the interface [ipv6IfStatsInMcastPkts].
+
+              omcpck6/s
+                     The number of multicast packets transmitted per second by the interface [ipv6IfStatsOutMcastPkts].
+
+              fragok6/s
+                     The number of IPv6 datagrams that have been successfully fragmented at this output  interface  per
+                     second [ipv6IfStatsOutFragOKs].
+
+              fragcr6/s
+                     The  number  of output datagram fragments that have been generated per second as a result of frag‐
+                     mentation at this output interface [ipv6IfStatsOutFragCreates].
+
+              With the EIP6 keyword, statistics about IPv6 network errors are  reported.   Note  that  IPv6  statistics
+              depend on sadc's option "-S IPV6" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              ihdrer6/s
+                     The number of input datagrams discarded per second due to errors in their IPv6 headers,  including
+                     version  number mismatch, other format errors, hop count exceeded, errors discovered in processing
+                     their IPv6 options, etc. [ipv6IfStatsInHdrErrors]
+
+              iadrer6/s
+                     The number of input datagrams discarded per second because the IPv6 address in their IPv6 header's
+                     destination  field  was  not  a  valid  address to be received at this entity. This count includes
+                     invalid addresses (e.g., ::0) and unsupported addresses (e.g.,  addresses  with  unallocated  pre‐
+                     fixes).  For  entities  which  are  not  IPv6 routers and therefore do not forward datagrams, this
+                     counter includes datagrams discarded because the destination  address  was  not  a  local  address
+                     [ipv6IfStatsInAddrErrors].
+
+              iukwnp6/s
+                     The  number  of locally-addressed datagrams received successfully but discarded per second because
+                     of an unknown or unsupported protocol [ipv6IfStatsInUnknownProtos].
+
+              i2big6/s
+                     The number of input datagrams that could not be forwarded per second because their  size  exceeded
+                     the link MTU of outgoing interface [ipv6IfStatsInTooBigErrors].
+
+              idisc6/s
+                     The  number  of  input IPv6 datagrams per second for which no problems were encountered to prevent
+                     their continued processing, but which were discarded (e.g., for lack of  buffer  space)  [ipv6IfS‐
+                     tatsInDiscards].  Note  that  this counter does not include any datagrams discarded while awaiting
+                     re-assembly.
+
+              odisc6/s
+                     The number of output IPv6 datagrams per second for which no problem  was  encountered  to  prevent
+                     their transmission to their destination, but which were discarded (e.g., for lack of buffer space)
+                     [ipv6IfStatsOutDiscards]. Note that this counter would include datagrams counted in  fwddgm6/s  if
+                     any such packets met this (discretionary) discard criterion.
+
+              inort6/s
+                     The  number  of  input  datagrams discarded per second because no route could be found to transmit
+                     them to their destination [ipv6IfStatsInNoRoutes].
+
+              onort6/s
+                     The number of locally generated IP datagrams discarded per second because no route could be  found
+                     to transmit them to their destination [unknown formal SNMP name].
+
+              asmf6/s
+                     The number of failures detected per second by the IPv6 re-assembly algorithm (for whatever reason:
+                     timed out, errors, etc.) [ipv6IfStatsReasmFails].  Note that this is not necessarily  a  count  of
+                     discarded  IPv6  fragments since some algorithms can lose track of the number of fragments by com‐
+                     bining them as they are received.
+
+              fragf6/s
+                     The number of IPv6 datagrams that have been discarded per second because they needed to  be  frag‐
+                     mented at this output interface but could not be [ipv6IfStatsOutFragFails].
+
+              itrpck6/s
+                     The number of input datagrams discarded per second because datagram frame didn't carry enough data
+                     [ipv6IfStatsInTruncatedPkts].
+
+              With the NFS keyword, statistics about NFS client activity are reported.  The following values  are  dis‐
+              played:
+
+              call/s
+                     Number of RPC requests made per second.
+
+              retrans/s
+                     Number  of RPC requests per second, those which needed to be retransmitted (for example because of
+                     a server timeout).
+
+              read/s
+                     Number of 'read' RPC calls made per second.
+
+              write/s
+                     Number of 'write' RPC calls made per second.
+
+              access/s
+                     Number of 'access' RPC calls made per second.
+
+              getatt/s
+                     Number of 'getattr' RPC calls made per second.
+
+              With the NFSD keyword, statistics about NFS server activity are reported.  The following values are  dis‐
+              played:
+
+              scall/s
+                     Number of RPC requests received per second.
+
+              badcall/s
+                     Number of bad RPC requests received per second, those whose processing generated an error.
+
+              packet/s
+                     Number of network packets received per second.
+
+              udp/s
+                     Number of UDP packets received per second.
+
+              tcp/s
+                     Number of TCP packets received per second.
+
+              hit/s
+                     Number of reply cache hits per second.
+
+              miss/s
+                     Number of reply cache misses per second.
+
+              sread/s
+                     Number of 'read' RPC calls received per second.
+
+              swrite/s
+                     Number of 'write' RPC calls received per second.
+
+              saccess/s
+                     Number of 'access' RPC calls received per second.
+
+              sgetatt/s
+                     Number of 'getattr' RPC calls received per second.
+
+              With  the  SOCK keyword, statistics on sockets in use are reported (IPv4).  The following values are dis‐
+              played:
+
+              totsck
+                     Total number of sockets used by the system.
+
+              tcpsck
+                     Number of TCP sockets currently in use.
+
+              udpsck
+                     Number of UDP sockets currently in use.
+
+              rawsck
+                     Number of RAW sockets currently in use.
+
+              ip-frag
+                     Number of IP fragments currently in queue.
+
+              tcp-tw
+                     Number of TCP sockets in TIME_WAIT state.
+
+              With the SOCK6 keyword, statistics on sockets in use are reported  (IPv6).   Note  that  IPv6  statistics
+              depend on sadc's option "-S IPV6" to be collected.  The following values are displayed:
+
+              tcp6sck
+                     Number of TCPv6 sockets currently in use.
+
+              udp6sck
+                     Number of UDPv6 sockets currently in use.
+
+              raw6sck
+                     Number of RAWv6 sockets currently in use.
+
+              ip6-frag
+                     Number of IPv6 fragments currently in use.
+
+              With  the  SOFT  keyword, statistics about software-based network processing are reported.  The following
+              values are displayed:
+
+              total/s
+                     The total number of network frames processed per second.
+
+              dropd/s
+                     The total number of network frames dropped per second because there was no room on the  processing
+                     queue.
+
+              squeezd/s
+                     The number of times the softirq handler function terminated per second because its budget was con‐
+                     sumed or the time limit was reached, but more work could have been done.
+
+              rx_rps/s
+                     The number of times the CPU has been woken up per second to process packets via an inter-processor
+                     interrupt.
+
+              flw_lim/s
+                     The  number of times the flow limit has been reached per second.  Flow limiting is an optional RPS
+                     feature that can be used to limit the number of packets queued to the backlog for each flow  to  a
+                     certain  amount.   This  can  help ensure that smaller flows are processed even though much larger
+                     flows are pushing packets in.
+
+              With the TCP keyword, statistics about TCPv4 network traffic are reported.  Note  that  TCPv4  statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              active/s
+                     The number of times TCP connections have made a direct transition to the SYN-SENT state  from  the
+                     CLOSED state per second [tcpActiveOpens].
+
+              passive/s
+                     The  number  of times TCP connections have made a direct transition to the SYN-RCVD state from the
+                     LISTEN state per second [tcpPassiveOpens].
+
+              iseg/s
+                     The total number of segments received per second, including those received in  error  [tcpInSegs].
+                     This count includes segments received on currently established connections.
+
+              oseg/s
+                     The total number of segments sent per second, including those on current connections but excluding
+                     those containing only retransmitted octets [tcpOutSegs].
+
+              With the ETCP keyword, statistics about TCPv4 network errors are reported.  Note  that  TCPv4  statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              atmptf/s
+                     The number of times per second TCP connections have made a direct transition to the  CLOSED  state
+                     from either the SYN-SENT state or the SYN-RCVD state, plus the number of times per second TCP con‐
+                     nections have made a direct transition to the LISTEN state from the  SYN-RCVD  state  [tcpAttempt‐
+                     Fails].
+
+              estres/s
+                     The  number  of times per second TCP connections have made a direct transition to the CLOSED state
+                     from either the ESTABLISHED state or the CLOSE-WAIT state [tcpEstabResets].
+
+              retrans/s
+                     The total number of segments retransmitted per second - that is, the number of TCP segments trans‐
+                     mitted containing one or more previously transmitted octets [tcpRetransSegs].
+
+              isegerr/s
+                     The total number of segments received in error (e.g., bad TCP checksums) per second [tcpInErrs].
+
+              orsts/s
+                     The number of TCP segments sent per second containing the RST flag [tcpOutRsts].
+
+              With  the  UDP  keyword, statistics about UDPv4 network traffic are reported.  Note that UDPv4 statistics
+              depend on sadc's option "-S SNMP" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              idgm/s
+                     The total number of UDP datagrams delivered per second to UDP users [udpInDatagrams].
+
+              odgm/s
+                     The total number of UDP datagrams sent per second from this entity [udpOutDatagrams].
+
+              noport/s
+                     The  total  number  of received UDP datagrams per second for which there was no application at the
+                     destination port [udpNoPorts].
+
+              idgmerr/s
+                     The number of received UDP datagrams per second that could not be delivered for reasons other than
+                     the lack of an application at the destination port [udpInErrors].
+
+              With  the  UDP6 keyword, statistics about UDPv6 network traffic are reported.  Note that UDPv6 statistics
+              depend on sadc's option "-S IPV6" to be collected.  The following values are displayed (formal SNMP names
+              between square brackets):
+
+              idgm6/s
+                     The total number of UDP datagrams delivered per second to UDP users [udpInDatagrams].
+
+              odgm6/s
+                     The total number of UDP datagrams sent per second from this entity [udpOutDatagrams].
+
+              noport6/s
+                     The  total  number  of received UDP datagrams per second for which there was no application at the
+                     destination port [udpNoPorts].
+
+              idgmer6/s
+                     The number of received UDP datagrams per second that could not be delivered for reasons other than
+                     the lack of an application at the destination port [udpInErrors].
+
+              The  ALL keyword is equivalent to specifying all the keywords above and therefore all the network activi‐
+              ties are reported.
+
+       -o [ filename ]
+              Save the readings in the file in binary form. Each reading is in a separate record. The default value  of
+              the  filename parameter is the current standard system activity daily data file.  If filename is a direc‐
+              tory instead of a plain file then it is considered as the directory where the  standard  system  activity
+              daily  data files are located.  The -o option is exclusive of the -f option.  All the data available from
+              the kernel are saved in the file (in fact, sar calls its data collector sadc with the  option  "-S  ALL".
+              See sadc(8) manual page).
+
+       -P { cpu_list | ALL }
+              Report  per-processor  statistics  for  the  specified  processor  or  processors.  cpu_list is a list of
+              comma-separated values or range of values (e.g., 0,2,4-7,12-).  Note that processor 0 is the  first  pro‐
+              cessor, and processor all is the global average among all processors.  Specifying the ALL keyword reports
+              statistics for each individual processor, and globally for all processors.
+
+       -p     Pretty-print device names. Use this option in conjunction with option -d.  By default names  are  printed
+              as  devM-n where M and n are the major and minor numbers for the device.  Use of this option displays the
+              names of the devices as they (should) appear in /dev. Name mappings are controlled  by  /etc/sysstat/sys‐
+              stat.ioconf.
+
+       -q     Report queue length and load averages. The following values are displayed:
+
+              runq-sz
+                     Run queue length (number of tasks waiting for run time).
+
+              plist-sz
+                     Number of tasks in the task list.
+
+              ldavg-1
+                     System  load average for the last minute.  The load average is calculated as the average number of
+                     runnable or running tasks (R state), and the number of tasks in uninterruptible  sleep  (D  state)
+                     over the specified interval.
+
+              ldavg-5
+                     System load average for the past 5 minutes.
+
+              ldavg-15
+                     System load average for the past 15 minutes.
+
+              blocked
+                     Number of tasks currently blocked, waiting for I/O to complete.
+
+       -r [ ALL ]
+              Report memory utilization statistics. The ALL keyword indicates that all the memory fields should be dis‐
+              played.  The following values may be displayed:
+
+              kbmemfree
+                     Amount of free memory available in kilobytes.
+
+              kbavail
+                     Estimate of how much memory in kilobytes is available for starting new applications, without swap‐
+                     ping.  The estimate takes into account that the system needs some page cache to function well, and
+                     that not all reclaimable slab will be reclaimable, due to items being in use. The impact of  those
+                     factors will vary from system to system.
+
+              kbmemused
+                     Amount  of  used  memory  in  kilobytes. This does not take into account memory used by the kernel
+                     itself.
+
+              %memused
+                     Percentage of used memory.
+
+              kbbuffers
+                     Amount of memory used as buffers by the kernel in kilobytes.
+
+              kbcached
+                     Amount of memory used to cache data by the kernel in kilobytes.
+
+              kbcommit
+                     Amount of memory in kilobytes needed for current  workload.  This  is  an  estimate  of  how  much
+                     RAM/swap is needed to guarantee that there never is out of memory.
+
+              %commit
+                     Percentage  of  memory  needed  for  current  workload  in  relation to the total amount of memory
+                     (RAM+swap).  This number may be greater than 100% because the kernel usually overcommits memory.
+
+              kbactive
+                     Amount of active memory in kilobytes (memory that has been used  more  recently  and  usually  not
+                     reclaimed unless absolutely necessary).
+
+              kbinact
+                     Amount  of inactive memory in kilobytes (memory which has been less recently used. It is more eli‐
+                     gible to be reclaimed for other purposes).
+
+              kbdirty
+                     Amount of memory in kilobytes waiting to get written back to the disk.
+
+              kbanonpg
+                     Amount of non-file backed pages in kilobytes mapped into userspace page tables.
+
+              kbslab
+                     Amount of memory in kilobytes used by the kernel to cache data structures for its own use.
+
+              kbkstack
+                     Amount of memory in kilobytes used for kernel stack space.
+
+              kbpgtbl
+                     Amount of memory in kilobytes dedicated to the lowest level of page tables.
+
+              kbvmused
+                     Amount of memory in kilobytes of used virtual address space.
+
+       -S     Report swap space utilization statistics.  The following values are displayed:
+
+              kbswpfree
+                     Amount of free swap space in kilobytes.
+
+              kbswpused
+                     Amount of used swap space in kilobytes.
+
+              %swpused
+                     Percentage of used swap space.
+
+              kbswpcad
+                     Amount of cached swap memory in kilobytes.  This is memory that once was swapped out,  is  swapped
+                     back  in but still also is in the swap area (if memory is needed it doesn't need to be swapped out
+                     again because it is already in the swap area. This saves I/O).
+
+              %swpcad
+                     Percentage of cached swap memory in relation to the amount of used swap space.
+
+       -s [ hh:mm[:ss] ]
+              Set the starting time of the data, causing the sar command to extract records time-tagged at, or  follow‐
+              ing,  the  time specified. The default starting time is 08:00:00.  Hours must be given in 24-hour format.
+              This option can be used only when data are read from a file (option -f).
+
+       --sadc Indicate which data collector is called by sar.  If the data collector  is  sought  in  PATH  then  enter
+              "which sadc" to know where it is located.
+
+       -t     When reading data from a daily data file, indicate that sar should display the timestamps in the original
+              local time of the data file creator. Without this option, the sar command displays the timestamps in  the
+              user's locale time.
+
+       -u [ ALL ]
+              Report  CPU  utilization.  The  ALL  keyword  indicates that all the CPU fields should be displayed.  The
+              report may show the following fields:
+
+              %user
+                     Percentage of CPU utilization that occurred while executing at the user level (application).  Note
+                     that this field includes time spent running virtual processors.
+
+              %usr
+                     Percentage  of CPU utilization that occurred while executing at the user level (application). Note
+                     that this field does NOT include time spent running virtual processors.
+
+              %nice
+                     Percentage of CPU utilization that occurred while executing at the user level with nice priority.
+
+              %system
+                     Percentage of CPU utilization that occurred while executing at the  system  level  (kernel).  Note
+                     that this field includes time spent servicing hardware and software interrupts.
+
+              %sys
+                     Percentage  of  CPU  utilization  that occurred while executing at the system level (kernel). Note
+                     that this field does NOT include time spent servicing hardware or software interrupts.
+
+              %iowait
+                     Percentage of time that the CPU or CPUs were idle during which the system had an outstanding  disk
+                     I/O request.
+
+              %steal
+                     Percentage  of  time spent in involuntary wait by the virtual CPU or CPUs while the hypervisor was
+                     servicing another virtual processor.
+
+              %irq
+                     Percentage of time spent by the CPU or CPUs to service hardware interrupts.
+
+              %soft
+                     Percentage of time spent by the CPU or CPUs to service software interrupts.
+
+              %guest
+                     Percentage of time spent by the CPU or CPUs to run a virtual processor.
+
+              %gnice
+                     Percentage of time spent by the CPU or CPUs to run a niced guest.
+
+              %idle
+                     Percentage of time that the CPU or CPUs were idle and the system did not have an outstanding  disk
+                     I/O request.
+
+              Note: On SMP machines a processor that does not have any activity at all (0.00 for every field) is a dis‐
+              abled (offline) processor.
+
+       -V     Print version number then exit.
+
+       -v     Report status of inode, file and other kernel tables.  The following values are displayed:
+
+              dentunusd
+                     Number of unused cache entries in the directory cache.
+
+              file-nr
+                     Number of file handles used by the system.
+
+              inode-nr
+                     Number of inode handlers used by the system.
+
+              pty-nr
+                     Number of pseudo-terminals used by the system.
+
+       -W     Report swapping statistics. The following values are displayed:
+
+              pswpin/s
+                     Total number of swap pages the system brought in per second.
+
+              pswpout/s
+                     Total number of swap pages the system brought out per second.
+
+       -w     Report task creation and system switching activity.
+
+              proc/s
+                     Total number of tasks created per second.
+
+              cswch/s
+                     Total number of context switches per second.
+
+       -y     Report TTY devices activity. The following values are displayed:
+
+              rcvin/s
+                     Number of receive interrupts per second for current serial line. Serial line number  is  given  in
+                     the TTY column.
+
+              xmtin/s
+                     Number of transmit interrupts per second for current serial line.
+
+              framerr/s
+                     Number of frame errors per second for current serial line.
+
+              prtyerr/s
+                     Number of parity errors per second for current serial line.
+
+              brk/s
+                     Number of breaks per second for current serial line.
+
+              ovrun/s
+                     Number of overrun errors per second for current serial line.
+
+ENVIRONMENT
+       The sar command takes into account the following environment variables:
+
+       S_COLORS
+              When  this  variable is set, display statistics in color on the terminal.  Possible values for this vari‐
+              able are never, always or auto (the latter is the default).
+
+              Please note that the color (being red, yellow, or some other color)  used  to  display  a  value  is  not
+              indicative  of  any kind of issue simply because of the color. It only indicates different ranges of val‐
+              ues.
+
+       S_COLORS_SGR
+              Specify the colors and other attributes used to display statistics on  the  terminal.   Its  value  is  a
+              colon-separated          list          of          capabilities          that         defaults         to
+              C=33;22:H=31;1:I=32;22:M=35;1:N=34;1:R=31;22:Z=34;22.  Supported capabilities are:
+
+              C=     SGR (Select Graphic Rendition) substring for comments inserted in the binary daily data files.
+
+              H=     SGR substring for percentage values greater than or equal to 75%.
+
+              I=     SGR substring for item names or values (eg. network interfaces, CPU number...)
+
+              M=     SGR substring for percentage values in the range from 50% to 75%.
+
+              N=     SGR substring for non-zero statistics values.
+
+              R=     SGR substring for restart messages.
+
+              Z=     SGR substring for zero values.
+
+       S_TIME_DEF_TIME
+              If this variable exists and its value is UTC then sar will save its data in UTC time (data will still  be
+              displayed  in  local  time).   sar  will also use UTC time instead of local time to determine the current
+              daily data file located in the /var/log/sysstat directory. This variable may be useful for  servers  with
+              users located across several timezones.
+
+       S_TIME_FORMAT
+              If  this  variable  exists and its value is ISO then the current locale will be ignored when printing the
+              date in the report header.  The sar command will use the ISO 8601 format (YYYY-MM-DD) instead.  The time‐
+              stamp will also be compliant with ISO 8601 format.
+
+EXAMPLES
+       sar -u 2 5
+              Report CPU utilization for each 2 seconds. 5 lines are displayed.
+
+       sar -I 14 -o int14.file 2 10
+              Report statistics on IRQ 14 for each 2 seconds. 10 lines are displayed.  Data are stored in a file called
+              int14.file.
+
+       sar -r -n DEV -f /var/log/sysstat/sa16
+              Display memory and network statistics saved in daily data file 'sa16'.
+
+       sar -A
+              Display all the statistics saved in current daily data file.
+
+BUGS
+       /proc filesystem must be mounted for the sar command to work.
+
+       All the statistics are not necessarily available, depending on the kernel version used.  sar  assumes  that  you
+       are using at least a 2.6 kernel.
+
+FILES
+       /var/log/sysstat/saDD
+       /var/log/sysstat/saYYYYMMDD
+              The  standard  system  activity daily data files and their default location.  YYYY stands for the current
+              year, MM for the current month and DD for the current day.
+
+       /proc and /sys contain various files with system statistics.
+
+AUTHOR
+       Sebastien Godard (sysstat <at> orange.fr)
+
+SEE ALSO
+       sadc(8), sa1(8), sa2(8), sadf(1), sysstat(5), pidstat(1), mpstat(1), iostat(1), vmstat(8)
+
+       http://pagesperso-orange.fr/sebastien.godard/
+
+Linux                                                  JUNE 2017                                                 SAR(1)

@@ -1,0 +1,11 @@
+查看rpath
+1.readelf -d gbpostpro
+改rpath
+2./install --set-rpath '$ORIGIN/../lib/lib' gbsim
+3.cat /etc/redhat-release
+4.strings /lib64/libc.so.6 | grep GLIBC_
+查看动态库的链接情况
+5.ldd gbpostpro
+
+
+

@@ -1,0 +1,4 @@
+1. reboot
+2. shutdown -f now
+3. shutdown -f 10 (十分钟后重启）
+4. shutdown -f 20:35

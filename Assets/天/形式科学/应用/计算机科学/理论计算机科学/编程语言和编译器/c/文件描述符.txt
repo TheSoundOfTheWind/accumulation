@@ -1,0 +1,9 @@
+Linux Shell 文件描述符stdin，stdout，stderr，重定向
+
+系统保留的三个文件描述符分类
+
+0 标准输入 stdin	/dev/stdin
+1 标准输出 stdout 	/dev/stdout
+2 标准错误 stderr	/dev/stderr
+
+另外，当一个用户进程被创建的时候，系统会自动为该进程创建三个文件描述符0,1,2，对应的就是 stdin, stdout, stderr。当进程结束后，进程编号对应的目录将被清理。

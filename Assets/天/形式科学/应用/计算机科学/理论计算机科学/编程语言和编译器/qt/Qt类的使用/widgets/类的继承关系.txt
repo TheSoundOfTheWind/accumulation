@@ -1,0 +1,123 @@
+第一层          第二层          第三层
+
+                                QAbstractButton
+								QAbstractSlider
+								QAbstractSpinBox 
+								QCalendarWidget
+								QComboBox
+								QDesignerActionEditorInterface
+								QDesignerFormWindowInterface
+								QDesignerObjectInspectorInterface
+								QDesignerPropertyEditorInterface
+								QDesignerWidgetBoxInterface
+								QDesktopWidget 
+								QDialog
+								QDialogButtonBox
+QObject           QWidget		QDockWidget
+QPaintDevice                    QFocusFrame
+								QFrame
+								QGroupBox
+								QKeySequenceEdit
+								QLineEdit
+								QMacCocoaViewContainer
+								QMacNativeWidget
+								QMainWindow
+								QMdiSubWindow
+								QMenu
+								QMenuBar
+								QOpenGLWidget
+								QProgressBar
+								QQuickWidget
+								QRubberBand
+								QSizeGrip
+								QSplashScreen
+								QSplitterHandle
+								QStatusBar
+								QSvgWidget
+								QTabBar
+								QTabWidget
+								QToolBar
+								QWizardPage
+      
+
+
+                                QBoxLayout
+QObject                         QFromLayout
+QLayoutItem       QLayout       QGridlayout
+                                QStackedLayout
+
+
+QObject           QAction       QWidgetAction
+
+QObject           QActionGroup  
+					
+第三层            第四层
+                  QAbstractScrollArea
+                  QLabel
+QFrame            QLCDNumber 
+                  QSplitter
+				  QStackedWidget
+				  QToolBox
+
+
+
+QBoxLayout        QHBoxLayout
+                  QVBoxLayout
+				  
+				  
+
+QDialog           QColorDialog
+				  QErrorMessage
+				  QFileDialog
+				  QFontDialog
+				  QInputDialog
+				  QMessageBox
+				  QProgressDialog
+				  QWizard
+				  
+				  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

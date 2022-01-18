@@ -1,0 +1,173 @@
+//QDialog
+//-----------------------------------------------------------------------------
+The QDialog class is the base class of dialog windows. 
+
+Header:	#include <QDialog>
+
+Public Types:
+enum	DialogCode { Accepted, Rejected }
+
+Properties:
+modal : bool
+sizeGripEnabled : bool
+
+Public Functions:
+QDialog(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags())
+virtual	~QDialog()
+bool	isSizeGripEnabled() const
+int	result() const
+void	setModal(bool modal)
+void	setResult(int i)
+void	setSizeGripEnabled(bool)
+
+Reimplemented Public Functions:
+virtual QSize	minimumSizeHint() const override
+virtual void	setVisible(bool visible) override
+virtual QSize	sizeHint() const override
+
+Public Slots:
+virtual void	accept()
+virtual void	done(int r)
+virtual int	    exec()
+virtual void	open()
+virtual void	reject()
+
+Signals:
+void	accepted()
+void	finished(int result)
+void	rejected()
+
+Reimplemented Protected Functions:
+virtual void	closeEvent(QCloseEvent *e) override
+virtual void	contextMenuEvent(QContextMenuEvent *e) override
+virtual bool	eventFilter(QObject *o, QEvent *e) override
+virtual void	keyPressEvent(QKeyEvent *e) override
+virtual void	resizeEvent(QResizeEvent *) override
+virtual void	showEvent(QShowEvent *event) override
+
+Detailed Description:
+//-----------------------------------------------------------------------------
+A dialog window is a top-level window mostly used for short-term tasks and 
+brief communications with the user. QDialogs may be modal or modeless. 
+QDialogs can provide a return value, and they can have default buttons. 
+QDialogs can also have a QSizeGrip in their lower-right corner, using 
+setSizeGripEnabled().
+
+Note that QDialog (and any other widget that has type Qt::Dialog) uses the
+parent widget slightly differently from other classes in Qt. A dialog is 
+always a top-level widget, but if it has a parent, its default location is 
+centered on top of the parent's top-level widget (if it is not top-level itself). 
+It will also share the parent's taskbar entry.
+
+Use the overload of the QWidget::setParent() function to change the ownership 
+of a QDialog widget. This function allows you to explicitly set the window flags 
+of the reparented widget; using the overloaded function will clear the window 
+flags specifying the window-system properties for the widget (in particular it 
+will reset the Qt::Dialog flag).
+
+Note: The parent relationship of the dialog does not imply that the dialog will 
+always be stacked on top of the parent window. To ensure that the dialog is 
+always on top, make the dialog modal. This also applies for child windows of 
+the dialog itself. To ensure that child windows of the dialog stay on top of 
+the dialog, make the child windows modal as well.
+
+Modal Dialogs
+A modal dialog is a dialog that blocks input to other visible windows in the 
+same application. Dialogs that are used to request a file name from the user 
+or that are used to set application preferences are usually modal. Dialogs can 
+be application modal (the default) or window modal.
+
+When an application modal dialog is opened, the user must finish interacting 
+with the dialog and close it before they can access any other window in the 
+application. Window modal dialogs only block access to the window associated 
+with the dialog, allowing the user to continue to use other windows in an 
+application.
+
+The most common way to display a modal dialog is to call its exec() function. 
+When the user closes the dialog, exec() will provide a useful return value. 
+To close the dialog and return the appropriate value, you must connect a 
+default button, e.g. an OK button to the accept() slot and a Cancel button 
+to the reject() slot. Alternatively, you can call the done() slot with 
+Accepted or Rejected.
+
+An alternative is to call setModal(true) or setWindowModality(), then show(). 
+Unlike exec(), show() returns control to the caller immediately. Calling 
+setModal(true) is especially useful for progress dialogs, where the user 
+must have the ability to interact with the dialog, e.g. to cancel a long 
+running operation. If you use show() and setModal(true) together to perform 
+a long operation, you must call QCoreApplication::processEvents() periodically 
+during processing to enable the user to interact with the dialog. (See QProgressDialog.)
+
+Modeless Dialogs
+A modeless dialog is a dialog that operates independently of other windows in 
+the same application. Find and replace dialogs in word-processors are often 
+modeless to allow the user to interact with both the application's main window 
+and with the dialog.
+
+Modeless dialogs are displayed using show(), which returns control to the 
+caller immediately.
+
+If you invoke the show() function after hiding a dialog, the dialog will be 
+displayed in its original position. This is because the window manager decides 
+the position for windows that have not been explicitly placed by the programmer. 
+To preserve the position of a dialog that has been moved by the user, save its 
+position in your closeEvent() handler and then move the dialog to that position, 
+before showing it again.
+
+Default Button
+A dialog's default button is the button that's pressed when the user presses 
+Enter (Return). This button is used to signify that the user accepts the dialog's 
+settings and wants to close the dialog. Use QPushButton::setDefault(), 
+QPushButton::isDefault() and QPushButton::autoDefault() to set and control 
+the dialog's default button.
+
+Escape Key
+If the user presses the Esc key in a dialog, QDialog::reject() will be called. 
+This will cause the window to close: The close event cannot be ignored.
+
+Extensibility
+Extensibility is the ability to show the dialog in two ways: a partial dialog 
+that shows the most commonly used options, and a full dialog that shows all the 
+options. Typically an extensible dialog will initially appear as a partial dialog, 
+but with a More toggle button. If the user presses the More button down, the 
+dialog is expanded. The Extension Example shows how to achieve extensible 
+dialogs using Qt.
+
+Return Value (Modal Dialogs)
+Modal dialogs are often used in situations where a return value is required, 
+e.g. to indicate whether the user pressed OK or Cancel. A dialog can be closed 
+by calling the accept() or the reject() slots, and exec() will return Accepted 
+or Rejected as appropriate. The exec() call returns the result of the dialog.
+The result is also available from result() if the dialog has not been destroyed.
+
+In order to modify your dialog's close behavior, you can reimplement the functions 
+accept(), reject() or done(). The closeEvent() function should only be reimplemented 
+to preserve the dialog's position or to override the standard close or reject behavior.
+
+Code Examples
+A modal dialog:
+
+void EditorWindow::countWords()
+{
+    WordCountDialog dialog(this);
+    dialog.setWordCount(document().wordCount());
+    dialog.exec();
+}
+A modeless dialog:
+
+void EditorWindow::find()
+{
+    if (!findDialog) {
+        findDialog = new FindDialog(this);
+        connect(findDialog, &FindDialog::findNext,
+                this, &EditorWindow::findNext);
+    }
+
+    findDialog->show();
+    findDialog->raise();
+    findDialog->activateWindow();
+}
+
+//virtual int exec()
+//-----------------------------------------------------------------------------
+这个函数会阻塞住show(),当点击cancel时返回0，当点击ok时返回1

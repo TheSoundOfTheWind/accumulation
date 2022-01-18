@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+$ sudo apt-get update
+$ sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+=======
+$ sudo apt-get update
+$ sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+>>>>>>> 1d751b2d5d0f314aae5ee85cadda02a076b13d0f

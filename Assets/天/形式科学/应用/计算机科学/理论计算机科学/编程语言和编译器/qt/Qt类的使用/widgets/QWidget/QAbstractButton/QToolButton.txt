@@ -1,0 +1,106 @@
+QToolButton
+//-----------------------------------------------------------------------------
+The QToolButton class provides a quick-access button to commands or options, 
+usually used inside a QToolBar. More...
+
+Public Types:
+enum	ToolButtonPopupMode { DelayedPopup, MenuButtonPopup, InstantPopup }
+
+Properties:
+arrowType : Qt::ArrowType //箭头方向
+autoRaise : bool 
+popupMode : ToolButtonPopupMode //设置菜单的弹出方式
+toolButtonStyle : Qt::ToolButtonStyle //设置样式，文本与图标的关系
+
+Public Functions:
+QToolButton(QWidget *parent = nullptr)
+virtual	~QToolButton()
+Qt::ArrowType	arrowType() const
+bool	autoRaise() const
+QAction *	defaultAction() const
+QMenu *	menu() const
+QToolButton::ToolButtonPopupMode	popupMode() const
+void	setArrowType(Qt::ArrowType type)
+void	setAutoRaise(bool enable)
+void	setMenu(QMenu *menu)
+void	setPopupMode(QToolButton::ToolButtonPopupMode mode)
+Qt::ToolButtonStyle	toolButtonStyle() const
+
+Reimplemented Public Functions:
+virtual QSize	minimumSizeHint() const override
+virtual QSize	sizeHint() const override
+
+Public Slots:
+void	setDefaultAction(QAction *action)
+void	setToolButtonStyle(Qt::ToolButtonStyle style)
+void	showMenu()
+
+Signals:
+void	triggered(QAction *action)
+
+Protected Functions:
+void	initStyleOption(QStyleOptionToolButton *option) const
+Reimplemented Protected Functions
+virtual void	actionEvent(QActionEvent *event) override
+virtual void	changeEvent(QEvent *e) override
+virtual void	enterEvent(QEvent *e) override
+virtual bool	event(QEvent *event) override
+virtual bool	hitButton(const QPoint &pos) const override
+virtual void	leaveEvent(QEvent *e) override
+virtual void	mousePressEvent(QMouseEvent *e) override
+virtual void	mouseReleaseEvent(QMouseEvent *e) override
+virtual void	nextCheckState() override
+virtual void	paintEvent(QPaintEvent *event) override
+virtual void	timerEvent(QTimerEvent *e) override
+
+Detailed Description:
+//-----------------------------------------------------------------------------
+A tool button is a special button that provides quick-access to specific 
+commands or options. As opposed to a normal command button, a tool button 
+usually doesn't show a text label, but shows an icon instead.
+
+Tool buttons are normally created when new QAction instances are created with 
+QToolBar::addAction() or existing actions are added to a toolbar with 
+QToolBar::addAction(). It is also possible to construct tool buttons in the 
+same way as any other widget, and arrange them alongside other widgets in 
+layouts.
+
+One classic use of a tool button is to select tools; for example, the "pen" 
+tool in a drawing program. This would be implemented by using a QToolButton 
+as a toggle button (see setCheckable()).
+
+QToolButton supports auto-raising. In auto-raise mode, the button draws a 3D 
+frame only when the mouse points at it. The feature is automatically turned 
+on when a button is used inside a QToolBar. Change it with setAutoRaise().
+
+A tool button's icon is set as QIcon. This makes it possible to specify 
+different pixmaps for the disabled and active state. The disabled pixmap is 
+used when the button's functionality is not available. The active pixmap is 
+displayed when the button is auto-raised because the mouse pointer is hovering 
+over it.
+
+The button's look and dimension is adjustable with setToolButtonStyle() and 
+setIconSize(). When used inside a QToolBar in a QMainWindow, the button 
+automatically adjusts to QMainWindow's settings (see QMainWindow::setToolButtonStyle() 
+and QMainWindow::setIconSize()). Instead of an icon, a tool button can also display 
+an arrow symbol, specified with arrowType.
+
+A tool button can offer additional choices in a popup menu. The popup menu can 
+be set using setMenu(). Use setPopupMode() to configure the different modes 
+available for tool buttons with a menu set. The default mode is DelayedPopupMode 
+which is sometimes used with the "Back" button in a web browser. After pressing 
+and holding the button down for a while, a menu pops up showing a list of possible 
+pages to jump to. The timeout is style dependent, see QStyle::SH_ToolButton_PopupDelay.
+
+Qt Assistant's toolbar with tool buttons
+Qt Assistant's toolbar contains tool buttons that are associated with actions 
+used in other parts of the main window.
+See also QPushButton, QToolBar, QMainWindow, QAction, and GUI Design Handbook: 
+Push Button.
+
+使用案例：
+QWidget w;//生成QWidget对象，作为顶级组件
+QToolButton btn(&w);//将按钮对象放到容器里
+btn.setText("Button");//给按钮设置显示的字符串
+btn.move(10, 10);//移动按钮位置
+btn.resize(100, 25);//设置按钮的宽度和高度

@@ -1,0 +1,130 @@
+//QInputDialog
+//-----------------------------------------------------------------------------
+The QInputDialog class provides a simple convenience dialog to get a single 
+value from the user. More...
+
+Header:	#include <QInputDialog>
+Inherits:	QDialog
+
+Public Types:
+enum	InputDialogOption { NoButtons, UseListViewForComboBoxItems, UsePlainTextEditForTextInput }
+flags	InputDialogOptions
+enum	InputMode { TextInput, IntInput, DoubleInput }
+
+Properties:
+cancelButtonText : QString
+comboBoxEditable : bool
+comboBoxItems : QStringList
+doubleDecimals : int
+doubleMaximum : double
+doubleMinimum : double
+doubleStep : double
+doubleValue : int
+inputMode : InputMode
+intMaximum : int
+intMinimum : int
+intStep : int
+intValue : int
+labelText : QString
+okButtonText : QString
+options : InputDialogOptions
+textEchoMode : QLineEdit::EchoMode
+textValue : QString
+
+Public Functions:
+QInputDialog(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags())
+virtual	~QInputDialog()
+QString	cancelButtonText() const
+QStringList	comboBoxItems() const
+int	doubleDecimals() const
+double	doubleMaximum() const
+double	doubleMinimum() const
+double	doubleStep() const
+double	doubleValue() const
+QInputDialog::InputMode	inputMode() const
+int	intMaximum() const
+int	intMinimum() const
+int	intStep() const
+int	intValue() const
+bool	isComboBoxEditable() const
+QString	labelText() const
+QString	okButtonText() const
+void	open(QObject *receiver, const char *member)
+QInputDialog::InputDialogOptions	options() const
+void	setCancelButtonText(const QString &text)
+void	setComboBoxEditable(bool editable)
+void	setComboBoxItems(const QStringList &items)
+void	setDoubleDecimals(int decimals)
+void	setDoubleMaximum(double max)
+void	setDoubleMinimum(double min)
+void	setDoubleRange(double min, double max)
+void	setDoubleStep(double step)
+void	setDoubleValue(double value)
+void	setInputMode(QInputDialog::InputMode mode)
+void	setIntMaximum(int max)
+void	setIntMinimum(int min)
+void	setIntRange(int min, int max)
+void	setIntStep(int step)
+void	setIntValue(int value)
+void	setLabelText(const QString &text)
+void	setOkButtonText(const QString &text)
+void	setOption(QInputDialog::InputDialogOption option, bool on = true)
+void	setOptions(QInputDialog::InputDialogOptions options)
+void	setTextEchoMode(QLineEdit::EchoMode mode)
+void	setTextValue(const QString &text)
+bool	testOption(QInputDialog::InputDialogOption option) const
+QLineEdit::EchoMode	textEchoMode() const
+QString	textValue() const
+
+Reimplemented Public Functions:
+virtual void	done(int result) override
+virtual QSize	minimumSizeHint() const override
+virtual void	setVisible(bool visible) override
+virtual QSize	sizeHint() const override
+
+Signals:
+void	doubleValueChanged(double value)
+void	doubleValueSelected(double value)
+void	intValueChanged(int value)
+void	intValueSelected(int value)
+void	textValueChanged(const QString &text)
+void	textValueSelected(const QString &text)
+
+Static Public Members:
+double	getDouble(QWidget *parent, const QString &title, const QString &label,
+                  double value = 0, double min = -2147483647, double max = 2147483647,
+				  int decimals = 1, bool *ok = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(),
+				  double step = 1)
+int	getInt(QWidget *parent, const QString &title, const QString &label, int value = 0,
+           int min = -2147483647, int max = 2147483647, int step = 1, bool *ok = nullptr,
+		   Qt::WindowFlags flags = Qt::WindowFlags())
+QString	getItem(QWidget *parent, const QString &title, const QString &label, 
+                const QStringList &items, int current = 0, bool editable = true, 
+				bool *ok = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), 
+				Qt::InputMethodHints inputMethodHints = Qt::ImhNone)
+QString	getMultiLineText(QWidget *parent, const QString &title, const QString &label,
+                         const QString &text = QString(), bool *ok = nullptr, 
+						 Qt::WindowFlags flags = Qt::WindowFlags(), Qt::InputMethodHints
+						 inputMethodHints = Qt::ImhNone)
+QString	getText(QWidget *parent, const QString &title, const QString &label, 
+                QLineEdit::EchoMode mode = QLineEdit::Normal, 
+				const QString &text = QString(), bool *ok = nullptr,
+				Qt::WindowFlags flags = Qt::WindowFlags(), 
+				Qt::InputMethodHints inputMethodHints = Qt::ImhNone)
+
+Detailed Description:
+//-----------------------------------------------------------------------------
+The input value can be a string, a number or an item from a list. A label must 
+be set to tell the user what they should enter.
+
+Five static convenience functions are provided: getText(), getMultiLineText(), 
+getInt(), getDouble(), and getItem(). All the functions can be used in a similar
+way, for example:
+
+    bool ok;
+    QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
+                                         tr("User name:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
+    if (ok && !text.isEmpty())
+        textLabel->setText(text);
+The ok variable is set to true if the user clicks OK; otherwise, it is set to false.

@@ -1,0 +1,167 @@
+//QTreeView
+//-----------------------------------------------------------------------------
+The QTreeView class provides a default model/view implementation of a tree view. 
+
+Header:	#include <QTreeView>
+Inherits:QAbstractItemView
+Inherited By:QTreeWidget
+
+Properties：
+allColumnsShowFocus : bool
+animated : bool
+autoExpandDelay : int
+expandsOnDoubleClick : bool
+headerHidden : bool
+indentation : int
+itemsExpandable : bool
+rootIsDecorated : bool
+sortingEnabled : bool
+uniformRowHeights : bool
+wordWrap : bool
+
+Public Functions：
+QTreeView(QWidget *parent = nullptr)
+virtual	~QTreeView()
+bool	allColumnsShowFocus() const
+int	autoExpandDelay() const
+int	columnAt(int x) const
+int	columnViewportPosition(int column) const
+int	columnWidth(int column) const
+bool	expandsOnDoubleClick() const
+QHeaderView *	header() const
+int	indentation() const
+QModelIndex	indexAbove(const QModelIndex &index) const
+QModelIndex	indexBelow(const QModelIndex &index) const
+bool	isAnimated() const
+bool	isColumnHidden(int column) const
+bool	isExpanded(const QModelIndex &index) const
+bool	isFirstColumnSpanned(int row, const QModelIndex &parent) const
+bool	isHeaderHidden() const
+bool	isRowHidden(int row, const QModelIndex &parent) const
+bool	isSortingEnabled() const
+bool	itemsExpandable() const
+void	resetIndentation()
+bool	rootIsDecorated() const
+void	setAllColumnsShowFocus(bool enable)
+void	setAnimated(bool enable)
+void	setAutoExpandDelay(int delay)
+void	setColumnHidden(int column, bool hide)
+void	setColumnWidth(int column, int width)
+void	setExpanded(const QModelIndex &index, bool expanded)
+void	setExpandsOnDoubleClick(bool enable)
+void	setFirstColumnSpanned(int row, const QModelIndex &parent, bool span)
+void	setHeader(QHeaderView *header)
+void	setHeaderHidden(bool hide)
+void	setIndentation(int i)
+void	setItemsExpandable(bool enable)
+void	setRootIsDecorated(bool show)
+void	setRowHidden(int row, const QModelIndex &parent, bool hide)
+void	setSortingEnabled(bool enable)
+void	setTreePosition(int index)
+void	setUniformRowHeights(bool uniform)
+void	setWordWrap(bool on)
+int	treePosition() const
+bool	uniformRowHeights() const
+bool	wordWrap() const
+
+Reimplemented Public Functions：
+virtual void	dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles = QVector<int>()) override
+virtual QModelIndex	indexAt(const QPoint &point) const override
+virtual void	keyboardSearch(const QString &search) override
+virtual void	reset() override
+virtual void	scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint = EnsureVisible) override
+virtual void	selectAll() override
+virtual void	setModel(QAbstractItemModel *model) override
+virtual void	setRootIndex(const QModelIndex &index) override
+virtual void	setSelectionModel(QItemSelectionModel *selectionModel) override
+virtual QRect	visualRect(const QModelIndex &index) const override
+
+Public Slots：
+void	collapse(const QModelIndex &index)
+void	collapseAll()
+void	expand(const QModelIndex &index)
+void	expandAll()
+void	expandRecursively(const QModelIndex &index, int depth = -1)
+void	expandToDepth(int depth)
+void	hideColumn(int column)
+void	resizeColumnToContents(int column)
+void	showColumn(int column)
+void	sortByColumn(int column, Qt::SortOrder order)
+
+Signals：
+void	collapsed(const QModelIndex &index)
+void	expanded(const QModelIndex &index)
+
+Protected Functions：
+virtual void	drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+virtual void	drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void	drawTree(QPainter *painter, const QRegion &region) const
+int	indexRowSizeHint(const QModelIndex &index) const
+int	rowHeight(const QModelIndex &index) const
+
+Reimplemented Protected Functions：
+virtual void	currentChanged(const QModelIndex &current, const QModelIndex &previous) override
+virtual void	dragMoveEvent(QDragMoveEvent *event) override
+virtual int	horizontalOffset() const override
+virtual bool	isIndexHidden(const QModelIndex &index) const override
+virtual void	keyPressEvent(QKeyEvent *event) override
+virtual void	mouseDoubleClickEvent(QMouseEvent *event) override
+virtual void	mouseMoveEvent(QMouseEvent *event) override
+virtual void	mousePressEvent(QMouseEvent *event) override
+virtual void	mouseReleaseEvent(QMouseEvent *event) override
+virtual QModelIndex	moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override
+virtual void	paintEvent(QPaintEvent *event) override
+virtual void	rowsAboutToBeRemoved(const QModelIndex &parent, int start, int end) override
+virtual void	rowsInserted(const QModelIndex &parent, int start, int end) override
+virtual void	scrollContentsBy(int dx, int dy) override
+virtual QModelIndexList	selectedIndexes() const override
+virtual void	selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) override
+virtual void	setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) override
+virtual int	sizeHintForColumn(int column) const override
+virtual void	timerEvent(QTimerEvent *event) override
+virtual void	updateGeometries() override
+virtual int	verticalOffset() const override
+virtual bool	viewportEvent(QEvent *event) override
+virtual QSize	viewportSizeHint() const override
+virtual QRegion	visualRegionForSelection(const QItemSelection &selection) const override
+
+Protected Slots：
+void	columnCountChanged(int oldCount, int newCount)
+void	columnMoved()
+void	columnResized(int column, int oldSize, int newSize)
+void	rowsRemoved(const QModelIndex &parent, int start, int end)
+
+Detailed Description：
+//-----------------------------------------------------------------------------
+A QTreeView implements a tree representation of items from a model.
+This class is used to provide standard hierarchical lists that were previously
+provided by the QListView class, but using the more flexible approach provided
+by Qt's model/view architecture.
+The QTreeView class is one of the Model/View Classes and is part of Qt's 
+model/view framework.
+QTreeView implements the interfaces defined by the QAbstractItemView class
+to allow it to display data provided by models derived from the 
+QAbstractItemModel class.
+It is simple to construct a tree view displaying data from a model. In
+the following example, the contents of a directory are supplied by a
+QFileSystemModel and displayed as a tree:
+
+	QFileSystemModel *model = new QFileSystemModel;
+    model->setRootPath(QDir::currentPath());
+    QTreeView *tree = new QTreeView(splitter);
+    tree->setModel(model);
+The model/view architecture ensures that the contents of the tree view are
+updated as the model changes.
+Items that have children can be in an expanded (children are visible) or
+collapsed (children are hidden) state. When this state changes a collapsed()
+or expanded() signal is emitted with the model index of the relevant item.
+The amount of indentation used to indicate levels of hierarchy is controlled
+by the indentation property.
+Headers in tree views are constructed using the QHeaderView class and can be
+hidden using header()->hide(). Note that each header is configured with its
+stretchLastSection property set to true, ensuring that the view does not waste
+any of the space assigned to it for its header. If this value is set to true,
+this property will override the resize mode set on the last section in the header.
+By default, all columns in a tree view are movable except the first. To disable
+movement of these columns, use QHeaderView's setSectionsMovable() function.
+For more information about rearranging sections, see Moving Header Sections.

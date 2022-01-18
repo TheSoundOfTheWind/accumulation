@@ -1,0 +1,131 @@
+着色2
+图形管线和图形映射
+
+着色是在某个shape point，像素点
+
+Ld = Kd(I/r^2)max(0, n.1)
+
+高光项：
+观察的方向和镜面反射方向足够接近的时候就有高光项
+
+Ls = Ks(I/r^2)max(0, n.h)^p
+
+Ks = 镜面反射系数 （亮度）
+p 高光的大小
+
+环境光照，光线弹射，茶杯弹射
+
+简单点，任何一个点接受到环境的光照都是相同的
+
+La = KaIa
+
+La = reflected ambient light
+Ka = ambient coefficient
+
+环境光和法线和观测方向没有关系
+
+全局光照，非常的难
+
+ambient + Diffuse + Sepecular = Blinn-Phong Reflection
+L = La + Ld + Ls
+  = KaIa + Kd(I/r^2)max(0, n.l) + Ks(I/r^2)max(0,n.h)^p
+
+对所有的点做一个着色操作
+着色和观测点离物体多远没有关系，只和光线物体的距离有关系
+
+
+(1)shading frequenceies(着色频率) 
+一个平面只做一次shadings
+每个顶点着色一次
+每个像素着色一次
+1.Flat shading
+- triangle face is flat - one normal vector
+- not good for smooth surfaces
+
+2.Gouraud shading
+- Interpolate colors from vectices across triangle
+- Each vertex has a normal vector(how?)
+
+三角形内部的颜色通过插值算出来
+
+3.Phong shading(每个像素着色)
+-Interpolate normal vectors across each triangle
+-Compute full shading model at each pixel
+-Not the Blinn-Phong Reflectance Model
+
+4.
+Shading freq: Face   Vertex   Pixel
+Shading type: Flat   Gouraud  Phong
+
+5.我怎么知道顶点的法线是什么，求顶点的法线？
+任何一个顶点的法线就是和这个顶点所关联的面，它的法线求一个平局
+
+6.如何去真正定义一个逐像素的法线
+重心坐标
+
+(2)Graphics (Real-time Rendering) Pipeline
+1.Graphics Pipeline
+图形管线和实时渲染管线
+
+Input: vertices in 3D space
+
+Vertices positioned in screen space
+
+Triangles positioned in screen space
+
+Fragments (one per covered sample)
+
+shaded fragments
+
+Output: image (pixels)
+
+gpu编程 顶点和像素如何着色
+
+(3)Shader Pragrams
+顶点着色器
+像素着色器
+
+43分钟
+
+http://shadertoy.com/view/ld2Gz2
+
+shader着色器是千变万化的，和数学紧密相关
+https://youtu.be/XuSnLbB1j6E 
+
+现代图形的发展，多个像素同时着色
+引擎 （图形学和AI的封装）：
+
+GPU
+三角形光栅化
+
+高度并行化的处理器，GPU
+每个像素的处理方式都是相同的，所以特别适合做并行
+
+Textture Mapping(纹理映射):
+共用同一个着色模型，但是颜色有区别
+在物体的不同位置定义不同的属性
+
+任何一个三维物体的它的表面却是二维的
+
+一个纹理对应一个三角形
+
+每个三角形顶点的坐标对应一个纹理坐标
+
+纹理的设计的好可以无缝衔接
+
+多个瓷砖拼接在一起可以组成一个整体
+
+三角形内部和纹理对应，用插值来计算
+
+纹理用来定义三角形每个点的着色情况
+
+不同的材质其实就是不同的着色方法
+
+
+
+
+
+
+
+
+

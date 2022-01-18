@@ -1,0 +1,57 @@
+class template
+<utility>
+std::pair
+//pair
+//-----------------------------------------------------------------------------
+template <class T1, class T2> struct pair;
+Pair of values
+This class couples together a pair of values, which may be of different types 
+(T1 and T2). The individual values can be accessed through its public members 
+first and second.
+注意first和second是公有数据成员，可以通过 .first或.second直接访问。
+
+Pairs are a particular case of tuple.
+
+Template parameters
+T1
+Type of member first, aliased as first_type.
+T2
+Type of member second, aliased as second_type.
+
+Member types
+member type	definition	notes
+first_type	The first template parameter (T1)	Type of member first.
+second_type	The second template parameter (T2)	Type of member second.
+
+Member variables
+member variable	definition
+first	The first value in the pair
+second	The second value in the pair
+
+Member functions
+(constructor)
+Construct pair (public member function )
+pair::operator=
+Assign contents (public member function )
+pair::swap 
+Swap contents (public member function )
+
+Non-member function overloads
+relational operators (pair)
+Relational operators for pair (function template )
+swap (pair) 
+Exchanges the contents of two pairs (function template )
+get (pair) 
+Get element (tuple interface) (function template )
+
+Non-member class specializations
+tuple_element<pair> 
+Tuple element type for pair (class template specialization )
+tuple_size<pair> 
+Tuple traits for pair (class template specialization )
+
+See also
+make_pair
+Construct pair object (function template )
+piecewise_construct
+Piecewise construct constant (constant )

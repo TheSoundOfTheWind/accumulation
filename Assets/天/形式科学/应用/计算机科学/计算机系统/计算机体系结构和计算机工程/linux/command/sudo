@@ -1,0 +1,4 @@
+1. 从脚本中输入密码
+sudo -S ls -l << EOF
+qingqing
+EOF

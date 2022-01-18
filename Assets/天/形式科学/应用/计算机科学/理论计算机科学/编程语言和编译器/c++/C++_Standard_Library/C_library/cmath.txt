@@ -1,0 +1,228 @@
+<cmath> (math.h)
+//-----------------------------------------------------------------------------
+C numerics library
+Header <cmath> declares a set of functions to compute common 
+mathematical operations and transformations:
+
+//function:
+//Parameters:
+//Return Value:
+
+Functions:
+Trigonometric functions:
+//-----------------------------------------------------------------------------
+//function:计算余弦,返回x弧度角的余弦
+//Parameters:x表示以弧度表示的角度的值。一弧度相当于180/PI度。
+//Return Value:x弧度余弦
+double cos(double x);
+
+//function:计算正弦,返回x弧度角的正弦值。
+//Parameters:x表示以弧度表示的角度的值。一弧度相当于180/PI度。
+//Return Value:x弧度的正弦。
+double sin(double x);
+
+//function:计算切线,返回x弧度角的正切值。
+//Parameters:x表示以弧度表示的角度的值。一弧度相当于180/PI度。
+//Return Value:x弧度的切线。
+double tan(double x);
+
+//function:计算弧余弦,返回x的弧余弦的主值，以弧度表示。在三角学中，弧余弦是余弦的逆运算。
+//Parameters:x是计算其弧余弦的值，间隔为[-1，+1]。如果参数超出此间隔，则会发生域错误。
+//Return Value:x的主弧余弦，间隔[0，pi]弧度。一弧度相当于180/PI度。
+double acos(double x);
+
+Compute arc cosine (function )
+asin
+Compute arc sine (function )
+atan
+Compute arc tangent (function )
+atan2
+Compute arc tangent with two parameters (function )
+
+Hyperbolic functions
+cosh
+Compute hyperbolic cosine (function )
+sinh
+Compute hyperbolic sine (function )
+tanh
+Compute hyperbolic tangent (function )
+acosh 
+Compute area hyperbolic cosine (function )
+asinh 
+Compute area hyperbolic sine (function )
+atanh 
+Compute area hyperbolic tangent (function )
+
+Exponential and logarithmic functions
+exp
+Compute exponential function (function )
+frexp
+Get significand and exponent (function )
+ldexp
+Generate value from significand and exponent (function )
+log
+Compute natural logarithm (function )
+log10
+Compute common logarithm (function )
+modf
+Break into fractional and integral parts (function )
+exp2 
+Compute binary exponential function (function )
+expm1 
+Compute exponential minus one (function )
+ilogb 
+Integer binary logarithm (function )
+log1p 
+Compute logarithm plus one (function )
+log2 
+Compute binary logarithm (function )
+logb 
+Compute floating-point base logarithm (function )
+scalbn 
+Scale significand using floating-point base exponent (function )
+scalbln 
+Scale significand using floating-point base exponent (long) (function )
+
+Power functions
+pow
+Raise to power (function )
+sqrt
+Compute square root (function )
+cbrt 
+Compute cubic root (function )
+hypot 
+Compute hypotenuse (function )
+
+Error and gamma functions
+erf 
+Compute error function (function )
+erfc 
+Compute complementary error function (function )
+tgamma 
+Compute gamma function (function )
+lgamma 
+Compute log-gamma function (function )
+
+Rounding and remainder functions
+ceil
+Round up value (function )
+floor
+Round down value (function )
+fmod
+Compute remainder of division (function )
+trunc 
+Truncate value (function )
+round 
+Round to nearest (function )
+lround 
+Round to nearest and cast to long integer (function )
+llround 
+Round to nearest and cast to long long integer (function )
+rint 
+Round to integral value (function )
+lrint 
+Round and cast to long integer (function )
+llrint 
+Round and cast to long long integer (function )
+nearbyint 
+Round to nearby integral value (function )
+remainder 
+Compute remainder (IEC 60559) (function )
+remquo 
+Compute remainder and quotient (function )
+
+Floating-point manipulation functions
+copysign 
+Copy sign (function )
+nan 
+Generate quiet NaN (function )
+nextafter 
+Next representable value (function )
+nexttoward 
+Next representable value toward precise value (function )
+
+Minimum, maximum, difference functions
+fdim 
+Positive difference (function )
+fmax 
+Maximum value (function )
+fmin 
+Minimum value (function )
+
+Other functions：
+//-----------------------------------------------------------------------------
+//function:计算绝对值,返回x的绝对值：| x |。
+//Parameters:x是一个浮点类型的值
+//Return Value:x的绝对值。
+double fabs(double x);
+
+Compute absolute value (function )
+abs
+Compute absolute value (function )
+fma 
+Multiply-add (function )
+
+Macros / Functions
+These are implemented as macros in C and as functions in C++:
+Classification macro / functions
+fpclassify 
+Classify floating-point value (macro/function )
+isfinite 
+Is finite value (macro )
+isinf 
+Is infinity (macro/function )
+isnan 
+Is Not-A-Number (macro/function )
+isnormal 
+Is normal (macro/function )
+signbit 
+Sign bit (macro/function )
+
+Comparison macro / functions
+isgreater 
+Is greater (macro )
+isgreaterequal 
+Is greater or equal (macro )
+isless 
+Is less (macro )
+islessequal 
+Is less or equal (macro )
+islessgreater 
+Is less or greater (macro )
+isunordered 
+Is unordered (macro )
+
+Macro constants
+math_errhandling 
+Error handling (macro )
+INFINITY 
+Infinity (constant )
+NAN
+Not-A-Number (constant )
+HUGE_VAL
+Huge value (constant )
+HUGE_VALF 
+Huge float value
+HUGE_VALL 
+Huge long double value (constant )
+
+This header also defines the following macro constants (since C99/C++11):
+macro	type	description
+MATH_ERRNO
+MATH_ERREXCEPT	int	Bitmask value with the possible values math_errhandling can take.
+FP_FAST_FMA
+FP_FAST_FMAF
+FP_FAST_FMAL	int	Each, if defined, identifies for which type fma is at least as efficient as x*y+z.
+FP_INFINITE
+FP_NAN
+FP_NORMAL
+FP_SUBNORMAL
+FP_ZERO	int	The possible values returned by fpclassify.
+FP_ILOGB0
+FP_ILOGBNAN	int	Special values the ilogb function may return.
+
+Types
+double_t 
+Floating-point type (type )
+float_t
+Floating-point type (type )

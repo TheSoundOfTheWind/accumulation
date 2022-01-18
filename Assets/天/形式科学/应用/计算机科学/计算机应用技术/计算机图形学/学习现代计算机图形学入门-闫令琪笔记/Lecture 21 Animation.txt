@@ -1,0 +1,24 @@
+1.光栅化
+2.几何 曲线曲面
+3.光线传播
+4.动画
+Film:24 frames per second
+Video(in general):30 fps
+Virtual reality:90 fps
+
+关键帧
+
+物理仿真和渲染分开
+
+切变
+
+弹簧系统
+有限元分析
+粒子系统（定义个体和群体的关系）
+
+运动学
+逆运动学
+动作捕捉
+
+
+

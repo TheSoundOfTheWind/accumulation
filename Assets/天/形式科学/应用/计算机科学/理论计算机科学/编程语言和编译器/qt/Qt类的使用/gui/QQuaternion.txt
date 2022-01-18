@@ -1,0 +1,77 @@
+QQuaternion Class
+The QQuaternion class represents a quaternion consisting of a vector(向量) and scalar（标量）.
+Header:	#include <QQuaternion>
+
+Public Functions：
+QQuaternion(const QVector4D &vector)
+QQuaternion(float scalar, const QVector3D &vector)
+QQuaternion(float scalar, float xpos, float ypos, float zpos)
+QQuaternion()
+QQuaternion	conjugated() const
+void		getAxes(QVector3D *xAxis, QVector3D *yAxis, QVector3D *zAxis) const
+void		getAxisAndAngle(float *x, float *y, float *z, float *angle) const
+void		getAxisAndAngle(QVector3D *axis, float *angle) const
+void		getEulerAngles(float *pitch, float *yaw, float *roll) const
+QQuaternion	inverted() const
+bool		isIdentity() const
+bool		isNull() const
+float		length() const
+float		lengthSquared() const
+void		normalize()
+QQuaternion	normalized() const
+QVector3D	rotatedVector(const QVector3D &vector) const
+float		scalar() const
+void		setScalar(float scalar)
+void		setVector(const QVector3D &vector)
+void		setVector(float x, float y, float z)
+void		setX(float x)
+void		setY(float y)
+void		setZ(float z)
+QVector3D	toEulerAngles() const
+QMatrix3x3	toRotationMatrix() const
+QVector4D	toVector4D() const
+QVector3D	vector() const
+float	x() const
+float	y() const
+float	z() const
+QVariant	operator QVariant() const
+QQuaternion &	operator*=(float factor)
+QQuaternion &	operator*=(const QQuaternion &quaternion)
+QQuaternion &	operator+=(const QQuaternion &quaternion)
+QQuaternion &	operator-=(const QQuaternion &quaternion)
+QQuaternion &	operator/=(float divisor)
+
+Static Public Members：
+float		dotProduct(const QQuaternion &q1, const QQuaternion &q2)
+QQuaternion	fromAxes(const QVector3D &xAxis, const QVector3D &yAxis, const QVector3D &zAxis)
+QQuaternion	fromAxisAndAngle(const QVector3D &axis, float angle)
+QQuaternion	fromAxisAndAngle(float x, float y, float z, float angle)
+QQuaternion	fromDirection(const QVector3D &direction, const QVector3D &up)
+QQuaternion	fromEulerAngles(float pitch, float yaw, float roll)
+QQuaternion	fromEulerAngles(const QVector3D &eulerAngles)
+QQuaternion	fromRotationMatrix(const QMatrix3x3 &rot3x3)
+QQuaternion	nlerp(const QQuaternion &q1, const QQuaternion &q2, float t)
+QQuaternion	rotationTo(const QVector3D &from, const QVector3D &to)
+QQuaternion	slerp(const QQuaternion &q1, const QQuaternion &q2, float t)
+
+Related Non-Members：
+bool				qFuzzyCompare(const QQuaternion &q1, const QQuaternion &q2)
+bool				operator!=(const QQuaternion &q1, const QQuaternion &q2)
+const QQuaternion	operator*(float factor, const QQuaternion &quaternion)
+const QQuaternion	operator*(const QQuaternion &quaternion, float factor)
+const QQuaternion	operator*(const QQuaternion &q1, const QQuaternion &q2)
+QVector3D			operator*(const QQuaternion &quaternion, const QVector3D &vec)
+const QQuaternion	operator+(const QQuaternion &q1, const QQuaternion &q2)
+const QQuaternion	operator-(const QQuaternion &q1, const QQuaternion &q2)
+const QQuaternion	operator-(const QQuaternion &quaternion)
+const QQuaternion	operator/(const QQuaternion &quaternion, float divisor)
+QDataStream &		operator<<(QDataStream &stream, const QQuaternion &quaternion)
+bool				operator==(const QQuaternion &q1, const QQuaternion &q2)
+QDataStream &		operator>>(QDataStream &stream, QQuaternion &quaternion)
+
+Detailed Description：
+//-----------------------------------------------------------------------------
+Quaternions are used to represent rotations in 3D space, and consist of a 3D 
+rotation axis specified by the x, y, and z coordinates, and a scalar representing 
+the rotation angle.
+

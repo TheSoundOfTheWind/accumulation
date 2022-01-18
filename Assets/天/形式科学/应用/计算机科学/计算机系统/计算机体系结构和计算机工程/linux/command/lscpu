@@ -1,0 +1,26 @@
+              lscpu显示cpu的架构信息
+
+Architecture:        x86_64（指令集）
+CPU op-mode(s):      32-bit, 64-bit（64位处理器）
+Byte Order:          Little Endian
+CPU(s):              16（逻辑cpu数量）
+On-line CPU(s) list: 0-15（cpu编号）
+Thread(s) per core:  2 （每个核有两个线程）
+Core(s) per socket:  8 （每个插槽有八个核）
+Socket(s):           1 （主板上的cpu的插槽数量）
+NUMA node(s):        1 （节点数Non-Uniform Memory Access）
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               45
+Model name:          Intel(R) Xeon(R) CPU E5-2689 0 @ 2.60GHz （基频）
+Stepping:            7
+CPU MHz:             1197.187 （目前运行的频率）
+CPU max MHz:         3600.0000 （最大频率，睿频）
+CPU min MHz:         1200.0000 （最小频率）
+BogoMIPS:            5187.87
+Virtualization:      VT-x
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            20480K
+NUMA node0 CPU(s):   0-15

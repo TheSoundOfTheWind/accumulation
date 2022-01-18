@@ -1,0 +1,108 @@
+//Qt3DRender::QCamera
+The QCamera class defines a view point through which the scene will be rendered
+
+Header:	#include <Qt3DRender/QCamera>
+qmake:	QT += 3drender
+Since:	Qt 5.5
+Instantiated By:	Camera
+Inherits:	Qt3DCore::QEntity
+This class was introduced in Qt 5.5.
+
+Public Types
+enum	CameraTranslationOption { TranslateViewCenter, DontTranslateViewCenter }
+
+Properties:
+aspectRatio : float
+bottom : float
+exposure : float
+farPlane : float
+fieldOfView : float
+left : float
+lens : Qt3DRender::QCameraLens* const
+nearPlane : float
+position : QVector3D
+projectionMatrix : QMatrix4x4
+projectionType : Qt3DRender::QCameraLens::ProjectionType
+right : float
+top : float
+transform : Qt3DCore::QTransform* const
+upVector : QVector3D
+viewCenter : QVector3D
+viewVector : const QVector3D
+
+Public Functions:
+QCamera(Qt3DCore::QNode *parent = nullptr)
+float						aspectRatio() const
+float						bottom() const
+float						exposure() const
+float						farPlane() const
+float						fieldOfView() const
+float						left() const
+Qt3DRender::QCameraLens *	lens() const
+float						nearPlane() const
+void						pan(float angle)
+void						pan(float angle, const QVector3D &axis)
+void						panAboutViewCenter(float angle)
+void						panAboutViewCenter(float angle, const QVector3D &axis)
+QQuaternion					panRotation(float angle) const
+QVector3D					position() const
+QMatrix4x4					projectionMatrix() const
+QCameraLens::ProjectionType	projectionType() const
+float						right() const
+void						roll(float angle)
+void						rollAboutViewCenter(float angle)
+QQuaternion					rollRotation(float angle) const
+void						rotate(const QQuaternion &q)
+void						rotateAboutViewCenter(const QQuaternion &q)
+QQuaternion					rotation(float angle, const QVector3D &axis) const
+void						tilt(float angle)
+void						tiltAboutViewCenter(float angle)
+QQuaternion					tiltRotation(float angle) const
+float						top() const
+Qt3DCore::QTransform *		transform() const
+void						translate(const QVector3D &vLocal, Qt3DRender::QCamera::CameraTranslationOption option = TranslateViewCenter)
+void						translateWorld(const QVector3D &vWorld, Qt3DRender::QCamera::CameraTranslationOption option = TranslateViewCenter)
+QVector3D					upVector() const
+QVector3D					viewCenter() const
+QVector3D					viewVector() const
+
+Public Slots:
+void	setAspectRatio(float aspectRatio)
+void	setBottom(float bottom)
+void	setExposure(float exposure)
+void	setFarPlane(float farPlane)
+void	setFieldOfView(float fieldOfView)
+void	setLeft(float left)
+void	setNearPlane(float nearPlane)
+void	setPosition(const QVector3D &position)
+void	setProjectionMatrix(const QMatrix4x4 &projectionMatrix)
+void	setProjectionType(QCameraLens::ProjectionType type)
+void	setRight(float right)
+void	setTop(float top)
+void	setUpVector(const QVector3D &upVector)
+void	setViewCenter(const QVector3D &viewCenter)
+void	viewAll()
+void	viewEntity(Qt3DCore::QEntity *entity)
+void	viewSphere(const QVector3D &center, float radius)
+
+Signals:
+void	aspectRatioChanged(float aspectRatio)
+void	bottomChanged(float bottom)
+void	exposureChanged(float exposure)
+void	farPlaneChanged(float farPlane)
+void	fieldOfViewChanged(float fieldOfView)
+void	leftChanged(float left)
+void	nearPlaneChanged(float nearPlane)
+void	positionChanged(const QVector3D &position)
+void	projectionMatrixChanged(const QMatrix4x4 &projectionMatrix)
+void	projectionTypeChanged(QCameraLens::ProjectionType projectionType)
+void	rightChanged(float right)
+void	topChanged(float top)
+void	upVectorChanged(const QVector3D &upVector)
+void	viewCenterChanged(const QVector3D &viewCenter)
+void	viewVectorChanged(const QVector3D &viewVector)
+
+旋转相机的方法（相对旋转，比如一次性旋转90度）
+QQuaternion	fromEulerAngles(float pitch, float yaw, float roll)；
+旋转时将欧拉角转换为四元数，然后通过rotateAboutViewCenter旋转相机。
+camera()->rotateAboutViewCenter(quaternion);

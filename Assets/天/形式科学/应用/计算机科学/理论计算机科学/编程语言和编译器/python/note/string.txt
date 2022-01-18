@@ -1,0 +1,19 @@
+#string的定义
+//------------------------------------------------------------------------------
+可以用单引号或双引号包裹来表示一个string ,string中可以使用单引号好和双引号
+但单引号或双引号必须成对出现,如果出现嵌套必须单引号或双引号相互嵌套如下所示的例子：
+"jinhailin'fdjlfdj'fskjkdj" 或'fjfsjdfl"fsjfl"asdjflj'
+不能是"fskjfl"fjdsjfl"fjdslk"或'fjdskjf'fjsldkjl'fjldskjl',最外围的单引号也好双引号也好，
+只能出现一对。
+
+
+
+#string 自带的一些方法
+//------------------------------------------------------------------------------
+name="aaa"
+print(name.title())#首字母大写
+prinr(name.upper())
+print(name.lower())
+
+
+

@@ -1,0 +1,78 @@
+//QActionGroup 
+//-----------------------------------------------------------------------------
+The QActionGroup class groups actions together.
+
+Header:	#include <QActionGroup>
+Inherits:	QObject
+
+Public Types:
+enum class	ExclusionPolicy { None, Exclusive, ExclusiveOptional }
+
+Properties:
+enabled : bool
+exclusionPolicy : QActionGroup::ExclusionPolicy
+visible : bool
+
+Public Functions:
+QActionGroup(QObject *parent)
+virtual	~QActionGroup()
+QList<QAction *>	actions() const
+QAction *	addAction(QAction *action)
+QAction *	addAction(const QString &text)
+QAction *	addAction(const QIcon &icon, const QString &text)
+QAction *	checkedAction() const
+QActionGroup::ExclusionPolicy	exclusionPolicy() const
+bool	isEnabled() const
+bool	isExclusive() const
+bool	isVisible() const
+void	removeAction(QAction *action)
+
+Public Slots:
+void	setDisabled(bool b)
+void	setEnabled(bool)
+void	setExclusionPolicy(QActionGroup::ExclusionPolicy policy)
+void	setExclusive(bool b)
+void	setVisible(bool)
+
+Signals:
+void	hovered(QAction *action)
+void	triggered(QAction *action)
+
+Detailed Description:
+//-----------------------------------------------------------------------------
+In some situations it is useful to group QAction objects together. For example,
+if you have a Left Align action, a Right Align action, a Justify action, and a
+Center action, only one of these actions should be active at any one time. One 
+simple way of achieving this is to group the actions together in an action group.
+
+Here's a example (from the Menus example):
+    alignmentGroup = new QActionGroup(this);
+    alignmentGroup->addAction(leftAlignAct);
+    alignmentGroup->addAction(rightAlignAct);
+    alignmentGroup->addAction(justifyAct);
+    alignmentGroup->addAction(centerAct);
+    leftAlignAct->setChecked(true);
+
+//一个group中只有一个action为true	
+Here we create a new action group. Since the action group is exclusive by default,
+only one of the actions in the group is checked at any one time.
+
+Alignment options in a QMenu
+A QActionGroup emits an triggered() signal when one of its actions is chosen. Each
+action in an action group emits its triggered() signal as usual.
+
+As stated above, an action group is exclusive by default; it ensures that at most 
+only one checkable action is active at any one time. If you want to group checkable
+actions without making them exclusive, you can turn off exclusiveness by calling 
+setExclusive(false).
+
+By default the active action of an exclusive group cannot be unchecked. In some cases
+it may be useful to allow unchecking all the actions, you can allow this by calling
+setExclusionPolicy(QActionGroup::ExclusionPolicy::ExclusiveOptional).
+
+Actions can be added to an action group using addAction(), but it is usually more 
+convenient to specify a group when creating actions; this ensures that actions are
+automatically created with a parent. Actions can be visually separated from each
+other by adding a separator action to the group; create an action and use QAction's
+setSeparator() function to make it considered a separator. Action groups are added
+to widgets with the QWidget::addActions() function.

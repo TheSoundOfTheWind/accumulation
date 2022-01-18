@@ -1,0 +1,25 @@
+#出现以下错误，大概率是缺失某个库引起的
+//-----------------------------------------------------------------------------
+qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it 
+was found.This application failed to start because no Qt platform plugin could 
+be initialized. Reinstalling the application may fix this problem.
+Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, 
+vnc, xcb.
+Aborted (core dumped)
+
+#准备
+前置条件：source 自己的环境配置脚本
+第一步：export QT_DEBUG_PLUGINS=1 （bash）或 setenv QT_DEBUG_PLUGINS 1（csh）
+第二步：运行bianry
+第三步：将打印的日志copy到一个txt文件里
+
+#错误类型1：txt文件中出现"Cannot load library"关键字
+#解决方法：
+         -在自己的第三方库中找到这个第三方库
+		 -ldd 这个第三方库，查看是否出现not found的第三方库，补全这个库到
+         -自己的第三方包里，或在线安装这个库使其成为系统库。
+		 
+#错误类型2：txt文件中出现："not a pugin" 关键字
+         - 对比自己服务器上打印的日志，将用到系统路径下的库，但自己打包的库中又没有的库补全
+
+#错误类型3：Cannot mix incompatible Qt library (version 0x50501) with this library (version 0x50d01)
