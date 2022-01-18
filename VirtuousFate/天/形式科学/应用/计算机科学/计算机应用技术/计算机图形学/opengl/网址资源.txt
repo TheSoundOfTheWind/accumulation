@@ -20,10 +20,10 @@ glm.g-truc.net/0.9.9/api/index.html
 # glfw
 glfw.org/docs/3.3
 
-
-x2.参考文献
-学习教程
-https://learnopengl-cn.github.io/ ++ https://learnopengl.com/
+中文版opengl学习网站
+https://learnopengl-cn.github.io/ 
+英文版opengl学习网站
+https://learnopengl.com/
 
 https://github.com/JoeyDeVries/LearnOpenGL ++ https://github.com/JoeyDeVries/Cell
 
