@@ -1,0 +1,241 @@
+1.OpenGL ES是什么？
+OpenGL ES（OpenGL for Embedded Systems）是三维图形应用程序接口OpenGL的子集，
+针对手机、PDA和游戏主机等嵌入式设备而设计。该API由科纳斯组织定义推广，科纳
+斯是一个图形软硬件行业协会，该协会主要关注图形和多媒体方面的开放标准。
+OpenGL ES是从OpenGL裁剪定制而来的，去除了glBegin/glEnd，四边形（GL_QUADS）、
+多边形（GL_POLYGONS）等复杂图元等许多非绝对必要的特性。经过多年发展，现在主
+要有两个版本，OpenGL ES 1.x针对固定管线硬件的，OpenGL ES 2.x针对可编程管线硬
+件。OpenGL ES 1.0是以OpenGL 1.3规范为基础的，OpenGL ES 1.1是以OpenGL 1.5规范
+为基础的，它们分别又支持common和common lite两种profile。lite profile只支持定
+点实数，而common profile既支持定点数又支持浮点数。OpenGL ES 2.0则是参照OpenGL 2.0
+规范定义的，common profile发布于2005-8，引入了对可编程管线的支持。OpenGL ES 3.0
+于2012年公布，加入了大量新特性。
+OpenGL ES还有一个safety-critical profile。
+
+// ---------------------------------------------------------------------------------------
+2.OpenGL是什么？
+网站	https://www.opengl.org/
+OpenGL（英语：Open Graphics Library，译名：开放图形库或者“开放式图形库”）是用于渲染
+2D、3D矢量图形的跨语言、跨平台的应用程序编程接口（API）。这个接口由近350个不同的函
+数调用组成，用来从简单的图形比特绘制复杂的三维景象。而另一种程序接口系统是仅用于
+Microsoft Windows上的Direct3D。OpenGL常用于CAD、虚拟现实、科学可视化程序和电子游戏开发。
+
+OpenGL的高效实现（利用图形加速硬件）存在于Windows，部分UNIX平台和Mac OS。这些实现一
+般由显示设备厂商提供，而且非常依赖于该厂商提供的硬件。开放源代码库Mesa是一个纯基于软
+件的图形API，它的代码兼容于OpenGL。但是，由于许可证的原因，它只声称是一个“非常相似”的API。
+
+OpenGL规范由1992年成立的OpenGL架构评审委员会（ARB）维护。ARB由一些对创建一个统一的、
+普遍可用的API特别感兴趣的公司组成。根据OpenGL官方网站，2002年6月的ARB投票成员包括3Dlabs、
+Apple Computer、ATI Technologies、Dell Computer、Evans & Sutherland、Hewlett-Packard、
+IBM、Intel、Matrox、NVIDIA、SGI和Sun Microsystems，Microsoft曾是创立成员之一，但已于
+2003年3月退出。
+
+
+目录
+1	设计
+2	文档
+3	相关程序库
+3.1	上下文与窗口套件
+4	历史
+5	高级功能
+6	版本
+7	参见
+8	参考文献
+9	外部链接
+设计
+
+图形流水线
+OpenGL规范描述了绘制2D和3D图形的抽象API。尽管这些API可以完全通过软件实现，但它是为大部分
+或者全部使用硬件加速而设计的。
+
+OpenGL的API定义了若干可被客户端程序调用的函数，以及一些具名整型常量（例如，
+常量GL_TEXTURE_2D对应的十进制整数为3553）。虽然这些函数的定义表面上类似于C编程语言，
+但它们是语言独立的。因此，OpenGL有许多语言绑定，值得一提的包括：JavaScript绑定的WebGL
+（基于OpenGL ES 2.0在Web浏览器中的进行3D渲染的API）；C绑定的WGL、GLX和CGL；iOS提供的C
+绑定；Android提供的Java和C绑定。
+
+OpenGL不仅语言无关，而且平台无关。规范只字未提获得和管理OpenGL上下文相关的内容，而是
+将这些作为细节交给底层的窗口系统。出于同样的原因，OpenGL纯粹专注于渲染，而不提供输入、
+音频以及窗口相关的API。
+
+OpenGL是一个不断进化的API。新版OpenGL规范会定期由Khronos Group发布，新版本通过扩展API
+来支持各种新功能。每个版本的细节由Khronos Group的成员一致决定，包括显卡厂商、操作系统
+设计人员以及类似Mozilla和谷歌的一般性科技公司。
+
+除了核心API要求的功能之外，GPU供应商可以通过扩展的形式提供额外功能。扩展可能会引入新功
+能和新常量，并且可能放松或取消现有的OpenGL函数的限制。然后一个扩展就分成两部分发布：包
+含扩展函数原型的头文件和作为厂商的设备驱动。供应商使用扩展公开自定义的API而无需获得其他
+供应商或Khronos Group的支持，这大大增加了OpenGL的灵活性。OpenGL Registry负责所有扩展的
+收集和定义。
+
+每个扩展都与一个简短的标识符关系，该标识符基于开发公司的名称。例如，英伟达（NVIDIA）的标
+识符是NV。如果多个供应商同意使用相同的API来实现相同的功能，那么就用EXT标志符。这种情况更
+进一步，Khronos Group的架构评审委员（Architecture Review Board，ARB）正式批准该扩展，那么
+这就被称为一个“标准扩展”，标识符使用ARB。第一个ARB扩展是GL_ARB_multitexture。
+
+OpenGL每个新版本中引入的功能，特别是ARB和EXT类型的扩展，通常由数个被广泛实现的扩展功能组
+合而成。
+
+文档
+OpenGL普及的部分原因是其高质量的官方文件。OpenGL架构评审委员会随规范一同发布一系列包含API
+变化更新的手册。这些手册因其封面颜色而众所周知。
+
+红宝书
+Dave Shreiner, Graham Sellers, John M. Kessenich and Bill M. Licea-Kane. 2013. OpenGL 
+Programming Guide: The Official Guide to Learning OpenGL, Version 4.3（8th Edition）. 
+Addison-Wesley Professional. ISBN 978-0321773036.
+
+橙宝书
+Randi J. Rost, Bill M. Licea-Kane, Dan Ginsburg, John M. Kessenich, Barthold Lichtenbelt, 
+Hugh Malan and Mike Weiblen. 2009. OpenGL Shading Language (3rd Edition). Addison-Wesley 
+Professional. ISBN 978-0321637635
+
+相关程序库
+早期的 OpenGL 版本会一同发布配套的 GLU 库，提供一些同时代硬件尚不支持的简单功能。GLU 最后一
+次更新规格要求是在 1998 年，对已弃用的 OpenGL 特性有依赖。
+
+还有几个库也创建在OpenGL之上，提供了OpenGL本身没有的功能：
+
+GLFW
+GLUT
+GLEW、GLEE
+特别是，OpenGL Performer库——由SGI开发并可以在IRIX、Linux和Microsoft Windows的一些版本上使用，
+构建于OpenGL，可以创建实时可视化仿真程序。
+
+当开发者需要使用最新的OpenGL扩展时，他们往往需要使用GLEW库或者是GLEE库提供的功能，可以在程序
+的运行期判断当前硬件是否支持相关的扩展，防止程序崩溃甚至造成硬件损坏。这类库利用动态加载技术
+（dlsym、GetProcAddress等函数）搜索各种扩展的信息。
+
+上下文与窗口包
+OpenGL 上下文（英语：OpenGL context）的创建过程相当复杂，在不同的操作系统上也需要不同的做法。
+因此很多游戏开发和用户界面库都提供自动创建 OpenGL 上下文的功能，其中包括 SDL、Allegro、SFML、
+FLTK、Qt 等。也有一些库是专门用来创建OpenGL窗口的，其中最早的便是 GLUT，后被freeglut取代，比
+较新的也有 GLFW 可以使用。[2]
+
+以下包可以用来创建并管理 OpenGL 窗口，也可以管理输入，但几乎没有除此以外的其它功能：
+GLFW——跨平台窗口和键盘、鼠标、手柄处理；偏向游戏
+freeglut——跨平台窗口和键盘、鼠标处理；API 是 GLUT API 的超集，同时也比 GLUT 更新、更稳定
+GLUT——早期的窗口处理库，已不再维护
+支持创建 OpenGL 窗口的还有一些“多媒体库”，同时还支持输入、声音等类似游戏的程序所需要的功能：
+Allegro 5——跨平台多媒体库，提供针对游戏开发的 C API
+SDL——跨平台多媒体库，提供 C API
+SFML——跨平台多媒体库，提供 C++ API；同时也提供 C#、Java、Haskell、Go 等语言的绑定
+窗口包
+FLTK——小型的跨平台 C++ 窗口组件库
+Qt——跨平台 C++ 窗口组件库，提供许多OpenGL辅助对象
+wxWidgets——跨平台 C++ 窗口组件库
+历史
+1980年代，开发可以用在各种各样图形硬件上的软件是个真正的挑战。通常，软件开发人员为每种硬件编
+写自定义的接口和驱动程序。但这非常昂贵并会导致大量工作的重复。
+
+20世纪90年代初，SGI成为工作站3D图形领域的领导者。其IRIS GL的API被认为是最先进的科技并成为事实
+上的行业标准，而基于开放标准的PHIGS则相形见绌。IRIS GL更容易使用，而且还支持即时模式的渲染。
+相比之下，PHIGS难于使用并且功能老旧。
+
+SGI的竞争对手（包括Sun、惠普和IBM）通过扩展PHIGS标准也能将3D硬件投入市场。这反过来导致SGI市场
+份额的削弱，因为有越来越多的3D图形硬件供应商进入市场。为攻占市场，SGI决定把IRIS GL API转变为一
+项开放标准，即OpenGL。
+
+然而，SGI拥有大量的软件客户，对他们来说从IRIS GL迁移到OpenGL将需要巨额投资。此外，IRIS GL的应
+用程序接口拥有与3D图形不相关的函数。例如，它包括窗口、键盘和鼠标的API，部分原因是由于它是在X 
+Window系统和Sun公司的NeWS系统之前开发的。而且，IRIS GL库由于授权和专利问题并不适合开放。上述种
+种因素要求SGI继续支持先进和专有的IRIS Inventor和IRIS Performer应用程序接口。
+
+IRIS GL的限制之一是只能访问由底层硬件支持的功能。如果图形硬件不支持一项功能，那么该应用程序将
+不能使用它。OpenGL通过为硬件不具备的功能提供软件支持克服此问题，这就允许应用程序在相对较弱的
+系统中使用先进的图形技术。OpenGL标准化访问硬件的方式：硬件接口程序的开发（有时也称为设备驱动
+程序）交由硬件制造商，而窗口功能委托给底层操作系统。让大量不同种类的图形硬件讲同一种语言影响
+深远，它为软件开发者进行3D软件发展提供更高层次的平台。
+
+1992年，SGI公司领导OpenGL架构审查委员会（OpenGL ARB）的创建。该委员会由若干公司组成，负责未来
+OpenGL规范的维护和扩展。
+
+微软在1995年发布Direct3D，Direct 3D最终成为OpenGL的主要竞争对手。1997年12月17日，微软和SGI发起
+华氏温标项目，旨在统一OpenGL和Direct3D的接口。1998年，惠普加入。后来，由于SGI的财政限制、微软
+的战略以及缺乏行业普遍支持，项目1999年遭弃。
+
+2006年7月，OpenGL架构评审委员会投票决定将OpenGL API标准的控制权交给Khronos Group。
+
+高级功能
+OpenGL被设计为只有输出的，所以它只提供渲染功能。核心API没有窗口系统、音频、打印、键盘／鼠标或
+其他输入设备的概念。虽然这一开始看起来像是一种限制，但它允许进行渲染的代码完全独立于他运行的
+操作系统，允许跨平台开发。然而，有些集成于原生窗口系统的东西需要允许和宿主系统交互。这通过下
+列附加API实现：
+
+GLX - X11（包括透明的网络）
+WGL - Microsoft Windows
+另外，GLUT库能够以可移植的方式提供基本的窗口功能。
+
+版本
+OpenGL进化自（而且风格很相似）SGI的早期3D接口IRIS GL。IRIS GL的一个限制是它只能访问底层硬件提
+供的特性。如果图形硬件不支持例如纹理映射这样的功能，那么应用程序就不能使用它。OpenGL通过在软
+件上对硬件不支持的特性提供支持的方法克服了这个问题，允许应用程序在相对低配置的系统上使用高级
+的图形特性。Fahrenheit项目是Microsoft和SGI之间的联合行动，为了统一OpenGL和Direct3D接口的目的
+。它一开始提出了一些把规则带给交互3D计算机图形API世界的承诺，但因为SGI的财政限制，这个项目后
+来被放弃了。
+
+2002年微软的DirectX 9提出了全新的Shader绘图功能以及高端着色语言（HLSL），OpenGL霸主地位开始被
+瓦解。这使得3DLabs了解到必须开发全新的OpenGL 2.0版本，但仅加入支持GLSL的功能。2006年Khronos接
+手OpenGL，立刻着手发展Longs Peak与Mount Evans。2008年推出OpenGL 3，但评价普遍不高。
+
+2010年3月10日, OpenGL同时推出了3.3和4.0版本，同年7月26日又发布了4.1版本。2011年8月8日发布4.2版
+本。2013年发布4.3版。
+
+主要版本	发布日期	重要变更
+1.1	1997年1月	
+1.2	1998年3月16日	
+1.2.1	1998年10月14日	
+1.3	2001年8月14日	
+1.4	2002年7月24日	
+1.5	2003年7月29日	
+2.0	2004年9月7日	
+2.1	2006年7月2日	
+3.0	2008年8月11日	
+3.1	2009年3月24日	
+3.2	2009年8月3日	
+3.3	2010年3月11日	OpenGL 3.3与4.0版一起发布。 以体现硬件支持Direct3D 10的可能性。
+4.0	2010年3月11日	OpenGL 4.0与版本3.3一起发布。 它是为硬件设计的，以体现硬件支持Direct3D 
+11的可能性。
+与OpenGL 3.0一样，这个版本的OpenGL包含大量相当无关紧要的扩展，旨在彻底揭示Direct3D 11级硬件的能力。
+
+4.1	2010年7月26日	
+4.2	2011年8月8日	支持的显卡：NVIDIA GeForce 400系列以上，AMD Radeon HD7000系列以上，
+Intel HD Graphics （第7代Ivy Bridge系列以上）
+AMD Radeon HD 6000 Series, AMD Radeon HD 7000 Series
+
+支持Shaders原子计数器和加载/存储/原子读-修改-写操作的单级纹理着色器。
+捕捉GPU-tessellated几何变换反馈的结果绘制的多个实例，使复杂的对象进行有效的重新定位和复制。
+支持修改任意子集的压缩纹理，而无需重新下载整个GPU的纹理，显著的性能改进。
+支持包装成一个单一的32位值显著降低内存存储和带宽的高效着色处理多个8位和16位值。
+4.3	2012年8月6日	支持的显卡：NVIDIA GeForce 400系列以上，AMD Radeon HD5000系列以上，Intel
+ HD Graphics （第7.5代Haswell系列以上）
+围内充分利用GPU的并发计算着色器的图形管道
+暗器的存储缓冲器对象
+纹理参数查询
+作为标准功能的高质量的纹理压缩ETC2/EAC
+完全兼容的OpenGL ES3.0的API
+在应用程序开发过程中调试能力接收调试消息
+没有数据复制以不同的方式解释纹理的纹理意见
+增加了内存的安全性
+一个多应用的健壮性扩展
+4.4	2013年7月22日[3]	支持的显卡：NVIDIA GeForce 400系列以上，AMD Radeon HD5000系列以上，
+Intel HD Graphics （第7.5代Haswell系列以上）
+缓冲器位置控制
+高效异步查询
+着色器可变布局
+高效多对象绑定
+精简化Direct3D应用的移植
+非绑定的纹理扩展
+稀疏纹理扩展
+4.5	2014年8月11日[4]	支持的显卡：NVIDIA GeForce 400系列以上，AMD Radeon HD7000系列以上，
+Intel HD Graphics （第8代Broadwell系列以上），Tegra K1, Tegra X1
+直接状态访问（DSA） - 对象访问器使查询和修改状态不会将对象绑定到上下文中，从而提高应用程序
+和中间件的效率和灵活性
+刷新控制 - 应用程序可以在上下文切换之前控制挂起命令的刷新，实现高性能多线程应用程序
+鲁棒性 - 为WebGL浏览器等应用程序提供安全平台，包括阻止GPU复位影响任何其他正在运行的应用程序
+OpenGL ES 3.1 API和着色器兼容性 - 可轻松开发和执行桌面系统上最新的OpenGL ES应用程序
+4.6	2017年7月31日	支持的显卡：NVIDIA GeForce 400系列以上（理论上可支持）
+SPIR-V着色器
+各向异性过滤
+
+// ---------------------------------------------------------------------------------------

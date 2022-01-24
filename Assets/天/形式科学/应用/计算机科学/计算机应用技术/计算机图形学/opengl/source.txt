@@ -45,3 +45,9 @@ libQGLViewer 是一个用以简化了Qt开发OpenGL三维浏览器的C++库。�
 http://libqglviewer.com/
 
 https://github.com/GillesDebunne/libQGLViewer
+
+opengl 2.1版本的接口说明网站
+https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/
+
+opengl 官方网站
+https://www.opengl.org/
