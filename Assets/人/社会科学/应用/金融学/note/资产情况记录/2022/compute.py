@@ -24,7 +24,7 @@ yinhangka = yinhangka1+yinhangka2
 weixin = weixin1+weixin2
 shouyijine = shouyijine1+shouyijine2
 zongzichan = zongzichan1+zongzichan2
-shouyilv=float(shouyijine)/float(zongzichan)*100.0
+shouyilv=float(shouyijine)/(float(zongzichan)-float(shouyijine))*100.0
 fileName1 = str(month) + "月资产统计"
 fileName2 = str(month) + "月资产统计.txt"
 print("                      =========%s=========\n" % (fileName1))
