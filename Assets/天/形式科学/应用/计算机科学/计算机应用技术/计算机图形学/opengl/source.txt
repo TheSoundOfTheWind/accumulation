@@ -1,4 +1,6 @@
+#蓝宝书
 1. glprogramming.com/blue/
+#红宝书
 2. glprogramming.com/red/
 3. zhihu.com/question/20194540
 4. ogldev.atspace.co.uk/index.html

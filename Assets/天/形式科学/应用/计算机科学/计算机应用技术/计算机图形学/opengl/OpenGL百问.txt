@@ -244,4 +244,28 @@ SPIR-V着色器
 顶点缓冲对象：Vertex Buffer Object, VBO
 索引缓冲对象：Element Buffer Object, EBO或Index Buffer Object, IBO
 
-4.
+4.OpenGL有哪些常用的头文件
+<GL/gl.h>：OpenGL所使用的函数和常量声明。
+
+<GL/glu.h>：GLU（OpenGL实用库）所使用的函数和常量声明。GLU库属于OpenGL标准的一部分。
+（以下各种库则不属于）
+
+<GL/glext.h>：扩展头文件。因为微软公司对OpenGL的支持不太积极，VC系列编译器虽然有<GL/gl.h>
+这个头文件，但是里面只有OpenGL 1.1版本中所规定的内容，而没有OpenGL 1.2及其以后版本。对
+当前的计算机配置而言，几乎都支持OpenGL 1.4版本，更高的则到1.5, 2.0, 2.1，而VC无法直接使
+用这些功能。为了解决这一问题，就有了<GL/glext.h>头文件。这个头文件提供了高版本OpenGL所需
+要的各种常数声明以及函数指针声明。
+
+<GL/wglext.h>：扩展头文件。与<GL/glext.h>类似，但这个头文件中只提供适用于Windows系统的各
+种OpenGL扩展所使用的函数和常量，不适用于其它操作系统。
+
+<GL/glaux.h>：GLAUX（OpenGL辅助库）所使用的函数和常量声明。这个库提供了创建窗口，处
+理键盘和鼠标事件，设置调色板等OpenGL本身不提供，但在编写OpenGL程序时又经常用到的功能。
+目前这个库已经过时，只有比较少的编译环境中有提供，例如VC系列。在VC系列编译器中，使用
+这个头文件之前必须使用#include <windows.h>或者具有类似功能的头文件。
+
+<GL/glut.h>：GLUT（OpenGL实用工具包）所使用的函数和常量声明。这个库的功能大致与GLAUX
+类似，目前许多OpenGL教程使用这个库来编写演示程序。一些编译系统可能不直接提供这个库（
+例如VC系列），需要单独下载安装。这个头文件自动包含了<GL/gl.h>和<GL/glu.h>，编程时不必
+再次包含它们。
+
