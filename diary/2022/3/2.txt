@@ -3,6 +3,7 @@
 1.Debug geometry id编号的问题
 2.串通binary file - db - 显示
 3.提交代码
+4.添加-2d参数，使界面布局进入纯2D模式
 
 重要且紧急（立即去做）
 
