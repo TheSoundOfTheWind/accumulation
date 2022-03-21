@@ -4,6 +4,7 @@
 
 1.读取国海需要的新的数据（gcap文件中dic layer） 
   -binary以支持 ok
+  -ascii支持 ok
 
 优化选项
 1.加set method 
@@ -16,9 +17,9 @@
   
 2.添加测量功能
 
-帮拓晶添加goto node的功能
+帮拓晶添加goto node的功能 ok
 
-3.和美琪沟通测试的进度
+3.和美琪沟通测试的进度 ok
 美琪测试出的问题：
 -g 显示的status 两个5改成一个4一个5
 -2d status栏添加dx dy等信息，便于debug

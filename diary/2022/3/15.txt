@@ -8,7 +8,7 @@
 窗口的勾选需要同步
   -后续做layer控制，net的同步 推后做
   
-1.添加top view中的cut x，cut y的功能
+1.添加top view中的cut x，cut y的功能 ok
   -将线的坐标传递到对应的cut widget中，更新cut widget ok
   -debug y-cut图形丢失的问题
   图形丢失的原因大致定位到了，是由于坐标系统模糊不清的原因造成的
