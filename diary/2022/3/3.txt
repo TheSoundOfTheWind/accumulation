@@ -17,8 +17,8 @@
 将top view的数据存入DB中 ok
 将DB中top view的矩形转换成物理坐标  ok
 将转换好的物理坐标的rect通过EN画出来 ok
-新建一个topview的widget用于实例化en和tr类，以这个类作为尝试的样本 
-补充db的颜色系统
+新建一个topview的widget用于实例化en和tr类，以这个类作为尝试的样本  ok
+补充db的颜色系统 ok
 关闭其他的窗口，只创建topview的2d窗口
 
 重要且紧急
