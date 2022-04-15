@@ -26,3 +26,5 @@ $git reset [--hard | soft | mixed | merge | keep] [commit | HEAD]
 $git reset --hard HEAD
 
 
+git rebase -i HEAD~3 合并多个commit为一个commit
+git cherry-pick commitID 将这个commitID下的改动合并到当前分支
