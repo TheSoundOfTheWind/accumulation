@@ -1,0 +1,30 @@
+gxviewer
+#bug
+1.电介质eps的数值显示为-1
+2.电介质生长错误，导致的显示错误但是没有提示直接显示
+3.点选不灵敏问题
+4.随机出现异常日志问题（暂时搁置）
+
+#enhencement
+1.2D显示在14nm PLL例子时全局显示的优化（2500万、全局显示）（局部显示性能没问题）
+2.2D显示在chm testcase2例子时内存的优化（820G）内存占用过高（gcap文件3.2G）（5月和6月）
+3.3D显示28nm PLL例子能正常打开（70万geometry）（5月和6月）
+
+#feature
+1.File menu bar添加load file选项（支持可重入）
+2.color by net、color by layer、color by node
+3.添加-h参数，提示-g和-a参数的用法
+4.透明选项目前处于无效状态需要加回
+5.net独占模式（开会讨论）
+
+#defect
+1.接入新的qrc框架，并进行logo的替换
+2.conductor和电介质数目分开打印
+
+#代码规范
+1.方法区分为get methods和set methods
+2.db中的类添加拷贝构造函数
+3.源文件中的方法顺序和头文件的方法顺序一致
+gtfeditor
+
+
