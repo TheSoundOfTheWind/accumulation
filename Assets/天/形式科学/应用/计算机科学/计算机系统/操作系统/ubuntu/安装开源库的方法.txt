@@ -1,0 +1,21 @@
+1.去这个开源库的官网或第三方资源链接网站下载该库的压缩包
+
+2.解压
+tar -xvJf xxx.tar.xz
+tar -zxvf fileName.tar.gz
+
+3.创建一个和解压目录的平级目录，如build-name，并进入该目录
+
+4.运行配置脚本，生成makefile文件
+运行脚本：  ../解压目录/configure 配置参数
+可以通过--prefix=/opt/.... 参数指定安装目录
+
+5.make -j15
+
+6.sudo make install
+注：可通过sudo make uninstall卸载安装的开源库
+
+#错误排查
+1.如果运行configure文件，check不过因为某些依赖库或环境缺失
+解决步骤：apt-file find libName （记得更新apt-file的状态）
+然后看这些库在目录中有没有，没有就install
