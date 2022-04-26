@@ -1,0 +1,17 @@
+export QT_ROOT=/opt/qt-5.14.0-linux
+#开发依赖
+export PATH=$QT_ROOT/bin:$PATH
+export CPATH=$QT_ROOT/include:$CPATH
+export LIBRATY_PATH=$QT_ROOT/lib:$LIBRARY_PATH
+export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
+
+#运行依赖
+#export QML2_IMPORT_PATH=$QT_ROOT/qml
+#export QT_PLUGIN_PATH=$QT_ROOT/plugins
+export QT_QPA_FONTDIR=$QT_ROOT/lib/fonts
+#export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_ROOT/plugins/platforms
+export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_ROOT/plugins
+export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
+
+#debug 排查库缺失问题
+export QT_DEBUG_PLUGINS=1

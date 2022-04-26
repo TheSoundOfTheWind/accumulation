@@ -1,0 +1,6 @@
+1.dpkg -S /bin/ls
+
+2.sudo apt install apt-file
+  sudo apt-file update
+  apt-file find kwallet.h
+  apt-file list packagename

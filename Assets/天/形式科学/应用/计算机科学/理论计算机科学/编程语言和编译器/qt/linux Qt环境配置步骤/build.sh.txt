@@ -1,0 +1,13 @@
+./../qt-everywhere-src-5.14.0/configure \
+-verbose \
+-opensource \
+-release \
+-shared \
+-confirm-license \
+-make libs \
+-nomake tests \
+-xcb-xlib
+-skip qtmacextras \
+-skip qtandroidextras \
+-skip qtwebengine \
+-prefix /opt/qt-5.14.0-linux

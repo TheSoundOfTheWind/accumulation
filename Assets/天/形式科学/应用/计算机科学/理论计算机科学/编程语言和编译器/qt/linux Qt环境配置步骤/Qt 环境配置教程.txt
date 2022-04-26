@@ -1,0 +1,31 @@
+1. Qt库下载:
+opensuse.osuosl.org/pub/blfs/conglomeration/qt5/
+https://download.qt.io
+
+2.Qt库解压
+tar -xvJf xxx.tar.xz
+
+3.创建build目录
+创建一个和解压Qt库平级的build目录，在这个目录中进行操作防止
+Qt源码包被污染
+
+4.编写build 脚本
+qt的编译参数很多所以还是建议用脚本来写，防止乱掉
+(脚本请参考当前目录的build.sh)
+
+5.编译
+make -j15
+
+6.安装到指定目录(目录在build.sh中配置）
+make install
+
+7.添加系统字体
+进入目录：/opt/qt-5.14.0-linux/lib,创建字体目录fonts,可以把.ttf字体文件拷贝到字体目录中
+系统字体一般在/usr/share/fonts目录下
+$ find /usr/share/fonts -name "*ttf" -exec cp {} ./ \;
+
+8.环境配置
+source compileAndRun.sh 脚本配置编译和运行环境
+
+
+

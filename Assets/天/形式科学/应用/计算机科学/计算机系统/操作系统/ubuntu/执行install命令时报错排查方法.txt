@@ -1,0 +1,5 @@
+1.报错提示
+No default Matlab path found. Exiting.
+
+解决方法：sudo apt remove matlab-support
+
