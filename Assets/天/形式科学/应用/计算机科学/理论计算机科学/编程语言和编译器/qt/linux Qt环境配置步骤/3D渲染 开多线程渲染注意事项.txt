@@ -1,0 +1,7 @@
+1.版本超过5.7版本需要打开这个开关
+if QT_VERSION<QT_VERSION_CHECK(5，7，0)
+ // to do
+#else
+ QCoreApplication::instance()->setAttribute(Qt::AA_DontCheckOpenGLContextThreadAffinity);
+
+ctx->moveToThread(m_enThread);
