@@ -1,0 +1,42 @@
+gxviewer
+#bug
+1.随机出现异常日志问题（暂时搁置）
+
+#enhencement
+1.2D显示在14nm PLL例子时全局显示的优化（2500万、全局显示）（局部显示性能没问题）
+2.2D显示在chm testcase2例子时内存的优化（820G）内存占用过高（gcap文件3.2G）（5月和6月）
+3.3D显示28nm PLL例子能正常打开（70万geometry）（5月和6月）
+  这里需要一个止损线，如果opengl这条路不行，就只能通过osg那条路来了
+  从五月份开始启动
+4.优化内存占用，现在内存占用太大了
+
+#feature
+1.File menu bar添加load file选项（支持可重入）
+2.color by net、color by layer、color by node
+3.透明选项目前处于无效状态需要加回
+4.net独占模式（开会讨论）
+
+#defect
+1.接入新的qrc框架，并进行logo的替换
+2.conductor和电介质数目分开打印
+3.添加-h参数，提示-g和-a参数的用法
+3.按f键回到原始大小，再按一次自适应大小
+4.gxviewer默认打开3D的view，太大无法打开
+  3D打开2D的时候需要给出提示，并且给出提示
+  的同时给予用户选择是否强制打开3D
+5.日志打印需要打印net数目layer数目，和细分layer数目
+  还要打印conductor数目和dielectric数目
+
+#代码规范
+1.方法区分为get methods和set methods
+2.db中的类添加拷贝构造函数
+3.源文件中的方法顺序和头文件的方法顺序一致
+
+finish
+1.电介质eps的数值显示为-1
+2.电介质生长错误，导致的显示错误但是没有提示直接显示
+3.点选不灵敏问题
+
+gtfeditor
+
+
