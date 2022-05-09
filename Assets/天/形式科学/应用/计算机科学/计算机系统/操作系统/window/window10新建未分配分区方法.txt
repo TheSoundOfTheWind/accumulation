@@ -1,0 +1,30 @@
+1.开始中搜索创建并格式化硬盘分区
+
+2.找到一个空间比较大得分区右键选择压缩卷
+
+3.选择大小，然后点击确认就能出现一个未分配分区啦
+
+cmd配置方法：
+1.搜索cmd，进入cmd黑窗口界面
+
+2.输入diskpart进入磁盘管理窗口
+
+#列出磁盘
+list disk
+
+#选择磁盘
+sel disk 0
+
+#列出磁盘分区
+list partition 
+
+#选择磁盘分区
+sel partition 5 
+
+#删除该磁盘分区
+delete partition override
+
+#如果要删除磁盘所有内容可以先选择磁盘然后再运行如下cmd
+CLEAN ALL
+
+
