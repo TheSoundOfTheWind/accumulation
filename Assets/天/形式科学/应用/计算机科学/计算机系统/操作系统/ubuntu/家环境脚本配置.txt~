@@ -1,0 +1,4 @@
+#.bashrc
+#myself
+alias e=emacs
+alias ll="ls -ls"
