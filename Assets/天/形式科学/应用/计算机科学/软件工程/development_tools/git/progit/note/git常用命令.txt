@@ -46,6 +46,7 @@ git push origin [name]
 #删除远程分支：
 git push origin :heads/[name] or gitpush origin :[name]
 
+
 #更新远程分支
 git remote prune origin
 
@@ -76,3 +77,7 @@ git tag -a [name] -m 'yourMessage'
 // diff
 #只能在add之前进行git diff
 git diff filename 
+
+#将远程分支merge到本地(e.g)
+git pull
+git pull origin personal/username/update-log
