@@ -34,3 +34,5 @@ centos7安装 qt库
 更新gxviewer的日志
 
 10:45~
+尝试构架qt的makefile
+给璐佳发新的trac

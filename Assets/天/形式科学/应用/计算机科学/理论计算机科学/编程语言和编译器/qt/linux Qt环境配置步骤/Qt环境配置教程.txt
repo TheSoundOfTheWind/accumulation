@@ -42,6 +42,7 @@ qt的编译参数很多所以还是建议用脚本来写，防止乱掉
 
 5.安装编译依赖库
 # 这是QT官网推荐的
+ubuntu
 sudo apt install libfontconfig1-dev libfreetype6-dev\
      libx11-dev libxext-dev libxfixes-dev libxi-dev\
      libxrender-dev libxcb1-dev libx11-xcb-dev\
@@ -50,10 +51,18 @@ sudo apt install libfontconfig1-dev libfreetype6-dev\
 # 这是我在ubuntu 20.04上面根据警告和错误日志额外安装的
 sudo apt install build-essential mesa-common-dev libdbus-1-dev
 
+
+
 #安装xcb的库，不然platforms目录会缺少libqxcb.so的库，导致qt程序启动不起来
 进入网址：xcb.freedesktop.org
 下载xcb-proto 1.13，解压 tar zxvf fileName.tar.gz,编译
 下载libxcb1.13,编译
+https://blog.csdn.net/luoyayun361/article/details/118493387
+
+centos
+libxcb libxcb-devel libXrender libXrender-devel xcb-util-wm
+ xcb-util-wm-devel xcb-util xcb-util-devel xcb-util-image 
+ xcb-util-image-devel xcb-util-keysyms xcb-util-keysyms-devel
 
 6.编译
 make -j15
