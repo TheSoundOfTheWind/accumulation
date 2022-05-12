@@ -1,6 +1,8 @@
 #第一次输入密码之后就不需要再输入了
 git config --global credential.helper store
 
+git config --global push.default simple
+
 #修改上传文件大小限制为500M
 git config http.postBuffer 524288000
 
