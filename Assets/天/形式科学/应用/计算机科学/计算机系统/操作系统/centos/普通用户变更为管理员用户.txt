@@ -1,0 +1,18 @@
+解决方法：切换到root用户进入到/etc目录编辑sudoers，添加账号到sudoers里。  
+vi /etc/sudoers
+1.找到 root    ALL=(ALL)     ALL
+再后面添加 用户名    ALL=(ALL)    ALL
+
+补充知识点 一：
+vi查找命令，在命令模式下： 
+/pattern<Enter> ：向下查找pattern匹配字符串 例： /ALL= 
+?pattern<Enter>：向上查找pattern匹配字符串     例：?ALL=
+使用了查找命令之后，使用如下两个键快速查找：    
+n：按照同一方向继续查找    
+N：按照反方向查找
+
+补充知识点二：
+改文件只读，常规保存退出命令 " :wq " 是无法保存的， 必须 “ :x! "
+
+切换为普通用户后就可以发现普通用户就可以使用sudo命令安装东西啦
+

@@ -1,0 +1,4 @@
+Applications->System Tools -> Setting -> Region&Language -> Input Source 点击“+”， 
+找到chinese(china),选择“Chinese Itelligent Pinyin" 就可以了
+
+直接用shift切换中英文就可以了
