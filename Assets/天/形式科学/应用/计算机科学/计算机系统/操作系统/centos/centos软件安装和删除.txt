@@ -1,0 +1,6 @@
+#安装
+sudo yum install XXX
+
+#删除
+sudo yum remove cmake -y
+
