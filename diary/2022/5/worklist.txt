@@ -69,28 +69,28 @@ Defect：
 
 3.Preview界面中右下角的（cancel、apply、edit）按钮大小调整的和Layer界面右下角按钮大小一致
 
-3.搜索框中点击回车后光标不自动跳到编辑界面
+4.gtfeditor Layers界面中通过点击More Attributes选择界面的Head来控制选择界面的缩放
 
-4.more attributes按钮去掉，将控制more attribute选项展开功能通过点击more attribute的head实现
+5.gtfeditor调整下拉条的颜色
 
-5.去掉搜索框这一栏中的放大镜按钮
+6.gtfeditor Comments界面微调
+  -gtfeditor comments界面编辑时每新起一行都在行首自动添加一个*号
+  -gtfedit comments界面编辑的内容在preview界面中的head内容前面显示出来
 
-6.下拉条的颜色调整为和widget tab的底色一致
+7.comment编辑界面每新起一行，每行的前面都自动加一个*，并且preview编辑界面中的head前面显示对应的comment
 
-7.file->dump时候对数据进行检查，file->save的时候不对数据进行检查直接将preview中的所有text
-直接保存到文件中
+8.gtfeditor点击菜单栏的Save后将preview中的文本内容不做检查的保存到指定文件
 
 Feature:
-1.comment编辑界面每新起一行，每行的前面都自动加一个*，并且preview编辑界面中的head前面显示对应的comment
-
-2.previewer中除了在head前面的comment，previewer的其他地方也可以通过添加注释还可以通过';'或‘*’来添加注释
-
-3.搜索框调整为vim 命令框的风格通过vim的命令来进行对实现preview中文本的操作和编辑
- -搜索功能
- -正则替换功能
-
+1.gtfedit comments功能调整
+  -支持正文部分的局部注释的位置还原和保存
+  
+2.gtfeditor Preview界面的搜索框支持某些vim文本处理命令
+  - vim的文本替换功能
+  
 代码规范：
-gitlab会对每次提交的代码进行质量检查，需要每周五对检查报告，并把相关的指标每周逐步降低
+gitlab会对每次提交的代码进行质量检查，开发这边将指标逐步降低，
+每周五和产品过一下检查报告跟进指标是否下降，代码质量是否提高。
 
 
 
