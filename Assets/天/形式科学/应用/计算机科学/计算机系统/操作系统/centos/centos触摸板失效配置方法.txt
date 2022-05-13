@@ -1,0 +1,6 @@
+在终端输入以下代码
+sudo modprobe -r psmouse
+sudo modprobe psmouse proto=imps
+sudo gedit /etc/modprobe.d/options
+添加 options psmouse proto=imps
+保存改动重启。

@@ -15,6 +15,24 @@ gxviewer
 2.color by net、color by layer、color by node
 3.net独占模式（开会讨论）
 
+gxviewer 图形化辅助2.5D cap与3D cap的校准
+gxiviewer目前已经读入了完整的3D solver处理过后的shape、node、net、layer等信息，只要gxviewer再新增如下几个功能就能实现2.5D和3D cap的校准了。
+步骤一：搜索
+在TopView中选中shape（node），快捷键打开这个shape周边4um（可指定任意值）之内的shape
+
+步骤二：获取3D shape（node）与shape之间的cap值
+读入spi文件获取node与node之间的电容值，再步骤1的基础上选中两个shape，只要这两个shape对应
+的node在spi文件中有值，状态栏或图形化显示这两个node之间的cap
+
+步骤三：获取2.5D shape坐标和shape与shape之间的cap值
+读入.gex的xtMergeShape文件获取2.5D solver下的所有shape，读取.gex目录下的shape_to_shape_cap
+file获取2.5D shape与shape之间的cap。
+
+步骤四：2.5D和3Dcap的校准
+步骤二中选中的两个shape，gxviewer会去搜索分别和这两个shape处于同一层的2.5D shape，重叠面积
+达到90%及以上的shape，显示2.5D中这两个shape之间的cap值，2.5Dshape用虚线显示在TopView中。
+这样状态栏中就有3D shape的cap值也有2.5D的cap值，还有两个cap值的偏差。所有的校准结果可以
+down load到指定文件中。
 
 #defect
 1.接入新的qrc框架，并进行logo的替换
@@ -39,5 +57,42 @@ finish
   -cut view只有一个，另一个隐藏
 
 gtfeditor
+Bug：
+1.Header界面中HALF_NODE_SCALE_FACTOR关键字拼写错误
+
+2.gtfeditor Preview界面改动数值再点击apply后出现syntax error
+
+Defect：
+1.删除Layer 界面中的copy和cancel按钮
+
+2.删除Layer界面中搜索按钮
+
+3.Preview界面中右下角的（cancel、apply、edit）按钮大小调整的和Layer界面右下角按钮大小一致
+
+3.搜索框中点击回车后光标不自动跳到编辑界面
+
+4.more attributes按钮去掉，将控制more attribute选项展开功能通过点击more attribute的head实现
+
+5.去掉搜索框这一栏中的放大镜按钮
+
+6.下拉条的颜色调整为和widget tab的底色一致
+
+7.file->dump时候对数据进行检查，file->save的时候不对数据进行检查直接将preview中的所有text
+直接保存到文件中
+
+Feature:
+1.comment编辑界面每新起一行，每行的前面都自动加一个*，并且preview编辑界面中的head前面显示对应的comment
+
+2.previewer中除了在head前面的comment，previewer的其他地方也可以通过添加注释还可以通过';'或‘*’来添加注释
+
+3.搜索框调整为vim 命令框的风格通过vim的命令来进行对实现preview中文本的操作和编辑
+ -搜索功能
+ -正则替换功能
+
+代码规范：
+gitlab会对每次提交的代码进行质量检查，需要每周五对检查报告，并把相关的指标每周逐步降低
+
+
+
 
 

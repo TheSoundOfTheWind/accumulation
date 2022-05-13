@@ -1,0 +1,47 @@
+#第一次输入密码之后就不需要再输入了
+git config --global credential.helper store
+
+git config --global push.default simple
+
+#修改上传文件大小限制为500M
+git config http.postBuffer 524288000
+
+#改变路径长度限制
+git config --system core.longpaths true
+
+#window 改变文件上传大小限制
+1. 下载：https://git-lfs.github.com/
+2. git lfs install
+
+#查看配置
+git config -l
+远程地址...
+
+#下拉非常大的仓库，需要设置这个命令不然会下拉失败
+git config --global http.postBuffer 1048576000
+
+
+//换行符相关命令
+//-----------------------------------------------------------------------------
+#提交时转换为LF，检出时转换为CRLF
+$ git config --global core.autocrlf true
+
+#提交时转换为LF，检出时不转换
+$ git config --global core.autocrlf input
+
+#提交检出均不转换
+$ git config --global core.autocrlf false
+
+#拒绝提交包含混合换行符的文件
+git config --global core.safecrlf true   
+
+#允许提交包含混合换行符的文件
+git config --global core.safecrlf false   
+
+#提交包含混合换行符的文件时给出警告
+git config --global core.safecrlf warn
+//-----------------------------------------------------------------------------
+
+#出现文件名太长的error时，使用如下命令
+git config --global core.longpaths true
+
