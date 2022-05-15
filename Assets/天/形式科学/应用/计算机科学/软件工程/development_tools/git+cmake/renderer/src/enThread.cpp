@@ -69,7 +69,6 @@ enThread::setViewPortSize(int w, int h)
 void
 enThread::run()
 {
-  //  QThread::sleep(1);
   for (;;) {
     int w = 0, h = 0;
     bool render = true;

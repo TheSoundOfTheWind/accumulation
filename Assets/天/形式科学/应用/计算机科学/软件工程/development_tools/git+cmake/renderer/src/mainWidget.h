@@ -1,12 +1,13 @@
 #pragma once
 
 //#include <GLES3/gl3.h>
+#include <memory>
 #include <QtOpenGL/QGLWidget>
 class mainWidget
     : public QGLWidget
     , public std::enable_shared_from_this<mainWidget>
 {
-  Q_OBJECT
+  //  Q_OBJECT
  public:
     // Constructs the widget.
    mainWidget(const QGLFormat& openglFormat, QWidget * parent = nullptr);
