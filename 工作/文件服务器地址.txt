@@ -1,0 +1,2 @@
+个人电脑文件服务器：\\file1.phlexing.com
+云桌面文件服务器： \\file2.phlexing.com
