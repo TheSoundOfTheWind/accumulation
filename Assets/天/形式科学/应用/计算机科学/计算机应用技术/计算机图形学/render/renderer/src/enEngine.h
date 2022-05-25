@@ -16,7 +16,8 @@ class enEngine {
   void render();
 
  private:
-  GLuint loadShaders(const char * vertex_shader, const char * fragment_shader);
+  GLuint loadShaders(const char * vertexShaderSource, const char * fragmentShaderSource);
+
  private:
   GLuint    m_vao;
   GLuint    m_vbo;
