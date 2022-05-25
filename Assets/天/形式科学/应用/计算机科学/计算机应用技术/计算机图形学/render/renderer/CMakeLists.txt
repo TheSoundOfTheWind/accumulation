@@ -12,12 +12,12 @@ find_package(OpenGL REQUIRED)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -ggdb -g3 -std=c++11")
 set(HEAD_FILES
-  ./src/mainWidget.h ./src/enThread.h
+  ./src/mainWidget.h ./src/enThread.h ./src/enEngine.h
 )
 
 #set(ALL_FORMS ...)
 
-set(SRC_FILES ./src/main.cpp ./src/mainWidget.cpp ./src/enThread.cpp)
+set(SRC_FILES ./src/main.cpp ./src/mainWidget.cpp ./src/enThread.cpp ./src/enEngine.cpp)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)

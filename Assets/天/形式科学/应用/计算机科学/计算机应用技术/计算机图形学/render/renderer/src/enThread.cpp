@@ -2,6 +2,7 @@
 #include <QMutex>
 #include <iostream>
 #include "enThread.h"
+#include "enEngine.h"
 struct enThread::Data {
   Data(std::weak_ptr<mainWidget> widget):
     m_openglWidget(widget),
@@ -69,6 +70,7 @@ enThread::setViewPortSize(int w, int h)
 void
 enThread::run()
 {
+  enEngine * engine = new enEngine();
   for (;;) {
     int w = 0, h = 0;
     bool render = true;
@@ -84,10 +86,11 @@ enThread::run()
     }
     widget->makeCurrent();
     glViewport(0, 0, w, h);
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
+    if (!m_data->m_initialized and nullptr != engine) {
+      engine->init();
+      m_data->m_initialized = true;
+    }
+    engine->render();
     widget->swapBuffers();
     widget->doneCurrent();
   }

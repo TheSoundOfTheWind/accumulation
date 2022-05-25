@@ -55,7 +55,7 @@ mainWidget::stopThread()
 void
 mainWidget::resizeEvent(QResizeEvent* event)
 {
-  printf("resizeGL()\n");
+  //  printf("resizeGL()\n");
     const QSize newSize = event->size();
     if (m_data->thread) {
         m_data->thread->setViewPortSize(
@@ -67,7 +67,7 @@ mainWidget::resizeEvent(QResizeEvent* event)
 void
 mainWidget::paintEvent(QPaintEvent * event)
 {
-  printf("paintEvent()\n");
+  //  printf("paintEvent()\n");
   /*
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
