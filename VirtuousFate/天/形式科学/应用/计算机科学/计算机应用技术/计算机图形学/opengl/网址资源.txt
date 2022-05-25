@@ -11,7 +11,7 @@
 11. open.gl.introduction
 12. antongerdelan.net/opengl/vertexbuffers.html
 13. learnopengl.com/In-Practice/Debugging
-
+14. https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/
 help docs
 # opengl 
 1. docs.gl/gl4
@@ -47,3 +47,4 @@ http://libqglviewer.com/
 
 https://github.com/GillesDebunne/libQGLViewer
 
+https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glVertexAttribPointer.xhtml
