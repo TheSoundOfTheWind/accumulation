@@ -1,18 +1,28 @@
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include "enEngine.h"
+
+//"gl_Position = ftransform();\n"
+//"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 const char * vertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
+"uniform mat4 model;\n"
+"uniform mat4 view;\n"
+"uniform mat4 projection;\n"
 "void main()\n"
 "{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
 "}\0";
 
 const char * fragmentShaderSource = "#version 120\n"
-    "void main()\n"
-    "{\n"
-    " gl_FragColor = vec4(1.0f, 0.2f, 0.2f, 1.0f);\n"
-    "}\n\0";
+"uniform vec4 ourColor;\n"
+"void main()\n"
+"{\n"
+" gl_FragColor = ourColor;\n"
+"}\n\0";
 // Vertex Array Object, VAO
 // Vertex Buffer Object, VBO
 // Element Buffer Object, EBO/IBO
@@ -21,6 +31,7 @@ const char * fragmentShaderSource = "#version 120\n"
 void
 enEngine::init()
 {
+  /*
     float vertices[] = {
       0.5f, 0.5f, 0.0f,
       0.5f, -0.5f, 0.0f, 
@@ -29,9 +40,30 @@ enEngine::init()
     }; 
 
     unsigned int indices[] = {
-      0, 1, 3,
-      1, 2, 3
+      0, 1, 2, 3
     };
+  */
+
+  float vertices[] = {
+      -0.5f, 0.5f, -0.5f,
+      0.5f, 0.5f, -0.5f, 
+      0.5f, -0.5f, -0.5f, 
+      -0.5f,  -0.5f, -0.5f,
+      -0.5f, 0.5f, 0.5f,
+      0.5f, 0.5f, 0.5f, 
+      0.5f, -0.5f, 0.5f, 
+      -0.5f,  -0.5f, 0.5f  
+    }; 
+
+    unsigned int indices[] = {
+      0, 1, 2, 3,
+      4, 5, 6, 7,
+      0, 3, 7, 4,
+      0, 4, 5, 1,
+      5, 1, 2, 6,
+      6, 2, 3, 7
+    };
+  
     GLint data = 0;    
 
     // VAO
@@ -74,19 +106,46 @@ enEngine::init()
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0); 
     glBindVertexArray(0);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glEnable(GL_DEPTH_TEST);
+
+    //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     m_shaderProgramId = loadShaders(vertexShaderSource, fragmentShaderSource);
+
 }
 // -----------------------------------------------------------------------------
 void
 enEngine::render()
 {
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  // also clear the depth buffer now!
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  //  glClear(GL_COLOR_BUFFER_BIT);
   glUseProgram(m_shaderProgramId);
   glBindVertexArray(m_vao); 
+
+  int vertexColorLocation = glGetUniformLocation(m_shaderProgramId, "ourColor");
+  glUniform4f(vertexColorLocation, 0.0f, 0.3f, 0.0f, 1.0f);
+    // create transformations
+  glm::mat4 model         = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+  glm::mat4 view          = glm::mat4(1.0f);
+  glm::mat4 projection    = glm::mat4(1.0f);
+  model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.2f, 0.3f, 0.0f));
+  view  = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+  projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
+  // retrieve the matrix uniform locations
+  unsigned int modelLoc = glGetUniformLocation(m_shaderProgramId, "model");
+  unsigned int viewLoc  = glGetUniformLocation(m_shaderProgramId, "view");
+  unsigned int projectionLoc  = glGetUniformLocation(m_shaderProgramId, "projection");
+  // pass them to the shaders (3 different ways)
+  glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+  glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
+  // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+  //  ourShader.setMat4("projection", projection);
+  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));  
   //  glDrawArrays(GL_TRIANGLES, 0, 3);
-  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+  // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+  glDrawElements(GL_POLYGON, 24, GL_UNSIGNED_INT, 0);
 }
 // -----------------------------------------------------------------------------
 GLuint
@@ -134,4 +193,11 @@ enEngine::loadShaders(const char * vertexShaderSource,
   glDeleteShader(fragmentShader);
 
   return shaderProgram;
+}
+//------------------------------------------------------------------------------
+void
+enEngine::setViewPort(int width, int height)
+{
+  m_width = width;
+  m_height = height;
 }

@@ -70,6 +70,7 @@ enThread::setViewPortSize(int w, int h)
 void
 enThread::run()
 {
+  QThread::msleep(10);
   enEngine * engine = new enEngine();
   for (;;) {
     int w = 0, h = 0;
@@ -90,6 +91,7 @@ enThread::run()
       engine->init();
       m_data->m_initialized = true;
     }
+    engine->setViewPort(w, h);
     engine->render();
     widget->swapBuffers();
     widget->doneCurrent();
