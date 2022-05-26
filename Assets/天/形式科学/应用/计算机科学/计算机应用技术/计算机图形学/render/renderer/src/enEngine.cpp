@@ -1,7 +1,4 @@
 #include <iostream>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include "enEngine.h"
 
 //"gl_Position = ftransform();\n"
@@ -28,29 +25,23 @@ const char * fragmentShaderSource = "#version 120\n"
 // Element Buffer Object, EBO/IBO
 
 // -----------------------------------------------------------------------------
+
+glm::vec3 cubePositions[] = {
+  glm::vec3(0.0f, 0.0f, 0.0f),
+  glm::vec3(2.0f, 5.0f, -15.0f),
+  glm::vec3(-1.5f, -2.2f, -2.5f)
+};
+
 void
 enEngine::init()
 {
-  /*
-    float vertices[] = {
-      0.5f, 0.5f, 0.0f,
-      0.5f, -0.5f, 0.0f, 
-      -0.5f, -0.5f, 0.0f, 
-      -0.5f,  0.5f, 0.0f  
-    }; 
-
-    unsigned int indices[] = {
-      0, 1, 2, 3
-    };
-  */
-
   float vertices[] = {
       -0.5f, 0.5f, -0.5f,
-      0.5f, 0.5f, -0.5f, 
-      0.5f, -0.5f, -0.5f, 
+       0.5f, 0.5f, -0.5f, 
+       0.5f,-0.5f, -0.5f, 
       -0.5f,  -0.5f, -0.5f,
       -0.5f, 0.5f, 0.5f,
-      0.5f, 0.5f, 0.5f, 
+       0.5f, 0.5f, 0.5f, 
       0.5f, -0.5f, 0.5f, 
       -0.5f,  -0.5f, 0.5f  
     }; 
@@ -63,6 +54,7 @@ enEngine::init()
       5, 1, 2, 6,
       6, 2, 3, 7
     };
+    
   
     GLint data = 0;    
 
@@ -134,18 +126,27 @@ enEngine::render()
   view  = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
   projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
   // retrieve the matrix uniform locations
-  unsigned int modelLoc = glGetUniformLocation(m_shaderProgramId, "model");
+
   unsigned int viewLoc  = glGetUniformLocation(m_shaderProgramId, "view");
   unsigned int projectionLoc  = glGetUniformLocation(m_shaderProgramId, "projection");
   // pass them to the shaders (3 different ways)
-  glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
   glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
   // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
   //  ourShader.setMat4("projection", projection);
-  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));  
+  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+  for(unsigned int i = 0; i < 3; ++i)  {
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, cubePositions[i]);
+    float angle = 20.0f*i;
+    unsigned int modelLoc = glGetUniformLocation(m_shaderProgramId, "model");
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));    
+    glDrawElements(GL_POLYGON, 24, GL_UNSIGNED_INT, 0);    
+  }
   //  glDrawArrays(GL_TRIANGLES, 0, 3);
   // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-  glDrawElements(GL_POLYGON, 24, GL_UNSIGNED_INT, 0);
+
 }
 // -----------------------------------------------------------------------------
 GLuint

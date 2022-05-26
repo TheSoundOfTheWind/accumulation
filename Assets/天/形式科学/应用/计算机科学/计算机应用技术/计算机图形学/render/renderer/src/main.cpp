@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     // Create the OpenGL widget
   std::shared_ptr<mainWidget> widget = std::make_shared<mainWidget>(openglFormat);
-  //    widget->resize(size);
+  widget->resize(1800, 1112);
     //    widget->move(position);
     widget->show();
     widget->startThread();
