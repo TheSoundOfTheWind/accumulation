@@ -1,5 +1,6 @@
 #ifndef ENENGINE_H
 #define ENENGINE_H
+#include "enRender.h"
 #include <QGLWidget>
 #include <glm/glm.hpp>
 #include <GLES3/gl3.h>
@@ -20,10 +21,7 @@ class enEngine {
  private:
   int          m_width;
   int          m_height;
-  GLuint       m_vao;
-  GLuint       m_vbo;
-  GLuint       m_ibo;
+  enRender     m_render;
   GLuint       m_shaderProgramId;
-  
 };
 #endif

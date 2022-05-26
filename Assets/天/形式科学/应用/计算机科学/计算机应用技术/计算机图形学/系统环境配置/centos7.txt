@@ -1,0 +1,2 @@
+# intall glm lib
+sudo yum install glm-devel
