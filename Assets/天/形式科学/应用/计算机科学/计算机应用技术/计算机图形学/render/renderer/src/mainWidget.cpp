@@ -88,19 +88,26 @@ mainWidget::closeEvent(QCloseEvent* event)
 void
 mainWidget::mousePressEvent(QMouseEvent * event)
 {
-  
+  m_isMove = false;
+  m_startPoint = event->pos();
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseMoveEvent(QMouseEvent * event)
 {
-
+  m_isMove = true;
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseReleaseEvent(QMouseEvent * event )
 {
-
+  if (!m_isMove) {
+    return;
+  }
+  m_endPoint = event->pos();
+  float xoffset = m_startPoint.x()-m_endPoint.x();
+  float yoffset = m_endPoint.y()-m_startPoint.y();
+  m_engine.moveMouse(xoffset, yoffset);
 }
 // -----------------------------------------------------------------------------
 // key methods
@@ -137,3 +144,8 @@ mainWidget::keyPressEvent(QKeyEvent * event)
   }
 }
 // -----------------------------------------------------------------------------
+void
+mainWidget::wheelEvent(QWheelEvent * event)
+{
+  m_engine.moveWheel(event->delta());
+}

@@ -36,10 +36,16 @@ protected:
     void mouseReleaseEvent(QMouseEvent *);
     // key methods
     void keyPressEvent(QKeyEvent *);
+    // wheel methods
+    void wheelEvent(QWheelEvent *);
    // --------------------------------------------------------------------------
 private:
     struct Data;
     std::shared_ptr<Data> m_data;
 
     enEngine                      m_engine;
+
+    bool                              m_isMove;
+    QPoint                          m_startPoint;
+    QPoint                          m_endPoint;
 };

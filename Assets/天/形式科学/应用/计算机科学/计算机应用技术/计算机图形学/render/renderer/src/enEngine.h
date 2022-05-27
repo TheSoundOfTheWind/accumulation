@@ -25,20 +25,27 @@ class enEngine {
   void pressS();
   void pressA();
   void pressD();
+  void moveMouse(float xoffset, float yoffset);
+  void moveWheel(int delta);
   // -----------------------------------------------------------------------------------
 
  private:
-  int          m_width;
-  int          m_height;
+  int                m_width;
+  int                m_height;
   enRender     m_render;
   enShader     m_shader;
   glm::mat4    m_model;
   glm::mat4    m_view;
   glm::mat4    m_projection;
   glm::mat4    m_clip;
+
   glm::vec3     m_cameraPos;
   glm::vec3     m_cameraFront;
   glm::vec3     m_cameraUp;
   float             m_cameraSpeed;
+
+  float             m_yaw;
+  float             m_pitch;
+  float             m_fov;
 };
 #endif

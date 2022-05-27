@@ -19,10 +19,15 @@ enEngine::enEngine()
   m_view             = glm::mat4(1.0f);
   m_projection     = glm::mat4(1.0f);
   m_clip               = m_model*m_view*m_model;  
+
   m_cameraPos    = glm::vec3(0.0f, 0.0f, 3.0f);
   m_cameraFront  = glm::vec3(0.0f, 0.0f, -1.0f);
   m_cameraUp      = glm::vec3(0.0f, 1.0f, 0.0f);
   m_cameraSpeed = 1.0;
+
+  m_yaw                = -90.0f;
+  m_pitch               = 0.0f;
+  m_fov                  = 45.0f;
 }
 
 enEngine::~enEngine()
@@ -43,7 +48,7 @@ enEngine::init()
   m_view = glm::lookAt(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
   updateView(m_view);
 
-  m_projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
+  m_projection = glm::perspective(glm::radians(m_fov), (float)m_width / (float)m_height, 0.1f, 100.0f);
   updateProjection(m_projection);
   m_shader.init();
 }
@@ -56,7 +61,8 @@ enEngine::render()
   glUniform4f(vertexColorLocation, 0.0f, 0.3f, 0.0f, 1.0f);
   m_view = glm::lookAt(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
   updateView(m_view);
-
+  m_projection = glm::perspective(glm::radians(m_fov), (float)m_width / (float)m_height, 0.1f, 100.0f);
+  updateProjection(m_projection);
   m_render.clean();
 
   for(unsigned int i = 0; i < 3; ++i)  {
@@ -121,3 +127,35 @@ enEngine::pressD()
 					   m_cameraUp)) * m_cameraSpeed;
 }
 //------------------------------------------------------------------------------
+void
+enEngine::moveMouse(float xoffset, float yoffset)
+{
+  float sensitivity = 0.1f;
+  xoffset *= sensitivity;
+  yoffset *= sensitivity;
+  
+  m_yaw += xoffset;
+  m_pitch += yoffset;
+
+  if (m_pitch > 89.0f)  {
+    m_pitch = 89.0f;
+  }
+  if (m_pitch < -89.0f) {
+    m_pitch = -89.0f;
+  }
+  glm::vec3 front;
+  front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+  front.y = sin(glm::radians(m_pitch));
+  front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+  m_cameraFront = glm::normalize(front);
+}
+//------------------------------------------------------------------------------
+void
+enEngine::moveWheel(int delta)
+{
+  if (delta > 0) {
+    m_fov += 1.0f;
+  } else {
+    m_fov -= 1.0f;
+  }
+}
