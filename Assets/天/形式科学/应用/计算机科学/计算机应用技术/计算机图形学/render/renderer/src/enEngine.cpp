@@ -31,6 +31,18 @@ glm::vec3 cubePositions[] = {
   glm::vec3(2.0f, 5.0f, -15.0f),
   glm::vec3(-1.5f, -2.2f, -2.5f)
 };
+enEngine::enEngine()
+{
+  // make sure to initialize matrix to identity matrix first
+  m_model         = glm::mat4(1.0f); 
+  m_view          = glm::mat4(1.0f);
+  m_projection    = glm::mat4(1.0f);
+}
+
+enEngine::~enEngine()
+{
+
+}
 
 void
 enEngine::init()
@@ -38,6 +50,9 @@ enEngine::init()
   if(!m_render.init()) {
     printf("-E- render init faild\n");
   }
+  m_model = glm::rotate(m_model, glm::radians(-55.0f), glm::vec3(0.2f, 0.3f, 0.0f));
+  m_view  = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -3.0f));
+
   m_shaderProgramId = loadShaders(vertexShaderSource, fragmentShaderSource);
 }
 // -----------------------------------------------------------------------------
@@ -48,22 +63,11 @@ enEngine::render()
 
   int vertexColorLocation = glGetUniformLocation(m_shaderProgramId, "ourColor");
   glUniform4f(vertexColorLocation, 0.0f, 0.3f, 0.0f, 1.0f);
-    // create transformations
-  glm::mat4 model         = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-  glm::mat4 view          = glm::mat4(1.0f);
-  glm::mat4 projection    = glm::mat4(1.0f);
-  model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.2f, 0.3f, 0.0f));
-  view  = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-  projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
-  // retrieve the matrix uniform locations
-
+  m_projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
   unsigned int viewLoc  = glGetUniformLocation(m_shaderProgramId, "view");
   unsigned int projectionLoc  = glGetUniformLocation(m_shaderProgramId, "projection");
-  // pass them to the shaders (3 different ways)
-
-  glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
-  //  ourShader.setMat4("projection", projection);
-  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+  glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &m_view[0][0]);
+  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(m_projection));
   m_render.clean();
   for(unsigned int i = 0; i < 3; ++i)  {
     glm::mat4 model = glm::mat4(1.0f);
