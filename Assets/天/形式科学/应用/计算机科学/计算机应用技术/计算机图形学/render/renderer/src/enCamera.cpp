@@ -82,6 +82,7 @@ enCamera::rotate(float xoffset, float yoffset)
   front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
   front.y = sin(glm::radians(m_pitch));
   front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+  printf("x %f y %f z %f\n", front.x, front.y, front.z);
   m_cameraFront = glm::normalize(front);
 }
 // ---------------------------------------------------------------------------
