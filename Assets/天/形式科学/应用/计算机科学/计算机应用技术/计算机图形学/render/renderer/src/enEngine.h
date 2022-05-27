@@ -17,6 +17,10 @@ class enEngine {
   void init();
   void render();
   void setViewPort(int width, int height);
+  void updateModel(glm::mat4 & mat);
+  void updateView(glm::mat4 & mat);
+  void updateProjection(glm::mat4 & mat);
+
  private:
   GLuint loadShaders(const char * vertexShaderSource, const char * fragmentShaderSource);
   // -----------------------------------------------------------------------------------

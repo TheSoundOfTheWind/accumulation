@@ -88,6 +88,7 @@ enThread::run()
     widget->makeCurrent();
     glViewport(0, 0, w, h);
     if (!m_data->m_initialized and nullptr != engine) {
+      engine->setViewPort(w, h);
       engine->init();
       m_data->m_initialized = true;
     }

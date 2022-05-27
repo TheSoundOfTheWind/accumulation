@@ -3,15 +3,17 @@
 
 //"gl_Position = ftransform();\n"
 //"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+//"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
 const char * vertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
 "uniform mat4 model;\n"
 "uniform mat4 view;\n"
 "uniform mat4 projection;\n"
+"uniform mat4 clip;\n"
 "void main()\n"
 "{\n"
-"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
+"gl_Position = clip*vec4(aPos,1.0f);\n"
 "}\0";
 
 const char * fragmentShaderSource = "#version 120\n"
@@ -52,7 +54,10 @@ enEngine::init()
   }
   m_model = glm::rotate(m_model, glm::radians(-55.0f), glm::vec3(0.2f, 0.3f, 0.0f));
   m_view  = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -3.0f));
-
+  m_projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
+  updateModel(m_model);
+  updateView(m_view);
+  updateProjection(m_projection);
   m_shaderProgramId = loadShaders(vertexShaderSource, fragmentShaderSource);
 }
 // -----------------------------------------------------------------------------
@@ -63,24 +68,37 @@ enEngine::render()
 
   int vertexColorLocation = glGetUniformLocation(m_shaderProgramId, "ourColor");
   glUniform4f(vertexColorLocation, 0.0f, 0.3f, 0.0f, 1.0f);
-  m_projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
-  unsigned int viewLoc  = glGetUniformLocation(m_shaderProgramId, "view");
-  unsigned int projectionLoc  = glGetUniformLocation(m_shaderProgramId, "projection");
-  glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &m_view[0][0]);
-  glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(m_projection));
+
   m_render.clean();
+
+
   for(unsigned int i = 0; i < 3; ++i)  {
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, cubePositions[i]);
+    updateModel(model);
+    unsigned int clipLoc  = glGetUniformLocation(m_shaderProgramId, "clip");
+    glUniformMatrix4fv(clipLoc, 1, GL_FALSE, glm::value_ptr(m_clip));
     float angle = 20.0f*i;
-    unsigned int modelLoc = glGetUniformLocation(m_shaderProgramId, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));    
     m_render.render();
   }
-  
-  //  glDrawArrays(GL_TRIANGLES, 0, 3);
-  // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
+}
+// -----------------------------------------------------------------------------
+void
+enEngine::updateModel(glm::mat4 & mat)
+{
+  m_clip = m_projection*m_view*mat;
+}
+// -----------------------------------------------------------------------------
+void
+enEngine::updateView(glm::mat4 & mat)
+{
+  m_clip = m_projection*mat*m_model;
+}
+// -----------------------------------------------------------------------------
+void
+enEngine::updateProjection(glm::mat4 & mat)
+{
+  m_clip = mat*m_view*m_model;
 }
 // -----------------------------------------------------------------------------
 GLuint
