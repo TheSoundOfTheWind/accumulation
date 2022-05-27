@@ -1,6 +1,7 @@
 #ifndef ENENGINE_H
 #define ENENGINE_H
 #include "enRender.h"
+#include "enShader.h"
 #include <QGLWidget>
 #include <glm/glm.hpp>
 #include <GLES3/gl3.h>
@@ -20,19 +21,17 @@ class enEngine {
   void updateModel(glm::mat4 & mat);
   void updateView(glm::mat4 & mat);
   void updateProjection(glm::mat4 & mat);
-
- private:
-  GLuint loadShaders(const char * vertexShaderSource, const char * fragmentShaderSource);
   // -----------------------------------------------------------------------------------
 
  private:
   int          m_width;
   int          m_height;
   enRender     m_render;
+  enShader     m_shader;
   glm::mat4    m_model;
   glm::mat4    m_view;
   glm::mat4    m_projection;
   glm::mat4    m_clip;
-  GLuint       m_shaderProgramId;
+
 };
 #endif
