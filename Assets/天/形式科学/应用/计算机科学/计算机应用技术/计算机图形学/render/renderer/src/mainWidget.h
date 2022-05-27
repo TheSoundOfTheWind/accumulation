@@ -1,6 +1,5 @@
 #pragma once
-
-//#include <GLES3/gl3.h>
+#include "enEngine.h"
 #include <memory>
 #include <QtOpenGL/QGLWidget>
 class mainWidget
@@ -13,18 +12,34 @@ class mainWidget
    mainWidget(const QGLFormat& openglFormat, QWidget * parent = nullptr);
    ~mainWidget();
 
+   // get methods
+   // --------------------------------------------------------------------------
+
+   // --------------------------------------------------------------------------   
+   
+   // set methods
+   // --------------------------------------------------------------------------
    // Starts the rendering thread.
     void startThread();
 
     // Stops the rendering thread.
     void stopThread();
 
+    enEngine & getEngine() { return m_engine; }
 protected:
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent* event);
     void closeEvent(QCloseEvent* event);
-
+    // mouse methods
+    void mousePressEvent(QMouseEvent *);
+    void mouseMoveEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+    // key methods
+    void keyPressEvent(QKeyEvent *);
+   // --------------------------------------------------------------------------
 private:
     struct Data;
     std::shared_ptr<Data> m_data;
+
+    enEngine                      m_engine;
 };

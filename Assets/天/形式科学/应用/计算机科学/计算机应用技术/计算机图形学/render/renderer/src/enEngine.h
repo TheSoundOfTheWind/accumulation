@@ -21,6 +21,10 @@ class enEngine {
   void updateModel(glm::mat4 & mat);
   void updateView(glm::mat4 & mat);
   void updateProjection(glm::mat4 & mat);
+  void pressW();
+  void pressS();
+  void pressA();
+  void pressD();
   // -----------------------------------------------------------------------------------
 
  private:
@@ -32,6 +36,9 @@ class enEngine {
   glm::mat4    m_view;
   glm::mat4    m_projection;
   glm::mat4    m_clip;
-
+  glm::vec3     m_cameraPos;
+  glm::vec3     m_cameraFront;
+  glm::vec3     m_cameraUp;
+  float             m_cameraSpeed;
 };
 #endif

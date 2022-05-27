@@ -2,7 +2,6 @@
 #include <QMutex>
 #include <iostream>
 #include "enThread.h"
-#include "enEngine.h"
 struct enThread::Data {
   Data(std::weak_ptr<mainWidget> widget):
     m_openglWidget(widget),
@@ -71,7 +70,6 @@ void
 enThread::run()
 {
   QThread::msleep(20);
-  enEngine * engine = new enEngine();
   for (;;) {
     int w = 0, h = 0;
     bool render = true;
@@ -87,13 +85,13 @@ enThread::run()
     }
     widget->makeCurrent();
     glViewport(0, 0, w, h);
-    if (!m_data->m_initialized and nullptr != engine) {
-      engine->setViewPort(w, h);
-      engine->init();
+    if (!m_data->m_initialized) {
+      widget->getEngine().setViewPort(w, h);
+      widget->getEngine().init();
       m_data->m_initialized = true;
     }
-    engine->setViewPort(w, h);
-    engine->render();
+    widget->getEngine().setViewPort(w, h);
+    widget->getEngine().render();
     widget->swapBuffers();
     widget->doneCurrent();
     QThread::msleep(10);

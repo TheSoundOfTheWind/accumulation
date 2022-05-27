@@ -15,9 +15,14 @@ glm::vec3 cubePositions[] = {
 enEngine::enEngine()
 {
   // make sure to initialize matrix to identity matrix first
-  m_model         = glm::mat4(1.0f); 
-  m_view          = glm::mat4(1.0f);
-  m_projection    = glm::mat4(1.0f);
+  m_model          = glm::mat4(1.0f); 
+  m_view             = glm::mat4(1.0f);
+  m_projection     = glm::mat4(1.0f);
+  m_clip               = m_model*m_view*m_model;  
+  m_cameraPos    = glm::vec3(0.0f, 0.0f, 3.0f);
+  m_cameraFront  = glm::vec3(0.0f, 0.0f, -1.0f);
+  m_cameraUp      = glm::vec3(0.0f, 1.0f, 0.0f);
+  m_cameraSpeed = 1.0;
 }
 
 enEngine::~enEngine()
@@ -32,10 +37,13 @@ enEngine::init()
     printf("-E- render init faild\n");
   }
   m_model = glm::rotate(m_model, glm::radians(-55.0f), glm::vec3(0.2f, 0.3f, 0.0f));
-  m_view  = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -3.0f));
-  m_projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
   updateModel(m_model);
+
+  //  m_view  = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -3.0f));
+  m_view = glm::lookAt(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
   updateView(m_view);
+
+  m_projection = glm::perspective(glm::radians(45.0f), (float)m_width / (float)m_height, 0.1f, 100.0f);
   updateProjection(m_projection);
   m_shader.init();
 }
@@ -46,6 +54,8 @@ enEngine::render()
   m_shader.use();
   int vertexColorLocation = glGetUniformLocation(m_shader.getShaderId(), "ourColor");
   glUniform4f(vertexColorLocation, 0.0f, 0.3f, 0.0f, 1.0f);
+  m_view = glm::lookAt(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
+  updateView(m_view);
 
   m_render.clean();
 
@@ -58,6 +68,13 @@ enEngine::render()
     float angle = 20.0f*i;
     m_render.render();
   }
+}
+//------------------------------------------------------------------------------
+void
+enEngine::setViewPort(int width, int height)
+{
+  m_width = width;
+  m_height = height;
 }
 // -----------------------------------------------------------------------------
 void
@@ -79,8 +96,28 @@ enEngine::updateProjection(glm::mat4 & mat)
 }
 //------------------------------------------------------------------------------
 void
-enEngine::setViewPort(int width, int height)
+enEngine::pressW()
 {
-  m_width = width;
-  m_height = height;
+  m_cameraPos += m_cameraSpeed * m_cameraFront;
 }
+//------------------------------------------------------------------------------
+void
+enEngine::pressS()
+{
+  m_cameraPos -= m_cameraSpeed * m_cameraFront;
+}
+//------------------------------------------------------------------------------
+void
+enEngine::pressA()
+{
+  m_cameraPos -= glm::normalize(glm::cross(m_cameraFront,
+					   m_cameraUp)) * m_cameraSpeed;
+}
+//------------------------------------------------------------------------------
+void
+enEngine::pressD()
+{
+  m_cameraPos += glm::normalize(glm::cross(m_cameraFront,
+					   m_cameraUp)) * m_cameraSpeed;
+}
+//------------------------------------------------------------------------------

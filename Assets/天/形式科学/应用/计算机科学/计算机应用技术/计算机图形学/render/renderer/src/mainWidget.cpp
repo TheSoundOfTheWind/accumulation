@@ -2,6 +2,7 @@
 #include <memory>
 #include <GLES3/gl3.h>
 #include <QGLContext>
+#include <QMouseEvent>
 #include <QCoreApplication>
 #include <QResizeEvent>
 #include "enThread.h"
@@ -78,8 +79,61 @@ mainWidget::paintEvent(QPaintEvent * event)
 }
 // -----------------------------------------------------------------------------
 void
-mainWidget::closeEvent(QCloseEvent* even)
+mainWidget::closeEvent(QCloseEvent* event)
 {
   stopThread();
+}
+// -----------------------------------------------------------------------------
+// mouse methods
+void
+mainWidget::mousePressEvent(QMouseEvent * event)
+{
+  
+}
+// -----------------------------------------------------------------------------
+void
+mainWidget::mouseMoveEvent(QMouseEvent * event)
+{
+
+}
+// -----------------------------------------------------------------------------
+void
+mainWidget::mouseReleaseEvent(QMouseEvent * event )
+{
+
+}
+// -----------------------------------------------------------------------------
+// key methods
+void
+mainWidget::keyPressEvent(QKeyEvent * event)
+{
+  switch (event->key()) {
+  case Qt::Key_W:
+    {
+      printf("key w\n");
+      m_engine.pressW();
+    }
+    break;
+  case Qt::Key_S:
+    {
+      printf("key s\n");
+      m_engine.pressS();
+    }
+    break;
+  case Qt::Key_A:
+    {
+      printf("key a\n");
+      m_engine.pressA();
+    }
+    break;
+  case Qt::Key_D:
+    {
+      printf("key d\n");
+      m_engine.pressD();
+    }
+    break;
+  default:
+    break;
+  }
 }
 // -----------------------------------------------------------------------------
