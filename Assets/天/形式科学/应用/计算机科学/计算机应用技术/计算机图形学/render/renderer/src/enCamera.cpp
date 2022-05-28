@@ -59,7 +59,7 @@ enCamera::moveToIn()
 }
 // ---------------------------------------------------------------------------
 void
-enCamera::moveToout()
+enCamera::moveToOut()
 {
   m_cameraPos -= m_cameraSpeed * m_cameraFront;
 }

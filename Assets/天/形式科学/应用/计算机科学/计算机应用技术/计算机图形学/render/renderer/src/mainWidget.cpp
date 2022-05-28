@@ -95,7 +95,7 @@ mainWidget::mousePressEvent(QMouseEvent * event)
 {
   m_isMove = false;
   m_startPoint = event->pos();
-  m_engine.moveMouse(m_startPoint.x(), m_startPoint.y());  
+  m_engine.camera().rotate(m_startPoint.x(), m_startPoint.y());  
 }
 // -----------------------------------------------------------------------------
 void
@@ -103,7 +103,7 @@ mainWidget::mouseMoveEvent(QMouseEvent * event)
 {
   m_isMove = true;
   m_endPoint = event->pos();
-  m_engine.moveMouse(m_endPoint.x(), m_endPoint.y());
+  m_engine.camera().rotate(m_endPoint.x(), m_endPoint.y());
 }
 // -----------------------------------------------------------------------------
 void
@@ -123,25 +123,25 @@ mainWidget::keyPressEvent(QKeyEvent * event)
   case Qt::Key_W:
     {
       printf("key w\n");
-      m_engine.pressW();
+      m_engine.camera().moveToIn();
     }
     break;
   case Qt::Key_S:
     {
       printf("key s\n");
-      m_engine.pressS();
+      m_engine.camera().moveToOut();
     }
     break;
   case Qt::Key_A:
     {
       printf("key a\n");
-      m_engine.pressA();
+      m_engine.camera().moveToLeft();
     }
     break;
   case Qt::Key_D:
     {
       printf("key d\n");
-      m_engine.pressD();
+      m_engine.camera().moveToRight();
     }
     break;
   default:
@@ -152,5 +152,5 @@ mainWidget::keyPressEvent(QKeyEvent * event)
 void
 mainWidget::wheelEvent(QWheelEvent * event)
 {
-  m_engine.moveWheel(event->delta());
+  m_engine.camera().zoom(event->delta());
 }

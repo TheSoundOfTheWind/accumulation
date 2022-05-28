@@ -20,7 +20,7 @@ class enCamera {
   // set methods
   // ---------------------------------------------------------------------------
   void moveToIn();
-  void moveToout();
+  void moveToOut();
   void moveToLeft();
   void moveToRight();
   void rotate(float xpos, float ypos);

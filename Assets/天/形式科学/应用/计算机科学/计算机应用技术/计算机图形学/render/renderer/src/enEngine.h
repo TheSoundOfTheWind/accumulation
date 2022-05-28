@@ -22,12 +22,6 @@ class enEngine {
   void updateModel(glm::mat4 & mat);
   void updateView(glm::mat4 & mat);
   void updateProjection(glm::mat4 & mat);
-  void pressW();
-  void pressS();
-  void pressA();
-  void pressD();
-  void moveMouse(float xpos, float ypos);
-  void moveWheel(int delta);
   enCamera & camera() { return  m_camera; }
   // -----------------------------------------------------------------------------------
 

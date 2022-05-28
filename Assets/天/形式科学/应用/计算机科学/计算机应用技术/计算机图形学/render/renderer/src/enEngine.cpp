@@ -6,7 +6,6 @@
 // Element Buffer Object, EBO/IBO
 
 // -----------------------------------------------------------------------------
-
 glm::vec3 cubePositions[] = {
   glm::vec3(0.0f, 0.0f, 0.0f),
   glm::vec3(2.0f, 5.0f, -15.0f),
@@ -39,7 +38,8 @@ enEngine::init()
   m_view = m_camera.getViewMatrix();
   updateView(m_view);
 
-  m_projection = glm::perspective(glm::radians(m_camera.zoom()), (float)m_width / (float)m_height, 0.1f, 100.0f);
+  m_projection = glm::perspective(glm::radians(m_camera.zoom()),
+				  (float)m_width / (float)m_height, 0.1f, 100.0f);
   updateProjection(m_projection);
   m_shader.init();
 }
@@ -93,39 +93,4 @@ enEngine::updateProjection(glm::mat4 & mat)
 {
   m_clip = mat*m_view*m_model;
 }
-//------------------------------------------------------------------------------
-void
-enEngine::pressW()
-{
-  m_camera.moveToIn();
-}
-//------------------------------------------------------------------------------
-void
-enEngine::pressS()
-{
-  m_camera.moveToout();
-}
-//------------------------------------------------------------------------------
-void
-enEngine::pressA()
-{
-  m_camera.moveToLeft();
-}
-//------------------------------------------------------------------------------
-void
-enEngine::pressD()
-{
-  m_camera.moveToRight();
-}
-//------------------------------------------------------------------------------
-void
-enEngine::moveMouse(float xpos, float ypos)
-{
-  m_camera.rotate(xpos, ypos);
-}
-//------------------------------------------------------------------------------
-void
-enEngine::moveWheel(int delta)
-{
-  m_camera.zoom(delta);
-}
+// -----------------------------------------------------------------------------
