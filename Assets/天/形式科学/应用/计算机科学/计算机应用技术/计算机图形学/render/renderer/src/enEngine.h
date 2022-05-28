@@ -26,8 +26,9 @@ class enEngine {
   void pressS();
   void pressA();
   void pressD();
-  void moveMouse(float xoffset, float yoffset);
+  void moveMouse(float xpos, float ypos);
   void moveWheel(int delta);
+  enCamera & camera() { return  m_camera; }
   // -----------------------------------------------------------------------------------
 
  private:

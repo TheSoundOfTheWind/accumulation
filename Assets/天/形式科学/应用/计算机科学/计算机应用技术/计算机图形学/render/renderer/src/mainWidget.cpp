@@ -17,6 +17,9 @@ mainWidget::mainWidget(const QGLFormat & format, QWidget * parent):
   m_data(std::make_shared<Data>())
 {
   setAutoBufferSwap(false);
+  m_lastX = 0;
+  m_lastY = 0;
+  m_isFirstMouse = true;
 }
 
 mainWidget::~mainWidget()
@@ -63,6 +66,8 @@ mainWidget::resizeEvent(QResizeEvent* event)
             newSize.width(),
             newSize.height());
     }
+    m_lastX = newSize.width()/2;
+    m_lastY = newSize.height()/2;
 }
 // -----------------------------------------------------------------------------
 void
@@ -90,12 +95,15 @@ mainWidget::mousePressEvent(QMouseEvent * event)
 {
   m_isMove = false;
   m_startPoint = event->pos();
+  m_engine.moveMouse(m_startPoint.x(), m_startPoint.y());  
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseMoveEvent(QMouseEvent * event)
 {
   m_isMove = true;
+  m_endPoint = event->pos();
+  m_engine.moveMouse(m_endPoint.x(), m_endPoint.y());
 }
 // -----------------------------------------------------------------------------
 void
@@ -104,10 +112,7 @@ mainWidget::mouseReleaseEvent(QMouseEvent * event )
   if (!m_isMove) {
     return;
   }
-  m_endPoint = event->pos();
-  float xoffset = m_startPoint.x()-m_endPoint.x();
-  float yoffset = m_endPoint.y()-m_startPoint.y();
-  m_engine.moveMouse(xoffset, yoffset);
+  m_engine.camera().setFirstMouse(true);
 }
 // -----------------------------------------------------------------------------
 // key methods

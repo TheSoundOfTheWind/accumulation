@@ -94,7 +94,7 @@ enThread::run()
     widget->getEngine().render();
     widget->swapBuffers();
     widget->doneCurrent();
-    QThread::msleep(10);
+    //    QThread::msleep(10);
   }
 }
 // ---------------------------------------------------------------------------

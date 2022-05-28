@@ -48,4 +48,7 @@ private:
     bool                              m_isMove;
     QPoint                          m_startPoint;
     QPoint                          m_endPoint;
+    int                                m_lastX;
+    int                                m_lastY;
+    bool                              m_isFirstMouse;
 };

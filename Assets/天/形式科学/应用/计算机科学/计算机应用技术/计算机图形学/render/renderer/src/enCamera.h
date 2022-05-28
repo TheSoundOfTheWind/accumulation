@@ -23,17 +23,26 @@ class enCamera {
   void moveToout();
   void moveToLeft();
   void moveToRight();
-  void rotate(float xoffset, float yoffset);
+  void rotate(float xpos, float ypos);
   void zoom(int delta);
+  void setFirstMouse(bool firstmouse) { m_isFirstMouse = firstmouse; };
   // ---------------------------------------------------------------------------  
  private:
-  glm::vec3     m_cameraPos;
+  // new
+  glm::vec3     m_cameraPos;  
+  glm::vec3     m_cameraTarget;
+  glm::vec3     m_cameraDirection;
+  glm::vec3     m_cameraUp;  
+  glm::vec3     m_cameraRight;
   glm::vec3     m_cameraFront;
-  glm::vec3     m_cameraUp;
   float             m_cameraSpeed;
   
   float             m_yaw;
   float             m_pitch;
+  bool             m_isFirstMouse;
+  float             m_lastX;
+  float             m_lastY;
+  
   float             m_fov;
 };
 #endif // ENCAMERA_H

@@ -119,9 +119,9 @@ enEngine::pressD()
 }
 //------------------------------------------------------------------------------
 void
-enEngine::moveMouse(float xoffset, float yoffset)
+enEngine::moveMouse(float xpos, float ypos)
 {
-  m_camera.rotate(xoffset, yoffset);
+  m_camera.rotate(xpos, ypos);
 }
 //------------------------------------------------------------------------------
 void
