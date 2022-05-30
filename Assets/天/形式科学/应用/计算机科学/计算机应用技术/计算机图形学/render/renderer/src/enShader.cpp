@@ -3,28 +3,48 @@
 //"gl_Position = ftransform();\n"
 //"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 //"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
-const char * vertexShaderSource =
+const char * cubeVertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
-"uniform mat4 model;\n"
-"uniform mat4 view;\n"
-"uniform mat4 projection;\n"
-"uniform mat4 clip;\n"
+"uniform mat4 clip;\n"  
 "void main()\n"
 "{\n"
 "gl_Position = clip*vec4(aPos,1.0f);\n"
 "}\0";
 
-const char * fragmentShaderSource = "#version 120\n"
-"uniform vec4 ourColor;\n"
+const char * cubeFragmentShaderSource = "#version 120\n"
+"uniform vec3 objectColor;\n"
 "void main()\n"
 "{\n"
-" gl_FragColor = ourColor;\n"
+" gl_FragColor = vec4(objectColor, 1.0f);\n"
+"}\n\0";
+
+
+const char * lightVertexShaderSource =
+"#version 120\n"
+"attribute vec3 aPos;\n"
+"uniform mat4 model;\n"
+"uniform mat4 view;\n"
+"uniform mat4 projection;\n"
+"void main()\n"
+"{\n"
+"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
+"}\0";
+
+const char * lightFragmentShaderSource = "#version 120\n"
+"uniform vec4 objectColor;\n"
+"void main()\n"
+"{\n"
+" gl_FragColor = objectColor;\n"
 "}\n\0";
 
 enShader::enShader()
 {
   m_shaderProgramId = 0;
+  m_model          = glm::mat4(1.0f); 
+  m_view             = glm::mat4(1.0f);
+  m_projection     = glm::mat4(1.0f);
+  m_clip               = m_model*m_view*m_model;  
 }
 
 enShader::~enShader()
@@ -34,15 +54,82 @@ enShader::~enShader()
 // set methods
 // ---------------------------------------------------------------------------
 void
-enShader::init()
+enShader::init(ShaderType type)
 {
-  m_shaderProgramId = loadShaders(vertexShaderSource, fragmentShaderSource);
+  m_type = type; 
+  if (Cube == m_type) {
+    m_shaderProgramId = loadShaders(cubeVertexShaderSource, cubeFragmentShaderSource);
+  } else {
+    m_shaderProgramId = loadShaders(lightVertexShaderSource, lightFragmentShaderSource);
+  }
+  m_model = glm::rotate(m_model, glm::radians(45.0f), glm::vec3(0.0f, 0.3f, 0.0f));
+  updateModel(m_model);  
+  m_view = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -3.0f));
+  updateView(m_view);
 }
 // ---------------------------------------------------------------------------
 void
 enShader::use()
 {
   glUseProgram(m_shaderProgramId);
+}
+// ---------------------------------------------------------------------------  
+void
+enShader::setVec3(const GLchar * name, glm::vec3 & vec)
+{
+  GLint location = glGetUniformLocation(m_shaderProgramId, name);
+  if (-1 == location) {
+    printf("-E- setVec3() error\n");
+    return;
+  }
+  glUniform3f(location, vec.x, vec.y, vec.z);
+}
+// ---------------------------------------------------------------------------  
+void
+// ---------------------------------------------------------------------------  
+enShader::setVec3(const GLchar * name, GLfloat v0, GLfloat v1, GLfloat v2)
+{
+  GLint location = glGetUniformLocation(m_shaderProgramId, name);
+  if (-1 == location) {
+    printf("-E- setVec3() error\n");
+    return;
+  }
+  glUniform3f(location, v0, v1, v2);
+}
+// ---------------------------------------------------------------------------  
+void
+enShader::setMat4(const GLchar * name, glm::mat4 & mat)
+{
+  GLint location  = glGetUniformLocation(m_shaderProgramId, name);
+  if (-1 == location) {
+    printf("-E- setMat4() error\n");
+    return;
+  }
+  glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
+}
+// ---------------------------------------------------------------------------  
+void
+enShader::updateModel(glm::mat4 & mat)
+{
+  m_model = mat;
+  m_clip = m_projection*m_view*m_model;
+  setMat4("clip", m_clip);
+}
+// ---------------------------------------------------------------------------  
+void
+enShader::updateView(glm::mat4 & mat)
+{
+  m_view = mat;
+  m_clip = m_projection*m_view*m_model;
+  setMat4("clip", m_clip);
+}
+// ---------------------------------------------------------------------------  
+void
+enShader::updateProjection(glm::mat4 & mat)
+{
+  m_projection = mat;
+  m_clip = m_projection*m_view*m_model;
+  setMat4("clip", m_clip);
 }
 // ---------------------------------------------------------------------------  
 GLuint

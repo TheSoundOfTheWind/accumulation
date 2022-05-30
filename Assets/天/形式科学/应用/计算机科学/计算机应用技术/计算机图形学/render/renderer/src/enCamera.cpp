@@ -4,12 +4,12 @@ enCamera::enCamera()
   m_cameraPos         = glm::vec3(0.0f, 0.0f, 3.0f);
   m_cameraTarget     = glm::vec3(0.0f, 0.0f, 0.0f);
   m_cameraDirection = glm::normalize(m_cameraPos - m_cameraTarget);
-  printf("x %f y %f z %f\n", m_cameraDirection.x, m_cameraDirection.y, m_cameraDirection.z);  
+  //  printf("x %f y %f z %f\n", m_cameraDirection.x, m_cameraDirection.y, m_cameraDirection.z);  
   glm::vec3 up           = glm::vec3(0.0f, 1.0f, 0.0f);
   m_cameraRight       = glm::normalize(glm::cross(up, m_cameraDirection));
-  printf("x %f y %f z %f\n", m_cameraRight.x, m_cameraRight.y, m_cameraRight.z);
+  //  printf("x %f y %f z %f\n", m_cameraRight.x, m_cameraRight.y, m_cameraRight.z);
   m_cameraUp           = glm::cross(m_cameraDirection, m_cameraRight);
-  printf("x %f y %f z %f\n", m_cameraUp.x, m_cameraUp.y, m_cameraUp.z);
+  //  printf("x %f y %f z %f\n", m_cameraUp.x, m_cameraUp.y, m_cameraUp.z);
   m_cameraFront       = glm::vec3(0.0f, 0.0f, -1.0f);
 
   m_cameraSpeed = 1.0;
@@ -105,10 +105,8 @@ enCamera::rotate(float xpos, float ypos)
   front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
   front.y = sin(glm::radians(m_pitch));
   front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-  printf("x %f y %f z %f\n", front.x, front.y, front.z);
+  //  printf("x %f y %f z %f\n", front.x, front.y, front.z);
   m_cameraFront = glm::normalize(front);
-
-  printf("");
 }
 // ---------------------------------------------------------------------------
 void

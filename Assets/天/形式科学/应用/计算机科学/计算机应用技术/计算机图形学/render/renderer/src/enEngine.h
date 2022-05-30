@@ -19,9 +19,6 @@ class enEngine {
   void init();
   void render();
   void setViewPort(int width, int height);
-  void updateModel(glm::mat4 & mat);
-  void updateView(glm::mat4 & mat);
-  void updateProjection(glm::mat4 & mat);
   enCamera & camera() { return  m_camera; }
   // -----------------------------------------------------------------------------------
 
@@ -29,11 +26,7 @@ class enEngine {
   int                m_width;
   int                m_height;
   enRender     m_render;
-  enShader     m_shader;
+  enShader     m_cubeShader;
   enCamera    m_camera;
-  glm::mat4    m_model;
-  glm::mat4    m_view;
-  glm::mat4    m_projection;
-  glm::mat4    m_clip;
 };
 #endif
