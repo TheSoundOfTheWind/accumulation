@@ -153,3 +153,14 @@ enRender::initOther()
   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
+
+// add data
+// -----------------------------------------------------------------------------
+void
+enRender::addCube(GLfloat x1, GLfloat y1, GLfloat z1,
+	     GLfloat x2, GLfloat y2, GLfloat z2)
+{
+  if (x1 > x2 or y1 > y2 or z1 > z2) { return; }
+  Vertex vertex;
+}  
+// -----------------------------------------------------------------------------
