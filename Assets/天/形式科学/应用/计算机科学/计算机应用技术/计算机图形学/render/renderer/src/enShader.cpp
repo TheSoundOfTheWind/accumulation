@@ -3,22 +3,58 @@
 //"gl_Position = ftransform();\n"
 //"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 //"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
+/*
 const char * cubeVertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
-"uniform mat4 clip;\n"  
+"attribute vec3 anormal;\n"
+"varying vec3 FragPos;\n"
+"varying vec3 Normal;\n"  
+"uniform mat4 model;\n"
+"uniform mat4 view;\n"
+"uniform mat4 projection;\n"
 "void main()\n"
 "{\n"
-"gl_Position = clip*vec4(aPos,1.0f);\n"
+"FragPos = vec3(model*vec4(aPos, 1.0));\n"
+"Normal = aNormal;\n"  
+"gl_Position = projection*view*vec4(FragPos,1.0f);\n"
+"}\0";
+
+const char * cubeFragmentShaderSource = "#version 120\n"
+"varying vec3 FragPos;\n"
+"varying vec3 Normal;\n"
+"uniform vec3 lightPos;\n"
+"uniform vec3 lightColor;\n"  
+"uniform vec3 objectColor;\n"
+"void main()\n"
+"{\n"
+"float ambientStrength = 0.1;\n"
+"vec3 ambient = ambientStrength * lightColor;\n"
+"vec3 norm = mormalize(Normal);\n"
+"vec3 lightDir = normalize(lightPos-FragPos);\n"  
+"vec3 diff = max(dot(norm, lightDir), 0.0);\n"
+"vec3 diffuse = diff * lightColor;\n"
+"vec3 result = (ambient + diffuse)*objectColor;\n"  
+" gl_FragColor = vec4(result, 1.0f);\n"
+"}\n\0";
+*/
+const char * cubeVertexShaderSource =
+"#version 120\n"
+"attribute vec3 aPos;\n"
+"uniform mat4 model;\n"
+"uniform mat4 view;\n"
+"uniform mat4 projection;\n"
+"void main()\n"
+"{\n"
+"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
 "}\0";
 
 const char * cubeFragmentShaderSource = "#version 120\n"
 "uniform vec3 objectColor;\n"
 "void main()\n"
 "{\n"
-" gl_FragColor = vec4(objectColor, 1.0f);\n"
+"gl_FragColor = vec4(objectColor, 1.0f);\n"
 "}\n\0";
-
 
 const char * lightVertexShaderSource =
 "#version 120\n"
@@ -32,10 +68,9 @@ const char * lightVertexShaderSource =
 "}\0";
 
 const char * lightFragmentShaderSource = "#version 120\n"
-"uniform vec4 objectColor;\n"
 "void main()\n"
 "{\n"
-" gl_FragColor = objectColor;\n"
+" gl_FragColor = vec4(1.0);\n"
 "}\n\0";
 
 enShader::enShader()
@@ -112,24 +147,21 @@ void
 enShader::updateModel(glm::mat4 & mat)
 {
   m_model = mat;
-  m_clip = m_projection*m_view*m_model;
-  setMat4("clip", m_clip);
+  setMat4("model", m_model);
 }
 // ---------------------------------------------------------------------------  
 void
 enShader::updateView(glm::mat4 & mat)
 {
   m_view = mat;
-  m_clip = m_projection*m_view*m_model;
-  setMat4("clip", m_clip);
+  setMat4("view", m_view);
 }
 // ---------------------------------------------------------------------------  
 void
 enShader::updateProjection(glm::mat4 & mat)
 {
   m_projection = mat;
-  m_clip = m_projection*m_view*m_model;
-  setMat4("clip", m_clip);
+  setMat4("projection", m_projection);
 }
 // ---------------------------------------------------------------------------  
 GLuint
