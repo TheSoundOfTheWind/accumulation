@@ -3,11 +3,11 @@
 //"gl_Position = ftransform();\n"
 //"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 //"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
-/*
+
 const char * cubeVertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
-"attribute vec3 anormal;\n"
+"attribute vec3 aNormal;\n"
 "varying vec3 FragPos;\n"
 "varying vec3 Normal;\n"  
 "uniform mat4 model;\n"
@@ -20,7 +20,8 @@ const char * cubeVertexShaderSource =
 "gl_Position = projection*view*vec4(FragPos,1.0f);\n"
 "}\0";
 
-const char * cubeFragmentShaderSource = "#version 120\n"
+const char * cubeFragmentShaderSource = 
+"#version 120\n"
 "varying vec3 FragPos;\n"
 "varying vec3 Normal;\n"
 "uniform vec3 lightPos;\n"
@@ -28,16 +29,17 @@ const char * cubeFragmentShaderSource = "#version 120\n"
 "uniform vec3 objectColor;\n"
 "void main()\n"
 "{\n"
-"float ambientStrength = 0.1;\n"
+"float ambientStrength = 0.1f;\n"
 "vec3 ambient = ambientStrength * lightColor;\n"
-"vec3 norm = mormalize(Normal);\n"
+"vec3 norm = normalize(Normal);\n"
 "vec3 lightDir = normalize(lightPos-FragPos);\n"  
-"vec3 diff = max(dot(norm, lightDir), 0.0);\n"
+"float diff = max(dot(norm, lightDir), 0.0);\n"
 "vec3 diffuse = diff * lightColor;\n"
 "vec3 result = (ambient + diffuse)*objectColor;\n"  
 " gl_FragColor = vec4(result, 1.0f);\n"
 "}\n\0";
-*/
+
+/*
 const char * cubeVertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
@@ -55,7 +57,7 @@ const char * cubeFragmentShaderSource = "#version 120\n"
 "{\n"
 "gl_FragColor = vec4(objectColor, 1.0f);\n"
 "}\n\0";
-
+*/
 const char * lightVertexShaderSource =
 "#version 120\n"
 "attribute vec3 aPos;\n"
@@ -97,9 +99,7 @@ enShader::init(ShaderType type)
   } else {
     m_shaderProgramId = loadShaders(lightVertexShaderSource, lightFragmentShaderSource);
   }
-  m_model = glm::rotate(m_model, glm::radians(45.0f), glm::vec3(0.0f, 0.3f, 0.0f));
-  updateModel(m_model);  
-  m_view = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -3.0f));
+  m_view = glm::translate(m_view, glm::vec3(0.0f, 0.0f, 3.0f));
   updateView(m_view);
 }
 // ---------------------------------------------------------------------------
@@ -182,6 +182,8 @@ enShader::loadShaders(const char * vertexShaderSource,
     {
       glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
       printf("-E- shader vertex compilation failed\n");
+      printf("-E- info log:\n");
+      printf("%s\n", infoLog);
     }
   // fragment shader
   unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -193,6 +195,8 @@ enShader::loadShaders(const char * vertexShaderSource,
     {
       glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
       printf("-E- shader fragment compilation failed\n");
+      printf("-E- info log:\n");
+      printf("%s\n", infoLog);
     }
   // link shaders
   unsigned int shaderProgram = glCreateProgram();
