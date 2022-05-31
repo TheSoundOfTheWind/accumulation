@@ -10,12 +10,27 @@
 using std::vector;
 
 typedef struct Vertex {
+  Vertex(const GLfloat & x, const GLfloat & y, const GLfloat & z) {
+    vertex[0] = x;
+    vertex[1] = y;
+    vertex[2] = z;
+  }
   GLfloat vertex[3];
   GLfloat normal[3];
 } Vertex;
 
 typedef struct Index {
-  GLushort index[4];
+  Index(const unsigned int & index0,
+	const unsigned int & index1,
+	const unsigned int & index2,
+	const unsigned int & index3)
+  {
+    index[0] = index0;
+    index[1] = index1;
+    index[2] = index2;
+    index[3] = index3;
+  }
+  unsigned int index[4];
 } Index;
 
 class enRender {
@@ -31,7 +46,8 @@ class enRender {
 
   // add data
   void addCube(GLfloat x1, GLfloat y1, GLfloat z1,
-	                 GLfloat x2, GLfloat y2, GLfloat z2);
+	       GLfloat x2, GLfloat y2, GLfloat z2);
+  void addNormal();
  private:
   bool initVAO();
   bool initVBO();
@@ -44,7 +60,7 @@ class enRender {
   GLuint       m_vbo;
   GLuint       m_ibo;
 
-  vector<Vertex> m_vertices;
+  vector<Vertex>  m_vertices;
   vector<Index>   m_indices;
 };
 #endif // ENRENDER_H

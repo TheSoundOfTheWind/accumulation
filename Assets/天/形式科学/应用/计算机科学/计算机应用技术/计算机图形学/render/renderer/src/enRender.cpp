@@ -161,6 +161,54 @@ enRender::addCube(GLfloat x1, GLfloat y1, GLfloat z1,
 	     GLfloat x2, GLfloat y2, GLfloat z2)
 {
   if (x1 > x2 or y1 > y2 or z1 > z2) { return; }
-  Vertex vertex;
+  unsigned int index = m_indices.size();
+  // bottom
+  m_vertices.push_back(Vertex(x1, y1, z1));
+  m_vertices.push_back(Vertex(x1, y2, z1));
+  m_vertices.push_back(Vertex(x2, y2, z1));
+  m_vertices.push_back(Vertex(x2, y1, z1));
+  m_indices.push_back(Index(index, ++index, ++index, ++index));
+  // top
+  m_vertices.push_back(Vertex(x1, y1, z2));
+  m_vertices.push_back(Vertex(x1, y2, z2));
+  m_vertices.push_back(Vertex(x2, y2, z2));
+  m_vertices.push_back(Vertex(x2, y1, z2));
+  m_indices.push_back(Index(++index, ++index, ++index, ++index));
+
+  // front
+  m_vertices.push_back(Vertex(x1, y2, z1));
+  m_vertices.push_back(Vertex(x1, y2, z2));
+  m_vertices.push_back(Vertex(x2, y2, z2));
+  m_vertices.push_back(Vertex(x2, y2, z1));
+  m_indices.push_back(Index(++index, ++index, ++index, ++index));
+
+  // back
+  m_vertices.push_back(Vertex(x1, y1, z1));
+  m_vertices.push_back(Vertex(x1, y1, z2));
+  m_vertices.push_back(Vertex(x2, y1, z2));
+  m_vertices.push_back(Vertex(x2, y1, z1));
+  m_indices.push_back(Index(++index, ++index, ++index, ++index));
+
+  // left
+  m_vertices.push_back(Vertex(x1, y1, z1));
+  m_vertices.push_back(Vertex(x1, y1, z2));
+  m_vertices.push_back(Vertex(x1, y2, z2));
+  m_vertices.push_back(Vertex(x1, y2, z1));
+  m_indices.push_back(Index(++index, ++index, ++index, ++index));
+
+  // right
+  m_vertices.push_back(Vertex(x2, y1, z1));
+  m_vertices.push_back(Vertex(x2, y1, z2));
+  m_vertices.push_back(Vertex(x2, y2, z2));
+  m_vertices.push_back(Vertex(x2, y2, z1));
+  m_indices.push_back(Index(++index, ++index, ++index, ++index));
+
+  
 }  
+// -----------------------------------------------------------------------------
+void 
+enRender::addNormal()
+{
+  
+}
 // -----------------------------------------------------------------------------
