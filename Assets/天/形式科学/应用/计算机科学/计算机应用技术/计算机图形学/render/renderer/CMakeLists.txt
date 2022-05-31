@@ -32,9 +32,10 @@ add_executable(renderer ${HEAD_FILES} ${SRC_FILES})
 #add_executable(renderer ./src/main.cpp ./src/opengl_thread.cpp ./src/opengl_thread.h
 #  ./src/opengl_widget.cpp ./src/opengl_widget.h)
 
-set(3rdParty_LIBRARIES ${QPENGL_LIBRARIES} libOpenGL.so)
+set(3rdParty_LIBRARIES ${QPENGL_LIBRARIES} libOpenGL.so libGLU.so)
 
-target_link_libraries(renderer ${3rdParty_LIBRARIES} Qt5::Widgets Qt5::OpenGL)
+target_link_libraries(renderer ${3rdParty_LIBRARIES} Qt5::Widgets Qt5::OpenGL GL GLU)
+
 # 添加子目录
 #add_subdirectory(math)
 

@@ -1,3 +1,4 @@
+#include <GL/glu.h>
 #include <iostream>
 #include "enEngine.h"
 
@@ -40,15 +41,28 @@ enEngine::render()
 
   m_cubeShader.use();    
   m_cubeShader.setVec3("objectColor", 0.0f, 0.3f, 0.0f);
+  /*
+  glColor4f(0.0f, 0.3f, 0.0f, 1.0f);
+  glMatrixMode(GL_PROJECTION);
+  glm::mat4 projection = glm::perspective(glm::radians(m_camera.zoom()), (float)m_width / (float)m_height, 0.1f, 100.0f);  
+  glLoadMatrixf(glm::value_ptr(projection));
+  
+  glMatrixMode(GL_MODELVIEW);
+  glm::mat4 view = m_camera.getViewMatrix();
+  glLoadMatrixf(glm::value_ptr(view));  
+  */
+
   glm::mat4 view = m_camera.getViewMatrix();
   m_cubeShader.updateView(view);
-  glm::mat4 projection = glm::perspective(glm::radians(m_camera.zoom()), (float)m_width / (float)m_height, 0.1f, 100.0f);
-  m_cubeShader.updateProjection(projection);
-  glm::mat4 model = glm::mat4(1.0f);
-  model = glm::rotate(model, glm::radians(45.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-  m_cubeShader.updateModel(model);
-  m_render.render();
 
+  glm::mat4 projection = glm::perspective(glm::radians(m_camera.zoom()), (float)m_width / (float)m_height, 0.1f, 100.0f);  
+  m_cubeShader.updateProjection(projection);
+
+  glm::mat4 model = glm::rotate(model, glm::radians(45.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+  m_cubeShader.updateModel(model);  
+
+  m_render.render();
+  /*
   m_lightShader.use();  
   m_lightShader.updateView(view);
   m_lightShader.updateProjection(projection);  
@@ -58,6 +72,7 @@ enEngine::render()
   model = glm::scale(model, glm::vec3(0.2f));
   m_lightShader.updateModel(model);
   m_render.render();  
+  */
 }
 //------------------------------------------------------------------------------
 void

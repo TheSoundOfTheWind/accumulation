@@ -19,6 +19,20 @@ typedef struct Vertex {
   GLfloat normal[3];
 } Vertex;
 
+typedef struct Index {
+  Index(const unsigned int & index0,
+	const unsigned int & index1,
+	const unsigned int & index2,
+	const unsigned int & index3)
+  {
+    index[0] = index0;
+    index[1] = index1;
+    index[2] = index2;
+    index[3] = index3;
+  }
+  unsigned int index[4];
+} Index;
+
 class enRender {
  public:
   enRender();
@@ -46,7 +60,7 @@ class enRender {
   GLuint       m_vbo;
   GLuint       m_ibo;
 
-  vector<Vertex>         m_vertices;
-  vector<unsigned int> m_indices;
+  vector<Vertex>  m_vertices;
+  vector<Index>   m_indices;
 };
 #endif // ENRENDER_H
