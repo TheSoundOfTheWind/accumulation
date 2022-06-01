@@ -13,7 +13,7 @@ class enCamera {
 
   // get methods
   // ---------------------------------------------------------------------------
-  glm::mat4 getViewMatrix() const;
+  glm::mat4 getViewMatrix();
   float          zoom() const { return m_fov; };
   // ---------------------------------------------------------------------------  
 
@@ -24,6 +24,7 @@ class enCamera {
   void moveToLeft();
   void moveToRight();
   void rotate(float xpos, float ypos);
+  void rotate2(float xpos, float ypos);
   void zoom(int delta);
   void setFirstMouse(bool firstmouse) { m_isFirstMouse = firstmouse; };
   // ---------------------------------------------------------------------------  

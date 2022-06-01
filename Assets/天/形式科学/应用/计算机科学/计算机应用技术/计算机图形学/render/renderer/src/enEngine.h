@@ -26,8 +26,6 @@ class enEngine {
   int                m_width;
   int                m_height;
   enRender     m_render;
-  enShader     m_cubeShader;
-  enShader     m_lightShader;
   enCamera    m_camera;
 };
 #endif

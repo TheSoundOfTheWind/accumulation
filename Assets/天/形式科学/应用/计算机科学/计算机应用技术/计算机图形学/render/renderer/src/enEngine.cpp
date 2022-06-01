@@ -1,26 +1,17 @@
 #include <iostream>
 #include "enEngine.h"
 
-// Vertex Array Object, VAO
-// Vertex Buffer Object, VBO
-// Element Buffer Object, EBO/IBO
-
 // -----------------------------------------------------------------------------
-glm::vec3 cubePositions[] = {
-  glm::vec3(0.0f, 0.0f, 0.0f),
-  glm::vec3(2.0f, 5.0f, -15.0f),
-  glm::vec3(-1.5f, -2.2f, -2.5f)
-};
 enEngine::enEngine()
 {
 
 }
-
+// -----------------------------------------------------------------------------
 enEngine::~enEngine()
 {
 
 }
-
+// -----------------------------------------------------------------------------
 void
 enEngine::init()
 {
@@ -28,40 +19,23 @@ enEngine::init()
   if(!m_render.init()) {
     printf("-E- render init faild\n");
   }
-
-  m_cubeShader.init(enShader::Cube);
-  m_lightShader.init(enShader::Light);
 }
 // -----------------------------------------------------------------------------
 void
 enEngine::render()
 {
-  m_render.clean();  
+  m_render.clean();
+  enShader & shader = m_render.shader();
   glm::vec3 lightPos(0.7f, -0.7f, 0.7f);
   glm::vec3 cubePos(-0.5f, 0.5f, -0.5f);
-  m_cubeShader.use();    
-  m_cubeShader.setVec3("objectColor", 0.0f, 0.3f, 0.0f);
-  m_cubeShader.setVec3("lightPos", lightPos);
-  m_cubeShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+  shader.use();    
+
+  shader.setVec3("lightPos", lightPos);
+  shader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
   glm::mat4 view = m_camera.getViewMatrix();
-  m_cubeShader.updateView(view);
+  shader.updateView(view);
   glm::mat4 projection = glm::perspective(glm::radians(m_camera.zoom()), (float)m_width / (float)m_height, 0.1f, 100.0f);
-  m_cubeShader.updateProjection(projection);
-  glm::mat4 model = glm::mat4(1.0f);
-  model = glm::translate(model, cubePos);
-  model = glm::scale(model, glm::vec3(0.5f));
-  //  model = glm::rotate(model, glm::radians(45.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-  m_cubeShader.updateModel(model);
-  m_render.render();
-
-  m_lightShader.use();  
-  m_lightShader.updateView(view);
-  m_lightShader.updateProjection(projection);  
-
-  model = glm::mat4(1.0f);
-  model = glm::translate(model, lightPos);
-  model = glm::scale(model, glm::vec3(0.2f));
-  m_lightShader.updateModel(model);
+  shader.updateProjection(projection);
   m_render.render();  
 }
 //------------------------------------------------------------------------------
@@ -71,3 +45,4 @@ enEngine::setViewPort(int width, int height)
   m_width = width;
   m_height = height;
 }
+//------------------------------------------------------------------------------
