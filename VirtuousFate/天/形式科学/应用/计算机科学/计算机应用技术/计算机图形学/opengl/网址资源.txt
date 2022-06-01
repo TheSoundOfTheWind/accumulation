@@ -58,3 +58,11 @@ https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/
 https://learnopengl-cn.github.io/
 https://learnopengl-cn.readthedocs.io/zh/latest/
 http://www.opengl-tutorial.org/
+
+#好的开源项目
+https://github.com/McNopper/OpenGL
+https://zhuanlan.zhihu.com/p/483443679
+https://www.zhihu.com/question/33712299/answer/58495947
+
+#3D view
+https://github.com/brainfk123/3dviewer.git

@@ -1,0 +1,107 @@
+gxviewer
+1.gxviewer和gtfeditor内部的regression的搭建
+
+2.2D和3D性能指标的指定包括但不限于（软件加载数据的打开速度、内存占用、操作流畅度）
+2D参考同行的软件、3D参考GDS3D的性能
+
+3.随机出现异常日志问题（找鹏浩进行升级）
+ -目前链接的库有问题，需要用我自己的编译参数试一试
+
+4.代码质量调整的时间评估（时间定在这周二）
+
+#bug
+
+#enhencement
+1.2D显示在14nm PLL例子时全局显示的优化（2500万、全局显示）（局部显示性能没问题）
+2.2D显示在chm testcase2例子时内存的优化（820G）内存占用过高（gcap文件3.2G）（5月和6月）
+3.3D显示28nm PLL例子能正常打开（70万geometry）（5月和6月）
+  这里需要一个止损线，如果opengl这条路不行，就只能通过osg那条路来了
+  从五月份开始启动
+4.优化内存占用，现在内存占用太大了
+
+#feature
+1.File menu bar添加load file选项（支持可重入）
+2.color by net、color by layer、color by node
+3.net独占模式（开会讨论）
+
+gxviewer 图形化辅助2.5D cap与3D cap的校准
+gxiviewer目前已经读入了完整的3D solver处理过后的shape、node、net、layer等信息，只要gxviewer再新增如下几个功能就能实现2.5D和3D cap的校准了。
+步骤一：搜索
+在TopView中选中shape（node），快捷键打开这个shape周边4um（可指定任意值）之内的shape
+
+步骤二：获取3D shape（node）与shape之间的cap值
+读入spi文件获取node与node之间的电容值，再步骤1的基础上选中两个shape，只要这两个shape对应
+的node在spi文件中有值，状态栏或图形化显示这两个node之间的cap
+
+步骤三：获取2.5D shape坐标和shape与shape之间的cap值
+读入.gex的xtMergeShape文件获取2.5D solver下的所有shape，读取.gex目录下的shape_to_shape_cap
+file获取2.5D shape与shape之间的cap。
+
+步骤四：2.5D和3Dcap的校准
+步骤二中选中的两个shape，gxviewer会去搜索分别和这两个shape处于同一层的2.5D shape，重叠面积
+达到90%及以上的shape，显示2.5D中这两个shape之间的cap值，2.5Dshape用虚线显示在TopView中。
+这样状态栏中就有3D shape的cap值也有2.5D的cap值，还有两个cap值的偏差。所有的校准结果可以
+down load到指定文件中。
+
+#defect
+1.接入新的qrc框架，并进行logo的替换
+2.conductor和电介质数目分开打印
+3.添加-h参数，提示-g和-a参数的用法
+4.gxviewer默认打开3D的view，太大无法打开
+  3D打开2D的时候需要给出提示，并且给出提示
+  的同时给予用户选择是否强制打开3D
+5.日志打印需要打印net数目layer数目，和细分layer数目
+  还要打印conductor数目和dielectric数目
+6.缩放速度
+7.多net时的开关性能损耗严重
+8.读写速度的优化
+
+#代码规范
+1.方法区分为get methods和set methods
+2.db中的类添加拷贝构造函数
+3.源文件中的方法顺序和头文件的方法顺序一致
+
+
+
+
+
+gtfeditor
+Bug：
+1.Header界面中HALF_NODE_SCALE_FACTOR关键字拼写错误
+
+2.gtfeditor Preview界面改动数值再点击apply后出现syntax error
+
+Defect：
+1.删除Layer 界面中的copy和cancel按钮
+
+2.删除Layer界面中搜索按钮
+
+3.Preview界面中右下角的（cancel、apply、edit）按钮大小调整的和Layer界面右下角按钮大小一致
+
+4.gtfeditor Layers界面中通过点击More Attributes选择界面的Head来控制选择界面的缩放
+
+5.gtfeditor调整下拉条的颜色
+
+6.gtfeditor Comments界面微调
+  -gtfeditor comments界面编辑时每新起一行都在行首自动添加一个*号
+  -gtfedit comments界面编辑的内容在preview界面中的head内容前面显示出来
+
+7.comment编辑界面每新起一行，每行的前面都自动加一个*，并且preview编辑界面中的head前面显示对应的comment
+
+8.gtfeditor点击菜单栏的Save后将preview中的文本内容不做检查的保存到指定文件
+
+Feature:
+1.gtfedit comments功能调整
+  -支持正文部分的局部注释的位置还原和保存
+  
+2.gtfeditor Preview界面的搜索框支持某些vim文本处理命令
+  - vim的文本替换功能
+  
+代码规范：
+gitlab会对每次提交的代码进行质量检查，开发这边将指标逐步降低，
+每周五和产品过一下检查报告跟进指标是否下降，代码质量是否提高。
+
+
+
+
+
