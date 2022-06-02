@@ -34,13 +34,11 @@ class enEntity {
   void setColor(const QColor & color) { m_color = color; };
   void render();
   void setVisual(const bool & visual) { m_visual = visual; }
-  // ---------------------------------------------------------------------------  
  private:
   bool initVAO();
   bool initVBO();
   bool initIBO();
-  void initOther();
-
+  // ---------------------------------------------------------------------------  
   
  private:
   dbMesh *      m_mesh;

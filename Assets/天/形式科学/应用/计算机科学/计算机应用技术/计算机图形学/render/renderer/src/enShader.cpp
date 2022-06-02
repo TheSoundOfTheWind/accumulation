@@ -39,6 +39,8 @@ const char * cubeFragmentShaderSource =
 " gl_FragColor = vec4(result, 1.0f);\n"
 "}\n\0";
 
+// old shader
+// -----------------------------------------------------------------------------
 /*
 const char * cubeVertexShaderSource =
 "#version 120\n"
@@ -58,22 +60,7 @@ const char * cubeFragmentShaderSource = "#version 120\n"
 "gl_FragColor = vec4(objectColor, 1.0f);\n"
 "}\n\0";
 */
-const char * lightVertexShaderSource =
-"#version 120\n"
-"attribute vec3 aPos;\n"
-"uniform mat4 model;\n"
-"uniform mat4 view;\n"
-"uniform mat4 projection;\n"
-"void main()\n"
-"{\n"
-"gl_Position = projection*view*model*vec4(aPos,1.0f);\n"
-"}\0";
-
-const char * lightFragmentShaderSource = "#version 120\n"
-"void main()\n"
-"{\n"
-" gl_FragColor = vec4(1.0);\n"
-"}\n\0";
+// -----------------------------------------------------------------------------
 
 enShader::enShader()
 {
@@ -91,14 +78,9 @@ enShader::~enShader()
 // set methods
 // ---------------------------------------------------------------------------
 void
-enShader::init(ShaderType type)
+enShader::init()
 {
-  m_type = type; 
-  if (Cube == m_type) {
-    m_shaderProgramId = loadShaders(cubeVertexShaderSource, cubeFragmentShaderSource);
-  } else {
-    m_shaderProgramId = loadShaders(lightVertexShaderSource, lightFragmentShaderSource);
-  }
+  m_shaderProgramId = loadShaders(cubeVertexShaderSource, cubeFragmentShaderSource);
   m_view = glm::translate(m_view, glm::vec3(0.0f, 0.0f, 3.0f));
   updateView(m_view);
 }

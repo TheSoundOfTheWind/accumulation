@@ -19,9 +19,6 @@ mainWidget::mainWidget(const QGLFormat & format, QWidget * parent):
   m_data(std::make_shared<Data>())
 {
   setAutoBufferSwap(false);
-  m_lastX = 0;
-  m_lastY = 0;
-  m_isFirstMouse = true;
 }
 
 mainWidget::~mainWidget()
@@ -69,8 +66,6 @@ mainWidget::resizeEvent(QResizeEvent* event)
             newSize.width(),
             newSize.height());
     }
-    m_lastX = newSize.width()/2;
-    m_lastY = newSize.height()/2;
 }
 // -----------------------------------------------------------------------------
 void
@@ -96,14 +91,12 @@ mainWidget::closeEvent(QCloseEvent* event)
 void
 mainWidget::mousePressEvent(QMouseEvent * event)
 {
-  m_isMove = false;
   m_startPoint = event->pos();
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseMoveEvent(QMouseEvent * event)
 {
-  //  if (event->button() != Qt::LeftButton) return;
   m_endPoint = event->pos();
   float x1 = -1.0 + 2.0*(m_startPoint.x()/float(m_size.width()));
   float y1 = 1.0 -2.0*(m_startPoint.y())/float(m_size.height());
@@ -114,16 +107,12 @@ mainWidget::mouseMoveEvent(QMouseEvent * event)
   glm::vec2 curMouse = glm::vec2(x2, y2);
   m_engine.camera().processMouseMovement(prevMouse, curMouse);
   m_startPoint = m_endPoint;
-  m_isMove = true;
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseReleaseEvent(QMouseEvent * event )
 {
-  if (!m_isMove) {
-    return;
-  }
-  m_engine.camera().setFirstMouse(true);
+
 }
 // -----------------------------------------------------------------------------
 // key methods

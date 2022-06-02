@@ -1,16 +1,16 @@
 #include "enEntity.h"
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 enEntity::enEntity()
 {
   m_visual = true;
 }
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 enEntity::~enEntity()
 {
 
 }
 // set methods
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool
 enEntity::init()
 {
@@ -27,10 +27,9 @@ enEntity::init()
     printf("-E- init IBO faild\n");
     r_b = false;
   }
-  initOther();
   return r_b;
 }
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool
 enEntity::initVAO()
 {
@@ -49,7 +48,7 @@ enEntity::initVAO()
   }
   return r_b;
 }
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool
 enEntity::initVBO()
 {
@@ -75,7 +74,7 @@ enEntity::initVBO()
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
   return r_b;
 }
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool
 enEntity::initIBO()
 {
@@ -97,22 +96,15 @@ enEntity::initIBO()
 	       &m_mesh->getIndices()[0], GL_STATIC_DRAW);
   return r_b;
 }
-// ---------------------------------------------------------
-void 
-enEntity::initOther()
-{
-  // other
-  //  glBindBuffer(GL_ARRAY_BUFFER, 0); 
-  //  glBindVertexArray(0);
-}
-// ---------------------------------------------------------
+// -----------------------------------------------------------------------------
 void
 enEntity::render()
 {
-  // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   if (m_visual) {
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glBindVertexArray(m_vao);
     glDrawElements(GL_QUADS, m_mesh->getIndices().size()*4, GL_UNSIGNED_INT, 0);
   }
 }
+// -----------------------------------------------------------------------------

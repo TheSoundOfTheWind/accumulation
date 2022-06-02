@@ -45,10 +45,6 @@ private:
 
     enEngine                      m_engine;
     QSize                           m_size;
-    bool                              m_isMove;
     QPoint                          m_startPoint;
     QPoint                          m_endPoint;
-    int                                m_lastX;
-    int                                m_lastY;
-    bool                              m_isFirstMouse;
 };

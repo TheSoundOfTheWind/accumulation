@@ -79,7 +79,8 @@ enThread::run()
     h = m_data->m_viewHeight;
     m_data->m_mutex.unlock();
     if (!render) break;
-    std::shared_ptr<mainWidget> widget = m_data->m_openglWidget.lock();
+    std::shared_ptr<mainWidget> widget =
+      m_data->m_openglWidget.lock();
     if (!widget) {
       break;
     }
@@ -94,7 +95,7 @@ enThread::run()
     widget->getEngine().render();
     widget->swapBuffers();
     widget->doneCurrent();
-    QThread::msleep(100);
+    //  QThread::msleep(100);
   }
 }
 // ---------------------------------------------------------------------------

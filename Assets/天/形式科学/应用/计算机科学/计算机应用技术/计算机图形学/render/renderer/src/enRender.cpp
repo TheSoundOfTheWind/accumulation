@@ -14,7 +14,7 @@ enRender::~enRender()
 bool
 enRender::init()
 {
-  m_shader.init(enShader::Cube);
+  m_shader.init();
 
   enEntity * entity1 = new enEntity();
   dbMesh * mesh1 = new dbMesh();
@@ -60,7 +60,6 @@ enRender::clean()
   glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
   // also clear the depth buffer now!
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  //glClear(GL_COLOR_BUFFER_BIT);
 }
 // -----------------------------------------------------------------------------
 void 

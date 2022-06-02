@@ -11,11 +11,9 @@ class enShader {
   enShader();
   virtual ~enShader();
 
-  enum ShaderType {Light, Cube};
-  
   // set methods
   // ---------------------------------------------------------------------------
-  void init(ShaderType type); 
+  void init(); 
   void use();
   void setVec3(const GLchar * name, glm::vec3 & vec);  
   void setVec3(const GLchar * name, GLfloat v0, GLfloat v1, GLfloat v2);
@@ -23,12 +21,12 @@ class enShader {
   void updateModel(glm::mat4 & mat);
   void updateView(glm::mat4 & mat);
   void updateProjection(glm::mat4 & mat);
+
  private:
   GLuint loadShaders(const char * vertexShaderSource, const char * fragmentShaderSource);
   // ---------------------------------------------------------------------------  
 
  private:
-  ShaderType  m_type;
   GLuint          m_shaderProgramId;
   glm::mat4    m_model;
   glm::mat4    m_view;
