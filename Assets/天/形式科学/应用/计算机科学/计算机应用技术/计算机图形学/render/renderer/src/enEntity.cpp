@@ -2,7 +2,7 @@
 // ---------------------------------------------------------
 enEntity::enEntity()
 {
-
+  m_visual = true;
 }
 // ---------------------------------------------------------
 enEntity::~enEntity()
@@ -102,18 +102,17 @@ void
 enEntity::initOther()
 {
   // other
-  glBindBuffer(GL_ARRAY_BUFFER, 0); 
-  glBindVertexArray(0);
-  glEnable(GL_DEPTH_TEST);
-
+  //  glBindBuffer(GL_ARRAY_BUFFER, 0); 
+  //  glBindVertexArray(0);
 }
 // ---------------------------------------------------------
 void
 enEntity::render()
 {
   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-  glBindVertexArray(m_vao);
-  glDrawElements(GL_QUADS, m_mesh->getIndices().size()*4, GL_UNSIGNED_INT, 0);    
+  if (m_visual) {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glBindVertexArray(m_vao);
+    glDrawElements(GL_QUADS, m_mesh->getIndices().size()*4, GL_UNSIGNED_INT, 0);
+  }
 }

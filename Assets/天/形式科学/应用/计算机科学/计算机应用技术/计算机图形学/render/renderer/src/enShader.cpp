@@ -29,7 +29,7 @@ const char * cubeFragmentShaderSource =
 "uniform vec3 objectColor;\n"
 "void main()\n"
 "{\n"
-"float ambientStrength = 0.7f;\n"
+"float ambientStrength = 0.3f;\n"
 "vec3 ambient = ambientStrength * lightColor;\n"
 "vec3 norm = normalize(Normal);\n"
 "vec3 lightDir = normalize(lightPos-FragPos);\n"  

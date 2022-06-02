@@ -32,7 +32,8 @@ class enEntity {
 		    const GLfloat & y,
 		    const GLfloat & z) { m_modelCoord = glm::vec3(x, y, z); };
   void setColor(const QColor & color) { m_color = color; };
-  void render();  
+  void render();
+  void setVisual(const bool & visual) { m_visual = visual; }
   // ---------------------------------------------------------------------------  
  private:
   bool initVAO();
@@ -48,5 +49,6 @@ class enEntity {
   GLuint          m_vao;
   GLuint          m_vbo;
   GLuint          m_ibo;
+  bool             m_visual;
 };
 #endif // ENENTITY_H

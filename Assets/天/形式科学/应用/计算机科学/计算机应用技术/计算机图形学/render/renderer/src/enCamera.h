@@ -30,6 +30,7 @@ class enCamera {
   void processMouseMovement(glm::vec2 prevMouse, glm::vec2 curMouse);
   glm::vec3 screen_to_arcball(const glm::vec2 & p);
   glm::vec3 rotate_axis_angle(glm::vec3 & vec, glm::vec3 axis, float angle);
+  glm::vec3 & cameraPos() { return m_cameraPos; }
   // ---------------------------------------------------------------------------  
  private:
   // new

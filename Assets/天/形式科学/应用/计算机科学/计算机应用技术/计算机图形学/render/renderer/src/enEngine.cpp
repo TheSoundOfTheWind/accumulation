@@ -30,7 +30,7 @@ enEngine::render()
   glm::vec3 cubePos(-0.5f, 0.5f, -0.5f);
   shader.use();    
 
-  shader.setVec3("lightPos", lightPos);
+  shader.setVec3("lightPos", camera().cameraPos());
   shader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
   glm::mat4 view = m_camera.getViewMatrix();
   shader.updateView(view);
