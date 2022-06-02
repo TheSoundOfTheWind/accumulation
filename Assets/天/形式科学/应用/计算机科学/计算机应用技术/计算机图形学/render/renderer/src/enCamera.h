@@ -27,6 +27,9 @@ class enCamera {
   void rotate2(float xpos, float ypos);
   void zoom(int delta);
   void setFirstMouse(bool firstmouse) { m_isFirstMouse = firstmouse; };
+  void processMouseMovement(glm::vec2 prevMouse, glm::vec2 curMouse);
+  glm::vec3 screen_to_arcball(const glm::vec2 & p);
+  glm::vec3 rotate_axis_angle(glm::vec3 & vec, glm::vec3 axis, float angle);
   // ---------------------------------------------------------------------------  
  private:
   // new
@@ -36,6 +39,7 @@ class enCamera {
   glm::vec3     m_cameraUp;  
   glm::vec3     m_cameraRight;
   glm::vec3     m_cameraFront;
+  glm::mat4    m_viewMatrix;
   float             m_cameraSpeed;
   
   float             m_yaw;

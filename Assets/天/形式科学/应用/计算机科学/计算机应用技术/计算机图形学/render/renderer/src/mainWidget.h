@@ -44,7 +44,7 @@ private:
     std::shared_ptr<Data> m_data;
 
     enEngine                      m_engine;
-
+    QSize                           m_size;
     bool                              m_isMove;
     QPoint                          m_startPoint;
     QPoint                          m_endPoint;
