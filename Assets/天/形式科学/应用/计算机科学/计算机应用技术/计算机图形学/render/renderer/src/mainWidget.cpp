@@ -91,11 +91,6 @@ mainWidget::closeEvent(QCloseEvent* event)
 void
 mainWidget::mousePressEvent(QMouseEvent * event)
 {
-<<<<<<< HEAD
-  printf("mousePressEvent()\n");
-  m_isMove = false;
-=======
->>>>>>> f82ee845dabf11997e3003c650aaf83f2530f74b
   m_startPoint = event->pos();
 }
 // -----------------------------------------------------------------------------
