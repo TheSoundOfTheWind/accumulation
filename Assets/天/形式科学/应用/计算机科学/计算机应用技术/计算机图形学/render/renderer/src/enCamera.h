@@ -42,15 +42,7 @@ class enCamera {
   glm::mat4    m_viewMatrix;
   float             m_cameraSpeed;
   
-<<<<<<< HEAD
-  float             m_yaw;
-  float             m_pitch;
-  bool              m_isFirstMouse;
-  float             m_lastX;
-  float             m_lastY;
-  
-=======
->>>>>>> f82ee845dabf11997e3003c650aaf83f2530f74b
   float             m_fov;
 };
 #endif // ENCAMERA_H
+

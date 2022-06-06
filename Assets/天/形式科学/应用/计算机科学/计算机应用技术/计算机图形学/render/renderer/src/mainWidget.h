@@ -44,17 +44,7 @@ private:
     std::shared_ptr<Data> m_data;
 
     enEngine                      m_engine;
-<<<<<<< HEAD
-
-    bool                          m_isMove;
-    QPoint                        m_startPoint;
-    QPoint                        m_endPoint;
-    int                           m_lastX;
-    int                           m_lastY;
-    bool                          m_isFirstMouse;
-=======
     QSize                           m_size;
     QPoint                          m_startPoint;
     QPoint                          m_endPoint;
->>>>>>> f82ee845dabf11997e3003c650aaf83f2530f74b
 };

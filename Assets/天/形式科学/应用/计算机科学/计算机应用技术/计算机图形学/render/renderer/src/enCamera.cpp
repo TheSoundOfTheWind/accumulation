@@ -61,55 +61,8 @@ enCamera::moveToLeft()
 void
 enCamera::moveToRight()
 {
-<<<<<<< HEAD
   m_cameraPos += m_cameraRight * m_cameraSpeed;
 }
-// ---------------------------------------------------------------------------
-void
-enCamera::rotate(float xpos, float ypos)
-{
-  if (m_isFirstMouse) {
-    m_lastX = xpos;
-    m_lastY = ypos;
-    m_isFirstMouse = false;
-  }
-  
-}
-// ---------------------------------------------------------------------------
-void
-enCamera::rotate2(float xpos, float ypos)
-{
-  if (m_isFirstMouse) {
-    m_lastX = xpos;
-    m_lastY = ypos;
-    m_isFirstMouse = false;
-  }
-  float xoffset = xpos - m_lastX;
-  float yoffset = m_lastY - ypos;
-  m_lastX = xpos;
-  m_lastY = ypos;
-  float sensitivity = 0.1f;
-  xoffset *= sensitivity;
-  yoffset *= sensitivity;
-
-  m_yaw += xoffset;
-  m_pitch += yoffset;
-  if (m_pitch > 89.0f)  {
-    m_pitch = 89.0f;
-  }
-  if (m_pitch < -89.0f) {
-    m_pitch = -89.0f;
-  }
-  glm::vec3 front;
-  front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-  front.y = sin(glm::radians(m_pitch));
-  front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-  m_cameraFront = glm::normalize(front);
-=======
-  //  m_cameraPos += m_cameraRight * m_cameraSpeed;
->>>>>>> f82ee845dabf11997e3003c650aaf83f2530f74b
-}
-// ---------------------------------------------------------------------------  
 void
 enCamera::zoom(int delta)
 {
