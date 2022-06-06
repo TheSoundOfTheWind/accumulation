@@ -22,6 +22,8 @@ class enRender {
   bool init();
   void clean();
   void render();
+  glm::vec3 updateCenterCoord();
+  float updateScale();
   enShader & shader() { return m_shader; }
   // ---------------------------------------------------------
 
