@@ -1,9 +1,10 @@
 #ifndef ENMESH_H
 #define ENMESH_H
+#include <vector>
 #include <QGLWidget>
 #include <GLES3/gl3.h>
+#include <glm/glm.hpp>
 
-#include <vector>
 using std::vector;
 
 typedef struct Vertex {
@@ -32,19 +33,22 @@ typedef struct Index {
 
 class dbMesh {
  public:
-  dbMesh(const GLfloat & x1, const GLfloat & y1, const GLfloat & z1,
-	       const GLfloat & x2, const GLfloat & y2, const GLfloat & z2);
+  dbMesh();
   virtual ~dbMesh();
 
  public:
+  // get methods
+  // ---------------------------------------------------------------------------
   const vector<Vertex>  & getVertices() { return m_vertices; }
   const vector<Index> &    getIndices() {  return m_indices; }
+  // ---------------------------------------------------------------------------
   
   // set methods
   // ---------------------------------------------------------------------------
- private:     // add data
   void addCube(const GLfloat & x1, const GLfloat & y1, const GLfloat & z1,
 	       const GLfloat & x2, const GLfloat & y2, const GLfloat & z2);
+  void addCube(glm::vec3 & bottomLeft, glm::vec3 & bottomRight,
+	                 glm::vec3 & topLeft, glm::vec3 & topRight);
   void addNormal();
   // ---------------------------------------------------------------------------
   

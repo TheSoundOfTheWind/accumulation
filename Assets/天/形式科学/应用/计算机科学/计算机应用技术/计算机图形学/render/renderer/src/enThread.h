@@ -8,20 +8,23 @@ class enThread : public QThread
   // Constructs the thread from the widget.
   enThread(std::weak_ptr<mainWidget> widget);
   ~enThread();
-    // Sets the viewport size
-    void setViewPortSize(int w, int h);
 
-    // Starts the rendering thread.
-    void start();
+  // set methods
+  // ---------------------------------------------------------------------------
+  // Sets the viewport size
+  void setViewPortSize(int w, int h);
 
-    // Stops the rendering thread.
-    void stop();
+  // Starts the rendering thread.
+  void start();
 
-protected:
-    virtual void run();
+  // Stops the rendering thread.
+  void stop();
 
-private:
-    struct Data;
-    std::shared_ptr<Data> m_data;
+ protected:
+  virtual void run();
+  // ---------------------------------------------------------------------------
+ private:
+  struct Data;
+  std::shared_ptr<Data> m_data;
 };
 

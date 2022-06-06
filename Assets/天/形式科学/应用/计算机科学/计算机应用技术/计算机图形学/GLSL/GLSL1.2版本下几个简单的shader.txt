@@ -55,7 +55,10 @@ varying vec4 gl_Color; // readable on the fragment shader
 
 流程如下：
 
-OpenGL程序使用glColor函数后，将颜色值以attribute gl_Color的形式传给了Vertex Shader, Vertext Shader接受到后开始计算gl_FontColor和gl_BackColor,而在Fragment Shader则会接受到一个由FontColor和BackColor插值计算出来的varying gl_Color(注意：该gl_Color与Vertex Shader当中的不同)，因而可以基于gl_Color开始计算gl_FragColor
+OpenGL程序使用glColor函数后，将颜色值以attribute gl_Color的形式传给了Vertex Shader, 
+Vertext Shader接受到后开始计算gl_FontColor和gl_BackColor,而在Fragment Shader则会接受
+到一个由FontColor和BackColor插值计算出来的varying gl_Color(注意：该gl_Color与Vertex 
+Shader当中的不同)，因而可以基于gl_Color开始计算gl_FragColor
 Vertex Shader
 
 void main()  

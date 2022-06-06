@@ -2,9 +2,11 @@
 #include <memory>
 #include <GLES3/gl3.h>
 #include <QGLContext>
+#include <glm/glm.hpp>
 #include <QMouseEvent>
-#include <QCoreApplication>
 #include <QResizeEvent>
+#include <QCoreApplication>
+
 #include "enThread.h"
 #include "mainWidget.h"
 
@@ -17,9 +19,6 @@ mainWidget::mainWidget(const QGLFormat & format, QWidget * parent):
   m_data(std::make_shared<Data>())
 {
   setAutoBufferSwap(false);
-  m_lastX = 0;
-  m_lastY = 0;
-  m_isFirstMouse = true;
 }
 
 mainWidget::~mainWidget()
@@ -61,13 +60,12 @@ mainWidget::resizeEvent(QResizeEvent* event)
 {
   //  printf("resizeGL()\n");
     const QSize newSize = event->size();
+    m_size = newSize;
     if (m_data->thread) {
         m_data->thread->setViewPortSize(
             newSize.width(),
             newSize.height());
     }
-    m_lastX = newSize.width()/2;
-    m_lastY = newSize.height()/2;
 }
 // -----------------------------------------------------------------------------
 void
@@ -93,27 +91,33 @@ mainWidget::closeEvent(QCloseEvent* event)
 void
 mainWidget::mousePressEvent(QMouseEvent * event)
 {
+<<<<<<< HEAD
   printf("mousePressEvent()\n");
   m_isMove = false;
+=======
+>>>>>>> f82ee845dabf11997e3003c650aaf83f2530f74b
   m_startPoint = event->pos();
-  m_engine.camera().rotate(m_startPoint.x(), m_startPoint.y());  
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseMoveEvent(QMouseEvent * event)
 {
-  m_isMove = true;
   m_endPoint = event->pos();
-  m_engine.camera().rotate(m_endPoint.x(), m_endPoint.y());
+  float x1 = -1.0 + 2.0*(m_startPoint.x()/float(m_size.width()));
+  float y1 = 1.0 -2.0*(m_startPoint.y())/float(m_size.height());
+  float x2 = -1.0 + 2.0*(m_endPoint.x()/float(m_size.width()));
+  float y2 = 1.0 -2.0*(m_endPoint.y())/float(m_size.height());
+  
+  glm::vec2 prevMouse = glm::vec2(x1, y1);
+  glm::vec2 curMouse = glm::vec2(x2, y2);
+  m_engine.camera().processMouseMovement(prevMouse, curMouse);
+  m_startPoint = m_endPoint;
 }
 // -----------------------------------------------------------------------------
 void
 mainWidget::mouseReleaseEvent(QMouseEvent * event )
 {
-  if (!m_isMove) {
-    return;
-  }
-  m_engine.camera().setFirstMouse(true);
+
 }
 // -----------------------------------------------------------------------------
 // key methods
