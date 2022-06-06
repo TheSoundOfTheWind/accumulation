@@ -93,6 +93,7 @@ mainWidget::closeEvent(QCloseEvent* event)
 void
 mainWidget::mousePressEvent(QMouseEvent * event)
 {
+  printf("mousePressEvent()\n");
   m_isMove = false;
   m_startPoint = event->pos();
   m_engine.camera().rotate(m_startPoint.x(), m_startPoint.y());  

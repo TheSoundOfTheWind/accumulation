@@ -82,20 +82,7 @@ enCamera::rotate(float xpos, float ypos)
     m_lastY = ypos;
     m_isFirstMouse = false;
   }
-  float xoffset = xpos - m_lastX;
-  float yoffset = m_lastY - ypos;
-  m_lastX = xpos;
-  m_lastY = ypos;
-  printf("xoffset %f yoffset %f\n", xoffset, yoffset);
-  m_yaw += xoffset;
-  m_pitch += yoffset;
-  if (m_pitch > 89.0f)  {
-    m_pitch = 89.0f;
-  }
-  if (m_pitch < -89.0f) {
-    m_pitch = -89.0f;
-  }
-  printf("yaw %f pitch %f\n", m_yaw, m_pitch);
+  
 }
 // ---------------------------------------------------------------------------
 void

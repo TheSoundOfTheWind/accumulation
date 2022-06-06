@@ -36,6 +36,7 @@ class enCamera {
   glm::vec3     m_cameraUp;  
   glm::vec3     m_cameraRight;
   glm::vec3     m_cameraFront;
+  glm::
   float             m_cameraSpeed;
   
   float             m_yaw;
