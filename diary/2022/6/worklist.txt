@@ -1,19 +1,21 @@
 gxviewer
-1.gxviewer和gtfeditor内部的regression的搭建
+A:重要不紧急（安排大块的时间做）
+3D:
+1.FPS相机
 
+2.3D点选
 
-2.随机出现异常日志问题（找鹏浩进行升级）
- -目前链接的库有问题，需要用我自己的编译参数试一试
+3.按颜色分mesh（调整static试试）
 
-3.代码质量调整的时间评估（时间定在这周二）
+4.帧率计算（非常必要，便于做进一步的性能优化）
 
-#feature
-1.File menu bar添加load file选项（支持可重入）
-2.color by net、color by layer、color by node
-3.net独占模式（开会讨论）
+综合：
+1.支持内部debug文件，非常有必要，gate levle、3d extraction、tr level都有
+这个需求，发起邮件综合讨论跟进
 
-gxviewer 图形化辅助2.5D cap与3D cap的校准
-gxiviewer目前已经读入了完整的3D solver处理过后的shape、node、net、layer等信息，只要gxviewer再新增如下几个功能就能实现2.5D和3D cap的校准了。
+2.net独占模式
+
+3.
 步骤一：搜索
 在TopView中选中shape（node），快捷键打开这个shape周边4um（可指定任意值）之内的shape
 
@@ -31,23 +33,29 @@ file获取2.5D shape与shape之间的cap。
 这样状态栏中就有3D shape的cap值也有2.5D的cap值，还有两个cap值的偏差。所有的校准结果可以
 down load到指定文件中。
 
-#defect
+4.gxviewer和gtfeditor内部的regression的搭建
+
+B:重要且紧急（立即去做）
 1.接入新的qrc框架，并进行logo的替换
+
+C:不重要不紧急（零散的时间去做）
+
+D:不重要紧急（授权给别人去做）
+1.随机出现异常日志问题（找鹏浩进行升级qt，前置条件为喜乐完善第三方库依赖）
+
+2.File menu bar添加load file选项（支持可重入）
+
+3.color by net、color by layer、color by node
 
 #代码规范
 1.方法区分为get methods和set methods
-2.db中的类添加拷贝构造函数
+2.是否需要添加copy函数
 3.源文件中的方法顺序和头文件的方法顺序一致
+4.能调用get类函数就不用set类函数
 
 gtfeditor
 Defect：
-6.gtfeditor Comments界面微调
-  -gtfeditor comments界面编辑时每新起一行都在行首自动添加一个*号
-  -gtfedit comments界面编辑的内容在preview界面中的head内容前面显示出来
-
-7.comment编辑界面每新起一行，每行的前面都自动加一个*，并且preview编辑界面中的head前面显示对应的comment
-
-8.gtfeditor点击菜单栏的Save后将preview中的文本内容不做检查的保存到指定文件
+1.gtfeditor点击菜单栏的Save后将preview中的文本内容不做检查的保存到指定文件
 
 Feature:
 1.gtfedit comments功能调整
@@ -78,8 +86,6 @@ pixmap->使用坐标转换器->使用2D引擎
 5.自适应显示
 使用搜索器->更新坐标转换器->使用坐标转换器->使用2D引擎
 
-
-
 7.显示切线
 使用Pixmap->使用坐标转化器->使用2D引擎
 
@@ -87,7 +93,7 @@ pixmap->使用坐标转换器->使用2D引擎
 使用Pixmap->使用坐标转化器->使用2D引擎
 
 9.关闭切线
-？？
+....
 
 2D在模块上的优化
 2D相关的模块有：
@@ -101,4 +107,30 @@ DB
 坐标转换器
 
 2D引擎
+
+06.10 release note
+Performance:
+1.打开速度（2min42~3min15s > 1min~1min15s)
+2.3D无法打开sram例子（8万个图形） > 3D支持打开sram例子，支持显示的3D图形数1~100万
+3.net全局开关17s >2~5s, ，conductor全局刷新5s>0.5~4s
+4.内存占用（26~28G > 15~20G)
+
+Enhencement：
+1.选中电介质时根据其关联的layer显示其对应的net name
+2.加回控制3D图形变透明的功能
+3.f键功能增加按一次恢复到原始图形大小再按一次恢复到自适应大小
+4.conformal控制面板调整item的默认顺序，conformal放在planar前面
+5.Menu bar调整选中的方式为checkbox+item_name风格
+6.Top View恢复鼠标右键拉窄框切的功能
+7.cut view调整为一次只显示一个
+8.优化gxviewer的日志打印
+9.zoom时拉框的流畅度
+
+Fix Bug：
+1.layer对应的某些电介质显示异常
+2.选中电介质时，状态栏新增eps数值显示
+3.删除tll和tul坐标之间多余的空格间隙
+4.Top View点选偶尔不灵敏的问题
+5.HVtree搜索个别shape丢失
+6.Fix dielectric 全局控制混乱
 
