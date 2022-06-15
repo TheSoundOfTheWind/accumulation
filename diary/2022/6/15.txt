@@ -60,3 +60,6 @@ debug任务A1 top view没图形的问题 ok
 17:20~18:01
 整理目前手头的gtfeditor和gxviewer的任务
 在内网服务器上整理
+
+18:01~18:23
+写gxviewer和gtfeditor的任务清单
