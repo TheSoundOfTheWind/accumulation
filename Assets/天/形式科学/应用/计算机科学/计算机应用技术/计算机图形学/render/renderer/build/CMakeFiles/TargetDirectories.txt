@@ -1,0 +1,4 @@
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/CMakeFiles/rebuild_cache.dir
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/CMakeFiles/renderer.dir
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/CMakeFiles/edit_cache.dir
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/CMakeFiles/renderer_autogen.dir

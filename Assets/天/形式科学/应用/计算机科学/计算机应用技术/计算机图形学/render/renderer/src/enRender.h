@@ -28,6 +28,8 @@ class enRender {
   // ---------------------------------------------------------
 
  private:
+  float                        m_scale;
+  glm::vec3                m_centerCoord;
   enShader                m_shader;
   vector<enEntity *> m_renderObjects;
 };

@@ -1,7 +1,7 @@
 #include "enCamera.h"
 enCamera::enCamera()
 {
-  m_cameraPos         = glm::vec3(0.0f, 0.0f, 3.0f);
+  m_cameraPos         = glm::vec3(0.0f, 0.0f, 20.0f);
   m_cameraTarget     = glm::vec3(0.0f, 0.0f, 0.0f);
   m_cameraDirection = glm::normalize(m_cameraPos - m_cameraTarget);
   glm::vec3 up           = glm::vec3(0.0f, 1.0f, 0.0f);
