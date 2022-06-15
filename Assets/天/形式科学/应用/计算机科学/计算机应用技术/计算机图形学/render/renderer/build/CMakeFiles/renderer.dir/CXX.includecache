@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+=======
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 
 #IncludeRegexScan: ^.*$
 
@@ -6,19 +10,30 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/renderer_autogen/UVLADIE3JM/moc_enThread.cpp
 memory
 -
 ../../../src/enThread.h
+=======
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/moc_enThread.cpp
+../src/enThread.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 /home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/src/enThread.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
+<<<<<<< HEAD
 /home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/renderer_autogen/mocs_compilation.cpp
 UVLADIE3JM/moc_enThread.cpp
 /home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/renderer_autogen/UVLADIE3JM/moc_enThread.cpp
+=======
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/renderer_automoc.cpp
+moc_enThread.cpp
+/home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/build/moc_enThread.cpp
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 
 /home/hljin/accumulation/Assets/天/形式科学/应用/计算机科学/计算机应用技术/计算机图形学/render/renderer/src/dbMesh.cpp
 math.h
@@ -192,6 +207,7 @@ memory
 QtOpenGL/QGLWidget
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/QCoreApplication
 qcoreapplication.h
 /opt/qt-5.14.0-linux/include/QtCore/qcoreapplication.h
@@ -205,38 +221,77 @@ qthread.h
 /opt/qt-5.14.0-linux/include/QtCore/qthread.h
 
 /opt/qt-5.14.0-linux/include/QtCore/qalgorithms.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/QCoreApplication
+qcoreapplication.h
+/opt/qt-5.12.9-linux/include/QtCore/qcoreapplication.h
+
+/opt/qt-5.12.9-linux/include/QtCore/QMutex
+qmutex.h
+/opt/qt-5.12.9-linux/include/QtCore/qmutex.h
+
+/opt/qt-5.12.9-linux/include/QtCore/QThread
+qthread.h
+/opt/qt-5.12.9-linux/include/QtCore/qthread.h
+
+/opt/qt-5.12.9-linux/include/QtCore/qalgorithms.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 intrin.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qarraydata.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qarraydata.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qrefcount.h
 -
 string.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qatomic.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qatomic.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qbasicatomic.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qatomic_bootstrap.h
 QtCore/qgenericatomic.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qatomic_cxx11.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qatomic_bootstrap.h
+QtCore/qgenericatomic.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qatomic_cxx11.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qgenericatomic.h
 -
 atomic
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qatomic_msvc.h
 QtCore/qgenericatomic.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qbasicatomic.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qatomic_msvc.h
+QtCore/qgenericatomic.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qbasicatomic.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qatomic_bootstrap.h
@@ -246,7 +301,11 @@ QtCore/qatomic_cxx11.h
 QtCore/qatomic_msvc.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qbytearray.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qbytearray.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qrefcount.h
 -
 QtCore/qnamespace.h
@@ -264,22 +323,35 @@ string
 iterator
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qbytearraylist.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qbytearraylist.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qlist.h
 -
 QtCore/qbytearray.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qchar.h
 QtCore/qglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qcompilerdetection.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qchar.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qcompilerdetection.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 utility
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qconfig-bootstrapped.h
 
 /opt/qt-5.14.0-linux/include/QtCore/qconfig.h
@@ -295,6 +367,17 @@ iterator
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qcontiguouscache.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qconfig-bootstrapped.h
+
+/opt/qt-5.12.9-linux/include/QtCore/qconfig.h
+
+/opt/qt-5.12.9-linux/include/QtCore/qcontainerfwd.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qcontiguouscache.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qatomic.h
 -
 limits.h
@@ -302,7 +385,11 @@ limits.h
 new
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qcoreapplication.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qcoreapplication.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qstring.h
@@ -316,7 +403,11 @@ QtCore/qeventloop.h
 QtCore/qscopedpointer.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qcoreevent.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qcoreevent.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qnamespace.h
 -
 QtCore/qbytearray.h
@@ -324,7 +415,11 @@ QtCore/qbytearray.h
 QtCore/qobjectdefs.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qdatastream.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qdatastream.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qscopedpointer.h
 -
 QtCore/qiodevice.h
@@ -332,7 +427,11 @@ QtCore/qiodevice.h
 QtCore/qpair.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qdebug.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qdebug.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qalgorithms.h
 -
 QtCore/qhash.h
@@ -364,11 +463,19 @@ map
 utility
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qeventloop.h
 QtCore/qobject.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qfile.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qeventloop.h
+QtCore/qobject.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qfile.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qfiledevice.h
 -
 QtCore/qstring.h
@@ -376,25 +483,41 @@ QtCore/qstring.h
 stdio.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qfiledevice.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qfiledevice.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qiodevice.h
 -
 QtCore/qstring.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qflags.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qflags.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 initializer_list
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qgenericatomic.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qgenericatomic.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qtypeinfo.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qglobal.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qglobal.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 type_traits
 -
 cstddef
@@ -436,17 +559,26 @@ QtCore/qnumeric.h
 QtCore/qversiontagging.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qglobalstatic.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qglobalstatic.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qatomic.h
 -
 QtCore/qmutex.h
 -
+<<<<<<< HEAD
 mutex
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qhash.h
+=======
+
+/opt/qt-5.12.9-linux/include/QtCore/qhash.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qchar.h
 -
 QtCore/qiterator.h
@@ -457,6 +589,7 @@ QtCore/qrefcount.h
 -
 QtCore/qhashfunctions.h
 -
+<<<<<<< HEAD
 QtCore/qcontainertools_impl.h
 -
 algorithm
@@ -465,16 +598,29 @@ initializer_list
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qhashfunctions.h
+=======
+initializer_list
+-
+algorithm
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qhashfunctions.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qstring.h
 -
 QtCore/qpair.h
 -
 numeric
 -
+<<<<<<< HEAD
 functional
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qiodevice.h
+=======
+
+/opt/qt-5.12.9-linux/include/QtCore/qiodevice.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qobject.h
@@ -486,6 +632,7 @@ QtCore/qscopedpointer.h
 QtCore/qstring.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qiterator.h
 QtCore/qglobal.h
 -
@@ -495,6 +642,17 @@ QtCore/qpoint.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qlist.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qiterator.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qline.h
+QtCore/qpoint.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qlist.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qalgorithms.h
 -
 QtCore/qiterator.h
@@ -505,18 +663,27 @@ QtCore/qarraydata.h
 -
 QtCore/qhashfunctions.h
 -
+<<<<<<< HEAD
 QtCore/qvector.h
 -
 QtCore/qcontainertools_impl.h
+=======
+iterator
+-
+list
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 -
 algorithm
 -
 initializer_list
 -
+<<<<<<< HEAD
 iterator
 -
 list
 -
+=======
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 stdlib.h
 -
 new
@@ -530,7 +697,11 @@ QtCore/qbytearraylist.h
 QtCore/qstringlist.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qlocale.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qlocale.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qvariant.h
 -
 QtCore/qstring.h
@@ -540,11 +711,19 @@ QtCore/qobjectdefs.h
 QtCore/qshareddata.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qlogging.h
 QtCore/qglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qmap.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qlogging.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qmap.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qiterator.h
 -
 QtCore/qlist.h
@@ -555,20 +734,36 @@ QtCore/qpair.h
 -
 QtCore/qdebug.h
 -
+<<<<<<< HEAD
 functional
 -
 initializer_list
 -
+=======
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 map
 -
 new
 -
+<<<<<<< HEAD
 
 /opt/qt-5.14.0-linux/include/QtCore/qmargins.h
 QtCore/qnamespace.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qmetatype.h
+=======
+functional
+-
+initializer_list
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qmargins.h
+QtCore/qnamespace.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qmetatype.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qatomic.h
@@ -588,7 +783,11 @@ list
 map
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qmutex.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qmutex.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qatomic.h
@@ -600,6 +799,7 @@ chrono
 limits
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qnamespace.h
 QtCore/qglobal.h
 -
@@ -609,6 +809,17 @@ QtCore/qglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qobject.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qnamespace.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qnumeric.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qobject.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qobjectdefs.h
 -
 QtCore/qstring.h
@@ -628,14 +839,21 @@ QtCore/qobject_impl.h
 chrono
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qobject_impl.h
 
 /opt/qt-5.14.0-linux/include/QtCore/qobjectdefs.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qobject_impl.h
+
+/opt/qt-5.12.9-linux/include/QtCore/qobjectdefs.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qnamespace.h
 -
 QtCore/qobjectdefs_impl.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qobjectdefs_impl.h
 QtCore/qnamespace.h
 -
@@ -653,6 +871,25 @@ QtCore/qglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qrect.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qobjectdefs_impl.h
+QtCore/qnamespace.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qpair.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qpoint.h
+QtCore/qnamespace.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qprocessordetection.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qrect.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qmargins.h
 -
 QtCore/qsize.h
@@ -660,33 +897,55 @@ QtCore/qsize.h
 QtCore/qpoint.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qrefcount.h
 QtCore/qatomic.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qregexp.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qrefcount.h
+QtCore/qatomic.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qregexp.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qstring.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qscopedpointer.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qscopedpointer.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 stdlib.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qset.h
 QtCore/qhash.h
 -
 QtCore/qcontainertools_impl.h
 -
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qset.h
+QtCore/qhash.h
+-
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 initializer_list
 -
 iterator
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qshareddata.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qshareddata.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qatomic.h
@@ -696,7 +955,11 @@ QtCore/qhash.h
 QtCore/qhashfunctions.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qsharedpointer.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qsharedpointer.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtCore/qatomic.h
@@ -705,10 +968,15 @@ QtCore/qshareddata.h
 -
 QtCore/qsharedpointer_impl.h
 -
+<<<<<<< HEAD
 memory
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qsharedpointer_impl.h
+=======
+
+/opt/qt-5.12.9-linux/include/QtCore/qsharedpointer_impl.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 new
 -
 QtCore/qatomic.h
@@ -719,6 +987,7 @@ QtCore/qhash.h
 -
 QtCore/qhashfunctions.h
 -
+<<<<<<< HEAD
 memory
 -
 
@@ -729,6 +998,14 @@ QtCore/qmargins.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qstring.h
+=======
+
+/opt/qt-5.12.9-linux/include/QtCore/qsize.h
+QtCore/qnamespace.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qstring.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qchar.h
 -
 QtCore/qbytearray.h
@@ -752,11 +1029,19 @@ stdarg.h
 QtCore/qstringbuilder.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qstringalgorithms.h
 QtCore/qnamespace.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qstringbuilder.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qstringalgorithms.h
+QtCore/qnamespace.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qstringbuilder.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qstring.h
 -
 QtCore/qbytearray.h
@@ -764,13 +1049,20 @@ QtCore/qbytearray.h
 string.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qstringlist.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qstringlist.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qlist.h
 -
 QtCore/qalgorithms.h
 -
+<<<<<<< HEAD
 QtCore/qcontainertools_impl.h
 -
+=======
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qregexp.h
 -
 QtCore/qstring.h
@@ -778,6 +1070,7 @@ QtCore/qstring.h
 QtCore/qstringmatcher.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qstringliteral.h
 QtCore/qarraydata.h
 -
@@ -789,6 +1082,17 @@ QtCore/qstringview.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qstringview.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qstringliteral.h
+QtCore/qarraydata.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qstringmatcher.h
+QtCore/qstring.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qstringview.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qchar.h
 -
 QtCore/qbytearray.h
@@ -800,11 +1104,19 @@ QtCore/qstringalgorithms.h
 string
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qsysinfo.h
 QtCore/qglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qsystemdetection.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qsysinfo.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qsystemdetection.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 TargetConditionals.h
@@ -814,6 +1126,7 @@ Availability.h
 AvailabilityMacros.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qt_windows.h
 windows.h
 -
@@ -821,6 +1134,15 @@ windows.h
 /opt/qt-5.14.0-linux/include/QtCore/qtcore-config.h
 
 /opt/qt-5.14.0-linux/include/QtCore/qtextstream.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qt_windows.h
+windows.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qtcore-config.h
+
+/opt/qt-5.12.9-linux/include/QtCore/qtextstream.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qiodevice.h
 -
 QtCore/qstring.h
@@ -834,7 +1156,11 @@ QtCore/qscopedpointer.h
 stdio.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qthread.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qthread.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qobject.h
 -
 future
@@ -844,11 +1170,19 @@ functional
 limits.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qtypeinfo.h
 QtCore/qglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qurl.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qtypeinfo.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtCore/qurl.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qbytearray.h
 -
 QtCore/qobjectdefs.h
@@ -864,7 +1198,11 @@ QtCore/qglobal.h
 QtCore/qurlquery.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qurlquery.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qurlquery.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qpair.h
 -
 QtCore/qshareddata.h
@@ -873,10 +1211,15 @@ QtCore/qurl.h
 -
 QtCore/qstringlist.h
 -
+<<<<<<< HEAD
 initializer_list
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qvariant.h
+=======
+
+/opt/qt-5.12.9-linux/include/QtCore/qvariant.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qatomic.h
 -
 QtCore/qbytearray.h
@@ -900,16 +1243,28 @@ QtCore/qbytearraylist.h
 variant
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qvarlengtharray.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qvarlengtharray.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qcontainerfwd.h
 -
 QtCore/qglobal.h
 -
 QtCore/qalgorithms.h
 -
+<<<<<<< HEAD
 QtCore/qcontainertools_impl.h
 -
 QtCore/qhashfunctions.h
+=======
+new
+-
+string.h
+-
+stdlib.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 -
 algorithm
 -
@@ -917,6 +1272,7 @@ initializer_list
 -
 iterator
 -
+<<<<<<< HEAD
 new
 -
 string.h
@@ -925,33 +1281,53 @@ stdlib.h
 -
 
 /opt/qt-5.14.0-linux/include/QtCore/qvector.h
+=======
+
+/opt/qt-5.12.9-linux/include/QtCore/qvector.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qalgorithms.h
 -
 QtCore/qiterator.h
 -
+<<<<<<< HEAD
+=======
+QtCore/qlist.h
+-
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qrefcount.h
 -
 QtCore/qarraydata.h
 -
 QtCore/qhashfunctions.h
 -
+<<<<<<< HEAD
 QtCore/qcontainertools_impl.h
 -
 iterator
 -
 initializer_list
 -
+=======
+iterator
+-
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 vector
 -
 stdlib.h
 -
 string.h
 -
+<<<<<<< HEAD
+=======
+initializer_list
+-
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 algorithm
 -
 QtCore/qpoint.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtCore/qversiontagging.h
 QtCore/qglobal.h
 -
@@ -973,6 +1349,29 @@ qsurfaceformat.h
 /opt/qt-5.14.0-linux/include/QtGui/qsurfaceformat.h
 
 /opt/qt-5.14.0-linux/include/QtGui/qbrush.h
+=======
+/opt/qt-5.12.9-linux/include/QtCore/qversiontagging.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtGui/QColor
+qcolor.h
+/opt/qt-5.12.9-linux/include/QtGui/qcolor.h
+
+/opt/qt-5.12.9-linux/include/QtGui/QMouseEvent
+qevent.h
+/opt/qt-5.12.9-linux/include/QtGui/qevent.h
+
+/opt/qt-5.12.9-linux/include/QtGui/QResizeEvent
+qevent.h
+/opt/qt-5.12.9-linux/include/QtGui/qevent.h
+
+/opt/qt-5.12.9-linux/include/QtGui/QSurfaceFormat
+qsurfaceformat.h
+/opt/qt-5.12.9-linux/include/QtGui/qsurfaceformat.h
+
+/opt/qt-5.12.9-linux/include/QtGui/qbrush.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qpair.h
@@ -994,7 +1393,11 @@ QtGui/qimage.h
 QtGui/qpixmap.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qcolor.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qcolor.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qrgb.h
@@ -1006,7 +1409,11 @@ QtCore/qstringlist.h
 QtGui/qrgba64.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qcursor.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qcursor.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qpoint.h
@@ -1014,7 +1421,11 @@ QtCore/qpoint.h
 QtGui/qwindowdefs.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qevent.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qevent.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qwindowdefs.h
@@ -1046,7 +1457,11 @@ QtGui/qvector2d.h
 QtGui/qtouchdevice.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qfont.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qfont.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qwindowdefs.h
@@ -1056,7 +1471,11 @@ QtCore/qstring.h
 QtCore/qsharedpointer.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qfontinfo.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qfontinfo.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qfont.h
@@ -1064,7 +1483,11 @@ QtGui/qfont.h
 QtCore/qsharedpointer.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qfontmetrics.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qfontmetrics.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qfont.h
@@ -1074,7 +1497,11 @@ QtCore/qsharedpointer.h
 QtCore/qrect.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qguiapplication.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qguiapplication.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qcoreapplication.h
@@ -1090,7 +1517,11 @@ QtCore/qpoint.h
 QtCore/qsize.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qimage.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qimage.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qcolor.h
@@ -1112,13 +1543,21 @@ QtCore/qstring.h
 QtCore/qstringlist.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qinputmethod.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qinputmethod.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qobject.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qkeysequence.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qkeysequence.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qstring.h
@@ -1126,7 +1565,11 @@ QtCore/qstring.h
 QtCore/qobjectdefs.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qmatrix.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qmatrix.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qpolygon.h
@@ -1142,7 +1585,11 @@ QtCore/qpoint.h
 QtCore/qrect.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qopengl.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qopengl.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qt_windows.h
@@ -1188,11 +1635,21 @@ stdint.h
 inttypes.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qopengles2ext.h
 
 /opt/qt-5.14.0-linux/include/QtGui/qopenglext.h
 windows.h
 -
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qopengles2ext.h
+
+/opt/qt-5.12.9-linux/include/QtGui/qopenglext.h
+windows.h
+-
+stddef.h
+-
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 inttypes.h
 -
 inttypes.h
@@ -1202,7 +1659,11 @@ stdint.h
 inttypes.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpaintdevice.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpaintdevice.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qwindowdefs.h
@@ -1210,7 +1671,11 @@ QtGui/qwindowdefs.h
 QtCore/qrect.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpaintengine.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpaintengine.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qnamespace.h
@@ -1222,7 +1687,11 @@ QtCore/qscopedpointer.h
 QtGui/qpainter.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpainter.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpainter.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qnamespace.h
@@ -1254,7 +1723,11 @@ QtGui/qfontinfo.h
 QtGui/qfontmetrics.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpainterpath.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpainterpath.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qmatrix.h
@@ -1270,7 +1743,11 @@ QtCore/qvector.h
 QtCore/qscopedpointer.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpalette.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpalette.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qwindowdefs.h
@@ -1280,7 +1757,11 @@ QtGui/qcolor.h
 QtGui/qbrush.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpen.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpen.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qcolor.h
@@ -1288,11 +1769,19 @@ QtGui/qcolor.h
 QtGui/qbrush.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpixelformat.h
 QtGui/qtguiglobal.h
 -
 
 /opt/qt-5.14.0-linux/include/QtGui/qpixmap.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpixelformat.h
+QtGui/qtguiglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtGui/qpixmap.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qpaintdevice.h
@@ -1310,7 +1799,11 @@ QtGui/qimage.h
 QtGui/qtransform.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qpolygon.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qpolygon.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qvector.h
@@ -1320,7 +1813,11 @@ QtCore/qpoint.h
 QtCore/qrect.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qregion.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qregion.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qatomic.h
@@ -1332,19 +1829,31 @@ QtGui/qwindowdefs.h
 QtCore/qdatastream.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qrgb.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qrgb.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qprocessordetection.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qrgba64.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qrgba64.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qprocessordetection.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qsurfaceformat.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qsurfaceformat.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qpair.h
@@ -1352,7 +1861,11 @@ QtCore/qpair.h
 QtCore/qobjectdefs.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qtextoption.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qtextoption.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qnamespace.h
@@ -1362,21 +1875,35 @@ QtCore/qchar.h
 QtCore/qmetatype.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qtgui-config.h
 
 /opt/qt-5.14.0-linux/include/QtGui/qtguiglobal.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qtgui-config.h
+
+/opt/qt-5.12.9-linux/include/QtGui/qtguiglobal.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtCore/qglobal.h
 -
 QtGui/qtgui-config.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qtouchdevice.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qtouchdevice.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qobject.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qtransform.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qtransform.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtGui/qmatrix.h
@@ -1396,7 +1923,11 @@ QtCore/qpoint.h
 QtCore/qrect.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qvector2d.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qvector2d.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qpoint.h
@@ -1404,7 +1935,11 @@ QtCore/qpoint.h
 QtCore/qmetatype.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qwindowdefs.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qwindowdefs.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtCore/qobjectdefs.h
@@ -1414,6 +1949,7 @@ QtCore/qnamespace.h
 QtGui/qwindowdefs_win.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
@@ -1427,6 +1963,21 @@ qgl.h
 /opt/qt-5.14.0-linux/include/QtOpenGL/qgl.h
 
 /opt/qt-5.14.0-linux/include/QtOpenGL/qgl.h
+=======
+/opt/qt-5.12.9-linux/include/QtGui/qwindowdefs_win.h
+QtGui/qtguiglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtOpenGL/QGLContext
+qgl.h
+/opt/qt-5.12.9-linux/include/QtOpenGL/qgl.h
+
+/opt/qt-5.12.9-linux/include/QtOpenGL/QGLWidget
+qgl.h
+/opt/qt-5.12.9-linux/include/QtOpenGL/qgl.h
+
+/opt/qt-5.12.9-linux/include/QtOpenGL/qgl.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qopengl.h
 -
 QtWidgets/qwidget.h
@@ -1442,7 +1993,11 @@ QtCore/qscopedpointer.h
 QtGui/QSurfaceFormat
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtOpenGL/qglcolormap.h
+=======
+/opt/qt-5.12.9-linux/include/QtOpenGL/qglcolormap.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qcolor.h
 -
 QtCore/qvector.h
@@ -1450,6 +2005,7 @@ QtCore/qvector.h
 QtOpenGL/qtopenglglobal.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtOpenGL/qtopenglglobal.h
 QtCore/qglobal.h
 -
@@ -1463,6 +2019,21 @@ qdesktopwidget.h
 /opt/qt-5.14.0-linux/include/QtWidgets/qdesktopwidget.h
 
 /opt/qt-5.14.0-linux/include/QtWidgets/qapplication.h
+=======
+/opt/qt-5.12.9-linux/include/QtOpenGL/qtopenglglobal.h
+QtCore/qglobal.h
+-
+
+/opt/qt-5.12.9-linux/include/QtWidgets/QApplication
+qapplication.h
+/opt/qt-5.12.9-linux/include/QtWidgets/qapplication.h
+
+/opt/qt-5.12.9-linux/include/QtWidgets/QDesktopWidget
+qdesktopwidget.h
+/opt/qt-5.12.9-linux/include/QtWidgets/qdesktopwidget.h
+
+/opt/qt-5.12.9-linux/include/QtWidgets/qapplication.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtWidgets/qtwidgetsglobal.h
 -
 QtCore/qcoreapplication.h
@@ -1480,13 +2051,21 @@ QtWidgets/qdesktopwidget.h
 QtGui/qguiapplication.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtWidgets/qdesktopwidget.h
+=======
+/opt/qt-5.12.9-linux/include/QtWidgets/qdesktopwidget.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qwidget.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtWidgets/qsizepolicy.h
+=======
+/opt/qt-5.12.9-linux/include/QtWidgets/qsizepolicy.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtWidgets/qtwidgetsglobal.h
 -
 QtCore/qobject.h
@@ -1494,15 +2073,25 @@ QtCore/qobject.h
 QtCore/qalgorithms.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtWidgets/qtwidgets-config.h
 
 /opt/qt-5.14.0-linux/include/QtWidgets/qtwidgetsglobal.h
+=======
+/opt/qt-5.12.9-linux/include/QtWidgets/qtwidgets-config.h
+
+/opt/qt-5.12.9-linux/include/QtWidgets/qtwidgetsglobal.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtGui/qtguiglobal.h
 -
 QtWidgets/qtwidgets-config.h
 -
 
+<<<<<<< HEAD
 /opt/qt-5.14.0-linux/include/QtWidgets/qwidget.h
+=======
+/opt/qt-5.12.9-linux/include/QtWidgets/qwidget.h
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 QtWidgets/qtwidgetsglobal.h
 -
 QtGui/qwindowdefs.h

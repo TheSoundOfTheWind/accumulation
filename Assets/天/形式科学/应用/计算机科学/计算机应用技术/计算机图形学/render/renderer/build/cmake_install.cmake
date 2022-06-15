@@ -29,12 +29,16 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+<<<<<<< HEAD
   set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
+=======
+  set(CMAKE_INSTALL_SO_NO_EXE "0")
+>>>>>>> fc8ba0cf7be3fa4968aa789ce1ea12620fbd209d
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

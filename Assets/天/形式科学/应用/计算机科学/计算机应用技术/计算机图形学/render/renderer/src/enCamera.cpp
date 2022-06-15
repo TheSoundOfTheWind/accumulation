@@ -61,9 +61,8 @@ enCamera::moveToLeft()
 void
 enCamera::moveToRight()
 {
-  //  m_cameraPos += m_cameraRight * m_cameraSpeed;
+  m_cameraPos += m_cameraRight * m_cameraSpeed;
 }
-// ---------------------------------------------------------------------------  
 void
 enCamera::zoom(int delta)
 {
