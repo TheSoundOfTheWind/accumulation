@@ -53,21 +53,9 @@ D:不重要紧急（授权给别人去做）
 3.源文件中的方法顺序和头文件的方法顺序一致
 4.能调用get类函数就不用set类函数
 
-gtfeditor
-Defect：
-1.gtfeditor点击菜单栏的Save后将preview中的文本内容不做检查的保存到指定文件
-
-Feature:
-1.gtfedit comments功能调整
-  -支持正文部分的局部注释的位置还原和保存
-  
-2.gtfeditor Preview界面的搜索框支持某些vim文本处理命令
-  - vim的文本替换功能
-  
 代码规范：
 gitlab会对每次提交的代码进行质量检查，开发这边将指标逐步降低，
 每周五和产品过一下检查报告跟进指标是否下降，代码质量是否提高。
-
 
 模块之间的流程优化
 列举所有的用户场景
@@ -108,29 +96,4 @@ DB
 
 2D引擎
 
-06.10 release note
-Performance:
-1.打开速度（2min42~3min15s > 1min~1min15s)
-2.3D无法打开sram例子（8万个图形） > 3D支持打开sram例子，支持显示的3D图形数1~100万
-3.net全局开关17s >2~5s, ，conductor全局刷新5s>0.5~4s
-4.内存占用（26~28G > 15~20G)
-
-Enhencement：
-1.选中电介质时根据其关联的layer显示其对应的net name
-2.加回控制3D图形变透明的功能
-3.f键功能增加按一次恢复到原始图形大小再按一次恢复到自适应大小
-4.conformal控制面板调整item的默认顺序，conformal放在planar前面
-5.Menu bar调整选中的方式为checkbox+item_name风格
-6.Top View恢复鼠标右键拉窄框切的功能
-7.cut view调整为一次只显示一个
-8.优化gxviewer的日志打印
-9.zoom时拉框的流畅度
-
-Fix Bug：
-1.layer对应的某些电介质显示异常
-2.选中电介质时，状态栏新增eps数值显示
-3.删除tll和tul坐标之间多余的空格间隙
-4.Top View点选偶尔不灵敏的问题
-5.HVtree搜索个别shape丢失
-6.Fix dielectric 全局控制混乱
 
