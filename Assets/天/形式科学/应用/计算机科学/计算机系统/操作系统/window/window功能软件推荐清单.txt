@@ -1,0 +1,49 @@
+1、AnyTXT Searcher：可以搜文件内容的全文搜索工具，右边直接预览文件，速度很快，和 Everything 搭配使用体验极赞！（使用教程）
+2、Everything：本地文件搜索的天花板。
+3、Bandizip：多功能文件压缩/解压工具，颜值高，功能全，可以免解压预览图片。
+4、Honeyview：图片查看器，加载速度极快，完全免费，可以免解压查看图片，完美替代 Windows 自带的。
+5、GIMP：免费开源的图片编辑器，轻度使用可以替代 PhotoShop，更加轻量。
+6、SumatraPDF：一款轻量简洁的阅读器，PDF、EPUB、MOBI、XPS、DjVu 等格式支持很全，单纯阅读的话，安装这一个就够了。
+7、Starrea（UWP 版）：Windows 阅读体验最好的 EPUB 电子书阅读器了！
+8、qBittorrent：专业的磁力链接、种子下载工具。（推荐！qBittorrent 详细使用教程）
+9、IDM：最强的多线程下载软件，没有之一。支持网页媒体嗅探，下载网页视频很不错。遗憾的是没有免费版，购买的话推荐选永久版 → IDM 永久版。
+10、Quicker：新一代效率利器，搭配「动作库」一键完成各种复杂操作。
+11、QuickLook（UWP 版）：按空格键预览文件，在弹窗中快速查看文件内容。
+12、Advanced Renamer：批量重命名工具，很强大，支持各种自定义命名规则。
+13、Typora：所见即所得的跨平台 MarkDown 编辑器，用过的都说好！虽然正式版已经收费了，但老的免费版本依然可以用，很良心了。
+14、Notion：一款无所不能的笔记软件，神器不解释。
+15、Dism++：最强的系统优化管理神器。（推荐！Dism++ ，详细介绍及使用教程）
+16、GeekUninstaller：软件彻底卸载工具，清除卸载残留。
+17、DiskGenius：专业的数据恢复和分区管理软件，各种文件恢复和分区问题都可以解决。
+18、Snipaste：截图 & 贴图利器，功能齐全，贴图功能真的很好用。
+19、ScreenToGif：GIF 录制软件，内置 GIF 编辑器，相当强大。
+20、Wallpaper Engine（Steam）：这个就不用解释了，懂的都懂，Steam +1
+21、Potplayer：Windows 上功能最强的免费视频播放器，第一次安装需要调好设置。（最强电脑影音视频播放器 | 附基础设置和精美皮肤）
+22、Ditto：记录剪贴板历史，按「Ctrl + `」打开剪贴板历史窗口，比系统自带的「Win + V」强很多，生产力工具。
+
+微软的产品：
+办公软件
+1.Microsoft Access
+2.Microsoft Entourage
+3.Microsoft Excel
+4.Microsoft FrontPage
+5.Microsoft InfoPath
+6.Microsoft Paint
+7.Microsoft Notepad
+8.Microsoft Lync
+9.Microsoft MapPoint
+10.Microsoft Office Picture Manager
+11.Microsoft Office shared tools
+12.Microsoft OneNote                       笔记本
+13.Microsoft Outlook                        
+14.Microsoft PowerPoint
+15.Microsoft Project
+16.Microsoft Publisher
+17.Microsoft SharePoint Workspace
+18.Microsoft Visio                         流程图软件
+19.Microsoft Word
+20.Microsoft Works
+21.Office Assistant
+22.Outlook Web Access
+23.Outlook Web App
+24.Microsoft Sway
