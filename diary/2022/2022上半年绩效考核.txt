@@ -1,0 +1,34 @@
+gbflow
+1.处理跟进由mpp引起的gbflow无法正常退出的问题
+2.修改gbflow中流程或cmd
+  - 修改signal flow中的run.py脚本
+3.新增cmd
+  -Add set_report_glitch_power ON/OFF cmd
+  -Add ds.init_client cmd to run.py
+  
+
+gtviewer
+1.修改gtviewer的最新code，只保留显示gdsii相关的功能（出包临时需求）
+2.添加一个license用于上传chm使用
+
+
+gxviewer
+gxviewer代码整体重构
+-新架构下各模块的功能更独立，模块间
+的耦合也有所降低，便于后期更复杂业务场景下的开发维护
+-重新实现2D view的显示，使用新架构和设备坐标显示原图形
+
+gxviewer性能优化（打开的极限从5万提升到100万左右，目前流畅操作的上限为2万个）
+-尝试使用Qt封装的opengl实现3D渲染，成功画出了一个三角形
+尝试过程中发现学习资料很少，也没有开源社区的支持最终选择
+放弃这个方案
+-尝试使用GDS3D开源软件中的渲染器，该渲染器用的是C风格写的，
+剥离出来使用但是没有成功，放弃这个方案
+-尝试使用opengl学习网站中的内容结合一个小的开源项目，使用
+opengl+glm+QThread+QGLWidget，目前我们用的就是这套方案
+
+gxviewer新功能开发
+-2D和3D切换控制
+-通过点选2D图形选择切换3D旋转中心
+-新增HVtree
+
