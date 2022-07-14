@@ -58,6 +58,7 @@ https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/
 https://learnopengl-cn.github.io/
 https://learnopengl-cn.readthedocs.io/zh/latest/
 http://www.opengl-tutorial.org/
+https://wiki.jikexueyuan.com/project/modern-opengl-tutorial/tutorial29.html
 
 #好的开源项目
 https://github.com/McNopper/OpenGL
@@ -70,3 +71,4 @@ https://github.com/brainfk123/3dviewer.git
 #关于trackball轨迹球的实现方式
 https://github.com/Twinklebear/arcball-cpp/blob/master/arcball_camera.h
 https://stackoverflow.com/questions/4039664/trackball-rotation-in-opengl
+

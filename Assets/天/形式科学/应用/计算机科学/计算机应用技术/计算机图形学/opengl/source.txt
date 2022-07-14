@@ -53,3 +53,28 @@ https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/
 
 opengl 官方网站
 https://www.opengl.org/
+
+https://download.csdn.net/download/libaineu2004/12402662
+
+https://libaineu2004.blog.csdn.net/article/details/105308235
+学习教程
+https://learnopengl-cn.github.io/ ++ https://learnopengl.com/
+https://github.com/JoeyDeVries/LearnOpenGL ++ https://github.com/JoeyDeVries/Cell
+http://www.opengl-tutorial.org/ ++ https://github.com/opengl-tutorials/ogl
+OpenGL超级宝典visual studio 2013开发环境配置 GLTools
+http://www.it165.net/pro/html/201504/38164.html
+OpenGL+VS2017 环境配置(亲测好使)
+https://blog.csdn.net/AvatarForTest/article/details/79199807
+《OpenGL编程指南》
+红宝书，Khronos小组编写的OpenGL官方权威指南
+《OpenGL超级宝典》
+蓝宝书，配套源码使用的是freeglut+glew
+OpenGL GUI
+NanoGUI 是基于opengl以及GLFW，GLAD，NanoVG，Eigen这些库形成的一个可视化GUI库，在窗口的设计上非常的简约，程序使用上也非常的方便。
+https://github.com/wjakob/nanogui
+https://github.com/memononen/NanoVG
+https://nanogui.readthedocs.io/en/latest/
+libqglviewer
+libQGLViewer 是一个用以简化了Qt开发OpenGL三维浏览器的C++库。它提供了一些典型的3D查看器的功能，如能够移动相机使用鼠标。
+http://libqglviewer.com/
+https://github.com/GillesDebunne/libQGLViewer
