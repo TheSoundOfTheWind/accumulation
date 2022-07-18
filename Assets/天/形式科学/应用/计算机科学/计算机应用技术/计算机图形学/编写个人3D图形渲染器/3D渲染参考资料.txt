@@ -1,0 +1,36 @@
+##########################################################################
+#海外华人图形学大牛的视频课程
+GAMES101-现代计算机图形学入门-闫令琪
+https://www.bilibili.com/video/av90798049
+
+GAMES102-几何建模与处理-闫令琪
+https://www.bilibili.com/video/BV1NA411E7Yr/?spm_id_from=333.788.recommend_more_video.2
+
+GAMES201-高级物理引擎实战指南2020-胡渊鸣
+https://www.bilibili.com/video/BV1ZK411H7Hc/?spm_id_from=333.788.recommend_more_video.2
+
+GAMES202-高质量实时渲染-闫令琪
+https://www.bilibili.com/video/BV1YK4y1T7yY/?spm_id_from=333.788.recommend_more_video.19
+
+pdf
+http://games-cn.org/graphics-intro-ppt-video/
+
+http://games-cn.org/intro-graphics/
+
+作业：
+http://games-cn.org/forums/topic/allhw/
+
+##########################################################################
+#opengl API的学习网站
+https://learnopengl-cn.github.io/
+https://learnopengl-cn.readthedocs.io/zh/latest/
+http://www.opengl-tutorial.org/
+https://wiki.jikexueyuan.com/project/modern-opengl-tutorial/tutorial29.html
+
+##########################################################################
+#opengl 2.1的所有接口介绍
+https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/
+
+#OpenGL和GLX规范和参考网址（还包含GLSL的语法参考）
+https://registry.khronos.org/OpenGL/index_gl.php
+##########################################################################

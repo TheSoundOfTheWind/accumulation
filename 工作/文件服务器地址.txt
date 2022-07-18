@@ -3,3 +3,5 @@
 
 project.phlexing.com:8002 yueming#560
 https://mail.phlexing.com:6443
+https://hzscd-g1.phlexing.com/vpn/index.html
+

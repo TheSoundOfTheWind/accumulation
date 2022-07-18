@@ -1,0 +1,33 @@
+#计算机图形学的应用
+游戏、电影特效、模拟动画、CAD软件、PS、虚拟现实、增强现实、仿真=模拟=动画
+GUI=操纵视觉信息的方法叫可视化、字体
+
+图形学是一个广阔的世界：
+1.光栅化（opengl+shader）
+实时>=30帧，否则就是离线
+2.曲线和曲面（几何）
+3.光线追踪(动画和电影重点使用）
+4.动画与模拟
+
+开发计算机图形学应用（OpenGL/DX/..)
+3D建模 Maya/3DS MAX/Blender
+计算机视觉（需要分析理解和猜测）
+
+model -> image is计算机图形学
+image ->model is计算机视觉
+model->model is计算机图形学
+image->image is计算机视觉
+
+1.光栅化（画在屏幕上）
+viewing
+-view / Camera transformation
+- projection transformation
+ - orthographic projection(正交)
+ - perspective projection（透视）
+
+MVP变换视口变换
+
+视口变换就是把-1，1变换到屏幕的宽高
+
+可见性
+zbuf-深度缓存
